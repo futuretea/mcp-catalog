@@ -1,28 +1,28 @@
 name: Google Sheets
-shortDescription: Create and manage Google Sheets spreadsheets, worksheets, cells, and formulas
+shortDescription: 创建和管理 Google Sheets 电子表格、工作表、单元格和公式
 description: |
   ![Google Sheets MCP Server](https://img.shields.io/badge/Google%20Sheets-MCP%20Server-blue?style=for-the-badge&logo=google-sheets)
   ![Python](https://img.shields.io/badge/Python-3.13+-green?style=for-the-badge&logo=python)
   ![FastMCP](https://img.shields.io/badge/FastMCP-2.11.1+-orange?style=for-the-badge)
   ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-  A Model Context Protocol (MCP) server for Google Sheets integration, providing comprehensive spreadsheet management capabilities through a modern API interface.
+  一个用于 Google Sheets 集成的 Model Context Protocol (MCP) 服务器，通过现代 API 接口提供全面的电子表格管理功能。
 
-  ## Features
-  - **OAuth2 Authentication**: Secure Google OAuth integration with automatic token refresh
-  - **Spreadsheet Management**: Create, read, and delete spreadsheets with full lifecycle control
-  - **Worksheet Operations**: Create and manage individual worksheets (tabs) within spreadsheets
-  - **Cell Operations**: Update individual cells and ranges with values and formulas
-  - **Formula Support**: Apply formula templates with dynamic placeholders across ranges
-  - **Data Management**: Append rows and clear ranges with automatic sheet expansion
-  - **Table Reading**: Read spreadsheet data as structured tables or raw cell values
+  ## 功能特性
+  - **OAuth2 认证**：安全的 Google OAuth 集成，支持自动 token 刷新
+  - **电子表格管理**：创建、读取和删除电子表格，完全控制生命周期
+  - **工作表操作**：创建和管理电子表格中的各个工作表（标签页）
+  - **单元格操作**：使用值和公式更新单个单元格和范围
+  - **公式支持**：在范围内应用带有动态占位符的公式模板
+  - **数据管理**：追加行和清除范围，自动扩展工作表
+  - **表格读取**：以结构化表格或原始单元格值的形式读取电子表格数据
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow
+  **无需设置**：通过 OAuth2 流程自动处理认证
 
 metadata:
-  categories: Business
+  categories: 商务办公
   allow-multiple: "true"
 icon: https://img.icons8.com/?size=100&id=qrAVeBIrsjod&format=png&color=000000
 repoURL: https://google-sheets-mcp.obot.ai/mcp/
@@ -31,58 +31,58 @@ remoteConfig:
   fixedURL: https://google-sheets-mcp.obot.ai/mcp/
 toolPreview:
   - name: list_spreadsheets
-    description: List spreadsheets (both owned and shared) in the user's Google Drive.
+    description: 列出用户 Google Drive 中的电子表格（包括自有和共享的）。
     params:
-      max_results: "Maximum number of results to return (1-100, default: 10)"
-      page_token: Token for pagination, pass the nextPageToken from the previous response to get the next page
+      max_results: "返回的最大结果数（1-100，默认：10）"
+      page_token: 分页令牌，传递上一响应中的 nextPageToken 以获取下一页
   - name: create_spreadsheet
-    description: Create a new spreadsheet in the user's personal Google Drive.
+    description: 在用户的个人 Google Drive 中创建新电子表格。
     params:
-      spreadsheet_name: The name of the spreadsheet to create
+      spreadsheet_name: 要创建的电子表格名称
   - name: delete_spreadsheet
-    description: Delete a spreadsheet by its ID. Only valid for spreadsheets owned by the user.
+    description: 通过 ID 删除电子表格。仅适用于用户拥有的电子表格。
     params:
-      spreadsheet_id: The ID of the spreadsheet to delete
+      spreadsheet_id: 要删除的电子表格的 ID
   - name: list_worksheets
-    description: List all worksheets (tabs) in a specific spreadsheet.
+    description: 列出特定电子表格中的所有工作表（标签页）。
     params:
-      spreadsheet_id: The ID of the spreadsheet to list worksheets from
+      spreadsheet_id: 要列出工作表的电子表格的 ID
   - name: create_worksheet
-    description: Create a new worksheet (tab) in an existing spreadsheet.
+    description: 在现有电子表格中创建新工作表（标签页）。
     params:
-      spreadsheet_id: The ID of the spreadsheet to create a worksheet in
-      worksheet_name: The name of the new worksheet
-      rows: "Number of rows for the new worksheet (1-1000, default: 100)"
-      cols: "Number of columns for the new worksheet (1-100, default: 26)"
+      spreadsheet_id: 要创建工作表的电子表格的 ID
+      worksheet_name: 新工作表的名称
+      rows: "新工作表的行数（1-1000，默认：100）"
+      cols: "新工作表的列数（1-100，默认：26）"
   - name: read_spreadsheet
-    description: Read a spreadsheet by its ID.
+    description: 通过 ID 读取电子表格。
     params:
-      spreadsheet_id: The ID of the spreadsheet to read
-      worksheet_name: The name of the worksheet to read. If not provided, the first worksheet will be read
-      cell_range: The range of cells of the worksheet to read
-      read_tables: "Whether to read the spreadsheet as tables. Cell ranges are not supported when reading tables (default: false)"
+      spreadsheet_id: 要读取的电子表格的 ID
+      worksheet_name: 要读取的工作表名称。如果未提供，将读取第一个工作表
+      cell_range: 要读取的工作表的单元格范围
+      read_tables: "是否以表格形式读取电子表格。读取表格时不支持单元格范围（默认：false）"
   - name: update_cells
-    description: Update cells in a spreadsheet. If the cell is out of bounds, the sheet will be automatically expanded.
+    description: 更新电子表格中的单元格。如果单元格超出范围，工作表将自动扩展。
     params:
-      spreadsheet_id: The ID of the spreadsheet to update
-      cells_to_update: "List of cells to update. Each item specifies a cell address (A1 notation) and its new value"
-      worksheet_name: The name of the worksheet to update. If not provided, the first worksheet will be updated
+      spreadsheet_id: 要更新的电子表格的 ID
+      cells_to_update: "要更新的单元格列表。每个项目指定一个单元格地址（A1 表示法）及其新值"
+      worksheet_name: 要更新的工作表名称。如果未提供，将更新第一个工作表
   - name: update_range_with_formula
-    description: Efficiently fills a range of cells with formula templates.
+    description: 高效地用公式模板填充单元格范围。
     params:
-      spreadsheet_id: The ID of the spreadsheet to update
-      target_range: "Range to fill with formulas in A1 notation (e.g., 'D2:D100', 'A5:Z5')"
-      formula_template: "Formula template with placeholders: {row} for row number, {col} for column letter"
-      worksheet_name: The name of the worksheet to update. If not provided, the first worksheet will be updated
+      spreadsheet_id: 要更新的电子表格的 ID
+      target_range: "要用公式填充的范围，使用 A1 表示法（例如，'D2:D100'、'A5:Z5'）"
+      formula_template: "带有占位符的公式模板：{row} 表示行号，{col} 表示列字母"
+      worksheet_name: 要更新的工作表名称。如果未提供，将更新第一个工作表
   - name: append_row
-    description: Append a new row to the end of existing data in a spreadsheet.
+    description: 在电子表格现有数据的末尾追加新行。
     params:
-      spreadsheet_id: The ID of the spreadsheet to append to
-      row_values: "Values to append as a new row. Each value will be placed in sequential columns (A, B, C, etc.)"
-      worksheet_name: The name of the worksheet to append to. If not provided, the first worksheet will be appended to
+      spreadsheet_id: 要追加到的电子表格的 ID
+      row_values: "要作为新行追加的值。每个值将按顺序放置在列中（A、B、C 等）"
+      worksheet_name: 要追加到的工作表名称。如果未提供，将追加到第一个工作表
   - name: clear_range
-    description: Clear content from a range of cells in a spreadsheet. Removes values but preserves formatting.
+    description: 清除电子表格中单元格范围的内容。删除值但保留格式。
     params:
-      spreadsheet_id: The ID of the spreadsheet to clear data from
-      cell_range: "Range of cells to clear in A1 notation (e.g., 'A1:C10', 'D2:D100')"
-      worksheet_name: The name of the worksheet to clear data from. If not provided, the first worksheet will be used 
+      spreadsheet_id: 要清除数据的电子表格的 ID
+      cell_range: "要清除的单元格范围，使用 A1 表示法（例如，'A1:C10'、'D2:D100'）"
+      worksheet_name: 要清除数据的工作表名称。如果未提供，将使用第一个工作表

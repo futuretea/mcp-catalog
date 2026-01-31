@@ -1,259 +1,259 @@
 name: Atlassian
-shortDescription: Manage Jira issues, Confluence pages, and Compass services with AI assistance
+shortDescription: 使用 AI 助手管理 Jira 问题、Confluence 页面和 Compass 服务
 description: |
 
-  A Model Context Protocol (MCP) server that bridges between your Atlassian Cloud site and compatible external tools. Once configured, it enables those tools to interact with Jira, Compass, and Confluence data in real-time.
+  一个连接您的 Atlassian Cloud 站点与兼容外部工具的 Model Context Protocol (MCP) 服务器。配置完成后，它使这些工具能够实时与 Jira、Compass 和 Confluence 数据交互。
 
-  ## Features
-  - **Smart Jira Management**: Create, update, search, and transition issues with AI assistance, manage comments, and track project metadata
-  - **Intelligent Confluence Operations**: Search content using CQL, create and update pages, manage comments (both footer and inline), and navigate page hierarchies
-  - **Compass Integration**: Query service dependencies and manage your service landscape
-  - **Rovo Search & Fetch**: Powerful unified search across Jira and Confluence, fetch resources by ARI (Atlassian Resource Identifier)
-  - **Advanced Filtering**: Use JQL for Jira issues and CQL for Confluence content with AI-powered natural language queries
-  - **Zero Configuration**: OAuth flow handles authentication automatically - no API tokens or local setup needed
-  - **Enterprise Ready**: Respects existing user permissions and access controls across all Atlassian products
+  ## 功能特性
+  - **智能 Jira 管理**：使用 AI 助手创建、更新、搜索和转换问题，管理评论并跟踪项目元数据
+  - **智能 Confluence 操作**：使用 CQL 搜索内容，创建和更新页面，管理评论（页脚和内联），并导航页面层级
+  - **Compass 集成**：查询服务依赖关系并管理服务架构
+  - **Rovo 搜索和获取**：跨 Jira 和 Confluence 的强大统一搜索，通过 ARI（Atlassian 资源标识符）获取资源
+  - **高级筛选**：对 Jira 问题使用 JQL，对 Confluence 内容使用 CQL，并支持 AI 驱动的自然语言查询
+  - **零配置**：OAuth 流程自动处理身份验证 - 无需 API 令牌或本地设置
+  - **企业就绪**：尊重所有 Atlassian 产品的现有用户权限和访问控制
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow.
+  **无需设置**：通过 OAuth2 工作流自动处理身份验证。
 
-  **Important for Admins**: To enable OAuth with Obot, your Atlassian admin must add the Obot callback URL domain:
-  1. Go to [Atlassian Administration](https://admin.atlassian.com) and select your organization
-  2. Navigate to **Apps > AI settings > Rovo MCP server**
-  3. Add your Obot domain (e.g., `https://your-obot-domain/**`)
+  **管理员重要提示**：要启用与 Obot 的 OAuth，您的 Atlassian 管理员必须添加 Obot 回调 URL 域：
+  1. 前往 [Atlassian 管理](https://admin.atlassian.com) 并选择您的组织
+  2. 导航到 **应用程序 > AI 设置 > Rovo MCP 服务器**
+  3. 添加您的 Obot 域（例如 `https://your-obot-domain/**`）
 
-  ## Example Usage
+  ## 使用示例
 
-  Ask your AI assistant to:
+  要求您的 AI 助手：
 
-  - **Jira Management** - "Update Jira ticket PROJ-123 status to In Progress" or "Create a bug ticket from these error logs"
-  - **Confluence Search** - "Find our OKR guide in Confluence and summarize it" or "Search for authentication documentation"
-  - **Content Creation** - "Create a tech design doc for XYZ feature in the Engineering space"
-  - **Issue Filtering** - "Show me all urgent bugs assigned to me from last week"
-  - **Cross-Product Linking** - "Link Jira ticket ABC-456 to the Q4 Planning Confluence page"
-  - **Compass Integration** - "What services depend on the api-gateway component?"
+  - **Jira 管理** - "将 Jira 工单 PROJ-123 状态更新为进行中" 或 "从这些错误日志创建一个缺陷工单"
+  - **Confluence 搜索** - "在 Confluence 中找到我们的 OKR 指南并总结它" 或 "搜索身份验证文档"
+  - **内容创建** - "在工程空间中为 XYZ 功能创建技术设计文档"
+  - **问题筛选** - "显示上周分配给我的所有紧急缺陷"
+  - **跨产品链接** - "将 Jira 工单 ABC-456 链接到 Q4 规划 Confluence 页面"
+  - **Compass 集成** - "哪些服务依赖于 api-gateway 组件？"
 
 toolPreview:
-  # Authentication & Account
+  # 身份验证和账户
   - name: atlassianUserInfo
-    description: Get current user info from Atlassian
+    description: 从 Atlassian 获取当前用户信息
     params:
   - name: getAccessibleAtlassianResources
-    description: Get cloudid to construct API calls to Atlassian REST APIs
+    description: 获取 cloudid 以构建对 Atlassian REST API 的 API 调用
     params:
 
-  # Search & Discovery
+  # 搜索和发现
   - name: search
-    description: Search Jira and Confluence using Rovo Search. Primary method for finding content across both products.
+    description: 使用 Rovo 搜索搜索 Jira 和 Confluence。跨两个产品查找内容的主要方法。
     params:
-      query: The search query to use for Rovo Search
+      query: 用于 Rovo 搜索的搜索查询
   - name: fetch
-    description: Get details of a Jira issue or Confluence page by ARI (Atlassian Resource Identifier)
+    description: 通过 ARI（Atlassian 资源标识符）获取 Jira 问题或 Confluence 页面的详情
     params:
-      id: "Atlassian Resource Identifier (ARI) from search results, e.g., 'ari:cloud:jira:cloudId:issue/10107' or 'ari:cloud:confluence:cloudId:page/123456789'"
+      id: "来自搜索结果的 Atlassian 资源标识符 (ARI)，例如 'ari:cloud:jira:cloudId:issue/10107' 或 'ari:cloud:confluence:cloudId:page/123456789'"
 
-  # Confluence - Spaces & Pages
+  # Confluence - 空间和页面
   - name: getConfluenceSpaces
-    description: Get spaces from Confluence. Spaces are containers for pages and content. Use to discover available spaces or get space ID from space key.
+    description: 从 Confluence 获取空间。空间是页面和内容的容器。用于发现可用空间或从空间密钥获取空间 ID。
     params:
-      cloudId: "Unique identifier for an Atlassian Cloud instance (UUID, site URL, or extracted from URLs). Use 'getAccessibleAtlassianResources' to find Cloud IDs."
-      keys: Filter by space keys (unique identifiers)
-      ids: Filter by specific numerical space IDs
-      type: "Filter by space type (global, collaboration, knowledge_base, personal)"
-      status: "Filter by space status (current, archived)"
-      limit: "Maximum number of spaces to return (default: 25, max: 250)"
-      cursor: Pagination cursor for retrieving next page of results
+      cloudId: "Atlassian Cloud 实例的唯一标识符（UUID、站点 URL 或从 URL 中提取）。使用 'getAccessibleAtlassianResources' 查找 Cloud ID。"
+      keys: 按空间密钥筛选（唯一标识符）
+      ids: 按特定数字空间 ID 筛选
+      type: "按空间类型筛选（global、collaboration、knowledge_base、personal）"
+      status: "按空间状态筛选（current、archived）"
+      limit: "返回的最大空间数（默认：25，最大：250）"
+      cursor: 用于检索下一页结果的分页游标
   - name: getConfluencePage
-    description: Get a specific page or live doc data (including body content) from Confluence by its ID. Returns content in Markdown format.
+    description: 通过其 ID 从 Confluence 获取特定页面或实时文档数据（包括正文内容）。以 Markdown 格式返回内容。
     params:
-      cloudId: "Unique identifier for an Atlassian Cloud instance (UUID, site URL, or can be extracted from page URLs)"
-      pageId: "The unique identifier of the page (can be extracted from Confluence URLs - the numeric ID in the URL path)"
+      cloudId: "Atlassian Cloud 实例的唯一标识符（UUID、站点 URL 或可从页面 URL 中提取）"
+      pageId: "页面的唯一标识符（可从 Confluence URL 中提取 - URL 路径中的数字 ID）"
   - name: getPagesInConfluenceSpace
-    description: Get all pages within a specific Confluence space. Useful for discovering content structure and finding pages by title or status.
+    description: 获取特定 Confluence 空间内的所有页面。用于发现内容结构和按标题或状态查找页面。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      spaceId: The unique numerical identifier of the space to search within
-      title: Filter pages by title
-      status: "Filter pages by status (current, archived, deleted, trashed)"
-      subtype: "Filter pages by subtype - use 'live' for live docs or 'page' for regular pages"
-      depth: "Filter pages by depth (all, root)"
-      sort: "Sort pages by field(s) (id, -id, created-date, -created-date, modified-date, -modified-date, title, -title)"
-      limit: "Maximum number of pages to return (default: 25, max: 250)"
-      cursor: Opaque cursor for pagination
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      spaceId: 要搜索的空间的唯一数字标识符
+      title: 按标题筛选页面
+      status: "按状态筛选页面（current、archived、deleted、trashed）"
+      subtype: "按子类型筛选页面 - 对实时文档使用 'live' 或对常规页面使用 'page'"
+      depth: "按深度筛选页面（all、root）"
+      sort: "按字段排序页面（id、-id、created-date、-created-date、modified-date、-modified-date、title、-title）"
+      limit: "返回的最大页面数（默认：25，最大：250）"
+      cursor: 分页的不透明游标
   - name: getConfluencePageDescendants
-    description: Get all child pages (descendants) of a specific page in the page hierarchy. Useful for exploring page structure and nested content.
+    description: 获取页面层级中特定页面的所有子页面（后代）。用于探索页面结构和嵌套内容。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      pageId: The unique identifier of the page whose descendants to retrieve
-      depth: Maximum depth to traverse in the page hierarchy
-      limit: Maximum number of descendants to return
-      cursor: Pagination cursor for retrieving next page of results
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      pageId: 要检索其后代的页面的唯一标识符
+      depth: 在页面层级中遍历的最大深度
+      limit: 返回的最大后代数
+      cursor: 用于检索下一页结果的分页游标
   - name: createConfluencePage
-    description: Create a new page in Confluence. Can create regular pages or live docs.
+    description: 在 Confluence 中创建新页面。可以创建常规页面或实时文档。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      spaceId: The unique numerical identifier of the space where the page will be created
-      title: The title of the new page
-      body: "The content of the page in Markdown format (required)"
-      parentId: The unique identifier of the parent page (if creating a child page)
-      subtype: "The subtype of the page. Set to 'live' to create a live doc, or omit to create a regular page"
-      isPrivate: "The page will be private. Only the user who creates this page will have permission to view and edit one"
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      spaceId: 将在其中创建页面的空间的唯一数字标识符
+      title: 新页面的标题
+      body: "页面的内容，Markdown 格式（必需）"
+      parentId: 父页面的唯一标识符（如果创建子页面）
+      subtype: "页面的子类型。设置为 'live' 以创建实时文档，或省略以创建常规页面"
+      isPrivate: "页面将是私有的。只有创建此页面的用户才有权限查看和编辑"
   - name: updateConfluencePage
-    description: Update an existing page or Live Doc in Confluence
+    description: 更新 Confluence 中的现有页面或实时文档
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      pageId: The unique identifier of the existing page to update
-      body: "The content of the page in Markdown format (required)"
-      title: The new title for the page (if not provided, retains the existing title)
-      parentId: The unique identifier of the parent page (if changing hierarchy)
-      spaceId: The unique numerical identifier of the space (if moving the page)
-      status: "The status of the page to update (defaults to current). If draft is specified, the page's draft version will be updated (current, draft)"
-      versionMessage: Optional message describing the changes made in this version
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      pageId: 要更新的现有页面的唯一标识符
+      body: "页面的内容，Markdown 格式（必需）"
+      title: 页面的新标题（如果未提供，保留现有标题）
+      parentId: 父页面的唯一标识符（如果更改层级）
+      spaceId: 空间的唯一数字标识符（如果移动页面）
+      status: "要更新的页面状态（默认为 current）。如果指定了 draft，将更新页面的草稿版本（current、draft）"
+      versionMessage: 可选消息，描述此版本中所做的更改
 
-  # Confluence - Comments
+  # Confluence - 评论
   - name: getConfluencePageFooterComments
-    description: Get footer comments for a Confluence page. Footer comments are general comments at the bottom, not tied to specific content.
+    description: 获取 Confluence 页面的页脚评论。页脚评论是页面底部的一般评论，不绑定到特定内容。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      pageId: The unique identifier of the page whose footer comments to retrieve
-      status: "Filter comments by status (current, archived, trashed, deleted, historical, draft)"
-      sort: "Sort order for comments (id, -id, created-date, -created-date)"
-      limit: Maximum number of comments to return
-      cursor: Pagination cursor for retrieving next page of results
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      pageId: 要检索其页脚评论的页面的唯一标识符
+      status: "按状态筛选评论（current、archived、trashed、deleted、historical、draft）"
+      sort: "评论的排序顺序（id、-id、created-date、-created-date）"
+      limit: 返回的最大评论数
+      cursor: 用于检索下一页结果的分页游标
   - name: getConfluencePageInlineComments
-    description: Get inline comments for a Confluence page. Inline comments are attached to specific text selections within the page content.
+    description: 获取 Confluence 页面的内联评论。内联评论附加到页面内容中的特定文本选择。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      pageId: The unique identifier of the page whose inline comments to retrieve
-      status: "Filter comments by status (current, archived, trashed, deleted, historical, draft)"
-      resolutionStatus: "Filter comments by resolution status (resolved, open, dangling, reopened)"
-      sort: "Sort order for comments (id, -id, created-date, -created-date)"
-      limit: Maximum number of comments to return
-      cursor: Pagination cursor for retrieving next page of results
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      pageId: 要检索其内联评论的页面的唯一标识符
+      status: "按状态筛选评论（current、archived、trashed、deleted、historical、draft）"
+      resolutionStatus: "按解决状态筛选评论（resolved、open、dangling、reopened）"
+      sort: "评论的排序顺序（id、-id、created-date、-created-date）"
+      limit: 返回的最大评论数
+      cursor: 用于检索下一页结果的分页游标
   - name: createConfluenceFooterComment
-    description: Create a footer comment on a Confluence page or blog post. Footer comments are general comments about the page at the bottom.
+    description: 在 Confluence 页面或博客文章上创建页脚评论。页脚评论是页面底部的一般评论。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      body: The content of the comment in Markdown format
-      pageId: The id of the page to add the comment to
-      parentCommentId: The id of the parent comment to reply to
-      attachmentId: The id of the attachment to add to the comment
-      customContentId: The id of the custom content to add to the comment
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      body: Markdown 格式的评论内容
+      pageId: 要添加评论的页面 ID
+      parentCommentId: 要回复的父评论的 ID
+      attachmentId: 要添加到评论的附件的 ID
+      customContentId: 要添加到评论的自定义内容的 ID
   - name: createConfluenceInlineComment
-    description: Create an inline comment on a page or blog post. Inline comments are attached to specific text selections within the page content.
+    description: 在页面或博客文章上创建内联评论。内联评论附加到页面内容中的特定文本选择。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      body: The content of the comment in Markdown format
-      pageId: The id of the page to add the comment to
-      parentCommentId: The id of the parent comment to reply to
-      inlineCommentProperties: "Object describing the text to highlight (required for top level inline comments): textSelection, textSelectionMatchIndex, textSelectionMatchCount"
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      body: Markdown 格式的评论内容
+      pageId: 要添加评论的页面 ID
+      parentCommentId: 要回复的父评论的 ID
+      inlineCommentProperties: "描述要高亮显示的文本的对象（顶级内联评论必需）：textSelection、textSelectionMatchIndex、textSelectionMatchCount"
 
-  # Confluence - Search
+  # Confluence - 搜索
   - name: searchConfluenceUsingCql
-    description: Search content in Confluence using CQL (Confluence Query Language). Powerful query language for finding pages, spaces, and content based on criteria like title, content, labels, creation date, etc.
+    description: 使用 CQL（Confluence 查询语言）搜索 Confluence 中的内容。用于根据标题、内容、标签、创建日期等条件查找页面、空间和内容的强大查询语言。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      cql: "The CQL query string (e.g., 'title ~ \"meeting\" AND type = page')"
-      limit: "Maximum number of results to return (default: 25, max: 250)"
-      cursor: Pagination cursor for retrieving next page of results
-      expand: Comma-separated list of properties to expand in the response
-      cqlcontext: The context for the CQL query execution
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      cql: "CQL 查询字符串（例如 'title ~ \"meeting\" AND type = page'）"
+      limit: "返回的最大结果数（默认：25，最大：250）"
+      cursor: 用于检索下一页结果的分页游标
+      expand: 要在响应中展开的属性的逗号分隔列表
+      cqlcontext: CQL 查询执行的上下文
 
-  # Jira - Issues
+  # Jira - 问题
   - name: getJiraIssue
-    description: Get the details of a Jira issue by issue id or key
+    description: 通过问题 ID 或密钥获取 Jira 问题的详情
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      issueIdOrKey: "Issue id (numerical, e.g., 10000) or key (e.g., ISSUE-1)"
-      fields: Fields to include in response
-      expand: Additional properties to expand
-      properties: Properties to include
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      issueIdOrKey: "问题 ID（数字，例如 10000）或密钥（例如 ISSUE-1）"
+      fields: 响应中包含的字段
+      expand: 要展开的附加属性
+      properties: 要包含的属性
   - name: createJiraIssue
-    description: Create a new Jira issue in a given project with a given issue type
+    description: 在给定项目中使用给定问题类型创建新的 Jira 问题
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      projectKey: "A unique identifier of a project (string of letters, numbers, underscores). Use 'getVisibleJiraProjects' to look up projects"
-      issueTypeName: "Issue type categorizes work being tracked (e.g., Epic, Story, Task, Bug, Subtask). Use 'getJiraProjectIssueTypesMetadata' to get available types"
-      summary: Issue summary/title
-      description: The content of the issue's description in Markdown format
-      assignee_account_id: "Account id of assignee. Use 'atlassianUserInfo' for current user or 'lookupJiraAccountId' to find users"
-      parent: "The issue key or id of the parent issue for 'Subtask' issue types"
-      additional_fields: Additional custom fields as JSON object
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      projectKey: "项目的唯一标识符（字母、数字、下划线组成的字符串）。使用 'getVisibleJiraProjects' 查找项目"
+      issueTypeName: "问题类型对正在跟踪的工作进行分类（例如 Epic、Story、Task、Bug、Subtask）。使用 'getJiraProjectIssueTypesMetadata' 获取可用类型"
+      summary: 问题摘要/标题
+      description: 问题描述内容的 Markdown 格式
+      assignee_account_id: "负责人的账户 ID。使用 'atlassianUserInfo' 获取当前用户或 'lookupJiraAccountId' 查找用户"
+      parent: "'Subtask' 问题类型的父问题密钥或 ID"
+      additional_fields: 作为 JSON 对象的附加自定义字段
   - name: editJiraIssue
-    description: Update the details of an existing Jira issue by id or key
+    description: 通过 ID 或密钥更新现有 Jira 问题的详情
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      issueIdOrKey: "Issue id (numerical, e.g., 10000) or key (e.g., ISSUE-1)"
-      fields: Fields to update as JSON object
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      issueIdOrKey: "问题 ID（数字，例如 10000）或密钥（例如 ISSUE-1）"
+      fields: 作为 JSON 对象要更新的字段
   - name: addCommentToJiraIssue
-    description: Adds a comment to an existing Jira issue by id or key
+    description: 通过 ID 或密钥向现有 Jira 问题添加评论
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      issueIdOrKey: "Issue id (numerical, e.g., 10000) or key (e.g., ISSUE-1)"
-      commentBody: The content of the comment in Markdown format
-      commentVisibility: "Restrict visibility to a group or role with type ('group', 'role') and value (group/role name)"
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      issueIdOrKey: "问题 ID（数字，例如 10000）或密钥（例如 ISSUE-1）"
+      commentBody: Markdown 格式的评论内容
+      commentVisibility: "使用类型（'group'、'role'）和值（组/角色名称）限制对组或角色的可见性"
   - name: getJiraIssueRemoteIssueLinks
-    description: Get remote issue links (e.g., Confluence links) of an existing Jira issue by id or key
+    description: 通过 ID 或密钥获取现有 Jira 问题的远程问题链接（例如 Confluence 链接）
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      issueIdOrKey: "Issue id (numerical, e.g., 10000) or key (e.g., ISSUE-1)"
-      globalId: "An identifier for the remote item (e.g., 'appId=456&pageId=123'). When provided, returns only the link with this global ID"
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      issueIdOrKey: "问题 ID（数字，例如 10000）或密钥（例如 ISSUE-1）"
+      globalId: "远程项目的标识符（例如 'appId=456&pageId=123'）。提供时，仅返回具有此全局 ID 的链接"
 
-  # Jira - Transitions
+  # Jira - 转换
   - name: getTransitionsForJiraIssue
-    description: Get available transitions for an existing Jira issue by id or key
+    description: 通过 ID 或密钥获取现有 Jira 问题的可用转换
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      issueIdOrKey: "Issue id (numerical, e.g., 10000) or key (e.g., ISSUE-1)"
-      expand: Additional properties to expand
-      transitionId: Filter to specific transition
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      issueIdOrKey: "问题 ID（数字，例如 10000）或密钥（例如 ISSUE-1）"
+      expand: 要展开的附加属性
+      transitionId: 筛选到特定转换
   - name: transitionJiraIssue
-    description: Transition an existing Jira issue to a new status
+    description: 将现有 Jira 问题转换到新状态
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      issueIdOrKey: "Issue id (numerical, e.g., 10000) or key (e.g., ISSUE-1)"
-      transition: "Transition object with id (required) - use 'getTransitionsForJiraIssue' to find available transitions"
-      fields: Additional fields to update during transition
-      update: "Operations to perform on issue fields (list of operations per field)"
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      issueIdOrKey: "问题 ID（数字，例如 10000）或密钥（例如 ISSUE-1）"
+      transition: "带有 ID 的转换对象（必需）- 使用 'getTransitionsForJiraIssue' 查找可用转换"
+      fields: 转换期间要更新的附加字段
+      update: "对问题字段执行的操作（每个字段的操作列表）"
 
-  # Jira - Projects & Metadata
+  # Jira - 项目和元数据
   - name: getVisibleJiraProjects
-    description: Get visible Jira projects for which the user has view, browse, edit, or create permission
+    description: 获取用户具有查看、浏览、编辑或创建权限的可见 Jira 项目
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      action: "Filter by permission type (view, browse, edit, create) - default: create"
-      searchString: Filter using literal string. Projects with matching key or name are returned (case insensitive)
-      expandIssueTypes: Include additional information about issue types (default - true)
-      maxResults: "Maximum items to return per page (max: 50, default: 50)"
-      startAt: Index of first item to return (page offset, default - 0)
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      action: "按权限类型筛选（view、browse、edit、create）- 默认：create"
+      searchString: 使用字面字符串筛选。返回密钥或名称匹配的项目（不区分大小写）
+      expandIssueTypes: 包含有关问题类型的附加信息（默认 - true）
+      maxResults: "每页返回的最大项目数（最大：50，默认：50）"
+      startAt: 要返回的第一个项目的索引（页偏移，默认 - 0）
   - name: getJiraProjectIssueTypesMetadata
-    description: Get a page of issue type metadata for a specified project. Used to create issues with proper issue types.
+    description: 获取指定项目的问题类型元数据页面。用于使用适当的问题类型创建问题。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      projectIdOrKey: Project ID or key
-      maxResults: "Maximum items to return per page (max: 200, default: 50)"
-      startAt: Index of first item to return (page offset, default - 0)
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      projectIdOrKey: 项目 ID 或密钥
+      maxResults: "每页返回的最大项目数（最大：200，默认：50）"
+      startAt: 要返回的第一个项目的索引（页偏移，默认 - 0）
   - name: getJiraIssueTypeMetaWithFields
-    description: Get issue type metadata for a project and issue type. Returns field metadata for creating/updating issues.
+    description: 获取项目和问题类型的问题类型元数据。返回用于创建/更新问题的字段元数据。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      projectIdOrKey: The ID or key of the project
-      issueTypeId: The ID of the issue type
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      projectIdOrKey: 项目的 ID 或密钥
+      issueTypeId: 问题类型的 ID
 
-  # Jira - Search & Users
+  # Jira - 搜索和用户
   - name: searchJiraIssuesUsingJql
-    description: Search Jira issues using Jira Query Language (JQL). Powerful query language for complex issue searches.
+    description: 使用 Jira 查询语言 (JQL) 搜索 Jira 问题。用于复杂问题搜索的强大查询语言。
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      jql: A Jira Query Language (JQL) expression to search Jira issues
-      fields: "Fields to return (default: ['summary', 'description', 'status', 'issuetype', 'priority', 'created'])"
-      maxResults: "Maximum number of issues to search per page (max: 100, default: 50)"
-      nextPageToken: Used for pagination to fetch more data if a JQL search has more issues in next pages
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      jql: 用于搜索 Jira 问题的 Jira 查询语言 (JQL) 表达式
+      fields: "要返回的字段（默认：['summary'、'description'、'status'、'issuetype'、'priority'、'created']）"
+      maxResults: "每页搜索的最大问题数（最大：100，默认：50）"
+      nextPageToken: 用于分页以在 JQL 搜索的下一页中获取更多数据
   - name: lookupJiraAccountId
-    description: Lookup account ids of existing users in Jira based on the user's display name or email address
+    description: 根据用户的显示名称或邮箱地址查找 Jira 中现有用户的账户 ID
     params:
-      cloudId: Unique identifier for an Atlassian Cloud instance
-      searchString: Display name or email address to search for
+      cloudId: Atlassian Cloud 实例的唯一标识符
+      searchString: 要搜索的显示名称或邮箱地址
 
 metadata:
   categories: Developer Tools

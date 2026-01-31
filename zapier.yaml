@@ -1,19 +1,19 @@
 name: Zapier
-shortDescription: Access 30,000+ actions across 8,000+ apps in Zapier automation platform
+shortDescription: 在 Zapier 自动化平台中访问 30,000+ 操作和 8,000+ 应用程序
 description: |
-  A Model Context Protocol (MCP) server for Zapier, providing access to apps and actions.
+  用于 Zapier 的 Model Context Protocol (MCP) 服务器，提供对应用程序和操作的访问。
 
-  ## Features
+  ## 功能特性
 
-  - **Actions**: Call 30,000+ actions in Zapier
-  - **Apps**: Get access to 8,000+ apps in Zapier
+  - **操作**: 在 Zapier 中调用 30,000+ 操作
+  - **应用程序**: 获取对 Zapier 中 8,000+ 应用程序的访问
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **Required:**
-  - **Zapier Account**: Active Zapier account (sign up at [zapier.com](https://zapier.com/))
-  - **Zapier MCP Server URL**: The URL of your Zapier MCP server (create one at [mcp.zapier.com](https://mcp.zapier.com))
-    - Be sure to use the "Connect with OAuth" URL
+  **必需:**
+  - **Zapier 账户**: 有效的 Zapier 账户（在 [zapier.com](https://zapier.com) 注册）
+  - **Zapier MCP 服务器 URL**: 您的 Zapier MCP 服务器的 URL（在 [mcp.zapier.com](https://mcp.zapier.com) 创建一个）
+    - 请务必使用"使用 OAuth 连接"URL
 
 metadata:
   categories: SaaS & API Integrations, Automation & Browsers

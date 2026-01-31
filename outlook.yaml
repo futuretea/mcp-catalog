@@ -1,25 +1,25 @@
 name: Outlook
-shortDescription: Manage Outlook emails, folders, drafts, and attachments via Microsoft Graph API
+shortDescription: 通过 Microsoft Graph API 管理 Outlook 邮件、文件夹、草稿和附件
 description: |
   ![Outlook MCP Server](https://img.shields.io/badge/Outlook-MCP%20Server-blue?style=for-the-badge&logo=microsoft-outlook)
   ![Python](https://img.shields.io/badge/Python-3.13+-green?style=for-the-badge&logo=python)
   ![FastMCP](https://img.shields.io/badge/FastMCP-2.11.1+-orange?style=for-the-badge)
   ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-  A Model Context Protocol (MCP) server for Microsoft Outlook integration, providing comprehensive email management capabilities through Microsoft Graph API.
+  一个用于 Microsoft Outlook 集成的 Model Context Protocol (MCP) 服务器，通过 Microsoft Graph API 提供全面的电子邮件管理功能。
 
-  ## Features
-  - **Complete Email Management**: Read, send, draft, delete, and organize Outlook emails and messages
-  - **Folder Management**: List and navigate through all Outlook mail folders with detailed information
-  - **Advanced Search**: Powerful query-based email filtering by subject, sender, date, and folder
-  - **Attachment Support**: List, download, and read email attachments with markdown conversion
-  - **Draft Management**: Create, edit, and send draft emails with full formatting support
+  ## 功能特性
+  - **完整的邮件管理**：阅读、发送、起草、删除和组织 Outlook 邮件及消息
+  - **文件夹管理**：列出和浏览所有 Outlook 邮件文件夹，获取详细信息
+  - **高级搜索**：通过主题、发件人、日期和文件夹进行强大的基于查询的邮件筛选
+  - **附件支持**：列出、下载和阅读邮件附件，支持 markdown 转换
+  - **草稿管理**：创建、编辑和发送草稿邮件，支持完整格式
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow with Microsoft Graph API
+  **无需设置**：通过 Microsoft Graph API 的 OAuth2 流程自动处理认证
 
-  **Microsoft Account**: Requires valid Microsoft/Outlook account for authentication
+  **Microsoft 账户**：需要有效的 Microsoft/Outlook 账户进行认证
 
 metadata:
   categories: Business
@@ -31,64 +31,64 @@ remoteConfig:
   fixedURL: https://outlook-mcp.obot.ai/mcp
 toolPreview:
   - name: list_mail_folders
-    description: Lists all available Outlook mail folders.
+    description: 列出所有可用的 Outlook 邮件文件夹。
     params: {}
   - name: list_emails
-    description: Lists emails in an Outlook folder with filtering options.
+    description: 列出 Outlook 文件夹中的邮件，支持筛选选项。
     params:
-      folder_id: The ID of the folder to list emails in (optional)
-      start: RFC3339 formatted start date and time (optional)
-      end: RFC3339 formatted end date and time (optional)
-      limit: "Maximum number of emails to return (default: 100)"
-      read_status: Filter by read status (read, unread, or empty for all)
+      folder_id: 要列出邮件的文件夹 ID（可选）
+      start: RFC3339 格式的开始日期和时间（可选）
+      end: RFC3339 格式的结束日期和时间（可选）
+      limit: "返回的最大邮件数量（默认：100）"
+      read_status: 按阅读状态筛选（read、unread 或留空表示全部）
   - name: get_email_details
-    description: Get the details of an Outlook email.
+    description: 获取 Outlook 邮件的详细信息。
     params:
-      email_id: The ID of the email to get details for
-      group_id: Group mailbox ID (optional, for group emails)
-      thread_id: Thread ID (optional, for group emails)
+      email_id: 要获取详细信息的邮件 ID
+      group_id: 群组邮箱 ID（可选，用于群组邮件）
+      thread_id: 会话 ID（可选，用于群组邮件）
   - name: search_emails
-    description: Search for emails in Outlook with multiple criteria.
+    description: 使用多个条件在 Outlook 中搜索邮件。
     params:
-      subject: Search query for email subject (optional)
-      from_address: Search query for sender email address (optional)
-      from_name: Search query for sender name (optional)
-      folder_id: Folder ID to search in (optional)
-      start: Start date and time in RFC 3339 format (optional)
-      end: End date and time in RFC 3339 format (optional)
-      limit: "Maximum number of emails to return (default: 10)"
+      subject: 邮件主题搜索查询（可选）
+      from_address: 发件人邮箱地址搜索查询（可选）
+      from_name: 发件人姓名搜索查询（可选）
+      folder_id: 要搜索的文件夹 ID（可选）
+      start: RFC 3339 格式的开始日期和时间（可选）
+      end: RFC 3339 格式的结束日期和时间（可选）
+      limit: "返回的最大邮件数量（默认：10）"
   - name: create_draft
-    description: Create (but do not send) a draft individual Outlook email.
+    description: 创建（但不发送）单个 Outlook 草稿邮件。
     params:
-      subject: The subject of the email
-      body: The body of the email in markdown format
-      recipients: Comma-separated list of email addresses (no spaces)
-      cc: Comma-separated list of CC email addresses (optional)
-      bcc: Comma-separated list of BCC email addresses (optional)
-      reply_email_id: ID of email to reply to (optional)
-      reply_all: "Whether to reply to all (default: false)"
+      subject: 邮件主题
+      body: markdown 格式的邮件正文
+      recipients: 邮箱地址列表，以逗号分隔（不含空格）
+      cc: 抄送邮箱地址列表，以逗号分隔（可选）
+      bcc: 密送邮箱地址列表，以逗号分隔（可选）
+      reply_email_id: 要回复的邮件 ID（可选）
+      reply_all: "是否回复所有收件人（默认：false）"
   - name: send_draft
-    description: Send an existing draft email in Outlook.
+    description: 发送 Outlook 中的现有草稿邮件。
     params:
-      draft_id: The ID of the draft to send
+      draft_id: 要发送的草稿 ID
   - name: delete_email
-    description: Delete an Outlook email.
+    description: 删除 Outlook 邮件。
     params:
-      email_id: The ID of the email to delete
+      email_id: 要删除的邮件 ID
   - name: move_email
-    description: Moves an email to a different Outlook folder.
+    description: 将邮件移动到不同的 Outlook 文件夹。
     params:
-      email_id: The ID of the email to move
-      destination_folder_id: The ID of the destination folder
+      email_id: 要移动的邮件 ID
+      destination_folder_id: 目标文件夹 ID
   - name: get_my_email_address
-    description: Get the email address of the currently authenticated Outlook user.
+    description: 获取当前已认证的 Outlook 用户的邮箱地址。
     params: {}
   - name: list_attachments
-    description: List the attachments of an Outlook email.
+    description: 列出 Outlook 邮件的附件。
     params:
-      email_id: The ID of the email to list attachments for
+      email_id: 要列出附件的邮件 ID
   - name: read_attachment
-    description: Get the markdown converted contents of an attachment from an Outlook email.
+    description: 获取 Outlook 邮件附件的 markdown 转换内容。
     params:
-      email_id: The ID of the email containing the attachment
-      attachment_id: The ID of the attachment to read
+      email_id: 包含附件的邮件 ID
+      attachment_id: 要阅读的附件 ID

@@ -1,26 +1,26 @@
 name: Databricks Vector Search
-shortDescription: Semantic search and similarity queries with Databricks Vector Search indexes
+shortDescription: 使用 Databricks Vector Search 索引进行语义搜索和相似性查询
 description: |
-  A Model Context Protocol (MCP) server that provides easy connection to Databricks Vector Search using managed MCP servers. Access your vector search indexes for semantic search and similarity queries with built-in Unity Catalog security.
+  一个 Model Context Protocol (MCP) 服务器，使用托管 MCP 服务器提供与 Databricks Vector Search 的简单连接。访问您的向量搜索索引以进行语义搜索和相似性查询，并内置 Unity Catalog 安全性。
 
-  ## Features
-  - **Semantic Search**: Query and search through your indexed data using Databricks Vector Search
-  - **Vector Similarity**: Find similar items based on vector embeddings
-  - **Index Management**: List and access available vector search indexes
-  - **Serverless Compute**: Leverage Mosaic AI Vector Search pricing model
+  ## 功能特性
+  - **语义搜索**：使用 Databricks Vector Search 查询和搜索索引数据
+  - **向量相似性**：基于向量嵌入查找相似项目
+  - **索引管理**：列出和访问可用的向量搜索索引
+  - **无服务器计算**：利用 Mosaic AI Vector Search 定价模型
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  ### Prerequisites
-  - **For admins**: Ensure the workspace has the **Managed MCP Servers** preview enabled. See [Databricks documentation](https://docs.databricks.com/en/admin/workspace-settings/manage-previews.html) for your cloud provider.
-  - **For users**: Ensure your account has access to the Unity Catalog resources (catalogs, schemas) and vector search indexes you want to use.
-  
-  ### Setup Steps
-  1. Navigate to your Databricks workspace
-  2. Go to **Catalog** → Select your catalog → Select your schema
-  3. Verify you have vector search indexes in the selected schema
-  4. Create a Personal Access Token in **Settings** → **Developer** → **Access tokens**
-  5. Configure the environment variables with your specific values
+  ### 前提条件
+  - **对于管理员**：确保工作区已启用 **Managed MCP Servers** 预览功能。请参阅适用于您的云提供商的 [Databricks 文档](https://docs.databricks.com/en/admin/workspace-settings/manage-previews.html)。
+  - **对于用户**：确保您的账户有权访问您要使用的 Unity Catalog 资源（catalogs、schemas）和向量搜索索引。
+
+  ### 设置步骤
+  1. 导航到您的 Databricks 工作区
+  2. 转到 **Catalog** → 选择您的 catalog → 选择您的 schema
+  3. 验证选定的 schema 中是否有向量搜索索引
+  4. 在 **Settings** → **Developer** → **Access tokens** 中创建 Personal Access Token
+  5. 使用您的特定值配置环境变量
 
 metadata:
   categories: Data Analytics, Vector Search, Business Intelligence
@@ -30,17 +30,17 @@ repoURL: https://docs.databricks.com/aws/en/generative-ai/mcp/
 env:
   - name: Databricks workspace hostname
     key: DATABRICKS_WORKSPACE_URL
-    description: Databricks workspace hostname, (e.g., https://your-workspace.cloud.databricks.com)
+    description: Databricks 工作区主机名（例如：https://your-workspace.cloud.databricks.com）
     required: true
     sensitive: false
   - name: Vector search catalog
     key: DATABRICKS_VECTOR_SEARCH_CATALOG
-    description: Vector search catalog, 
+    description: 向量搜索 catalog
     required: true
     sensitive: false
   - name: Vector search schema
     key: DATABRICKS_VECTOR_SEARCH_SCHEMA
-    description: Vector search schema, you can find it under the catalog
+    description: 向量搜索 schema，您可以在 catalog 下找到它
     required: true
     sensitive: false
 

@@ -1,7 +1,7 @@
 name: Google Maps Grounding Lite
-shortDescription: The server provides tools for developers to build LLM applications on top of Google Maps Platform.
+shortDescription: 该服务器为开发者提供在 Google Maps Platform 上构建 LLM 应用程序的工具。
 description: |
-  The Google Maps Grounding Lite API offers a suite of tools that enable developers to create applications leveraging the capabilities of Google Maps Platform. This API provides functionalities such as route computation, weather lookup, and place search, allowing for the integration of rich geographical data and services into applications. With these tools, developers can enhance user experiences by providing accurate and contextually relevant information based on location data.
+  Google Maps Grounding Lite API 提供了一套工具，使开发者能够创建利用 Google Maps Platform 功能的应用程序。该 API 提供路线计算、天气查询和地点搜索等功能，允许将丰富的地理数据和服务集成到应用程序中。借助这些工具，开发者可以通过基于位置数据提供准确且与上下文相关的信息来增强用户体验。
 metadata:
   categories: Maps, Developer Tools
   allow-multiple: "true"
@@ -12,7 +12,7 @@ remoteConfig:
   fixedURL: https://mapstools.googleapis.com/mcp
   headers:
     - name: API Key
-      description: A Google Cloud API Key with access to the Maps Grounding Lite service in Google Cloud
+      description: 在 Google Cloud 中具有访问 Maps Grounding Lite 服务权限的 Google Cloud API Key
       key: X-Goog-Api-Key
       sensitive: true
       required: true
@@ -20,97 +20,96 @@ toolPreview:
   - id: compute_routes
     name: compute_routes
     description: |
-      Computes a travel route between a specified origin and destination. **Supported Travel Modes:** DRIVE (default), WALK.
+      计算指定起点和终点之间的旅行路线。**支持的旅行模式:** DRIVE（默认）、WALK。
 
-      **Input Requirements (CRITICAL):**
-      Requires both **origin** and **destination**. Each must be provided using one of the following methods, nested within its respective field:
+      **输入要求（关键）:**
+      需要 **origin** 和 **destination**。每个必须使用以下方法之一提供，嵌套在其各自的字段中：
 
-      *   **address:** (string, e.g., 'Eiffel Tower, Paris'). Note: The more granular or specific the input address is, the better the results will be.
+      *   **address:**（字符串，例如，'Eiffel Tower, Paris'）。注意：输入地址越详细，结果越好。
 
-      *   **lat_lng:** (object, {"latitude": number, "longitude": number})
+      *   **lat_lng:**（对象，{"latitude": number, "longitude": number}）
 
-      *   **place_id:** (string, e.g., 'ChIJOwE_Id1w5EAR4Q27FkL6T_0') Note: This id can be obtained from the search_places tool.
-      Any combination of input types is allowed (e.g., origin by address, destination by lat_lng). If either the origin or destination is missing, **you MUST ask the user for clarification** before attempting to call the tool.
+      *   **place_id:**（字符串，例如，'ChIJOwE_Id1w5EAR4Q27FkL6T_0'）注意：此 ID 可以从 search_places 工具获取。
+      允许任何输入类型的组合（例如，起点按地址，终点按 lat_lng）。如果缺少起点或终点，**您必须在尝试调用工具之前询问用户以进行澄清**。
 
-      **Example Tool Call:**
+      **示例工具调用:**
       {"origin":{"address":"Eiffel Tower"},"destination":{"place_id":"ChIJt_5xIthw5EARoJ71mGq7t74"},"travel_mode":"DRIVE"}
     params:
-      destination: Required. Destination waypoint.
-      origin: Required. Origin waypoint.
-      travelMode: Optional. Specifies the mode of transportation.
+      destination: 必需。终点 waypoint。
+      origin: 必需。起点 waypoint。
+      travelMode: 可选。指定交通方式。
   - id: lookup_weather
     name: lookup_weather
     description: |
-      Retrieves comprehensive weather data including current conditions, hourly, and daily forecasts.
-      **Specific Data Available:** Temperature (Current, Feels Like, Max/Min, Heat Index), Wind (Speed, Gusts, Direction), Celestial Events (Sunrise/Sunset, Moon Phase), Precipitation (Type, Probability, Quantity/QPF), Atmospheric Conditions (UV Index, Humidity, Cloud Cover, Thunderstorm Probability), and Geocoded Location Address.
-      **Location & Location Rules (CRITICAL):**
-      The location for which weather data is requested is specified using the 'location' field.
-      This field is a 'oneof' structure, meaning you MUST provide a value for ONLY ONE
-      of the three location sub-fields below to ensure an accurate weather data lookup.
-      1. Geographic Coordinates (lat_lng)
-        * Use it when you are provided with exact lat/lng coordinates.
-        * Example:
+      检索包括当前状况、每小时和每日预报在内的全面天气数据。
+      **可用的特定数据:** 温度（当前、体感、最高/最低、热指数）、风（速度、阵风、方向）、天体事件（日出/日落、月相）、降水（类型、概率、数量/QPF）、大气状况（紫外线指数、湿度、云量、雷暴概率）和地理编码位置地址。
+      **位置和位置规则（关键）:**
+      请求天气数据的位置使用 'location' 字段指定。
+      该字段是一个 'oneof' 结构，意味着您必须为以下三个位置子字段之一提供值，以确保准确的天气数据查询。
+      1. 地理坐标 (lat_lng)
+        * 当您获得精确的 lat/lng 坐标时使用。
+        * 示例:
           "lat_lng": { "latitude": 34.0522, "longitude": -118.2437 } // Los Angeles
       2. Place ID (place_id)
-        * An unambiguous string identifier (Google Maps Place ID).
-        * The place_id can be fetched from the search_places tool.
-        * Example:
+        * 明确的字符串标识符（Google Maps Place ID）。
+        * place_id 可以从 search_places 工具获取。
+        * 示例:
           "place_id": "ChIJLU7jZClu5kcR4PcOOO6p3I0" // Eiffel Tower
-      3. Address String (address)
-        * A free-form string that requires specificity for geocoding.
-        * City & Region: Always include region/country (e.g., "London, UK", not "London").
-        * Street Address: Provide the full address (e.g., "1600 Pennsylvania Ave NW, Washington, DC").
-        * Postal/Zip Codes: MUST be accompanied by a country name (e.g., "90210, USA", NOT "90210").
-      **Usage Modes:**
-      1.  **Current Weather:** Provide `address` only. Do not specify `date` and `hour`.
-      2.  **Hourly Forecast:** Provide `address`, `date`, and `hour` (0-23). Use for specific times (e.g., "at 5 PM") or terms like 'next few hours' or 'later today.'. If the user specifies minute, round down to the nearest hour. Hourly forecast beyond 48 hours from now is not supported.
-      3.  **Daily Forecast:** Provide `address` and `date`. Do not specify `hour`. Use for general day requests (e.g., "weather for tomorrow", "weather on Friday", "weather on 12/25"). If today's date is not in the context, you should clarify it with the user. Daily forecast beyond 7 days including today is not supported. Historical weather is not supported.
-      **Parameter Constraints:**
-      *   **Timezones:** All `date` and `hour` inputs must be relative to the **location's local time zone**, not the user's time zone.
-      *   **Date Format:** Inputs must be separated into `{year, month, day}` integers.
-      *   **Units:** Defaults to `METRIC`. Set `units_system` to `IMPERIAL` for Fahrenheit/Miles if the user implies US standards or explicitly requests it.
+      3. 地址字符串 (address)
+        * 需要特定性以进行地理编码的自由格式字符串。
+        * 城市和地区: 始终包含地区/国家（例如，"London, UK"，而不是 "London"）。
+        * 街道地址: 提供完整地址（例如，"1600 Pennsylvania Ave NW, Washington, DC"）。
+        * 邮政编码: 必须附带国家名称（例如，"90210, USA"，而不是 "90210"）。
+      **使用模式:**
+      1.  **当前天气:** 仅提供 `address`。不要指定 `date` 和 `hour`。
+      2.  **每小时预报:** 提供 `address`、`date` 和 `hour`（0-23）。用于特定时间（例如，"at 5 PM"）或诸如 'next few hours' 或 'later today.' 之类的术语。如果用户指定了分钟，请向下舍入到最近的小时。不支持从现在起超过 48 小时的每小时预报。
+      3.  **每日预报:** 提供 `address` 和 `date`。不要指定 `hour`。用于一般日期请求（例如，"weather for tomorrow"、"weather on Friday"、"weather on 12/25"）。如果今天的日期不在上下文中，您应该与用户澄清。不支持包括今天在内的超过 7 天的每日预报。不支持历史天气。
+      **参数约束:**
+      *   **时区:** 所有 `date` 和 `hour` 输入必须相对于**位置的本地时区**，而不是用户的时区。
+      *   **日期格式:** 输入必须分为 `{year, month, day}` 整数。
+      *   **单位:** 默认为 `METRIC`。如果用户暗示美国标准或明确要求，请将 `units_system` 设置为 `IMPERIAL` 以使用华氏度/英里。
     params:
-      DEPRECATEDAddress: "DEPRECATED: Use location instead."
-      date: "Optional. The date of the required weather information. Note: This date is relative to the local timezone of the location specified in the location field. The date must be within the next 7 days."
-      hour: Optional. The hour of the requested weather information, in 24-hour format (0-23). This value is relative to the local timezone of the location specified in the location field. Hourly forecast is only supported for the next 48 hours from the current time.
-      location: Required. The location to get the weather conditions for.
-      unitsSystem: Optional. The units system to use for the returned weather conditions. If not provided, the returned weather conditions will be in the metric system (default = METRIC).
+      DEPRECATEDAddress: "DEPRECATED: 请改用 location。"
+      date: "可选。所需天气信息的日期。注意：此日期相对于 location 字段中指定位置的本地时区。日期必须在接下来的 7 天内。"
+      hour: 可选。请求的天气信息的小时，24 小时格式（0-23）。此值相对于 location 字段中指定位置的本地时区。每小时预报仅支持从现在起接下来的 48 小时。
+      location: 必需。获取天气状况的位置。
+      unitsSystem: 可选。用于返回的天气状况的单位系统。如果未提供，返回的天气状况将使用公制系统（默认 = METRIC）。
   - id: search_places
     name: search_places
     description: |2
 
-        Call this tool when the user's request is to find places, businesses, addresses, locations, points of interest, or any other Google Maps related search.
+        当用户的请求是查找地点、商家、地址、位置、兴趣点或任何其他 Google Maps 相关搜索时，调用此工具。
 
-        **Input Requirements (CRITICAL):**
+        **输入要求（关键）:**
 
-        1.  **`text_query` (string - MANDATORY):** The primary search query. This must clearly define what the user is looking for.
+        1.  **`text_query`（字符串 - 必需）:** 主要搜索查询。这必须清楚地定义用户正在寻找什么。
 
-            *   **Examples:** `'restaurants in New York'`, `'coffee shops near Golden Gate Park'`, `'SF MoMA'`, `'1600 Amphitheatre Pkwy, Mountain View, CA, USA'`, `'pets friendly parks in Manhattan, New York'`, `'date night restaurants in Chicago'`, `'accessible public libraries in Los Angeles'`.
+            *   **示例:** `'restaurants in New York'`、`'coffee shops near Golden Gate Park'`、`'SF MoMA'`、`'1600 Amphitheatre Pkwy, Mountain View, CA, USA'`、`'pets friendly parks in Manhattan, New York'`、`'date night restaurants in Chicago'`、`'accessible public libraries in Los Angeles'`。
 
-            *   **For specific place details:** Include the requested attribute (e.g., `'Google Store Mountain View opening hours'`, `'SF MoMa phone number'`, `'Shoreline Park Mountain View address'`).
+            *   **对于特定地点详情:** 包含请求的属性（例如，`'Google Store Mountain View opening hours'`、`'SF MoMa phone number'`、`'Shoreline Park Mountain View address'`）。
 
-        2.  **`location_bias` (object - OPTIONAL):** Use this to prioritize results near a specific geographic area.
-            *   **Format:** `{"location_bias": {"circle": {"center": {"latitude": [value], "longitude": [value]}, "radius_meters": [value (optional)]}}}`
+        2.  **`location_bias`（对象 - 可选）:** 使用此选项可优先考虑特定地理区域附近的结果。
+            *   **格式:** `{"location_bias": {"circle": {"center": {"latitude": [value], "longitude": [value]}, "radius_meters": [value (optional)]}}}`
 
-            *   **Usage:**
-                *   **To bias to a 5km radius:** `{"location_bias": {"circle": {"center": {"latitude": 34.052235, "longitude": -118.243683}, "radius_meters": 5000}}}`
-                *   **To bias strongly to the center point:** `{"location_bias": {"circle": {"center": {"latitude": 34.052235, "longitude": -118.243683}}}}` (omitting `radius_meters`).
+            *   **用法:**
+                *   **偏向 5km 半径:** `{"location_bias": {"circle": {"center": {"latitude": 34.052235, "longitude": -118.243683}, "radius_meters": 5000}}}`
+                *   **强烈偏向中心点:** `{"location_bias": {"circle": {"center": {"latitude": 34.052235, "longitude": -118.243683}}}}`（省略 `radius_meters`）。
 
-        3. **`language_code` (string - OPTIONAL):** The language to show the search results summary in.
-            *   **Format:** A two-letter language code (ISO 639-1), optionally followed by an underscore and a two-letter country code (ISO 3166-1 alpha-2), e.g., `en`, `ja`, `en_US`, `zh_CN`, `es_MX`. If the language code is not provided, the results will be in English.
+        3. **`language_code`（字符串 - 可选）:** 显示搜索结果摘要的语言。
+            *   **格式:** 两个字母的语言代码（ISO 639-1），可选地后跟下划线和两个字母的国家代码（ISO 3166-1 alpha-2），例如，`en`、`ja`、`en_US`、`zh_CN`、`es_MX`。如果未提供语言代码，结果将为英语。
 
-        4. **`region_code` (string - OPTIONAL):** The Unicode CLDR region code of the user. This parameter is used to display the place details, like region-specific place name, if available. The parameter canaffect results based on applicable law.
-            *   **Format:** A two-letter country code (ISO 3166-1 alpha-2), e.g., `US`, `CA`.
+        4. **`region_code`（字符串 - 可选）:** 用户的 Unicode CLDR 区域代码。此参数用于显示地点详情，如区域特定的地点名称（如果可用）。该参数可根据适用法律影响结果。
+            *   **格式:** 两个字母的国家代码（ISO 3166-1 alpha-2），例如，`US`、`CA`。
 
-        **Instructions for Tool Call:**
+        **工具调用说明:**
 
-        *   Location Information (CRITICAL): The search must contain sufficient location information. If the location is ambiguous (e.g., just "pizza places"), *you must* specify it in the `text_query` (e.g., "pizza places in New York") or use the `location_bias` parameter. Include city, state/province, and region/country name if needed for disambiguation.
+        *   位置信息（关键）: 搜索必须包含足够的位置信息。如果位置不明确（例如，仅 "pizza places"），*您必须*在 `text_query` 中指定它（例如，"pizza places in New York"）或使用 `location_bias` 参数。如果需要消除歧义，请包含城市、州/省和地区/国家名称。
 
-        *   Always provide the most specific and contextually rich `text_query` possible.
+        *   始终提供尽可能具体和上下文丰富的 `text_query`。
 
-        *   Only use `location_bias` if coordinates are explicitly provided or if inferring a location from a user's known context is appropriate *and* necessary for better results.
+        *   仅在明确提供坐标或从用户的已知上下文中推断位置是适当*且*对获得更好结果必要时，才使用 `location_bias`。
     params:
-      languageCode: 'Optional. The language to request that the summary is returned in. If the language code is unspecified or unrecognized, the summary with a preference for English will be returned. For example, "en" for English. Current list of supported languages: https://developers.google.com/maps/faq#languagesupport.'
-      locationBias: An optional region to bias the search results to. If an explicit location is in `text_query`, it will be used to bias the search results instead of this field.
-      regionCode: Optional. The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For example, "US" for United States. For more information, see https://www.unicode.org/cldr/charts/latest/supplemental/territory_language_information.html. Note that 3-digit region codes are not currently supported.
-      textQuery: Required. The text query.
+      languageCode: '可选。请求返回摘要的语言。如果语言代码未指定或无法识别，将返回优先使用英语的摘要。例如，"en" 表示英语。当前支持的语言列表：https://developers.google.com/maps/faq#languagesupport。'
+      locationBias: 一个可选区域，用于将搜索结果偏向该区域。如果 `text_query` 中有明确的位置，它将用于偏向搜索结果，而不是此字段。
+      regionCode: 可选。请求来源位置的 Unicode 国家/地区代码（CLDR）。此参数用于显示地点详情，如区域特定的地点名称（如果可用）。该参数可根据适用法律影响结果。例如，"US" 表示美国。有关更多信息，请参阅 https://www.unicode.org/cldr/charts/latest/supplemental/territory_language_information.html。请注意，目前不支持 3 位区域代码。
+      textQuery: 必需。文本查询。

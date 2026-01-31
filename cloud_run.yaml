@@ -1,28 +1,27 @@
 name: Google Cloud Run
-shortDescription: Deploy and manage applications on Google Cloud Run with monitoring and logging
+shortDescription: 在 Google Cloud Run 上部署和管理应用程序，支持监控和日志记录
 description: |
-  A Model Context Protocol (MCP) server that enables AI agents to deploy applications to Google Cloud Run. Provides comprehensive deployment capabilities including file-based deployment, container image deployment, and service management with full monitoring and logging support.
+  一个 Model Context Protocol (MCP) 服务器，使 AI 代理能够将应用程序部署到 Google Cloud Run。提供全面的部署功能，包括基于文件的部署、容器镜像部署以及具有完整监控和日志记录支持的服务管理。
 
-  ## Features
-  - **File-based Deployment**: Deploy applications by providing file contents directly to Cloud Run
-  - **Container Image Deployment**: Deploy pre-built container images to Cloud Run services
-  - **Service Management**: List, get details, and monitor Cloud Run services across projects and regions
-  - **Project Management**: List available GCP projects and create new ones with billing integration
-  - **Logging & Monitoring**: Access service logs and error messages for troubleshooting
+  ## 功能特性
+  - **基于文件的部署**：通过直接向 Cloud Run 提供文件内容来部署应用程序
+  - **容器镜像部署**：将预构建的容器镜像部署到 Cloud Run 服务
+  - **服务管理**：跨项目和区域列出、获取详细信息和监控 Cloud Run 服务
+  - **项目管理**：列出可用的 GCP 项目并创建与计费集成的新项目
+  - **日志与监控**：访问服务日志和错误消息以进行故障排除
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **Required:**
-  - **Google Cloud Application Credentials**: Your Google Cloud Service Account Credentials.
+  **必需：**
+  - **Google Cloud Application Credentials**：您的 Google Cloud 服务账户凭证。
 
-  **Optional:**
-  - **Google Cloud Region**: Default region for Cloud Run deployments (e.g., europe-west1, us-central1) default: europe-west1
+  **可选：**
+  - **Google Cloud Region**：Cloud Run 部署的默认区域（例如，europe-west1, us-central1）默认：europe-west1
 
-  ## Important Notes:
-  - **API Enablement**: The Cloud Run Admin API must be enabled in each GCP project where you plan to deploy services
-  - **Deployment Time**: Cloud Run deployments typically take 1-3 minutes depending on container size and complexity
-  - **First Deployment**: Initial deployments may take longer as they need to build and push container images
-  
+  ## 重要说明：
+  - **API 启用**：必须在您计划部署服务的每个 GCP 项目中启用 Cloud Run Admin API
+  - **部署时间**：Cloud Run 部署通常需要 1-3 分钟，具体取决于容器大小和复杂性
+  - **首次部署**：初始部署可能需要更长时间，因为它们需要构建和推送容器镜像
 
 metadata:
   categories: Cloud Infrastructure, Deployment, Container Orchestration
@@ -31,55 +30,55 @@ repoURL: https://github.com/obot-platform/cloud-run-mcp
 
 toolPreview:
   - name: deploy-file-contents
-    description: Deploy files to Cloud Run by providing their contents directly. Takes an array of file objects containing filename and content. Use this tool if the files only exist in the current chat context.
+    description: 通过直接提供文件内容将文件部署到 Cloud Run。接受包含文件名和内容的文件对象数组。如果文件仅存在于当前聊天上下文中，请使用此工具。
     params:
-      project: "Google Cloud project ID. Leave unset for the app to be deployed in a new project. If provided, make sure the user confirms the project ID they want to deploy to"
-      service: "Name of the Cloud Run service to deploy to"
-      region: "Region to deploy the service to - default: us-central1"
-      files: "Array of file objects containing filename and content"
+      project: "Google Cloud 项目 ID。留空以在新项目中部署应用。如果提供，请确保用户确认他们要部署到的项目 ID"
+      service: "要部署到的 Cloud Run 服务名称"
+      region: "部署服务的区域 - 默认：us-central1"
+      files: "包含文件名和内容的文件对象数组"
   - name: deploy-container-image
-    description: Deploys a container image to Cloud Run. Use this tool if the user provides a container image URL.
+    description: 将容器镜像部署到 Cloud Run。如果用户提供了容器镜像 URL，请使用此工具。
     params:
-      project: "Google Cloud project ID. Do not select it yourself, make sure the user provides or confirms the project ID"
-      service: "Name of the Cloud Run service to deploy to"
-      region: "Region to deploy the service to - default: us-central1"
-      imageUrl: "The URL of the container image to deploy (e.g. \"gcr.io/cloudrun/hello\")"
+      project: "Google Cloud 项目 ID。不要自行选择，确保用户提供或确认项目 ID"
+      service: "要部署到的 Cloud Run 服务名称"
+      region: "部署服务的区域 - 默认：us-central1"
+      imageUrl: "要部署的容器镜像 URL（例如 \"gcr.io/cloudrun/hello\"）"
   - name: list-services
-    description: Lists Cloud Run services in a given project and region.
+    description: 列出给定项目和区域中的 Cloud Run 服务。
     params:
-      project: "Google Cloud project ID"
-      region: "Region where the services are located - default: us-central1"
+      project: "Google Cloud 项目 ID"
+      region: "服务所在的区域 - 默认：us-central1"
   - name: get-service
-    description: Gets details for a specific Cloud Run service.
+    description: 获取特定 Cloud Run 服务的详细信息。
     params:
-      project: "Google Cloud project ID containing the service"
-      service: "Name of the Cloud Run service"
-      region: "Region where the service is located - default: us-central1"
+      project: "包含服务的 Google Cloud 项目 ID"
+      service: "Cloud Run 服务名称"
+      region: "服务所在的区域 - 默认：us-central1"
   - name: get-service-log
-    description: Gets Logs and Error Messages for a specific Cloud Run service.
+    description: 获取特定 Cloud Run 服务的日志和错误消息。
     params:
-      project: "Google Cloud project ID containing the service"
-      service: "Name of the Cloud Run service"
-      region: "Region where the service is located - default: us-central1"
+      project: "包含服务的 Google Cloud 项目 ID"
+      service: "Cloud Run 服务名称"
+      region: "服务所在的区域 - 默认：us-central1"
   - name: list-projects
-    description: Lists available GCP projects
+    description: 列出可用的 GCP 项目
     params:
-      random_string: "Dummy parameter for no-parameter tools"
+      random_string: "无参数工具的虚拟参数"
   - name: create-project
-    description: Creates a new GCP project and attempts to attach it to the first available billing account. A project ID can be optionally specified; otherwise it will be automatically generated.
+    description: 创建一个新的 GCP 项目并尝试将其附加到第一个可用的计费账户。可以可选地指定项目 ID；否则将自动生成。
     params:
-      projectId: "Optional. The desired ID for the new GCP project. If not provided, an ID will be auto-generated"
+      projectId: "可选。新 GCP 项目的所需 ID。如果未提供，将自动生成 ID"
 
 env:
   - name: Google Application Credentials
     key: GOOGLE_APPLICATION_CREDENTIALS
-    description: Your Google Cloud Service Account Credentials.(Content copied from a service account JSON file)
+    description: 您的 Google Cloud 服务账户凭证。（从服务账户 JSON 文件复制的内容）
     required: true
     sensitive: true
     file: true
   - name: Google Cloud Region
     key: GOOGLE_CLOUD_REGION
-    description: Default region for Cloud Run deployments (e.g., europe-west1, us-central1) default -- europe-west1
+    description: Cloud Run 部署的默认区域（例如，europe-west1, us-central1）默认 -- europe-west1
     required: false
     sensitive: false
 

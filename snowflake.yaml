@@ -1,61 +1,61 @@
 name: Snowflake
-shortDescription: Query Snowflake data warehouse with Cortex Search, Analyst, and SQL execution
+shortDescription: 使用 Cortex Search、Analyst 和 SQL 执行查询 Snowflake 数据仓库
 description: |
-  A Model Context Protocol (MCP) server that provides comprehensive access to Snowflake data warehouse through multiple APIs. Manage Snowflake objects, execute SQL queries, and work with semantic views for advanced analytics and data management.
+  一个 Model Context Protocol (MCP) 服务器，通过多个 API 提供对 Snowflake 数据仓库的全面访问。管理 Snowflake 对象、执行 SQL 查询，并使用语义视图进行高级分析和数据管理。
 
-  ## Features
-  - **Cortex Search**: Query unstructured data in Snowflake as commonly used in Retrieval Augmented Generation (RAG) applications
-  - **Cortex Analyst**: Query structured data in Snowflake via rich semantic modeling
-  - **Object Management**: Perform basic operations against Snowflake's most common objects such as creation, dropping, updating, and more
-  - **SQL Execution**: Run LLM-generated SQL managed by user-configured permissions
-  - **Semantic View Querying**: Discover and query Snowflake Semantic Views and their components
+  ## 功能特性
+  - **Cortex Search**：查询 Snowflake 中的非结构化数据，常用于检索增强生成 (RAG) 应用
+  - **Cortex Analyst**：通过丰富的语义建模查询 Snowflake 中的结构化数据
+  - **对象管理**：对 Snowflake 最常用的对象执行基本操作，如创建、删除、更新等
+  - **SQL 执行**：运行由用户配置权限管理的 LLM 生成的 SQL
+  - **语义视图查询**：发现和查询 Snowflake 语义视图及其组件
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **Required:**
-  - **Snowflake Account**: Your Snowflake account identifier
-  - **Username**: Your Snowflake username
-  - **Password**: Your Snowflake password
+  **必需：**
+  - **Snowflake Account**：您的 Snowflake 账号标识符
+  - **Username**：您的 Snowflake 用户名
+  - **Password**：您的 Snowflake 密码
 
-  **Optional:**
-  - **Role**: Your Snowflake role (e.g., ACCOUNTADMIN, SYSADMIN)
-  - **Snowflake Host**: Your Snowflake host URL
-  - **Service Config YAML**: YAML configuration for service managers and SQL statement permissions
+  **可选：**
+  - **Role**：您的 Snowflake 角色（例如 ACCOUNTADMIN、SYSADMIN）
+  - **Snowflake Host**：您的 Snowflake 主机 URL
+  - **Service Config YAML**：服务管理器和 SQL 语句权限的 YAML 配置
 
-  ### Service Config YAML Template
+  ### Service Config YAML 模板
 
-  Configure optional Cortex Search services, Cortex Analyst services, and SQL statement permissions as needed:
+  根据需要配置可选的 Cortex Search 服务、Cortex Analyst 服务和 SQL 语句权限：
   ```yaml
-  search_services: # List all Cortex Search services
+  search_services: # 列出所有 Cortex Search 服务
     - service_name: "<service_name>"
-      description: > # Should start with "Search service that ..."
+      description: > # 应以 "Search service that ..." 开头
         "<Search services that ...>"
       database_name: "<database_name>"
       schema_name: "<schema_name>"
-      columns: [] # Optional: List of columns to return for each relevant result (default: [])
-      limit: 10 # Optional: Limit on the number of results to return (default: 10)
+      columns: [] # 可选：为每个相关结果返回的列列表（默认：[]）
+      limit: 10 # 可选：返回结果数量的限制（默认：10）
     - service_name: "<service_name>"
-      description: > # Should start with "Search service that ..."
+      description: > # 应以 "Search service that ..." 开头
         "<Search services that ...>"
       database_name: "<database_name>"
       schema_name: "<schema_name>"
-      columns: [] # Optional: List of columns to return for each relevant result (default: [])
-      limit: 10 # Optional: Limit on the number of results to return (default: 10)
-  analyst_services: # List all Cortex Analyst semantic models/views
-    - service_name: "<service_name>" # Create descriptive name for the service
-      semantic_model: "<semantic_yaml_or_view>" # Fully-qualify semantic YAML model or Semantic View
-      description: > # Should start with "Analyst service that ..."
+      columns: [] # 可选：为每个相关结果返回的列列表（默认：[]）
+      limit: 10 # 可选：返回结果数量的限制（默认：10）
+  analyst_services: # 列出所有 Cortex Analyst 语义模型/视图
+    - service_name: "<service_name>" # 为服务创建描述性名称
+      semantic_model: "<semantic_yaml_or_view>" # 完全限定语义 YAML 模型或语义视图
+      description: > # 应以 "Analyst service that ..." 开头
         "<Analyst service that ...>"
-    - service_name: "<service_name>" # Create descriptive name for the service
-      semantic_model: "<semantic_yaml_or_view>" # Fully-qualify semantic YAML model or Semantic View
-      description: > # Should start with "Analyst service that ..."
+    - service_name: "<service_name>" # 为服务创建描述性名称
+      semantic_model: "<semantic_yaml_or_view>" # 完全限定语义 YAML 模型或语义视图
+      description: > # 应以 "Analyst service that ..." 开头
         "<Analyst service that ...>"
-  other_services: # Set desired tool groups to True to enable tools for that group
-    object_manager: True # Perform basic operations against Snowflake's most common objects such as creation, dropping, updating, and more.
-    query_manager: True # Run LLM-generated SQL managed by user-configured permissions.
-    semantic_manager: True # Discover and query Snowflake Semantic Views and their components.
-  sql_statement_permissions: # List SQL statements to explicitly allow (True) or disallow (False).
-    # - All: True # To allow everything, uncomment and set All: True.
+  other_services: # 将所需的工具组设置为 True 以启用该组的工具
+    object_manager: True # 对 Snowflake 最常用的对象执行基本操作，如创建、删除、更新等。
+    query_manager: True # 运行由用户配置权限管理的 LLM 生成的 SQL。
+    semantic_manager: True # 发现和查询 Snowflake 语义视图及其组件。
+  sql_statement_permissions: # 列出要显式允许 (True) 或禁止 (False) 的 SQL 语句。
+    # - All: True # 要允许所有内容，请取消注释并设置 All: True。
     - Alter: True
     - Command: True
     - Comment: True
@@ -70,19 +70,19 @@ description: |
     - Select: True
     - Transaction: True
     - TruncateTable: True
-    # - Unknown: True # To allow unknown or unmapped statement types, uncomment and set Unknown: True.
+    # - Unknown: True # 要允许未知或未映射的语句类型，请取消注释并设置 Unknown: True。
     - Update: True
     - Use: True
   ```
 
-  Default Service Config YAML if not provided:
+  如果未提供，默认的 Service Config YAML：
   ```yaml
-  other_services: # Set desired tool groups to True to enable tools for that group
-    object_manager: True # Perform basic operations against Snowflake's most common objects such as creation, dropping, updating, and more.
-    query_manager: True # Run LLM-generated SQL managed by user-configured permissions.
-    semantic_manager: True # Discover and query Snowflake Semantic Views and their components.
-  sql_statement_permissions: # List SQL statements to explicitly allow (True) or disallow (False).
-    # - All: True # To allow everything, uncomment and set All: True.
+  other_services: # 将所需的工具组设置为 True 以启用该组的工具
+    object_manager: True # 对 Snowflake 最常用的对象执行基本操作，如创建、删除、更新等。
+    query_manager: True # 运行由用户配置权限管理的 LLM 生成的 SQL。
+    semantic_manager: True # 发现和查询 Snowflake 语义视图及其组件。
+  sql_statement_permissions: # 列出要显式允许 (True) 或禁止 (False) 的 SQL 语句。
+    # - All: True # 要允许所有内容，请取消注释并设置 All: True。
     - Alter: True
     - Command: True
     - Comment: True
@@ -97,7 +97,7 @@ description: |
     - Select: True
     - Transaction: True
     - TruncateTable: True
-    # - Unknown: True # To allow unknown or unmapped statement types, uncomment and set Unknown: True.
+    # - Unknown: True # 要允许未知或未映射的语句类型，请取消注释并设置 Unknown: True。
     - Update: True
     - Use: True
   ```
@@ -109,128 +109,128 @@ repoURL: https://github.com/Snowflake-Labs/mcp
 
 toolPreview:
   - name: list-objects
-    description: List Snowflake objects including databases, schemas, tables, views, warehouses, compute pools, roles, stages, users, and image repositories with optional filtering.
+    description: 列出 Snowflake 对象，包括数据库、schemas、表、视图、warehouses、compute pools、角色、stages、用户和镜像仓库，支持可选过滤。
     params:
-      object_type: "Type of Snowflake object (database, schema, table, view, warehouse, compute_pool, role, stage, user, image_repository)"
-      database_name: "Filter by database name - default: None"
-      schema_name: "Filter by schema name - default: None"
-      like: "Filter objects by keyword in name (case-insensitive pattern matching) - default: None"
-      starts_with: "Filter objects by start of name (case sensitive) - default: None"
+      object_type: "Snowflake 对象类型（database、schema、table、view、warehouse、compute_pool、role、stage、user、image_repository）"
+      database_name: "按数据库名称过滤 - 默认：None"
+      schema_name: "按 schema 名称过滤 - 默认：None"
+      like: "按名称中的关键字过滤对象（不区分大小写的模式匹配）- 默认：None"
+      starts_with: "按名称开头过滤对象（区分大小写）- 默认：None"
   - name: create-object
-    description: Create a new Snowflake object with specified properties. Supports creating databases, schemas, tables, views, warehouses, and other Snowflake objects.
+    description: 使用指定属性创建新的 Snowflake 对象。支持创建数据库、schemas、表、视图、warehouses 和其他 Snowflake 对象。
     params:
-      object_type: "Type of Snowflake object to create"
-      target_object: "Object specification with properties like name, columns, query, etc."
-      mode: "Creation mode (error_if_exists, replace, if_not_exists) - default: error_if_exists"
+      object_type: "要创建的 Snowflake 对象类型"
+      target_object: "对象规范，包含名称、列、查询等属性"
+      mode: "创建模式（error_if_exists、replace、if_not_exists）- 默认：error_if_exists"
   - name: drop-object
-    description: Drop an existing Snowflake object. Supports dropping databases, schemas, tables, views, warehouses, and other Snowflake objects.
+    description: 删除现有的 Snowflake 对象。支持删除数据库、schemas、表、视图、warehouses 和其他 Snowflake 对象。
     params:
-      object_type: "Type of Snowflake object to drop"
-      target_object: "Object specification with name and required properties"
-      if_exists: "Only drop if object exists - default: false"
+      object_type: "要删除的 Snowflake 对象类型"
+      target_object: "包含名称和必需属性的对象规范"
+      if_exists: "仅当对象存在时才删除 - 默认：false"
   - name: create-or-alter-object
-    description: Create a new Snowflake object or alter an existing one. Provides flexible object management with automatic create/alter logic.
+    description: 创建新的 Snowflake 对象或修改现有对象。提供灵活的对象管理，具有自动创建/修改逻辑。
     params:
-      object_type: "Type of Snowflake object to create or alter"
-      target_object: "Object specification with properties to set"
+      object_type: "要创建或修改的 Snowflake 对象类型"
+      target_object: "要设置属性的对象规范"
   - name: describe-object
-    description: Get detailed information about a Snowflake object including its properties, configuration, and metadata.
+    description: 获取 Snowflake 对象的详细信息，包括其属性、配置和元数据。
     params:
-      object_type: "Type of Snowflake object to describe"
-      target_object: "Object specification with name and required properties"
+      object_type: "要描述的 Snowflake 对象类型"
+      target_object: "包含名称和必需属性的对象规范"
   - name: run-snowflake-query
-    description: Execute SQL queries in Snowflake with support for DML and DDL operations. Includes safety controls and permission management.
+    description: 在 Snowflake 中执行 SQL 查询，支持 DML 和 DDL 操作。包含安全控制和权限管理。
     params:
-      statement: "SQL query to execute"
+      statement: "要执行的 SQL 查询"
   - name: list-semantic-views
-    description: List all semantic views in the account, database, or schema with optional filtering capabilities.
+    description: 列出账号、数据库或 schema 中的所有语义视图，支持可选过滤功能。
     params:
-      database_name: "Database name to list semantic views in - default: None (account level)"
-      schema_name: "Schema name to list semantic views in - default: None"
-      like: "Filter semantic views by keyword in name (case insensitive) - default: None"
-      starts_with: "Filter semantic views by start of name (case sensitive) - default: None"
+      database_name: "要列出语义视图的数据库名称 - 默认：None（账号级别）"
+      schema_name: "要列出语义视图的 schema 名称 - 默认：None"
+      like: "按名称中的关键字过滤语义视图（不区分大小写）- 默认：None"
+      starts_with: "按名称开头过滤语义视图（区分大小写）- 默认：None"
   - name: describe-semantic-view
-    description: Get detailed information about a specific semantic view including its structure, dimensions, and metrics.
+    description: 获取特定语义视图的详细信息，包括其结构、维度和指标。
     params:
-      database_name: "Database name containing the semantic view"
-      schema_name: "Schema name containing the semantic view"
-      view_name: "Name of the semantic view to describe"
+      database_name: "包含语义视图的数据库名称"
+      schema_name: "包含语义视图的 schema 名称"
+      view_name: "要描述的语义视图名称"
   - name: show-semantic-dimensions
-    description: Show all semantic dimensions available in a specific semantic view for analytics and querying.
+    description: 显示特定语义视图中可用于分析和查询的所有语义维度。
     params:
-      database_name: "Database name containing the semantic view"
-      schema_name: "Schema name containing the semantic view"
-      view_name: "Name of the semantic view"
-      like: "Filter dimensions by keyword in name (case insensitive) - default: None"
-      starts_with: "Filter dimensions by start of name (case sensitive) - default: None"
+      database_name: "包含语义视图的数据库名称"
+      schema_name: "包含语义视图的 schema 名称"
+      view_name: "语义视图名称"
+      like: "按名称中的关键字过滤维度（不区分大小写）- 默认：None"
+      starts_with: "按名称开头过滤维度（区分大小写）- 默认：None"
   - name: show-semantic-metrics
-    description: Show all semantic metrics available in a specific semantic view for analytics and aggregations.
+    description: 显示特定语义视图中可用于分析和聚合的所有语义指标。
     params:
-      database_name: "Database name containing the semantic view"
-      schema_name: "Schema name containing the semantic view"
-      view_name: "Name of the semantic view"
-      like: "Filter metrics by keyword in name (case insensitive) - default: None"
-      starts_with: "Filter metrics by start of name (case sensitive) - default: None"
+      database_name: "包含语义视图的数据库名称"
+      schema_name: "包含语义视图的 schema 名称"
+      view_name: "语义视图名称"
+      like: "按名称中的关键字过滤指标（不区分大小写）- 默认：None"
+      starts_with: "按名称开头过滤指标（区分大小写）- 默认：None"
   - name: get-semantic-view-ddl
-    description: Retrieve the DDL (Data Definition Language) for a semantic view to understand its structure and definition.
+    description: 检索语义视图的 DDL（数据定义语言）以了解其结构和定义。
     params:
-      database_name: "Database name containing the semantic view"
-      schema_name: "Schema name containing the semantic view"
-      view_name: "Name of the semantic view to get DDL for"
+      database_name: "包含语义视图的数据库名称"
+      schema_name: "包含语义视图的 schema 名称"
+      view_name: "要获取 DDL 的语义视图名称"
   - name: write-semantic-view-query-tool
-    description: Generate a query statement to query a semantic view using dimensions, metrics, and/or facts with optional filtering and sorting.
+    description: 生成查询语句以使用维度、指标和/或事实查询语义视图，支持可选过滤和排序。
     params:
-      database_name: "Database name containing the semantic view"
-      schema_name: "Schema name containing the semantic view"
-      view_name: "Name of the semantic view to query"
-      dimensions: "List of dimensions to include (each with table and name) - default: []"
-      metrics: "List of metrics to include (each with table and name, cannot be used with facts) - default: []"
-      facts: "List of facts to include (each with table and name, cannot be used with metrics) - default: []"
-      where_clause: "Optional WHERE clause conditions (without WHERE keyword) - default: None"
-      order_by: "Optional ORDER BY clause (without ORDER BY keywords) - default: None"
-      limit: "Optional LIMIT for number of rows to return - default: None"
+      database_name: "包含语义视图的数据库名称"
+      schema_name: "包含语义视图的 schema 名称"
+      view_name: "要查询的语义视图名称"
+      dimensions: "要包含的维度列表（每个包含 table 和 name）- 默认：[]"
+      metrics: "要包含的指标列表（每个包含 table 和 name，不能与 facts 一起使用）- 默认：[]"
+      facts: "要包含的事实列表（每个包含 table 和 name，不能与 metrics 一起使用）- 默认：[]"
+      where_clause: "可选的 WHERE 子句条件（不带 WHERE 关键字）- 默认：None"
+      order_by: "可选的 ORDER BY 子句（不带 ORDER BY 关键字）- 默认：None"
+      limit: "可选的返回行数限制 - 默认：None"
   - name: query-semantic-view
-    description: Execute a query against a semantic view using dimensions, metrics, and/or facts with optional filtering and sorting.
+    description: 使用维度、指标和/或事实执行对语义视图的查询，支持可选过滤和排序。
     params:
-      database_name: "Database name containing the semantic view"
-      schema_name: "Schema name containing the semantic view"
-      view_name: "Name of the semantic view to query"
-      dimensions: "List of dimensions to include (each with table and name) - default: []"
-      metrics: "List of metrics to include (each with table and name, cannot be used with facts) - default: []"
-      facts: "List of facts to include (each with table and name, cannot be used with metrics) - default: []"
-      where_clause: "Optional WHERE clause conditions (without WHERE keyword) - default: None"
-      order_by: "Optional ORDER BY clause (without ORDER BY keywords) - default: None"
-      limit: "Optional LIMIT for number of rows to return - default: None"
+      database_name: "包含语义视图的数据库名称"
+      schema_name: "包含语义视图的 schema 名称"
+      view_name: "要查询的语义视图名称"
+      dimensions: "要包含的维度列表（每个包含 table 和 name）- 默认：[]"
+      metrics: "要包含的指标列表（每个包含 table 和 name，不能与 facts 一起使用）- 默认：[]"
+      facts: "要包含的事实列表（每个包含 table 和 name，不能与 metrics 一起使用）- 默认：[]"
+      where_clause: "可选的 WHERE 子句条件（不带 WHERE 关键字）- 默认：None"
+      order_by: "可选的 ORDER BY 子句（不带 ORDER BY 关键字）- 默认：None"
+      limit: "可选的返回行数限制 - 默认：None"
 
 env:
   - name: Snowflake Account
     key: SNOWFLAKE_ACCOUNT
-    description: Your Snowflake account identifier
+    description: 您的 Snowflake 账号标识符
     required: true
     sensitive: false
   - name: Snowflake User
     key: SNOWFLAKE_USER
-    description: Your Snowflake username
+    description: 您的 Snowflake 用户名
     required: true
     sensitive: false
   - name: Snowflake Password
     key: SNOWFLAKE_PASSWORD
-    description: Your Snowflake password (NOT Personal Access Token)
+    description: 您的 Snowflake 密码（不是 Personal Access Token）
     required: true
     sensitive: true
   - name: Snowflake Host
     key: SNOWFLAKE_HOST
-    description: Your Snowflake host URL (e.g., account.snowflakecomputing.com)
+    description: 您的 Snowflake 主机 URL（例如 account.snowflakecomputing.com）
     required: false
     sensitive: false
   - name: Snowflake Role
     key: SNOWFLAKE_ROLE
-    description: Your Snowflake role (e.g., ACCOUNTADMIN, SYSADMIN)
+    description: 您的 Snowflake 角色（例如 ACCOUNTADMIN、SYSADMIN）
     required: false
     sensitive: false
   - name: Service Config YAML
     key: SERVICE_CONFIG_YAML
-    description: YAML configuration for service managers and SQL statement permissions, refer to readme for more details
+    description: 服务管理器和 SQL 语句权限的 YAML 配置，详情请参考 readme
     required: false
     sensitive: false
     file: true

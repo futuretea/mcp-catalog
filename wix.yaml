@@ -1,16 +1,16 @@
 name: Wix
-shortDescription: Access Wix APIs to manage sites, bookings, pricing plans, and CMS
+shortDescription: 访问 Wix API 以管理站点、预订、定价计划和 CMS
 description: |
-  A Model Context Protocol (MCP) server for Wix, providing access to Wix's API and documentation.
+  用于 Wix 的 Model Context Protocol (MCP) 服务器，提供对 Wix API 和文档的访问。
 
-  ## Features
-  - **API**: Access Wix's APIs to manage sites, bookings, pricing plans, CMS, and more.
-  - **Documentation**: Access Wix's documentation.
+  ## 功能特性
+  - **API**: 访问 Wix API 以管理站点、预订、定价计划、CMS 等。
+  - **文档**: 访问 Wix 的文档。
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **Required:**
-  - **Wix Account**: Active Wix account (sign up at [wix.com](https://wix.com/))
+  **必需:**
+  - **Wix 账户**: 有效的 Wix 账户（在 [wix.com](https://wix.com/) 注册）
 
 metadata:
   categories: Business, SaaS & API Integrations
@@ -23,131 +23,131 @@ remoteConfig:
 toolPreview:
   - name: WixREADME
     description: |-
-      **Directive:** `WixREADME` is the **MANDATORY FIRST STEP** for all Wix-related tasks. Its output (including relevant linked documents) provides foundational context for all other Wix tools. Adherence to this protocol is **NON-NEGOTIABLE**.
+      **指令:** `WixREADME` 是所有 Wix 相关任务的**强制性第一步**。其输出（包括相关链接文档）为所有其他 Wix 工具提供基础上下文。遵守此协议是**不可协商的**。
 
-      **Operational Protocol (Strictly Sequential):**
+      **操作协议（严格顺序执行）:**
 
-      1.  **Execute `WixREADME`:**
-          * **Action:** Invoke `WixREADME`.
-          * **Constraint:** MUST complete successfully. NO other Wix tool before this.
+      1.  **执行 `WixREADME`:**
+          * **操作:** 调用 `WixREADME`。
+          * **约束:** 必须成功完成。在此之前不得使用任何其他 Wix 工具。
 
-      2.  **Process `WixREADME` Output (Link Identification & Relevance Assessment):**
-          * **A. Identify Candidate Links:** Scan `WixREADME` output. Extract *only* URLs found within `<urls>{urls}</urls>` tags. Ignore all other URLs.
-          * **B. Assess Relevance:** For EACH candidate URL from (A), assess its relevance to the **current user's specific prompt/task**.
-          * **Outcome:** A list of *relevant* document URLs. If no links are found in `<urls>` tags or none are deemed relevant, note this and proceed to Step 4.
+      2.  **处理 `WixREADME` 输出（链接识别与相关性评估）:**
+          * **A. 识别候选链接:** 扫描 `WixREADME` 输出。仅从 `<urls>{urls}</urls>` 标签中提取 URL。忽略所有其他 URL。
+          * **B. 评估相关性:** 对于 (A) 中的每个候选 URL，评估其与**当前用户特定提示/任务**的相关性。
+          * **结果:** 相关文档 URL 列表。如果在 `<urls>` 标签中未找到链接或没有相关链接，请记录此情况并继续执行步骤 4。
 
-      3.  **Fetch Relevant Documents (via `ReadFullDocsArticle`):**
-          * **Condition:** ONLY if Step 2B identified one or more *relevant* URLs.
-          * **Action:** For EACH *relevant* URL, invoke `ReadFullDocsArticle` to fetch its full content.
-          * **Constraint:** All *relevant* documents MUST be fetched before Step 4.
+      3.  **获取相关文档（通过 `ReadFullDocsArticle`）:**
+          * **条件:** 仅在步骤 2B 识别出一个或多个*相关* URL 时。
+          * **操作:** 对于每个*相关* URL，调用 `ReadFullDocsArticle` 获取其完整内容。
+          * **约束:** 在步骤 4 之前必须获取所有*相关*文档。
 
-      4.  **Proceed with Other Wix Tools:**
-          * **Condition:** ONLY after completing Steps 1, 2, and 3 (if Step 3 was applicable).
-          * **Action:** Use other Wix tools as needed, utilizing the full context from `WixREADME` and fetched relevant documents.
+      4.  **继续使用其他 Wix 工具:**
+          * **条件:** 仅在完成步骤 1、2 和 3（如果步骤 3 适用）之后。
+          * **操作:** 根据需要继续使用其他 Wix 工具，利用 `WixREADME` 和获取的相关文档中的完整上下文。
 
-      **Summary of Critical Rules:**
-      * `WixREADME` is **ALWAYS FIRST**.
-      * Analyze `WixREADME` output: Extract links *only* from `<urls>{urls}</urls>` tags.
-      * Assess relevance of *each* extracted link against the user's current task.
-      * Fetch **ONLY RELEVANT** linked documents using `ReadFullDocsArticle` before any other Wix tool.
-      * **FAILURE TO FOLLOW THIS EXACT SEQUENCE WILL LEAD TO ERRORS.** Strict adherence is mandatory.
+      **关键规则摘要:**
+      * `WixREADME` **始终排在第一位**。
+      * 分析 `WixREADME` 输出：仅从 `<urls>{urls}</urls>` 标签中提取链接。
+      * 评估每个提取链接与用户当前任务的相关性。
+      * 在使用任何其他 Wix 工具之前，使用 `ReadFullDocsArticle` 获取**仅相关**的链接文档。
+      * **不遵循此确切顺序将导致错误。** 严格遵守是强制性的。
   - name: SearchWixWDSDocumentation
     description: |-
-      Searches the Wix Design System Documentation for components and patterns.
-      Use this tool when you need to understand or implement UI components and design patterns in a Wix project.
-      Search for specific component names, patterns, or UI requirements.
-      If you can't find what you need, try to rephrase your search term or use bigger maxResults value.
-      **Dependency:** Must be used after 'WixREADME' has successfully run.
+      搜索 Wix Design System 文档以查找组件和模式。
+      当您需要理解或实现 Wix 项目中的 UI 组件和设计模式时使用此工具。
+      搜索特定的组件名称、模式或 UI 需求。
+      如果找不到所需内容，请尝试重新表述搜索词或使用更大的 maxResults 值。
+      **依赖:** 必须在 'WixREADME' 成功运行后使用。
     params:
-      maxResults: The maximum number of results to return, default is 5, max is 15
-      searchTerm: The search term to search for in the Wix Design System Documentation
+      maxResults: 返回的最大结果数，默认为 5，最大为 15
+      searchTerm: 在 Wix Design System 文档中搜索的搜索词
   - name: SearchWixRESTDocumentation
     description: |-
-      Searches the official Wix REST API documentation.
-      Use this tool whenever you need to to interact with the Wix platform via HTTP requests.
-      Specify the API endpoint, resource, or action you need information about (e.g., 'get site details endpoint', 'create data collection', 'update product API', 'REST authentication').
-      If you can't find what you need, try to rephrase your search term or use bigger maxResults value.
-      **Dependency:** Must be used after 'WixREADME' has successfully run.
+      搜索官方 Wix REST API 文档。
+      当您需要通过 HTTP 请求与 Wix 平台交互时使用此工具。
+      指定您需要信息的 API 端点、资源或操作（例如，'get site details endpoint'、'create data collection'、'update product API'、'REST authentication'）。
+      如果找不到所需内容，请尝试重新表述搜索词或使用更大的 maxResults 值。
+      **依赖:** 必须在 'WixREADME' 成功运行后使用。
     params:
-      maxResults: The maximum number of results to return, default is 5, max is 15
-      searchTerm: The search term to search for in the Wix REST API Documentation
+      maxResults: 返回的最大结果数，默认为 5，最大为 15
+      searchTerm: 在 Wix REST API 文档中搜索的搜索词
   - name: SearchWixSDKDocumentation
     description: |-
-      Searches the official Wix javascript SDK documentation.
-      Use this tool whenever you need to write or modify Wix related SDK code.
-      Specify the SDK module, function, or feature you need information about (e.g., 'how to query all items from a data collection?', 'how to use wix-stores-backend', 'authentication methods in the SDK').
-      If you can't find what you need, try to rephrase your search term or use bigger maxResults value.
-      **Dependency:** Must be used after 'WixREADME' has successfully run.
+      搜索官方 Wix JavaScript SDK 文档。
+      当您需要编写或修改 Wix 相关 SDK 代码时使用此工具。
+      指定您需要信息的 SDK 模块、函数或功能（例如，'how to query all items from a data collection?'、'how to use wix-stores-backend'、'authentication methods in the SDK'）。
+      如果找不到所需内容，请尝试重新表述搜索词或使用更大的 maxResults 值。
+      **依赖:** 必须在 'WixREADME' 成功运行后使用。
     params:
-      maxResults: The maximum number of results to return, default is 5, max is 15
-      searchTerm: The search term to search for in the Wix SDK Documentation
+      maxResults: 返回的最大结果数，默认为 5，最大为 15
+      searchTerm: 在 Wix SDK 文档中搜索的搜索词
   - name: SearchBuildAppsDocumentation
     description: |-
-      Searches the official Build Apps documentation.
-      Use this tool when you need to understand or implement Wix CLI applications related code.
-      The search term should be a specific Wix CLI command or specific topic related to Wix CLI applications or its ecosystem (e.g. deployment, creating new extensions etc).
-      If you can't find what you need, try to rephrase your search term or use bigger maxResults value.
-      **Dependency:** Must be used after 'WixREADME' has successfully run.
+      搜索官方 Build Apps 文档。
+      当您需要理解或实现 Wix CLI 应用程序相关代码时使用此工具。
+      搜索词应该是特定的 Wix CLI 命令或与 Wix CLI 应用程序或其生态系统相关的特定主题（例如 deployment、creating new extensions 等）。
+      如果找不到所需内容，请尝试重新表述搜索词或使用更大的 maxResults 值。
+      **依赖:** 必须在 'WixREADME' 成功运行后使用。
     params:
-      maxResults: The maximum number of results to return, default is 5, max is 15
-      searchTerm: The search term to search for in the Build Apps Documentation
+      maxResults: 返回的最大结果数，默认为 5，最大为 15
+      searchTerm: 在 Build Apps 文档中搜索的搜索词
   - name: SearchWixHeadlessDocumentation
     description: |-
-      Searches the official Wix Headless Documentation.
-      Use this tool when you need to understand or implement Headless related code.
-      The search term should be a specific Wix Headless topic or feature you need information about.
-      If you can't find what you need, try to rephrase your search term or use bigger maxResults value.
-      **Dependency:** Must be used after 'WixREADME' has successfully run.
+      搜索官方 Wix Headless 文档。
+      当您需要理解或实现 Headless 相关代码时使用此工具。
+      搜索词应该是您需要信息的特定 Wix Headless 主题或功能。
+      如果找不到所需内容，请尝试重新表述搜索词或使用更大的 maxResults 值。
+      **依赖:** 必须在 'WixREADME' 成功运行后使用。
     params:
-      maxResults: The maximum number of results to return, default is 5, max is 15
-      searchTerm: The search term to search for in the Headless Documentation
+      maxResults: 返回的最大结果数，默认为 5，最大为 15
+      searchTerm: 在 Headless 文档中搜索的搜索词
   - name: ReadFullDocsArticle
     description: |-
-      Fetches the full Wix docs article or method article.
-      Use this tool when you read a summary of a docs article or method article, you have the docs url and want to read the full article.
-      **Dependency:** Must be used after 'WixREADME' has successfully run.
+      获取完整的 Wix 文档文章或方法文章。
+      当您阅读了文档文章或方法文章的摘要，拥有文档 URL 并想要阅读完整文章时使用此工具。
+      **依赖:** 必须在 'WixREADME' 成功运行后使用。
     params:
-      articleUrl: The URL of the docs article or method article to fetch. Should be something like https://dev.wix.com/docs/.../.../...
+      articleUrl: 要获取的文档文章或方法文章的 URL。应该是类似 https://dev.wix.com/docs/.../.../... 的格式
   - name: ReadFullDocsMethodSchema
     description: |-
-      Fetches the full method schema for a given method. Always use it before calling the method.
-      This will give you the entire request/response schema with all the fields and their descriptions.
+      获取给定方法的完整方法架构。在调用方法之前始终使用它。
+      这将为您提供包含所有字段及其描述的完整请求/响应架构。
     params:
-      articleUrl: The URL of the documentation to fetch. Should be something like https://dev.wix.com/docs/.../.../...
+      articleUrl: 要获取的文档的 URL。应该是类似 https://dev.wix.com/docs/.../.../... 的格式
   - name: CallWixSiteAPI
     description: |-
-      Call Wix apis on a business or site. Use this to create, read, update, and delete data and other Wix entities in your Wix site,
-      You should ALWAYS check the rest docs - "SearchWixRESTDocumentation" for the specific API you want to call, don't just call it without knowing what it does, CHECK THE DOCS
-      Error Handling:
-      If the error is related to missing installed app or "WDE0110: Wix Code not enabled", you should install the missing app by using ReadFullDocsArticle tool to fetch the article - https://dev.wix.com/docs/kb-only/MCP_REST_RECIPES_KB_ID/TRAIN_wix.devcenter.apps.installer.v1.AppsInstallerService.InstallApp
-      **Note:** there is no need to check if an app is installed/ Wix Code enabled in advance, just call the API and handle the error if it occurs, the API error message will state it clearly.
-      For any other error, use your default error handling mechanism
+      在企业或站点上调用 Wix API。使用此工具在您的 Wix 站点中创建、读取、更新和删除数据及其他 Wix 实体。
+      您应该始终检查 REST 文档 - "SearchWixRESTDocumentation" 以了解您要调用的特定 API，不要在没有了解其作用的情况下直接调用，请查阅文档。
+      错误处理:
+      如果错误与缺少已安装的应用程序或 "WDE0110: Wix Code not enabled" 相关，您应该使用 ReadFullDocsArticle 工具获取文章 - https://dev.wix.com/docs/kb-only/MCP_REST_RECIPES_KB_ID/TRAIN_wix.devcenter.apps.installer.v1.AppsInstallerService.InstallApp 来安装缺少的应用程序。
+      **注意:** 无需预先检查应用程序是否已安装/ Wix Code 是否已启用，只需调用 API 并在发生错误时处理错误，API 错误消息会明确说明。
+      对于任何其他错误，请使用您的默认错误处理机制。
     params:
-      body: A string representing of a valid JSON object to describe the body of the request
-      method: The HTTP method to use for the API call (e.g. GET, POST, PUT, DELETE)
-      siteId: The id of the site selected using site selection tool
-      url: The url of the api to call - ALWAYS get the information from the Wix REST docs or from the conversation context, the URL MUST BE ABSOLUTE URL
+      body: 表示请求主体的有效 JSON 对象的字符串
+      method: 用于 API 调用的 HTTP 方法（例如 GET、POST、PUT、DELETE）
+      siteId: 使用站点选择工具选择的站点 ID
+      url: 要调用的 API 的 URL - 始终从 Wix REST 文档或对话上下文中获取信息，URL 必须是绝对 URL
   - name: ListWixSites
-    description: List Wix sites for the current user, by default it will return all sites, but you can filter by name
+    description: 列出当前用户的 Wix 站点，默认情况下将返回所有站点，但您可以按名称过滤
     params:
-      alwaysTrue: Always pass true to this parameter
-      nameSearch: optional filer by name, if not provided all sites will be returned
+      alwaysTrue: 始终将此参数传递为 true
+      nameSearch: 可选的按名称过滤，如果未提供则返回所有站点
   - name: ManageWixSite
     description: |-
-      Use account level API in order to create a site, update a site and publish site.
-          ALWAYS use "SearchWixRESTDocumentation" to search for the API you should invoke, NEVER GUESS THE SITE API URL
-          You should ALWAYS check the rest docs - "SearchWixRESTDocumentation" for the specific API you want to call, don't just call it without knowing what it does, CHECK THE DOCS
+      使用账户级别 API 来创建站点、更新站点和发布站点。
+          始终使用 "SearchWixRESTDocumentation" 搜索您应该调用的 API，永远不要猜测站点 API URL
+          您应该始终检查 REST 文档 - "SearchWixRESTDocumentation" 以了解您要调用的特定 API，不要在没有了解其作用的情况下直接调用，请查阅文档。
     params:
-      body: A string representing of a valid JSON object to describe the body of the request
-      method: The HTTP method to use for the API call (e.g. GET, POST, PUT, DELETE)
-      url: The url of the api to call - ALWAYS get the information from the Wix REST docs DONT GUESS IT, the URL MUST BE ABSOLUTE URL
+      body: 表示请求主体的有效 JSON 对象的字符串
+      method: 用于 API 调用的 HTTP 方法（例如 GET、POST、PUT、DELETE）
+      url: 要调用的 API 的 URL - 始终从 Wix REST 文档中获取信息，不要猜测，URL 必须是绝对 URL
   - name: SupportAndFeedback
     description: |-
-      If the user would like to provide Wix with some feedback (good or bad), about the tools in Wix MCP,
-      for example they used the tools provided, and they reflected satisfaction or dissatisfaction with the tools.
-      Also, if you encounter too many errors tyring to call the Wix API, you can also suggest the user to provide feedback to Wix using this tool.
-      **IMPORTANT NOTE**
-      This tool is not sending the message, but formats it in order to another tool to actually send it
+      如果用户希望向 Wix 提供一些反馈（好的或坏的），关于 Wix MCP 中的工具，
+      例如他们使用了提供的工具，并且对工具表示满意或不满意。
+      此外，如果您在尝试调用 Wix API 时遇到太多错误，您也可以建议用户使用此工具向 Wix 提供反馈。
+      **重要提示**
+      此工具不会发送消息，而是格式化消息以便另一个工具实际发送。
     params:
-      message: The message to send to Wix
-      requestId: request id if returned from the server in a failed API call to Wix
+      message: 发送给 Wix 的消息
+      requestId: 如果服务器在失败的 API 调用中返回了请求 ID

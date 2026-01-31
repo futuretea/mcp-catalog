@@ -1,42 +1,42 @@
 name: DuckDuckGo Search
-shortDescription: Search the web with DuckDuckGo and retrieve webpage content with parsing
-description: 'A Model Context Protocol (MCP) server that provides web search capabilities through DuckDuckGo, with additional features for content fetching and parsing. Search the web and retrieve webpage content with LLM-friendly formatting.
+shortDescription: 使用 DuckDuckGo 搜索网页并检索带解析的网页内容
+description: '一个 Model Context Protocol (MCP) 服务器，通过 DuckDuckGo 提供网页搜索功能，并额外支持内容获取和解析。搜索网页并以适合 LLM 的格式检索网页内容。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Web Search**: Search DuckDuckGo with advanced rate limiting and result formatting
+  - **网页搜索**：使用高级速率限制和结果格式化的 DuckDuckGo 搜索
 
-  - **Content Fetching**: Retrieve and parse webpage content with intelligent text extraction
+  - **内容获取**：检索并解析网页内容，进行智能文本提取
 
-  - **Rate Limiting**: Built-in protection against rate limits (30 searches/min, 20 fetches/min)
+  - **速率限制**：内置速率限制保护（每分钟 30 次搜索，每分钟 20 次获取）
 
-  - **LLM-Friendly Output**: Results formatted specifically for large language model consumption
+  - **LLM 友好输出**：专门针对大型语言模型使用而格式化的结果
 
-  - **Error Handling**: Comprehensive error handling and logging with graceful degradation
-
-
-  ## What you''ll need to connect
+  - **错误处理**：全面的错误处理和日志记录，支持优雅降级
 
 
-  **No Setup Required**: DuckDuckGo Search works out-of-the-box with no API keys or configuration needed.
+  ## 连接所需条件
+
+
+  **无需设置**：DuckDuckGo Search 开箱即用，无需 API 密钥或配置。
 
   '
 metadata:
-  categories: Search
+  categories: 搜索
 icon: https://img.icons8.com/?size=100&id=63778&format=png&color=000000
 repoURL: https://github.com/nickclyde/duckduckgo-mcp-server
 env: []
 toolPreview:
 - name: search
-  description: Search DuckDuckGo and return formatted results.
+  description: 搜索 DuckDuckGo 并返回格式化结果。
   params:
-    query: The search query string
-    max_results: Optional maximum number of results to return (default 10)
+    query: 搜索查询字符串
+    max_results: 可选的最大返回结果数（默认 10）
 - name: fetch_content
-  description: Fetch and parse content from a webpage URL.
+  description: 从网页 URL 获取并解析内容。
   params:
-    url: The webpage URL to fetch content from
+    url: 要获取内容的网页 URL
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/duckduckgo-search:0.1.1
@@ -44,3 +44,4 @@ containerizedConfig:
   path: /
   args:
   - duckduckgo-mcp-server
+

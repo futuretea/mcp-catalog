@@ -1,48 +1,48 @@
 name: AWS EKS
-shortDescription: Manage Amazon EKS clusters, Kubernetes resources, and containerized applications
-description: 'A Model Context Protocol (MCP) server for Amazon EKS that provides AI code assistants with resource management tools and real-time cluster state visibility. Streamline application development through tailored guidance from initial setup through production optimization and troubleshooting.
+shortDescription: 管理 Amazon EKS 集群、Kubernetes 资源和容器化应用程序
+description: '一个用于 Amazon EKS 的 Model Context Protocol (MCP) 服务器，为 AI 代码助手提供资源管理工具和实时集群状态可见性。通过从初始设置到生产优化和故障排除的定制指导，简化应用程序开发。
 
 
-  ## Features
+  ## 功能特性
 
-  - Enables users of AI code assistants to create new EKS clusters, complete with prerequisites such as dedicated VPCs, networking, and EKS Auto Mode node pools, by translating requests into the appropriate AWS CloudFormation actions
+  - 使 AI 代码助手用户能够创建新的 EKS 集群，包括专用 VPC、网络和 EKS Auto Mode 节点池等先决条件，通过将请求转换为适当的 AWS CloudFormation 操作
 
-  - Provides the ability to deploy containerized applications by applying existing Kubernetes YAML files or by generating new deployment and service manifests based on user-provided parameters
+  - 提供通过应用现有 Kubernetes YAML 文件或基于用户提供的参数生成新的部署和服务清单来部署容器化应用程序的能力
 
-  - Supports full lifecycle management of individual Kubernetes resources (such as Pods, Services, and Deployments) within EKS clusters, enabling create, read, update, patch, and delete operations
+  - 支持 EKS 集群中单个 Kubernetes 资源（如 Pod、Service 和 Deployment）的完整生命周期管理，支持创建、读取、更新、修补和删除操作
 
-  - Provides the ability to list Kubernetes resources with filtering by namespace, labels, and fields, simplifying the process for both users and LLMs to gather information about the state of Kubernetes applications and EKS infrastructure
+  - 提供按命名空间、标签和字段过滤列出 Kubernetes 资源的能力，简化用户和 LLM 收集有关 Kubernetes 应用程序和 EKS 基础设施状态信息的过程
 
-  - Facilitates operational tasks such as retrieving logs from specific pods and containers or fetching Kubernetes events related to particular resources, supporting troubleshooting and monitoring for both direct users and AI-driven workflows
+  - 促进操作任务，例如从特定 Pod 和容器检索日志或获取与特定资源相关的 Kubernetes 事件，支持直接用户和 AI 驱动工作流的故障排除和监控
 
-  - Enables users to troubleshoot issues with an EKS cluster
-
-
-  ## What you''ll need to connect
+  - 使用户能够对 EKS 集群问题进行故障排除
 
 
-  **Required AWS Credentials:**
-
-  - **AWS Access Key ID**: Your AWS credential access key
-
-  - **AWS Secret Access Key**: Your AWS credential access secret
+  ## 连接所需条件
 
 
-  **Optional Configuration:**
+  **必需的 AWS 凭证:**
 
-  - **AWS Region**: AWS region to use (default: `us-east-1`)
+  - **AWS Access Key ID**: 您的 AWS 凭证访问密钥
 
-  - **AWS Session Token**: Required only for temporary credentials like SSO or STS AssumeRole
-
-
-  **IAM Permissions Required:**
-
-  - **Read Operations**: EKS describe, CloudFormation describe, CloudWatch metrics, IAM get policies
-
-  - **Write Operations**: Full access to IAM, VPC, CloudFormation, and EKS for cluster creation and management
+  - **AWS Secret Access Key**: 您的 AWS 凭证访问密钥密文
 
 
-  **Kubernetes Access:** Your IAM principal must either create the EKS cluster or have an EKS Access Entry configured.
+  **可选配置:**
+
+  - **AWS Region**: 要使用的 AWS 区域 (默认: `us-east-1`)
+
+  - **AWS Session Token**: 仅在使用临时凭证（如 SSO 或 STS AssumeRole）时需要
+
+
+  **所需的 IAM 权限:**
+
+  - **读取操作**: EKS describe、CloudFormation describe、CloudWatch metrics、IAM get policies
+
+  - **写入操作**: 对 IAM、VPC、CloudFormation 和 EKS 的完全访问权限，用于集群创建和管理
+
+
+  **Kubernetes 访问:** 您的 IAM 主体必须创建 EKS 集群或配置 EKS Access Entry。
 
   '
 metadata:
@@ -54,7 +54,7 @@ env:
   name: AWS Access Key ID
   required: true
   sensitive: false
-  description: Your AWS Access Key ID
+  description: 您的 AWS Access Key ID
 - key: AWS_SECRET_ACCESS_KEY
   name: AWS Secret Access Key
   required: true
@@ -64,12 +64,12 @@ env:
   name: AWS Session Token
   required: false
   sensitive: true
-  description: AWS Session Token, only required if using temporary credentials such as temporary AWS credentials, such as those obtained through aws sso login or other temporary access methods (for example, STS AssumeRole)
+  description: AWS Session Token，仅在使用临时凭证时需要，例如通过 aws sso login 或其他临时访问方法获得的临时 AWS 凭证（例如 STS AssumeRole）
 - key: AWS_REGION
   name: AWS Region
   required: true
   sensitive: false
-  description: AWS Region
+  description: AWS 区域
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/aws-eks:0.1.15
@@ -81,111 +81,112 @@ containerizedConfig:
   - --allow-sensitive-data-access
 toolPreview:
 - name: manage_eks_stacks
-  description: Manage EKS CloudFormation stacks with operations for generating templates, deploying, describing, and deleting EKS clusters and their underlying infrastructure.
+  description: 管理 EKS CloudFormation 堆栈，执行生成模板、部署、描述和删除 EKS 集群及其底层基础设施的操作。
   params:
-    operation: Operation to perform (generate, deploy, describe, or delete)
-    cluster_name: Name of the EKS cluster (for all operations)
-    template_file: Absolute path for the CloudFormation template (for generate and deploy operations)
+    operation: 要执行的操作（generate、deploy、describe 或 delete）
+    cluster_name: EKS 集群的名称（用于所有操作）
+    template_file: CloudFormation 模板的绝对路径（用于 generate 和 deploy 操作）
 - name: list_k8s_resources
-  description: List Kubernetes resources of a specific kind in an EKS cluster, with options to filter by namespace, labels, and fields.
+  description: 在 EKS 集群中列出特定类型的 Kubernetes 资源，可选择按命名空间、标签和字段过滤。
   params:
-    cluster_name: Name of the EKS cluster
-    kind: Kind of the Kubernetes resources (e.g., 'Pod', 'Service')
-    api_version: API version of the Kubernetes resources (e.g., 'v1', 'apps/v1')
-    namespace: Namespace of the Kubernetes resources (optional)
-    label_selector: Label selector to filter resources (optional)
-    field_selector: Field selector to filter resources (optional)
+    cluster_name: EKS 集群的名称
+    kind: Kubernetes 资源的类型（例如 'Pod'、'Service'）
+    api_version: Kubernetes 资源的 API 版本（例如 'v1'、'apps/v1'）
+    namespace: Kubernetes 资源的命名空间（可选）
+    label_selector: 用于过滤资源的标签选择器（可选）
+    field_selector: 用于过滤资源的字段选择器（可选）
 - name: manage_k8s_resource
-  description: Manage individual Kubernetes resources with complete CRUD operations (create, read, update, patch, delete) for any resource type.
+  description: 管理单个 Kubernetes 资源，支持任何资源类型的完整 CRUD 操作（创建、读取、更新、修补、删除）。
   params:
-    operation: Operation to perform (create, replace, patch, delete, read)
-    cluster_name: Name of the EKS cluster
-    kind: Kind of the Kubernetes resource (e.g., 'Pod', 'Service')
-    api_version: API version of the Kubernetes resource (e.g., 'v1', 'apps/v1')
-    name: Name of the Kubernetes resource
-    namespace: Namespace of the Kubernetes resource (optional)
-    body: Resource definition (for create/replace/patch operations)
+    operation: 要执行的操作（create、replace、patch、delete、read）
+    cluster_name: EKS 集群的名称
+    kind: Kubernetes 资源的类型（例如 'Pod'、'Service'）
+    api_version: Kubernetes 资源的 API 版本（例如 'v1'、'apps/v1'）
+    name: Kubernetes 资源的名称
+    namespace: Kubernetes 资源的命名空间（可选）
+    body: 资源定义（用于 create/replace/patch 操作）
 - name: apply_yaml
-  description: Apply Kubernetes YAML manifests from local files to an EKS cluster, supporting multi-document files and resource updates.
+  description: 将本地文件中的 Kubernetes YAML 清单应用到 EKS 集群，支持多文档文件和资源更新。
   params:
-    yaml_path: Absolute path to the YAML file to apply
-    cluster_name: Name of the EKS cluster
-    namespace: Default namespace to use for resources
-    force: Whether to update resources if they already exist (optional)
+    yaml_path: 要应用的 YAML 文件的绝对路径
+    cluster_name: EKS 集群的名称
+    namespace: 资源使用的默认命名空间
+    force: 如果资源已存在是否更新（可选）
 - name: list_api_versions
-  description: List all available API versions in the Kubernetes cluster to determine correct apiVersion for resource management.
+  description: 列出 Kubernetes 集群中所有可用的 API 版本，以确定资源管理的正确 apiVersion。
   params:
-    cluster_name: Name of the EKS cluster
+    cluster_name: EKS 集群的名称
 - name: generate_app_manifest
-  description: Generate Kubernetes manifests for application deployment, creating both Deployment and LoadBalancer Service configurations.
+  description: 为应用程序部署生成 Kubernetes 清单，创建 Deployment 和 LoadBalancer Service 配置。
   params:
-    app_name: Name of the application (used for deployment and service names)
-    image_uri: Full ECR image URI with tag
-    output_dir: Directory to save the manifest file
-    port: Container port that the application listens on (optional)
-    replicas: Number of replicas to deploy (optional)
-    cpu: CPU request for each container (optional)
-    memory: Memory request for each container (optional)
-    namespace: Kubernetes namespace to deploy to (optional)
-    load_balancer_scheme: AWS load balancer scheme (internal or internet-facing) (optional)
+    app_name: 应用程序的名称（用于部署和服务名称）
+    image_uri: 带有标签的完整 ECR 镜像 URI
+    output_dir: 保存清单文件的目录
+    port: 应用程序监听的容器端口（可选）
+    replicas: 要部署的副本数量（可选）
+    cpu: 每个容器的 CPU 请求（可选）
+    memory: 每个容器的内存请求（可选）
+    namespace: 要部署到的 Kubernetes 命名空间（可选）
+    load_balancer_scheme: AWS 负载均衡器方案（internal 或 internet-facing）（可选）
 - name: get_pod_logs
-  description: Retrieve logs from pods in a Kubernetes cluster with options to filter by container, time range, and size for debugging and monitoring.
+  description: 从 Kubernetes 集群中的 Pod 检索日志，可选择按容器、时间范围和大小过滤，用于调试和监控。
   params:
-    cluster_name: Name of the EKS cluster
-    pod_name: Name of the pod
-    namespace: Namespace of the pod
-    container_name: Container name (optional, if pod contains more than one container)
-    since_seconds: Only return logs newer than this many seconds (optional)
-    tail_lines: Number of lines to return from the end of the logs (optional)
-    limit_bytes: Maximum number of bytes to return (optional)
+    cluster_name: EKS 集群的名称
+    pod_name: Pod 的名称
+    namespace: Pod 的命名空间
+    container_name: 容器名称（可选，如果 Pod 包含多个容器）
+    since_seconds: 仅返回比此秒数更新的日志（可选）
+    tail_lines: 从日志末尾返回的行数（可选）
+    limit_bytes: 要返回的最大字节数（可选）
 - name: get_k8s_events
-  description: Retrieve Kubernetes events related to specific resources for troubleshooting pod failures, deployment issues, and resource modifications.
+  description: 检索与特定资源相关的 Kubernetes 事件，用于对 Pod 故障、部署问题和资源修改进行故障排除。
   params:
-    cluster_name: Name of the EKS cluster
-    kind: Kind of the involved object
-    name: Name of the involved object
-    namespace: Namespace of the involved object (optional for non-namespaced resources)
+    cluster_name: EKS 集群的名称
+    kind: 相关对象的类型
+    name: 相关对象的名称
+    namespace: 相关对象的命名空间（非命名空间资源可选）
 - name: get_cloudwatch_logs
-  description: Retrieve logs from CloudWatch for Kubernetes resources in an EKS cluster, supporting filtering by resource type, time range, and content.
+  description: 从 EKS 集群中 Kubernetes 资源的 CloudWatch 检索日志，支持按资源类型、时间范围和内容过滤。
   params:
-    cluster_name: Name of the EKS cluster
-    log_type: Log type (application, host, performance, control-plane, or custom)
-    resource_type: Resource type (pod, node, container, cluster)
-    resource_name: Resource name to search for in log messages (optional when resource_type is "cluster")
-    minutes: Number of minutes to look back (optional)
-    start_time: Start time in ISO format (optional)
-    end_time: End time in ISO format (optional)
-    limit: Maximum number of log entries to return (optional)
-    filter_pattern: Additional CloudWatch Logs filter pattern (optional)
-    fields: Custom fields to include in the query results (optional)
+    cluster_name: EKS 集群的名称
+    log_type: 日志类型（application、host、performance、control-plane 或 custom）
+    resource_type: 资源类型（pod、node、container、cluster）
+    resource_name: 要在日志消息中搜索的资源名称（当 resource_type 为 "cluster" 时可选）
+    minutes: 要回溯的分钟数（可选）
+    start_time: ISO 格式的开始时间（可选）
+    end_time: ISO 格式的结束时间（可选）
+    limit: 要返回的最大日志条目数（可选）
+    filter_pattern: 额外的 CloudWatch Logs 过滤模式（可选）
+    fields: 要在查询结果中包含的自定义字段（可选）
 - name: get_cloudwatch_metrics
-  description: Retrieve CloudWatch metrics for Kubernetes resources in an EKS cluster to monitor performance, resource utilization, and system health.
+  description: 检索 EKS 集群中 Kubernetes 资源的 CloudWatch 指标，以监控性能、资源利用率和系统健康状况。
   params:
-    cluster_name: Name of the EKS cluster
-    metric_name: Metric name (e.g., cpu_usage_total, memory_rss)
-    namespace: CloudWatch namespace
-    dimensions: Dimensions to use for the CloudWatch metric query
-    minutes: Number of minutes to look back (optional)
-    start_time: Start time in ISO format (optional)
-    end_time: End time in ISO format (optional)
-    limit: Maximum number of data points to return (optional)
-    stat: Statistic to use for the metric (optional)
-    period: Period in seconds for the metric data points (optional)
+    cluster_name: EKS 集群的名称
+    metric_name: 指标名称（例如 cpu_usage_total、memory_rss）
+    namespace: CloudWatch 命名空间
+    dimensions: 用于 CloudWatch 指标查询的维度
+    minutes: 要回溯的分钟数（可选）
+    start_time: ISO 格式的开始时间（可选）
+    end_time: ISO 格式的结束时间（可选）
+    limit: 要返回的最大数据点数（可选）
+    stat: 用于指标的统计信息（可选）
+    period: 指标数据点的时间段（以秒为单位）（可选）
 - name: get_eks_metrics_guidance
-  description: Get information about available CloudWatch metrics for different resource types in EKS clusters, including metric names, dimensions, and descriptions.
+  description: 获取有关 EKS 集群中不同资源类型的可用 CloudWatch 指标的信息，包括指标名称、维度和描述。
   params:
-    resource_type: Type of resource to get metrics for (cluster, node, pod, namespace, service)
+    resource_type: 要获取指标的资源类型（cluster、node、pod、namespace、service）
 - name: get_policies_for_role
-  description: Retrieve all policies attached to an IAM role, including assume role policy, managed policies, and inline policies for permission analysis.
+  description: 检索附加到 IAM 角色的所有策略，包括 assume role 策略、托管策略和内联策略，用于权限分析。
   params:
-    role_name: Name of the IAM role to get policies for
+    role_name: 要获取策略的 IAM 角色名称
 - name: add_inline_policy
-  description: Create and attach a new inline policy with specified permissions to an IAM role, commonly used for granting EKS clusters access to AWS services.
+  description: 创建并将具有指定权限的新内联策略附加到 IAM 角色，通常用于授予 EKS 集群访问 AWS 服务的权限。
   params:
-    policy_name: Name of the new inline policy to create
-    role_name: Name of the role to add the policy to
-    permissions: Permissions to include in the policy (JSON object or array of objects)
+    policy_name: 要创建的新内联策略的名称
+    role_name: 要添加策略的角色名称
+    permissions: 要在策略中包含的权限（JSON 对象或对象数组）
 - name: search_eks_troubleshoot_guide
-  description: Search the EKS Troubleshoot Guide knowledge base for troubleshooting information and step-by-step solutions for EKS issues.
+  description: 在 EKS 故障排除指南知识库中搜索故障排除信息和 EKS 问题的分步解决方案。
   params:
-    query: Specific question or issue description related to EKS troubleshooting (less than 300 characters)
+    query: 与 EKS 故障排除相关的具体问题或问题描述（少于 300 个字符）
+

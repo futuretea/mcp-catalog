@@ -1,33 +1,33 @@
 name: Brave Search
-shortDescription: Search the web, news, images, videos, and local businesses with Brave Search API
-description: 'A Model Context Protocol (MCP) server that provides comprehensive web search capabilities through the Brave Search API. It enables AI assistants to search the web, find news articles, discover videos and images, locate local businesses, and generate AI-powered summaries of search results.
+shortDescription: 使用 Brave Search API 搜索网页、新闻、图片、视频和本地商家
+description: '一个 Model Context Protocol (MCP) 服务器，通过 Brave Search API 提供全面的网页搜索功能。它使 AI 助手能够搜索网页、查找新闻文章、发现视频和图片、定位本地商家，并生成搜索结果的 AI 驱动摘要。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Web Search**: Fast, privacy-focused web search with customizable filters, freshness controls, and rich metadata
+  - **网页搜索**：快速、注重隐私的网页搜索，支持自定义筛选器、时效性控制和丰富的元数据
 
-  - **News Search**: Find breaking news and recent articles with time-based filtering
+  - **新闻搜索**：查找突发新闻和最新文章，支持基于时间的筛选
 
-  - **Image Search**: Search for images with safety filters and detailed metadata
+  - **图片搜索**：搜索图片，支持安全筛选和详细的元数据
 
-  - **Video Search**: Discover video content with duration, thumbnails, and source information
+  - **视频搜索**：发现视频内容，包含时长、缩略图和来源信息
 
-  - **Local Search**: Find local businesses, restaurants, and points of interest with ratings and reviews
+  - **本地搜索**：查找本地商家、餐厅和兴趣点，包含评分和评论
 
-  - **AI Summarizer**: Generate concise summaries of search results with inline references
-
-
-  ## What you''ll need to connect
+  - **AI 摘要生成器**：生成简洁的搜索结果摘要，并附带内联引用
 
 
-  **Required:**
+  ## 连接所需条件
 
-  - **Brave API Key**: Get your API key at [brave.com/search/api](https://brave.com/search/api). Free tier available with 2,000 queries/month.
+
+  **必需：**
+
+  - **Brave API Key**：在 [brave.com/search/api](https://brave.com/search/api) 获取您的 API 密钥。免费套餐每月提供 2,000 次查询。
 
   '
 metadata:
-  categories: Retrieval & Search, SaaS & API Integrations
+  categories: 检索与搜索, SaaS 与 API 集成
 icon: https://brave.com/static-assets/images/brave-logo-sans-text.svg
 repoURL: https://github.com/brave/brave-search-mcp-server
 env:
@@ -35,7 +35,7 @@ env:
   name: Brave API Key
   required: true
   sensitive: true
-  description: Your Brave Search API key. Get one at https://brave.com/search/api
+  description: 您的 Brave Search API 密钥。在 https://brave.com/search/api 获取
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/brave-search:2.0.58
@@ -45,72 +45,72 @@ containerizedConfig:
   - brave-search-mcp-server
 toolPreview:
 - name: brave_web_search
-  description: Search the web for real-time information using Brave's privacy-focused search engine. Returns comprehensive web results with titles, URLs, descriptions, and rich metadata including FAQ, discussions, videos, and news when available. Use this for general information queries, research, current events, or finding specific web pages.
+  description: 使用 Brave 注重隐私的搜索引擎搜索网页获取实时信息。返回全面的网页结果，包含标题、URL、描述和丰富的元数据，包括常见问题、讨论、视频和新闻（如有）。用于一般信息查询、研究、时事或查找特定网页。
   params:
-    query: Search query (max 400 chars, 50 words)
-    count: Number of results (1-20, default 10)
-    offset: Pagination offset (max 9, default 0)
-    country: Search country code (e.g., US, GB, FR)
-    search_lang: Search language code (e.g., en, es, fr)
-    ui_lang: UI language preference (e.g., en-US, es-ES)
-    safesearch: Adult content filter (off, moderate, strict)
-    freshness: Time filter (pd=24h, pw=7d, pm=31d, py=365d, or date range)
-    text_decorations: Include highlighting markers (default true)
-    spellcheck: Enable spellcheck (default true)
-    result_filter: Filter result types (web, news, videos, locations, etc.)
-    goggles: Custom Goggle URL or definition for re-ranking
-    units: Measurement units (metric or imperial)
-    extra_snippets: Get up to 5 additional excerpts (requires Pro plan)
-    summary: Enable summary key generation for summarizer (requires Pro AI plan)
+    query: 搜索查询（最多 400 个字符，50 个词）
+    count: 结果数量（1-20，默认 10）
+    offset: 分页偏移量（最大 9，默认 0）
+    country: 搜索国家代码（例如 US、GB、FR）
+    search_lang: 搜索语言代码（例如 en、es、fr）
+    ui_lang: UI 语言偏好（例如 en-US、es-ES）
+    safesearch: 成人内容过滤器（off、moderate、strict）
+    freshness: 时间过滤器（pd=24小时、pw=7天、pm=31天、py=365天，或日期范围）
+    text_decorations: 包含高亮标记（默认 true）
+    spellcheck: 启用拼写检查（默认 true）
+    result_filter: 筛选结果类型（web、news、videos、locations 等）
+    goggles: 用于重新排名的自定义 Goggle URL 或定义
+    units: 计量单位（metric 或 imperial）
+    extra_snippets: 获取最多 5 个额外摘录（需要 Pro 套餐）
+    summary: 启用摘要键生成以用于摘要生成器（需要 Pro AI 套餐）
 - name: brave_news_search
-  description: Search for news articles and breaking news using Brave's News Search API. Returns recent news stories with titles, URLs, descriptions, and publication timestamps. Ideal for finding current events, news updates, and articles about specific topics or entities. Always cite sources with hyperlinks when sharing results.
+  description: 使用 Brave 的新闻搜索 API 搜索新闻文章和突发新闻。返回最近的新闻报道，包含标题、URL、描述和发布时间戳。非常适合查找时事、新闻更新和关于特定主题或实体的文章。分享结果时请务必使用超链接引用来源。
   params:
-    query: Search query (max 400 chars, 50 words)
-    count: Number of results (1-50, default 20)
-    offset: Pagination offset (max 9, default 0)
-    country: Search country code
-    search_lang: Search language code
-    ui_lang: UI language preference
-    safesearch: Adult content filter (off, moderate, strict)
-    freshness: Time filter (default pd=24h)
-    spellcheck: Enable spellcheck (default true)
-    goggles: Custom Goggle for re-ranking
-    extra_snippets: Get additional excerpts (requires Pro plan)
+    query: 搜索查询（最多 400 个字符，50 个词）
+    count: 结果数量（1-50，默认 20）
+    offset: 分页偏移量（最大 9，默认 0）
+    country: 搜索国家代码
+    search_lang: 搜索语言代码
+    ui_lang: UI 语言偏好
+    safesearch: 成人内容过滤器（off、moderate、strict）
+    freshness: 时间过滤器（默认 pd=24小时）
+    spellcheck: 启用拼写检查（默认 true）
+    goggles: 用于重新排名的自定义 Goggle
+    extra_snippets: 获取额外摘录（需要 Pro 套餐）
 - name: brave_image_search
-  description: Search for images using Brave's Image Search API. Returns image results with URLs, dimensions, thumbnails, and confidence ratings. Helpful for finding pictures of people, places, things, graphic design ideas, art inspiration, and more. Includes safety filtering options.
+  description: 使用 Brave 的图片搜索 API 搜索图片。返回图片结果，包含 URL、尺寸、缩略图和置信度评分。有助于查找人物、地点、事物的图片，获取平面设计灵感、艺术灵感等。包含安全筛选选项。
   params:
-    query: Search query (max 400 chars, 50 words)
-    count: Number of results (1-200, default 50)
-    country: Search country code
-    search_lang: Search language code
-    safesearch: Adult content filter (off, strict - default strict)
-    spellcheck: Enable spellcheck (default true)
+    query: 搜索查询（最多 400 个字符，50 个词）
+    count: 结果数量（1-200，默认 50）
+    country: 搜索国家代码
+    search_lang: 搜索语言代码
+    safesearch: 成人内容过滤器（off、strict - 默认 strict）
+    spellcheck: 启用拼写检查（默认 true）
 - name: brave_video_search
-  description: Search for videos using Brave's Video Search API. Returns video results with titles, URLs, descriptions, durations, thumbnails, and creator information. Useful for discovering video content, tutorials, entertainment, or videos from specific creators/publishers.
+  description: 使用 Brave 的视频搜索 API 搜索视频。返回视频结果，包含标题、URL、描述、时长、缩略图和创作者信息。用于发现视频内容、教程、娱乐内容或来自特定创作者/发布者的视频。
   params:
-    query: Search query (max 400 chars, 50 words)
-    count: Number of results (1-50, default 20)
-    offset: Pagination offset (max 9, default 0)
-    country: Search country code
-    search_lang: Search language code
-    ui_lang: UI language preference
-    safesearch: Adult content filter (off, moderate, strict)
-    freshness: Time filter (pd, pw, pm, py, or date range)
-    spellcheck: Enable spellcheck (default true)
+    query: 搜索查询（最多 400 个字符，50 个词）
+    count: 结果数量（1-50，默认 20）
+    offset: 分页偏移量（最大 9，默认 0）
+    country: 搜索国家代码
+    search_lang: 搜索语言代码
+    ui_lang: UI 语言偏好
+    safesearch: 成人内容过滤器（off、moderate、strict）
+    freshness: 时间过滤器（pd、pw、pm、py 或日期范围）
+    spellcheck: 启用拼写检查（默认 true）
 - name: brave_local_search
-  description: Search for local businesses and places using Brave's Local Search API. Returns detailed information including business names, addresses, ratings, review counts, phone numbers, and opening hours. Best for queries about physical locations, restaurants, services, or searches with 'near me' intent. Requires Brave Search API Pro plan. Falls back to web search if no local results found.
+  description: 使用 Brave 的本地搜索 API 搜索本地商家和地点。返回详细信息，包含商家名称、地址、评分、评论数、电话号码和营业时间。最适合关于实体位置、餐厅、服务或带有"附近"意图的搜索查询。需要 Brave Search API Pro 套餐。如果未找到本地结果，则回退到网页搜索。
   params:
-    query: Search query with location context
-    count: Number of results (1-20, default 10)
-    offset: Pagination offset (max 9, default 0)
-    country: Search country code
-    search_lang: Search language code
-    safesearch: Adult content filter
-    spellcheck: Enable spellcheck (default true)
+    query: 带有位置上下文的搜索查询
+    count: 结果数量（1-20，默认 10）
+    offset: 分页偏移量（最大 9，默认 0）
+    country: 搜索国家代码
+    search_lang: 搜索语言代码
+    safesearch: 成人内容过滤器
+    spellcheck: 启用拼写检查（默认 true）
 - name: brave_summarizer
-  description: Generate AI-powered summaries of web search results using Brave's Summarizer API. Creates concise, coherent summaries that synthesize information from multiple sources. Useful for quick overviews of complex topics, fact-checking, or research tasks. Must first perform web search with summary=true parameter. Requires Brave Search API Pro AI plan.
+  description: 使用 Brave 的摘要生成器 API 生成网页搜索结果的 AI 驱动摘要。创建简洁、连贯的摘要，综合多个来源的信息。用于快速概览复杂主题、事实核查或研究任务。必须首先使用 summary=true 参数执行网页搜索。需要 Brave Search API Pro AI 套餐。
   params:
-    key: Summary key from search results (required)
-    entity_info: Include extra entity information (default false)
-    inline_references: Add inline source references (default false)
+    key: 搜索结果中的摘要键（必需）
+    entity_info: 包含额外的实体信息（默认 false）
+    inline_references: 添加内联来源引用（默认 false）
 

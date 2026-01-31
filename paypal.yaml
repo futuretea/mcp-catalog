@@ -1,33 +1,32 @@
 name: PayPal
-shortDescription: Create invoices, process payments, manage subscriptions, and handle disputes with PayPal
+shortDescription: 创建invoice、处理付款、管理订阅和处理 PayPal 争议
 description: |
-  A Model Context Protocol (MCP) server for PayPal that enables AI agents to create invoices and manage business transactions through natural language interactions.
+  用于 PayPal 的 Model Context Protocol (MCP) 服务器，使 AI 代理能够通过自然语言交互创建invoice和管理业务交易。
 
-  ## Features
-  - **Invoice Management**: Create, send, and manage PayPal invoices with QR code generation
-  - **Payment Processing**: Create orders, process refunds, and capture payments
-  - **Product Catalog**: Manage PayPal product catalog with detailed product information
-  - **Subscription Management**: Create and manage subscription plans and recurring billing
-  - **Dispute Resolution**: Handle and resolve PayPal disputes efficiently
-  - **Transaction Reporting**: View and filter transaction history with advanced insights
-  - **Shipment Tracking**: Add and manage tracking information for orders
-  - **Commerce Tools**: Search and purchase gift cards through integrated shopping cart
+  ## 功能特性
+  - **Invoice 管理**：创建、发送和管理 PayPal invoice，并生成 QR 码
+  - **付款处理**：创建订单、处理退款和捕获付款
+  - **产品目录**：管理 PayPal 产品目录，包含详细的产品信息
+  - **订阅管理**：创建和管理订阅计划和周期性计费
+  - **争议解决**：高效处理和解决 PayPal 争议
+  - **交易报告**：通过高级洞察查看和筛选交易历史
+  - **货运跟踪**：为订单添加和管理跟踪信息
+  - **商务工具**：通过集成购物车搜索和购买礼品卡
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow.
+  **无需设置**：通过 OAuth2 工作流自动处理身份验证。
 
-  ## Examples
+  ## 示例
 
-  - "Create an invoice for john@company.com for 5 hours of consulting at $150/hour, then send it immediately"
-  - "Create a monthly subscription plan for my SaaS product at $29.99/month with a 7-day free trial, then set up a subscription for customer@email.com"
-  - "Process a partial refund of $50 for capture payment ID ABC123 due to damaged goods"
-  - "List all open disputes from the last month and accept the claim for dispute ID DISP456"
-  - "Add FedEx tracking number 1234567890 to PayPal transaction TXN789 and update the shipment status to delivered"
-  - "Find gift cards under $100, add a $50 Amazon gift card to my cart, and complete checkout using PayPal"
+  - "为 john@company.com 创建一张invoice，5 小时咨询，每小时 $150，然后立即发送"
+  - "为我的 SaaS 产品创建一个每月 $29.99 的月度订阅计划，包含 7 天免费试用，然后为 customer@email.com 设置订阅"
+  - "由于商品损坏，为捕获付款 ID ABC123 处理 $50 的部分退款"
+  - "列出上个月的所有未解决争议，并接受争议 ID DISP456 的索赔"
+  - "将 FedEx 跟踪号 1234567890 添加到 PayPal 交易 TXN789，并将货运状态更新为已送达"
+  - "查找 $100 以下的礼品卡，将 $50 的 Amazon 礼品卡添加到我的购物车，并使用 PayPal 完成结账"
 
 
-  
 
 metadata:
   categories: Business
@@ -38,100 +37,100 @@ remoteConfig:
   fixedURL: https://mcp.paypal.com/mcp
 toolPreview:
   - name: create_invoice
-    description: Create a new invoice in the PayPal system
+    description: 在 PayPal 系统中创建新invoice
     params:
-      recipient_email: Email address of the invoice recipient
-      items: List of items or services to include in the invoice
+      recipient_email: invoice收件人的电子邮件地址
+      items: 要包含在invoice中的商品或服务列表
   - name: list_invoices
-    description: List invoices with pagination and filtering options
+    description: 列出invoice，支持分页和筛选选项
     params:
-      page: Page number for pagination (optional)
-      page_size: Number of invoices per page (optional)
-      status: Filter invoices by status (optional)
+      page: 分页的页码（可选）
+      page_size: 每页invoice数量（可选）
+      status: 按状态筛选invoice（可选）
   - name: send_invoice
-    description: Send an existing invoice to the specified recipient
+    description: 将现有invoice发送给指定收件人
     params:
-      invoice_id: The unique identifier of the invoice to be sent
+      invoice_id: 要发送的invoice的唯一标识符
   - name: cancel_sent_invoice
-    description: Cancel a sent invoice
+    description: 取消已发送的invoice
     params:
-      invoice_id: The unique identifier of the invoice to cancel
+      invoice_id: 要取消的invoice的唯一标识符
   - name: generate_invoice_qr_code
-    description: Generate a QR code for an invoice
+    description: 为invoice生成 QR 码
     params:
-      invoice_id: The unique identifier of the invoice
+      invoice_id: invoice的唯一标识符
   - name: create_order
-    description: Create an order in the PayPal system based on provided details
+    description: 根据提供的详情在 PayPal 系统中创建订单
     params:
-      items: List of items to include in the order
-      currency: Currency code such as USD or EUR
+      items: 要包含在订单中的商品列表
+      currency: 货币代码，如 USD 或 EUR
   - name: pay_order
-    description: Capture payment for an authorized order
+    description: 捕获已授权订单的付款
     params:
-      order_id: The unique identifier of the order to capture
+      order_id: 要捕获的订单的唯一标识符
   - name: create_refund
-    description: Process a refund for a captured payment
+    description: 为已捕获的付款处理退款
     params:
-      capture_id: The unique identifier of the captured payment to refund
-      amount: The refund amount (optional)
-      currency: Currency code for the refund (optional)
+      capture_id: 要退款的已捕获付款的唯一标识符
+      amount: 退款金额（可选）
+      currency: 退款的货币代码（可选）
   - name: create_product
-    description: Create a new product in the PayPal catalog
+    description: 在 PayPal 目录中创建新产品
     params:
-      name: The name of the product
-      type: The type of the product (PHYSICAL, DIGITAL, SERVICE)
+      name: 产品名称
+      type: 产品类型（PHYSICAL、DIGITAL、SERVICE）
   - name: list_product
-    description: List products from the PayPal catalog
+    description: 列出 PayPal 目录中的产品
     params:
-      page: The specific page number to retrieve (optional)
-      page_size: Maximum number of products to return per page (optional)
+      page: 要检索的特定页码（可选）
+      page_size: 每页返回的最大产品数（可选）
   - name: create_subscription_plan
-    description: Create a new subscription plan
+    description: 创建新订阅计划
     params:
-      product_id: The ID of the product
-      name: The plan name
-      billing_cycles: Array of billing cycles for trial and regular billing
-      payment_preferences: Payment preferences for the subscription
+      product_id: 产品 ID
+      name: 计划名称
+      billing_cycles: 试用和常规计费的计费周期数组
+      payment_preferences: 订阅的付款偏好设置
   - name: create_subscription
-    description: Create a new subscription
+    description: 创建新订阅
     params:
-      plan_id: The ID of the subscription plan
-      subscriber: The subscriber information (optional)
+      plan_id: 订阅计划的 ID
+      subscriber: 订阅者信息（可选）
   - name: cancel_subscription
-    description: Cancel an active subscription
+    description: 取消有效订阅
     params:
-      subscription_id: The ID of the subscription to cancel
-      reason: Cancellation reason (optional)
+      subscription_id: 要取消的订阅的 ID
+      reason: 取消原因（可选）
   - name: list_disputes
-    description: Retrieve a summary of all disputes with optional filtering
+    description: 检索所有争议的摘要，支持可选筛选
     params:
-      status: Filter disputes by status such as OPEN or RESOLVED (optional)
+      status: 按状态筛选争议，如 OPEN 或 RESOLVED（可选）
   - name: accept_dispute_claim
-    description: Accept a dispute claim, resolving it in favor of the buyer
+    description: 接受争议索赔，以有利于买方的方式解决争议
     params:
-      dispute_id: The unique identifier of the dispute
+      dispute_id: 争议的唯一标识符
   - name: list_transaction
-    description: List all transactions with pagination and filtering options
+    description: 列出所有交易，支持分页和筛选选项
     params:
-      start_date: The start date for filtering transactions (optional)
-      end_date: The end date for filtering transactions (optional)
+      start_date: 筛选交易的开始日期（可选）
+      end_date: 筛选交易的结束日期（可选）
   - name: create_shipment_tracking
-    description: Create shipment tracking information for a PayPal transaction
+    description: 为 PayPal 交易创建货运跟踪信息
     params:
-      tracking_number: The tracking number for the shipment
-      transaction_id: The transaction ID associated with the shipment
-      carrier: The carrier handling the shipment
-      order_id: The order ID for the shipment (optional)
-      status: The current status of the shipment (optional)
+      tracking_number: 货运的跟踪号
+      transaction_id: 与货运关联的交易 ID
+      carrier: 处理货运的承运商
+      order_id: 货运的订单 ID（可选）
+      status: 货运的当前状态（可选）
   - name: search_product
-    description: Find gift card products in the PayPal catalog
+    description: 在 PayPal 目录中查找礼品卡产品
     params:
-      criteria: Search criteria for gift cards
+      criteria: 礼品卡的搜索条件
   - name: create_cart
-    description: Open a new shopping cart with specified items and shipping preferences
+    description: 使用指定的商品和送货偏好打开新购物车
     params:
-      items: Selected gift cards for the cart
+      items: 购物车的选定礼品卡
   - name: checkout_cart
-    description: Finalize a shopping cart to complete the purchase process
+    description: 完成购物车以完成购买流程
     params:
-      cart_id: The cart identifier for checkout 
+      cart_id: 结账的购物车标识符

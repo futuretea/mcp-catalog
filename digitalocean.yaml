@@ -1,84 +1,84 @@
 name: DigitalOcean
-shortDescription: Manage DigitalOcean droplets, apps, databases, Kubernetes, and networking
-description: 'A Model Context Protocol (MCP) server that provides comprehensive interface for managing DigitalOcean resources and performing actions using the DigitalOcean API. Built on top of the godo library, this integration enables seamless management of your DigitalOcean infrastructure through AI agents.
+shortDescription: 管理 DigitalOcean droplets、应用、数据库、Kubernetes 和网络
+description: '一个 Model Context Protocol (MCP) 服务器，为管理 DigitalOcean 资源和使用 DigitalOcean API 执行操作提供全面的接口。基于 godo 库构建，此集成使您能够通过 AI 智能体无缝管理您的 DigitalOcean 基础设施。
 
 
-  ## Features
+  ## 功能特性
 
-  - **App Platform Management**: Deploy, manage, and monitor applications on DigitalOcean App Platform
+  - **App Platform 管理**: 在 DigitalOcean App Platform 上部署、管理和监控应用
 
-  - **Droplet Operations**: Create, manage, resize, snapshot, and monitor virtual machines (droplets)
+  - **Droplet 操作**: 创建、管理、调整大小、快照和监控虚拟机 (droplets)
 
-  - **Account Management**: Access account information, billing, balance, invoices, and SSH keys
+  - **账户管理**: 访问账户信息、账单、余额、发票和 SSH 密钥
 
-  - **Networking Services**: Manage domains, DNS records, certificates, firewalls, reserved IPs, VPCs, and CDNs
+  - **网络服务**: 管理域名、DNS 记录、证书、防火墙、保留 IP、VPC 和 CDN
 
-  - **Database Management**: Provision, manage, and monitor managed database clusters (Postgres, MySQL, Redis, etc.)
+  - **数据库管理**: 配置、管理和监控托管数据库集群 (Postgres、MySQL、Redis 等)
 
-  - **Kubernetes (DOKS)**: Manage DigitalOcean Kubernetes clusters and node pools
+  - **Kubernetes (DOKS)**: 管理 DigitalOcean Kubernetes 集群和节点池
 
-  - **Object Storage (Spaces)**: Manage DigitalOcean Spaces and access keys for S3-compatible storage
+  - **对象存储 (Spaces)**: 管理 DigitalOcean Spaces 和用于 S3 兼容存储的访问密钥
 
-  - **Marketplace Integration**: Discover and manage DigitalOcean Marketplace applications
+  - **Marketplace 集成**: 发现和管理 DigitalOcean Marketplace 应用
 
-  - **Monitoring & Insights**: Monitor resources, endpoints, and receive alerts for performance and SSL certificates
+  - **监控与洞察**: 监控资源、端点，并接收性能和 SSL 证书警报
 
-  - **Modular Services**: Enable only the services you need to reduce context size and improve accuracy
-
-
-  ## What you''ll need to connect
+  - **模块化服务**: 仅启用您需要的服务以减小上下文大小并提高准确性
 
 
-  **Required:**
-
-  - **DigitalOcean API Token**: Personal Access Token with appropriate permissions for your DigitalOcean account
-
-  - **Enabled Services**: Comma-separated list of enabled services (e.g., apps,droplets).
+  ## 连接所需条件
 
 
-  ## Available Services
+  **必需:**
+
+  - **DigitalOcean API Token**: 具有适当权限的 Personal Access Token，用于您的 DigitalOcean 账户
+
+  - **Enabled Services**: 逗号分隔的启用服务列表 (例如 apps,droplets)。
 
 
-  | Service | Description | Flag |
+  ## 可用服务
+
+
+  | 服务 | 描述 | 标志 |
 
   |---------|-------------|------|
 
-  | **Apps** | DigitalOcean App Platform applications, deployments, and configurations | `apps` |
+  | **Apps** | DigitalOcean App Platform 应用、部署和配置 | `apps` |
 
-  | **Droplets** | Virtual machines - create, manage, resize, snapshot, and monitor | `droplets` |
+  | **Droplets** | 虚拟机 - 创建、管理、调整大小、快照和监控 | `droplets` |
 
-  | **Accounts** | Account information, billing, balance, invoices, and SSH keys | `accounts` |
+  | **Accounts** | 账户信息、账单、余额、发票和 SSH 密钥 | `accounts` |
 
-  | **Networking** | Domains, DNS records, certificates, firewalls, reserved IPs, VPCs, CDNs | `networking` |
+  | **Networking** | 域名、DNS 记录、证书、防火墙、保留 IP、VPC、CDN | `networking` |
 
-  | **Databases** | Managed database clusters (Postgres, MySQL, Redis, etc.) | `databases` |
+  | **Databases** | 托管数据库集群 (Postgres、MySQL、Redis 等) | `databases` |
 
-  | **DOKS** | DigitalOcean Kubernetes clusters and node pools | `doks` |
+  | **DOKS** | DigitalOcean Kubernetes 集群和节点池 | `doks` |
 
-  | **Spaces** | Object storage and access keys for S3-compatible storage | `spaces` |
+  | **Spaces** | 用于 S3 兼容存储的对象存储和访问密钥 | `spaces` |
 
-  | **Marketplace** | DigitalOcean Marketplace applications | `marketplace` |
+  | **Marketplace** | DigitalOcean Marketplace 应用 | `marketplace` |
 
-  | **Insights** | Resource monitoring, endpoint alerts, SSL certificate monitoring | `insights` |
+  | **Insights** | 资源监控、端点警报、SSL 证书监控 | `insights` |
 
 
-  ## Examples
+  ## 示例
 
-  - **Deploy App**: "Deploy a Node.js app from my GitHub repository to App Platform"
+  - **部署应用**: "将我的 GitHub 仓库中的 Node.js 应用部署到 App Platform"
 
-  - **Create Droplet**: "Create a new Ubuntu 22.04 droplet in NYC3 region"
+  - **创建 Droplet**: "在 NYC3 区域创建一个新的 Ubuntu 22.04 droplet"
 
-  - **Manage Database**: "Create a PostgreSQL database cluster with 2 nodes"
+  - **管理数据库**: "创建一个包含 2 个节点的 PostgreSQL 数据库集群"
 
-  - **DNS Management**: "Add an A record for my domain pointing to my droplet''s IP"
+  - **DNS 管理**: "为我的域名添加一个指向我的 droplet IP 的 A 记录"
 
-  - **Kubernetes**: "List my DOKS clusters and their node pools"
+  - **Kubernetes**: "列出我的 DOKS 集群及其节点池"
 
-  - **Monitoring**: "Show me the status of all my droplets and their resource usage"
+  - **监控**: "显示我所有 droplets 的状态及其资源使用情况"
 
   '
 metadata:
-  categories: Cloud & Infrastructure, Developer Tools
+  categories: 云与基础设施, 开发者工具
 icon: https://cdn.brandfetch.io/idvF37rNoN/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B
 repoURL: https://github.com/digitalocean-labs/mcp-digitalocean
 env:
@@ -86,12 +86,12 @@ env:
   name: DigitalOcean API Token
   required: true
   sensitive: true
-  description: Your DigitalOcean Personal Access Token with appropriate permissions
+  description: 具有适当权限的 DigitalOcean Personal Access Token
 - key: ENABLED_SERVICES
   name: Enabled Services
   required: true
   sensitive: false
-  description: Comma-separated list of enabled services (e.g., apps,droplets).
+  description: 逗号分隔的启用服务列表 (例如 apps,droplets)。
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/digitalocean:1.0.30
@@ -103,98 +103,98 @@ containerizedConfig:
   - ${ENABLED_SERVICES}
 toolPreview:
 - name: apps-create-app-from-spec
-  description: Create a new application on DigitalOcean App Platform from an app specification
+  description: 从应用规范在 DigitalOcean App Platform 上创建新应用
   params:
-    spec: The app specification object containing configuration details
-    project_id: Optional UUID of the project to assign the app to (optional)
+    spec: 包含配置详细信息的应用规范对象
+    project_id: 要分配应用到的项目的可选 UUID (可选)
 - name: apps-list
-  description: List all applications on DigitalOcean App Platform
+  description: 列出 DigitalOcean App Platform 上的所有应用
   params:
-    Page: The page number to retrieve (default is 1) (optional)
-    PerPage: The number of items per page (default is 30) (optional)
+    Page: 要检索的页码 (默认为 1) (可选)
+    PerPage: 每页项目数 (默认为 30) (可选)
 - name: apps-get-info
-  description: Get detailed information about a specific application
+  description: 获取特定应用的详细信息
   params:
-    AppID: The application ID of the app to retrieve information for
+    AppID: 要检索信息的应用 ID
 - name: apps-get-deployment-status
-  description: Retrieve the active deployment status for an application
+  description: 检索应用的活动部署状态
   params:
-    AppID: The application ID of the app to retrieve deployment status for
+    AppID: 要检索部署状态的应用 ID
 - name: apps-update
-  description: Update an existing application on DigitalOcean App Platform
+  description: 更新 DigitalOcean App Platform 上的现有应用
   params:
-    update: Object containing app_id and request with updated app specification
+    update: 包含 app_id 和带有更新应用规范的请求的对象
 - name: apps-delete
-  description: Delete an existing application on DigitalOcean App Platform
+  description: 删除 DigitalOcean App Platform 上的现有应用
   params:
-    AppID: The application ID of the app to delete
+    AppID: 要删除的应用 ID
 - name: region-list
-  description: List all available regions with features and droplet size availability
+  description: 列出所有可用区域及其功能和 droplet 大小可用性
   params:
-    Page: Page number (default is 1) (optional)
-    PerPage: Items per page (default is 50) (optional)
+    Page: 页码 (默认为 1) (可选)
+    PerPage: 每页项目数 (默认为 50) (可选)
 - name: droplet-create
-  description: Create a new droplet (virtual machine)
+  description: 创建一个新的 droplet (虚拟机)
   params:
-    name: Name for the droplet
-    region: Region slug where to create the droplet
-    size: Size slug for the droplet
-    image: Image slug or ID for the droplet
-    ssh_keys: Array of SSH key IDs or fingerprints (optional)
-    backups: Enable automated backups (optional)
-    ipv6: Enable IPv6 networking (optional)
-    monitoring: Enable monitoring agent (optional)
-    tags: Array of tags to apply (optional)
+    name: droplet 的名称
+    region: 创建 droplet 的区域代码
+    size: droplet 的大小代码
+    image: droplet 的镜像代码或 ID
+    ssh_keys: SSH 密钥 ID 或指纹数组 (可选)
+    backups: 启用自动备份 (可选)
+    ipv6: 启用 IPv6 网络 (可选)
+    monitoring: 启用监控代理 (可选)
+    tags: 要应用的标签数组 (可选)
 - name: droplet-list
-  description: List all droplets in your account
+  description: 列出您账户中的所有 droplets
   params:
-    page: Page number for pagination (optional)
-    per_page: Number of droplets per page (optional)
-    tag_name: Filter by tag name (optional)
+    page: 分页的页码 (可选)
+    per_page: 每页 droplets 数量 (可选)
+    tag_name: 按标签名称过滤 (可选)
 - name: droplet-get
-  description: Get information about a specific droplet
+  description: 获取特定 droplet 的信息
   params:
-    droplet_id: The ID of the droplet to retrieve
+    droplet_id: 要检索的 droplet ID
 - name: droplet-delete
-  description: Delete a droplet
+  description: 删除一个 droplet
   params:
-    droplet_id: The ID of the droplet to delete
+    droplet_id: 要删除的 droplet ID
 - name: droplet-resize
-  description: Resize a droplet to a different size
+  description: 将 droplet 调整到不同大小
   params:
-    droplet_id: The ID of the droplet to resize
-    size: New size slug for the droplet
-    disk: Whether to resize the disk (optional)
+    droplet_id: 要调整大小的 droplet ID
+    size: droplet 的新大小代码
+    disk: 是否调整磁盘大小 (可选)
 - name: database-create
-  description: Create a new managed database cluster
+  description: 创建一个新的托管数据库集群
   params:
-    name: Name for the database cluster
-    engine: Database engine (postgres, mysql, redis, etc.)
-    version: Database version
-    region: Region slug where to create the cluster
-    size: Size slug for the database nodes
-    num_nodes: Number of nodes in the cluster
+    name: 数据库集群的名称
+    engine: 数据库引擎 (postgres、mysql、redis 等)
+    version: 数据库版本
+    region: 创建集群的区域代码
+    size: 数据库节点的大小代码
+    num_nodes: 集群中的节点数
 - name: database-list
-  description: List all database clusters
+  description: 列出所有数据库集群
   params:
-    page: Page number for pagination (optional)
-    per_page: Number of clusters per page (optional)
+    page: 分页的页码 (可选)
+    per_page: 每页集群数 (可选)
 - name: domain-create
-  description: Create a new domain
+  description: 创建一个新域名
   params:
-    name: The domain name
-    ip_address: IP address for the domain's A record (optional)
+    name: 域名
+    ip_address: 域名 A 记录的 IP 地址 (可选)
 - name: domain-list
-  description: List all domains in your account
+  description: 列出您账户中的所有域名
   params: {}
 - name: domain-record-create
-  description: Create a new DNS record for a domain
+  description: 为域名创建新的 DNS 记录
   params:
-    domain: The domain name
-    type: Record type (A, AAAA, CNAME, MX, TXT, etc.)
-    name: Record name
-    data: Record data/value
-    priority: Priority for MX records (optional)
-    port: Port for SRV records (optional)
-    ttl: Time to live in seconds (optional)
-    weight: Weight for SRV records (optional)
+    domain: 域名
+    type: 记录类型 (A、AAAA、CNAME、MX、TXT 等)
+    name: 记录名称
+    data: 记录数据/值
+    priority: MX 记录的优先级 (可选)
+    port: SRV 记录的端口 (可选)
+    ttl: 生存时间（秒）(可选)
+    weight: SRV 记录的权重 (可选)

@@ -1,35 +1,35 @@
 name: Files.com
-shortDescription: Manage files, users, groups, permissions, and secure file sharing bundles
-description: 'A Model Context Protocol (MCP) server that provides comprehensive interface for managing Files.com resources and performing file transfer operations. Files.com is the modern platform for secure file transfer, automation, and storage integration, connecting cloud apps, on-prem systems, and human workflows through a single interface.
+shortDescription: 管理文件、用户、群组、权限和安全文件共享包
+description: '一个 Model Context Protocol (MCP) 服务器，为管理 Files.com 资源和执行文件传输操作提供全面的接口。Files.com 是用于安全文件传输、自动化和存储集成的现代平台，通过单一界面连接云应用、本地系统和人工工作流。
 
 
-  ## Features
+  ## 功能特性
 
-  - **File & Folder Operations**: Upload, download, copy, move, and delete files and folders with full path management
+  - **文件与文件夹操作**：通过完整的路径管理上传、下载、复制、移动和删除文件与文件夹
 
-  - **User Management**: Create, update, list, and delete users with authentication methods and permission controls
+  - **用户管理**：使用身份验证方法和权限控制创建、更新、列出和删除用户
 
-  - **Group Management**: Organize users into groups with shared permissions and access controls
+  - **群组管理**：将用户组织到具有共享权限和访问控制的群组中
 
-  - **Bundle Management (Share Links)**: Create, manage, and track public file sharing bundles
+  - **包管理（分享链接）**：创建、管理和跟踪公共文件共享包
 
-  - **Permission Management**: Fine-grained access control with folder-level permissions for users and groups
+  - **权限管理**：对用户和群组进行文件夹级别的细粒度访问控制
 
-  - **History & Audit Logging**: Comprehensive activity tracking for files, folders, users, and login events
+  - **历史与审计日志**：对文件、文件夹、用户和登录事件的全面活动跟踪
 
-  - **Automation Support**: List and manage Files.com automation workflows
+  - **自动化支持**：列出和管理 Files.com 自动化工作流
 
-  - **Remote Server Management**: Manage remote server connections for hybrid cloud/on-prem file transfers
+  - **远程服务器管理**：管理用于混合云/本地文件传输的远程服务器连接
 
-  - **Bundle Recipients**: Send bundles to specific recipients with tracking
-
-
-  ## What you''ll need to connect
+  - **包收件人**：向特定收件人发送包并进行跟踪
 
 
-  **Required:**
+  ## 连接所需
 
-  - **Files.com API Key**: API key with appropriate permissions for your Files.com account (can be created at https://app.files.com/api_keys)
+
+  **必需：**
+
+  - **Files.com API Key**：具有适当权限的 Files.com 账户 API 密钥（可在 https://app.files.com/api_keys 创建）
 
   '
 metadata:
@@ -42,7 +42,7 @@ env:
   name: Files.com API Key
   required: true
   sensitive: true
-  description: Your Files.com API Key with appropriate permissions (create at https://app.files.com/api_keys)
+  description: 具有适当权限的 Files.com API 密钥（在 https://app.files.com/api_keys 创建）
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/files-com:1.0.40
@@ -52,212 +52,212 @@ containerizedConfig:
   - files-com-mcp
 toolPreview:
 - name: List_Bundle
-  description: List all bundles (share links) in your Files.com account
+  description: 列出 Files.com 账户中的所有包（分享链接）
   params: {}
 - name: Find_Bundle
-  description: Get details about a specific bundle by ID
+  description: 按 ID 获取特定包的详情
   params:
-    id: Bundle ID to retrieve
+    id: 要检索的包 ID
 - name: Create_Bundle
-  description: Create a new bundle (share link) for public file sharing
+  description: 创建新的包（分享链接）用于公共文件共享
   params:
-    paths: Array of paths to include in the bundle
-    description: Public description of the bundle (optional)
-    note: Internal note for the bundle (optional)
-    password: Password protection for the bundle (optional)
-    expires_at: Bundle expiration date/time (optional)
-    max_uses: Maximum number of times bundle can be accessed (optional)
-    require_registration: Show registration page to capture downloader info (optional)
+    paths: 要包含在包中的路径数组
+    description: 包的公开描述（可选）
+    note: 包的内部备注（可选）
+    password: 包的密码保护（可选）
+    expires_at: 包过期日期/时间（可选）
+    max_uses: 包可被访问的最大次数（可选）
+    require_registration: 显示注册页面以捕获下载者信息（可选）
 - name: Update_Bundle
-  description: Update an existing bundle's properties
+  description: 更新现有包的属性
   params:
-    id: Bundle ID to update
-    expires_at: Updated expiration date/time (optional)
+    id: 要更新的包 ID
+    expires_at: 更新的过期日期/时间（可选）
 - name: Delete_Bundle
-  description: Delete a bundle (share link)
+  description: 删除包（分享链接）
   params:
-    id: Bundle ID to delete
+    id: 要删除的包 ID
 - name: List_Bundle_Download
-  description: List all downloads for a specific bundle
+  description: 列出特定包的所有下载
   params:
-    bundle_id: Bundle ID to retrieve downloads for
+    bundle_id: 要检索下载的包 ID
 - name: List_Bundle_Notification
-  description: List all bundle notifications
+  description: 列出所有包通知
   params: {}
 - name: Find_Bundle_Notification
-  description: Get details about a specific bundle notification
+  description: 获取特定包通知的详情
   params:
-    id: Bundle Notification ID
+    id: 包通知 ID
 - name: Create_Bundle_Notification
-  description: Create a notification for bundle activities
+  description: 为包活动创建通知
   params:
-    bundle_id: Bundle ID to notify on
-    notify_user_id: The user ID to notify
+    bundle_id: 要通知的包 ID
+    notify_user_id: 要通知的用户 ID
 - name: Update_Bundle_Notification
-  description: Update bundle notification settings
+  description: 更新包通知设置
   params:
-    id: Bundle Notification ID
-    notify_on_registration: Trigger notification on registration (optional)
-    notify_on_upload: Trigger notification on upload (optional)
+    id: 包通知 ID
+    notify_on_registration: 注册时触发通知（可选）
+    notify_on_upload: 上传时触发通知（可选）
 - name: Delete_Bundle_Notification
-  description: Delete a bundle notification
+  description: 删除包通知
   params:
-    id: Bundle Notification ID to delete
+    id: 要删除的包通知 ID
 - name: List_Bundle_Recipient
-  description: List recipients for a specific bundle
+  description: 列出特定包的收件人
   params:
-    bundle_id: Bundle ID to list recipients for
+    bundle_id: 要列出收件人的包 ID
 - name: Create_Bundle_Recipient
-  description: Add a recipient to a bundle and send them an email
+  description: 向包添加收件人并向其发送电子邮件
   params:
-    bundle_id: Bundle ID to share
-    recipient: Email address of the recipient
-    name: Name of recipient (optional)
-    company: Company of recipient (optional)
-    note: Note to include in email (optional)
+    bundle_id: 要分享的包 ID
+    recipient: 收件人的电子邮件地址
+    name: 收件人姓名（可选）
+    company: 收件人公司（可选）
+    note: 电子邮件中包含的备注（可选）
 - name: List_Bundle_Registration
-  description: List all registrations for a bundle
+  description: 列出包的所有注册
   params:
-    bundle_id: Bundle ID to list registrations for
+    bundle_id: 要列出注册的包 ID
 - name: Delete_File
-  description: Delete a file or folder from Files.com
+  description: 从 Files.com 删除文件或文件夹
   params:
-    path: Path of the file or folder to delete
+    path: 要删除的文件或文件夹路径
 - name: Find_File
-  description: Get details about a specific file or folder by path
+  description: 按路径获取特定文件或文件夹的详情
   params:
-    path: Path to the file or folder
+    path: 文件或文件夹的路径
 - name: Copy_File
-  description: Copy a file or folder to a new location
+  description: 将文件或文件夹复制到新位置
   params:
-    path: Source path to copy from
-    destination: Destination path to copy to
+    path: 要复制的源路径
+    destination: 要复制到的目标路径
 - name: Move_File
-  description: Move a file or folder to a new location
+  description: 将文件或文件夹移动到新位置
   params:
-    path: Source path to move from
-    destination: Destination path to move to
+    path: 要移动的源路径
+    destination: 要移动到的目标路径
 - name: List_For_Folder
-  description: List all files and folders within a specific folder
+  description: 列出特定文件夹中的所有文件和文件夹
   params:
-    path: Path of the folder to list contents of
+    path: 要列出内容的文件夹路径
 - name: Create_Folder
-  description: Create a new folder
+  description: 创建新文件夹
   params:
-    path: Path where the folder should be created
+    path: 应创建文件夹的路径
 - name: List_Group
-  description: List all groups in your Files.com account
+  description: 列出 Files.com 账户中的所有群组
   params: {}
 - name: Find_Group
-  description: Get details about a specific group by ID
+  description: 按 ID 获取特定群组的详情
   params:
-    id: Group ID to retrieve
+    id: 要检索的群组 ID
 - name: Create_Group
-  description: Create a new group for organizing users
+  description: 创建用于组织用户的新群组
   params:
-    name: Name of the group
-    notes: Notes about the group (optional)
-    user_ids: Comma-delimited list of user IDs to add (optional)
-    admin_ids: Comma-delimited list of admin user IDs (optional)
+    name: 群组名称
+    notes: 关于群组的备注（可选）
+    user_ids: 要添加的用户 ID 列表，以逗号分隔（可选）
+    admin_ids: 管理员用户 ID 列表，以逗号分隔（可选）
 - name: Update_Group
-  description: Update an existing group's properties
+  description: 更新现有群组的属性
   params:
-    id: Group ID to update
-    name: Updated name for the group (optional)
-    notes: Updated notes (optional)
-    user_ids: Updated comma-delimited list of user IDs (optional)
-    admin_ids: Updated comma-delimited list of admin user IDs (optional)
+    id: 要更新的群组 ID
+    name: 群组的更新名称（可选）
+    notes: 更新的备注（可选）
+    user_ids: 更新的用户 ID 列表，以逗号分隔（可选）
+    admin_ids: 更新的管理员用户 ID 列表，以逗号分隔（可选）
 - name: Delete_Group
-  description: Delete a group
+  description: 删除群组
   params:
-    id: Group ID to delete
+    id: 要删除的群组 ID
 - name: List_User
-  description: List all users in your Files.com account
+  description: 列出 Files.com 账户中的所有用户
   params: {}
 - name: Find_User
-  description: Get details about a specific user by ID
+  description: 按 ID 获取特定用户的详情
   params:
-    id: User ID to retrieve
+    id: 要检索的用户 ID
 - name: Create_User
-  description: Create a new user account
+  description: 创建新用户账户
   params:
-    username: Username for the new user
-    email: Email address for the user (optional)
-    name: Full name of the user (optional)
-    password: Password for the user (optional)
-    authentication_method: How the user is authenticated (optional)
-    company: User's company (optional)
-    notes: Internal notes about the user (optional)
-    group_ids: Comma-delimited list of group IDs (optional)
-    user_root: Root folder for FTP/SFTP access (optional)
-    user_home: Home folder for FTP/SFTP access (optional)
-    require_password_change: Require password change on next login (optional)
+    username: 新用户的用户名
+    email: 用户的电子邮件地址（可选）
+    name: 用户的全名（可选）
+    password: 用户的密码（可选）
+    authentication_method: 用户的身份验证方式（可选）
+    company: 用户的公司（可选）
+    notes: 关于用户的内部备注（可选）
+    group_ids: 群组 ID 列表，以逗号分隔（可选）
+    user_root: FTP/SFTP 访问的根文件夹（可选）
+    user_home: FTP/SFTP 访问的主文件夹（可选）
+    require_password_change: 下次登录时要求更改密码（可选）
 - name: Update_User
-  description: Update an existing user's properties
+  description: 更新现有用户的属性
   params:
-    id: User ID to update
-    username: Updated username (optional)
-    email: Updated email address (optional)
-    name: Updated full name (optional)
-    password: Updated password (optional)
-    authentication_method: Updated authentication method (optional)
-    company: Updated company (optional)
-    notes: Updated notes (optional)
-    group_ids: Updated comma-delimited list of group IDs (optional)
-    user_root: Updated root folder (optional)
-    user_home: Updated home folder (optional)
-    require_password_change: Updated password change requirement (optional)
+    id: 要更新的用户 ID
+    username: 更新的用户名（可选）
+    email: 更新的电子邮件地址（可选）
+    name: 更新的全名（可选）
+    password: 更新的密码（可选）
+    authentication_method: 更新的身份验证方式（可选）
+    company: 更新的公司（可选）
+    notes: 更新的备注（可选）
+    group_ids: 更新的群组 ID 列表，以逗号分隔（可选）
+    user_root: 更新的根文件夹（可选）
+    user_home: 更新的主文件夹（可选）
+    require_password_change: 更新的密码更改要求（可选）
 - name: Delete_User
-  description: Delete a user account
+  description: 删除用户账户
   params:
-    id: User ID to delete
+    id: 要删除的用户 ID
 - name: List_Automation
-  description: List all automation workflows
+  description: 列出所有自动化工作流
   params: {}
 - name: Find_Automation
-  description: Get details about a specific automation by ID
+  description: 按 ID 获取特定自动化的详情
   params:
-    id: Automation ID to retrieve
+    id: 要检索的自动化 ID
 - name: List_For_File_History
-  description: Get history for a specific file
+  description: 获取特定文件的历史记录
   params:
-    path: Path of the file to retrieve history for
+    path: 要检索历史记录的文件路径
 - name: List_For_Folder_History
-  description: Get history for a specific folder
+  description: 获取特定文件夹的历史记录
   params:
-    path: Path of the folder to retrieve history for
+    path: 要检索历史记录的文件夹路径
 - name: List_For_User_History
-  description: Get history for a specific user's actions
+  description: 获取特定用户操作的历史记录
   params:
-    user_id: User ID to retrieve history for
+    user_id: 要检索历史记录的用户 ID
 - name: List_Logins_History
-  description: Get site-wide login history
+  description: 获取全站登录历史记录
   params: {}
 - name: List_History
-  description: Get site-wide full action history
+  description: 获取全站完整操作历史记录
   params: {}
 - name: List_Permission
-  description: List all permissions, optionally filtered by path, user, or group
+  description: 列出所有权限，可选按路径、用户或群组过滤
   params:
-    path: Permission path to scope to (optional)
-    user_id: Filter by user ID (optional)
-    group_id: Filter by group ID (optional)
+    path: 权限路径范围（可选）
+    user_id: 按用户 ID 过滤（可选）
+    group_id: 按群组 ID 过滤（可选）
 - name: Create_Permission
-  description: Create a new permission for a folder
+  description: 为文件夹创建新权限
   params:
-    path: Folder path to apply permission to
-    permission: Permission type (admin, full, readonly, writeonly, list, or history)
-    user_id: User ID to grant permission to (optional, provide user_id or group_id)
-    group_id: Group ID to grant permission to (optional, provide user_id or group_id)
+    path: 要应用权限的文件夹路径
+    permission: 权限类型（admin、full、readonly、writeonly、list 或 history）
+    user_id: 要授予权限的用户 ID（可选，提供 user_id 或 group_id）
+    group_id: 要授予权限的群组 ID（可选，提供 user_id 或 group_id）
 - name: Delete_Permission
-  description: Delete a permission
+  description: 删除权限
   params:
-    id: Permission ID to delete
+    id: 要删除的权限 ID
 - name: List_Remote_Server
-  description: List all remote server connections
+  description: 列出所有远程服务器连接
   params: {}
 - name: Find_Remote_Server
-  description: Get details about a specific remote server by ID
+  description: 按 ID 获取特定远程服务器的详情
   params:
-    id: Remote Server ID to retrieve
+    id: 要检索的远程服务器 ID
 

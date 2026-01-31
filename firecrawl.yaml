@@ -1,159 +1,159 @@
 name: Firecrawl
-shortDescription: Web scraping, crawling, search, and structured data extraction with Firecrawl
-description: 'A Model Context Protocol (MCP) server that integrates with Firecrawl for web scraping capabilities. Perform web scraping, crawling, search, and content extraction with automatic retries and rate limiting.
+shortDescription: 使用 Firecrawl 进行网页抓取、爬取、搜索和结构化数据提取
+description: '一个 Model Context Protocol (MCP) 服务器，与 Firecrawl 集成以提供网页抓取功能。执行网页抓取、爬取、搜索和内容提取，支持自动重试和速率限制。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Web Scraping**: Extract content from single pages or batch process multiple URLs
+  - **网页抓取**：从单个页面提取内容或批量处理多个 URL
 
-  - **Site Discovery**: Map websites to discover all indexed URLs and site structure
+  - **站点发现**：映射网站以发现所有已索引的 URL 和站点结构
 
-  - **Web Search**: Search the web and optionally extract content from search results
+  - **网页搜索**：搜索网页并可选择从搜索结果中提取内容
 
-  - **Content Crawling**: Comprehensive site crawling with depth control and filtering
+  - **内容爬取**：全面的站点爬取，支持深度控制和筛选
 
-  - **Structured Extraction**: Extract specific data using LLM capabilities with JSON schemas
+  - **结构化提取**：使用 LLM 能力和 JSON 模式提取特定数据
 
-  - **Deep Research**: In-depth, multi-source research with intelligent analysis
+  - **深度研究**：多来源的深入研究，具备智能分析能力
 
-  - **Rate Limiting**: Automatic rate limit handling with exponential backoff and retries
-
-
-  ## What you''ll need to connect
+  - **速率限制**：自动速率限制处理，支持指数退避和重试
 
 
-  **Required:**
-
-  - **Firecrawl API Key**: Your Firecrawl API key (visit https://www.firecrawl.dev to get a new key)
+  ## 连接所需条件
 
 
-  ## Example Usage
+  **必需：**
+
+  - **Firecrawl API Key**：您的 Firecrawl API 密钥（访问 https://www.firecrawl.dev 获取新密钥）
 
 
-  - **Single URL**: Use `scrape`
-
-  - **Multiple URLs**: Use `batch_scrape`
-
-  - **Discover URLs**: Use `map`
-
-  - **Web Search**: Use `search`
-
-  - **Structured Data**: Use `extract`
-
-  - **Whole Site Analysis**: Use `crawl` (with limits!)
-
-  - **In-depth Research**: Use `deep_research`
+  ## 使用示例
 
 
-  ### Quick Reference Table
+  - **单个 URL**：使用 `scrape`
+
+  - **多个 URL**：使用 `batch_scrape`
+
+  - **发现 URL**：使用 `map`
+
+  - **网页搜索**：使用 `search`
+
+  - **结构化数据**：使用 `extract`
+
+  - **全站分析**：使用 `crawl`（注意限制！）
+
+  - **深入研究**：使用 `deep_research`
 
 
-  | Tool                | Best for                                 | Returns         |
+  ### 快速参考表
+
+
+  | 工具                | 最适合                                 | 返回内容         |
 
   | ------------------- | ---------------------------------------- | --------------- |
 
-  | scrape              | Single page content                      | markdown/html   |
+  | scrape              | 单页内容                      | markdown/html   |
 
-  | batch_scrape        | Multiple known URLs                      | markdown/html[] |
+  | batch_scrape        | 多个已知 URL                      | markdown/html[] |
 
-  | map                 | Discovering URLs on a site               | URL[]           |
+  | map                 | 发现网站上的 URL               | URL[]           |
 
-  | crawl               | Multi-page extraction (with limits)      | markdown/html[] |
+  | crawl               | 多页提取（有限制）      | markdown/html[] |
 
-  | search              | Web search for info                      | results[]       |
+  | search              | 网页搜索信息                      | results[]       |
 
-  | extract             | Structured data from pages               | JSON            |
+  | extract             | 从页面提取结构化数据               | JSON            |
 
-  | deep_research       | In-depth, multi-source research          | summary, sources|
+  | deep_research       | 深入、多来源研究          | summary, sources|
 
-  | generate_llmstxt    | LLMs.txt for a domain                    | text            |
+  | generate_llmstxt    | 域名的 LLMs.txt                    | text            |
 
   '
 metadata:
-  categories: Retrieval & Search,Automation & Browsers,Science & Research
+  categories: 检索与搜索, 自动化与浏览器, 科学与研究
   source: vendor
 icon: https://avatars.githubusercontent.com/u/135057108?v=4
 repoURL: https://github.com/firecrawl/firecrawl-mcp-server
 toolPreview:
 - name: firecrawl_scrape
-  description: Scrape content from a single URL with advanced options.
+  description: 使用高级选项从单个 URL 抓取内容。
   params:
-    actions: List of actions to perform before scraping
-    excludeTags: HTML tags to exclude from extraction
-    extract: Configuration for structured data extraction
-    formats: 'Content formats to extract (default: [''markdown''])'
-    includeTags: HTML tags to specifically include in extraction
-    location: Location settings for scraping
-    maxAge: 'Maximum age in milliseconds for cached content. Use cached data if available and younger than maxAge, otherwise scrape fresh. Enables 500% faster scrapes for recently cached pages. Default: 0 (always scrape fresh)'
-    mobile: Use mobile viewport
-    onlyMainContent: Extract only the main content, filtering out navigation, footers, etc.
-    removeBase64Images: Remove base64 encoded images from output
-    skipTlsVerification: Skip TLS certificate verification
-    timeout: Maximum time in milliseconds to wait for the page to load
-    url: The URL to scrape
-    waitFor: Time in milliseconds to wait for dynamic content to load
+    actions: 抓取前要执行的操作列表
+    excludeTags: 从提取中排除的 HTML 标签
+    extract: 结构化数据提取的配置
+    formats: '要提取的内容格式（默认：[''markdown'']）'
+    includeTags: 专门包含在提取中的 HTML 标签
+    location: 抓取的位置设置
+    maxAge: '缓存内容的最大存在时间（毫秒）。如果可用且比 maxAge 新则使用缓存数据，否则抓取新内容。使最近缓存页面的抓取速度提高 500%。默认：0（始终抓取新内容）'
+    mobile: 使用移动端视口
+    onlyMainContent: 仅提取主要内容，过滤掉导航、页脚等
+    removeBase64Images: 从输出中移除 base64 编码的图片
+    skipTlsVerification: 跳过 TLS 证书验证
+    timeout: 等待页面加载的最大时间（毫秒）
+    url: 要抓取的 URL
+    waitFor: 等待动态内容加载的时间（毫秒）
 - name: firecrawl_map
-  description: Map a website to discover all indexed URLs on the site.
+  description: 映射网站以发现站点上所有已索引的 URL。
   params:
-    ignoreSitemap: Skip sitemap.xml discovery and only use HTML links
-    includeSubdomains: Include URLs from subdomains in results
-    limit: Maximum number of URLs to return
-    search: Optional search term to filter URLs
-    sitemapOnly: Only use sitemap.xml for discovery, ignore HTML links
-    url: Starting URL for URL discovery
+    ignoreSitemap: 跳过 sitemap.xml 发现，仅使用 HTML 链接
+    includeSubdomains: 在结果中包含子域的 URL
+    limit: 返回的最大 URL 数量
+    search: 用于筛选 URL 的可选搜索词
+    sitemapOnly: 仅使用 sitemap.xml 进行发现，忽略 HTML 链接
+    url: URL 发现的起始 URL
 - name: firecrawl_crawl
-  description: Starts an asynchronous crawl job on a website and extracts content from all pages.
+  description: 在网站上启动异步爬取作业并从所有页面提取内容。
   params:
-    allowBackwardLinks: Allow crawling links that point to parent directories
-    allowExternalLinks: Allow crawling links to external domains
-    deduplicateSimilarURLs: Remove similar URLs during crawl
-    excludePaths: URL paths to exclude from crawling
-    ignoreQueryParameters: Ignore query parameters when comparing URLs
-    ignoreSitemap: Skip sitemap.xml discovery
-    includePaths: Only crawl these URL paths
-    limit: Maximum number of pages to crawl
-    maxDepth: Maximum link depth to crawl
-    scrapeOptions: Options for scraping each page
-    url: Starting URL for the crawl
+    allowBackwardLinks: 允许爬取指向父目录的链接
+    allowExternalLinks: 允许爬取指向外部域的链接
+    deduplicateSimilarURLs: 在爬取期间移除相似的 URL
+    excludePaths: 从爬取中排除的 URL 路径
+    ignoreQueryParameters: 比较 URL 时忽略查询参数
+    ignoreSitemap: 跳过 sitemap.xml 发现
+    includePaths: 仅爬取这些 URL 路径
+    limit: 要爬取的最大页面数
+    maxDepth: 要爬取的最大链接深度
+    scrapeOptions: 每个页面的抓取选项
+    url: 爬取的起始 URL
     webhook: ''
 - name: firecrawl_check_crawl_status
-  description: Check the status of a crawl job.
+  description: 检查爬取作业的状态。
   params:
-    id: Crawl job ID to check
+    id: 要检查的爬取作业 ID
 - name: firecrawl_search
-  description: Search the web and optionally extract content from search results.
+  description: 搜索网页并可选择从搜索结果中提取内容。
   params:
-    country: 'Country code for search results (default: us)'
-    filter: Search filter
-    lang: 'Language code for search results (default: en)'
-    limit: 'Maximum number of results to return (default: 5)'
-    location: Location settings for search
-    query: Search query string
-    scrapeOptions: Options for scraping search results
-    tbs: Time-based search filter
+    country: '搜索结果的国家代码（默认：us）'
+    filter: 搜索过滤器
+    lang: '搜索结果的语言代码（默认：en）'
+    limit: '返回的最大结果数（默认：5）'
+    location: 搜索的位置设置
+    query: 搜索查询字符串
+    scrapeOptions: 搜索结果的抓取选项
+    tbs: 基于时间的搜索过滤器
 - name: firecrawl_extract
-  description: Extract structured information from web pages using LLM capabilities.
+  description: 使用 LLM 能力从网页提取结构化信息。
   params:
-    allowExternalLinks: Allow extraction from external links
-    enableWebSearch: Enable web search for additional context
-    includeSubdomains: Include subdomains in extraction
-    prompt: Prompt for the LLM extraction
-    schema: JSON schema for structured data extraction
-    systemPrompt: System prompt for LLM extraction
-    urls: List of URLs to extract information from
+    allowExternalLinks: 允许从外部链接提取
+    enableWebSearch: 启用网页搜索以获取额外上下文
+    includeSubdomains: 在提取中包含子域
+    prompt: LLM 提取的提示词
+    schema: 结构化数据提取的 JSON 模式
+    systemPrompt: LLM 提取的系统提示词
+    urls: 要从中提取信息的 URL 列表
 - name: firecrawl_generate_llmstxt
-  description: Generate a standardized llms.txt (and optionally llms-full.txt) file for a given domain. This file defines how large language models should interact with the site
+  description: 为给定域名生成标准化的 llms.txt（以及可选的 llms-full.txt）文件。此文件定义大型语言模型应如何与该站点交互
   params:
-    maxUrls: 'Maximum number of URLs to process (1-100, default: 10)'
-    showFullText: Whether to show the full LLMs-full.txt in the response
-    url: The URL to generate LLMs.txt from
+    maxUrls: '要处理的最大 URL 数量（1-100，默认：10）'
+    showFullText: 是否在响应中显示完整的 LLMs-full.txt
+    url: 要从中生成 LLMs.txt 的 URL
 env:
 - key: FIRECRAWL_API_KEY
   name: Firecrawl API Key
   required: true
   sensitive: true
-  description: Your Firecrawl API key.
+  description: 您的 Firecrawl API 密钥。
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/firecrawl:3.6.0
@@ -161,3 +161,4 @@ containerizedConfig:
   path: /
   args:
   - firecrawl-mcp
+

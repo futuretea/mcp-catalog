@@ -1,48 +1,48 @@
 name: GitLab
-shortDescription: Manage GitLab projects, repositories, issues, merge requests, and CI/CD pipelines
-description: 'A Model Context Protocol (MCP) server that provides comprehensive GitLab integration capabilities. Enable LLMs to interact with GitLab projects, manage repositories, handle issues and merge requests, and perform automated GitLab operations with precision.
+shortDescription: 管理 GitLab 项目、仓库、Issues、Merge Requests 和 CI/CD 流水线
+description: '一个 Model Context Protocol (MCP) 服务器，提供全面的 GitLab 集成能力。使 LLM 能够与 GitLab 项目交互、管理仓库、处理 Issues 和 Merge Requests，并精确执行自动化 GitLab 操作。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Project Management**: List, search, create, and manage GitLab projects
+  - **项目管理**：列出、搜索、创建和管理 GitLab 项目
 
-  - **Repository Operations**: Browse files, read content, create/update files, and manage branches
+  - **仓库操作**：浏览文件、读取内容、创建/更新文件以及管理分支
 
-  - **Issue Management**: Create, update, list, and manage GitLab issues with full metadata
+  - **Issue 管理**：创建、更新、列出和管理具有完整元数据的 GitLab Issues
 
-  - **Merge Request Workflow**: Create, review, merge, and manage merge requests
+  - **Merge Request 工作流**：创建、评审、合并和管理 Merge Requests
 
-  - **File Operations**: Read, create, update, and manage repository files and directories
+  - **文件操作**：读取、创建、更新和管理仓库文件和目录
 
-  - **Branch Management**: Create, list, and manage repository branches
+  - **分支管理**：创建、列出和管理仓库分支
 
-  - **Commit History**: Access commit information and repository history
+  - **提交历史**：访问提交信息和仓库历史
 
-  - **User Management**: Get user details and project member information
+  - **用户管理**：获取用户详情和项目成员信息
 
-  - **Advanced Features**: Fork repositories, manage labels, handle discussions
-
-
-  ## What you''ll need to connect
+  - **高级功能**：Fork 仓库、管理标签、处理讨论
 
 
-  **Required Credentials:**
-
-  - **GitLab Personal Access Token**: Your GitLab personal access token with appropriate scopes
+  ## 连接所需条件
 
 
-  **Optional:**
+  **必需凭证：**
 
-  - **GitLab API URL**: Your GitLab instance URL (optional, for self-hosted GitLab instances)
+  - **GitLab Personal Access Token**：具有适当范围的 GitLab personal access token
 
-  - **GitLab Read-Only Mode**: default is false
 
-  - **Use GitLab Wiki**: whether to use the GitLab wiki api
+  **可选：**
 
-  - **Use Milestone**: whether to use the GitLab milestone api
+  - **GitLab API URL**：您的 GitLab 实例 URL（可选，用于自托管 GitLab 实例）
 
-  - **Use Pipeline**: whether to use the GitLab pipeline api
+  - **GitLab Read-Only Mode**：默认为 false
+
+  - **Use GitLab Wiki**：是否使用 GitLab wiki API
+
+  - **Use Milestone**：是否使用 GitLab milestone API
+
+  - **Use Pipeline**：是否使用 GitLab pipeline API
 
   '
 metadata:
@@ -54,32 +54,32 @@ env:
   name: GitLab Personal Access Token
   required: true
   sensitive: true
-  description: Your GitLab personal access token with api, read_repository, and write_repository scopes.
+  description: 具有 api、read_repository 和 write_repository 范围的 GitLab personal access token。
 - key: GITLAB_API_URL
   name: GitLab API URL
   required: false
   sensitive: false
-  description: Your GitLab instance URL (optional, for self-hosted GitLab instances)
+  description: 您的 GitLab 实例 URL（可选，用于自托管 GitLab 实例）
 - key: GITLAB_READ_ONLY_MODE
   name: GitLab Read-Only Mode
   required: false
   sensitive: false
-  description: Set to "true" to enable read-only mode (default is "false").
+  description: 设置为 "true" 以启用只读模式（默认为 "false"）。
 - key: USE_GITLAB_WIKI
   name: Enable Wiki Features
   required: false
   sensitive: false
-  description: Set to "true" to enable GitLab wiki features (default is "false").
+  description: 设置为 "true" 以启用 GitLab wiki 功能（默认为 "false"）。
 - key: USE_MILESTONE
   name: Enable Milestone Features
   required: false
   sensitive: false
-  description: Set to "true" to enable milestone management (default is "false").
+  description: 设置为 "true" 以启用里程碑管理（默认为 "false"）。
 - key: USE_PIPELINE
   name: Enable Pipeline Features
   required: false
   sensitive: false
-  description: Set to "true" to enable CI/CD pipeline features (default is "false").
+  description: 设置为 "true" 以启用 CI/CD pipeline 功能（默认为 "false"）。
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/gitlab:2.0.11
@@ -89,145 +89,145 @@ containerizedConfig:
   - mcp-gitlab
 toolPreview:
 - name: search_repositories
-  description: Search for GitLab projects
+  description: 搜索 GitLab 项目
   params:
-    search: Search query string (required)
-    page: Page number for pagination (optional)
-    per_page: Number of results per page (optional)
+    search: 搜索查询字符串（必需）
+    page: 分页页码（可选）
+    per_page: 每页结果数量（可选）
 - name: create_repository
-  description: Create a new GitLab project
+  description: 创建新的 GitLab 项目
   params:
-    name: Repository name (required)
-    description: Project description (optional)
-    initialize_with_readme: Initialize with README file (optional)
-    visibility: Project visibility - private, internal, or public (optional)
+    name: 仓库名称（必需）
+    description: 项目描述（可选）
+    initialize_with_readme: 使用 README 文件初始化（可选）
+    visibility: 项目可见性 - private、internal 或 public（可选）
 - name: get_project
-  description: Get details of a specific project
+  description: 获取特定项目的详情
   params:
-    project_id: Project ID or URL-encoded path (optional)
+    project_id: 项目 ID 或 URL 编码路径（可选）
 - name: list_projects
-  description: List projects accessible by the current user
+  description: 列出当前用户可访问的项目
   params:
-    page: Page number for pagination (optional)
-    per_page: Number of results per page (optional)
-    search: Search term for projects (optional)
-    visibility: Filter by project visibility (optional)
-    with_issues_enabled: Filter projects with issues feature enabled (optional)
+    page: 分页页码（可选）
+    per_page: 每页结果数量（可选）
+    search: 项目搜索词（可选）
+    visibility: 按项目可见性筛选（可选）
+    with_issues_enabled: 筛选启用了 Issues 功能的项目（可选）
 - name: get_file_contents
-  description: Get the contents of a file or directory from a GitLab project
+  description: 从 GitLab 项目获取文件或目录的内容
   params:
-    file_path: Path to the file or directory (required)
-    project_id: Project ID or URL-encoded path (optional)
-    ref: Branch, tag, or commit to get contents from (optional)
+    file_path: 文件或目录路径（必需）
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    ref: 要获取内容的分支、标签或提交（可选）
 - name: create_or_update_file
-  description: Create or update a single file in a GitLab project
+  description: 在 GitLab 项目中创建或更新单个文件
   params:
-    branch: Branch to create/update the file in (required)
-    commit_message: Commit message (required)
-    content: Content of the file (required)
-    file_path: Path where to create/update the file (required)
-    project_id: Project ID or URL-encoded path (optional)
-    previous_path: Path of the file to move/rename (optional)
+    branch: 要创建/更新文件的分支（必需）
+    commit_message: 提交消息（必需）
+    content: 文件内容（必需）
+    file_path: 创建/更新文件的路径（必需）
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    previous_path: 要移动/重命名的文件路径（可选）
 - name: push_files
-  description: Push multiple files to a GitLab project in a single commit
+  description: 在单个提交中将多个文件推送到 GitLab 项目
   params:
-    branch: Branch to push to (required)
-    commit_message: Commit message (required)
-    files: Array of files with file_path and content (required)
-    project_id: Project ID or URL-encoded path (optional)
+    branch: 要推送到的分支（必需）
+    commit_message: 提交消息（必需）
+    files: 包含 file_path 和 content 的文件数组（必需）
+    project_id: 项目 ID 或 URL 编码路径（可选）
 - name: get_repository_tree
-  description: Get the repository tree for a GitLab project (list files and directories)
+  description: 获取 GitLab 项目的仓库树（列出文件和目录）
   params:
-    project_id: Project ID or URL-encoded path (optional)
-    path: Path inside the repository (optional)
-    ref: Branch, tag, or commit reference (optional)
-    recursive: Get recursive tree structure (optional)
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    path: 仓库内的路径（可选）
+    ref: 分支、标签或提交引用（可选）
+    recursive: 获取递归树结构（可选）
 - name: create_branch
-  description: Create a new branch in a GitLab project
+  description: 在 GitLab 项目中创建新分支
   params:
-    branch: Name for the new branch (required)
-    project_id: Project ID or URL-encoded path (optional)
-    ref: Source branch or commit for new branch (optional)
+    branch: 新分支的名称（必需）
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    ref: 新分支的源分支或提交（可选）
 - name: create_issue
-  description: Create a new issue in a GitLab project
+  description: 在 GitLab 项目中创建新 Issue
   params:
-    title: Issue title (required)
-    project_id: Project ID or URL-encoded path (optional)
-    description: Issue description (optional)
-    assignee_ids: Array of user IDs to assign (optional)
-    labels: Array of label names (optional)
+    title: Issue 标题（必需）
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    description: Issue 描述（可选）
+    assignee_ids: 要分配的用户 ID 数组（可选）
+    labels: 标签名称数组（可选）
 - name: list_issues
-  description: List issues (default created by current user only; use scope='all' for all accessible issues)
+  description: 列出 Issues（默认仅当前用户创建的；使用 scope='all' 获取所有可访问的 Issues）
   params:
-    project_id: Project ID or URL-encoded path (optional)
-    state: Issue state - opened, closed, all (optional)
-    labels: Array of label names to filter by (optional)
-    assignee_username: Array of assignee usernames (optional)
-    scope: Return issues from specific scope (optional)
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    state: Issue 状态 - opened、closed、all（可选）
+    labels: 按标签名称筛选的数组（可选）
+    assignee_username: 被分配者用户名数组（可选）
+    scope: 返回特定范围的 Issues（可选）
 - name: update_issue
-  description: Update an issue in a GitLab project
+  description: 更新 GitLab 项目中的 Issue
   params:
-    issue_type: The type of issue - issue, incident, test_case or task (required)
-    project_id: Project ID or URL-encoded path (optional)
-    issue_iid: Internal ID of the issue (optional)
-    title: Updated issue title (optional)
-    description: Updated issue description (optional)
-    state_event: Update issue state - close/reopen (optional)
+    issue_type: Issue 类型 - issue、incident、test_case 或 task（必需）
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    issue_iid: Issue 的内部 ID（可选）
+    title: 更新后的 Issue 标题（可选）
+    description: 更新后的 Issue 描述（可选）
+    state_event: 更新 Issue 状态 - close/reopen（可选）
 - name: create_merge_request
-  description: Create a new merge request in a GitLab project
+  description: 在 GitLab 项目中创建新 Merge Request
   params:
-    source_branch: Branch containing changes (required)
-    target_branch: Branch to merge into (required)
-    title: Merge request title (required)
-    project_id: Project ID or URL-encoded path (optional)
-    description: Merge request description (optional)
-    draft: Create as draft merge request (optional)
-    assignee_ids: Array of user IDs to assign (optional)
+    source_branch: 包含更改的分支（必需）
+    target_branch: 要合并到的分支（必需）
+    title: Merge Request 标题（必需）
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    description: Merge Request 描述（可选）
+    draft: 创建为草稿 Merge Request（可选）
+    assignee_ids: 要分配的用户 ID 数组（可选）
 - name: list_merge_requests
-  description: List merge requests in a GitLab project with filtering options
+  description: 使用筛选选项列出 GitLab 项目中的 Merge Requests
   params:
-    project_id: Project ID or URL-encoded path (optional)
-    state: Merge request state - opened, closed, merged, all (optional)
-    source_branch: Filter by source branch (optional)
-    target_branch: Filter by target branch (optional)
-    page: Page number for pagination (optional)
-    per_page: Number of results per page (optional)
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    state: Merge Request 状态 - opened、closed、merged、all（可选）
+    source_branch: 按源分支筛选（可选）
+    target_branch: 按目标分支筛选（可选）
+    page: 分页页码（可选）
+    per_page: 每页结果数量（可选）
 - name: get_merge_request
-  description: Get details of a merge request (Either mergeRequestIid or branchName must be provided)
+  description: 获取 Merge Request 的详情（必须提供 mergeRequestIid 或 branchName）
   params:
-    project_id: Project ID or URL-encoded path (optional)
-    merge_request_iid: Internal ID of the merge request (optional)
-    source_branch: Source branch name (optional)
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    merge_request_iid: Merge Request 的内部 ID（可选）
+    source_branch: 源分支名称（可选）
 - name: merge_merge_request
-  description: Merge a merge request in a GitLab project
+  description: 合并 GitLab 项目中的 Merge Request
   params:
-    project_id: Project ID or URL-encoded path (optional)
-    merge_request_iid: Internal ID of the merge request (optional)
-    merge_commit_message: Custom merge commit message (optional)
-    should_remove_source_branch: Remove source branch after merge (optional)
-    squash: Squash commits into a single commit when merging (optional)
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    merge_request_iid: Merge Request 的内部 ID（可选）
+    merge_commit_message: 自定义合并提交消息（可选）
+    should_remove_source_branch: 合并后删除源分支（可选）
+    squash: 合并时将提交压缩为单个提交（可选）
 - name: update_merge_request
-  description: Update a merge request (Either mergeRequestIid or branchName must be provided)
+  description: 更新 Merge Request（必须提供 mergeRequestIid 或 branchName）
   params:
-    project_id: Project ID or URL-encoded path (optional)
-    merge_request_iid: Internal ID of the merge request (optional)
-    title: Updated merge request title (optional)
-    description: Updated merge request description (optional)
-    state_event: New state - close/reopen for the MR (optional)
-    assignee_ids: Array of user IDs to assign (optional)
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    merge_request_iid: Merge Request 的内部 ID（可选）
+    title: 更新后的 Merge Request 标题（可选）
+    description: 更新后的 Merge Request 描述（可选）
+    state_event: 新状态 - 关闭/重新打开 MR（可选）
+    assignee_ids: 要分配的用户 ID 数组（可选）
 - name: create_merge_request_thread
-  description: Create a new thread on a merge request
+  description: 在 Merge Request 上创建新线程
   params:
-    body: The content of the thread (required)
-    merge_request_iid: Internal ID of the merge request (optional)
-    project_id: Project ID or URL-encoded path (optional)
-    position: Position when creating a diff note (optional)
+    body: 线程内容（必需）
+    merge_request_iid: Merge Request 的内部 ID（可选）
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    position: 创建 diff 注释时的位置（可选）
 - name: fork_repository
-  description: Fork a GitLab project to your account or specified namespace
+  description: 将 GitLab 项目 Fork 到您的账户或指定命名空间
   params:
-    project_id: Project ID or URL-encoded path (optional)
-    namespace: Namespace to fork to (optional)
+    project_id: 项目 ID 或 URL 编码路径（可选）
+    namespace: 要 Fork 到的命名空间（可选）
 - name: get_users
-  description: Get GitLab user details by usernames
+  description: 按用户名获取 GitLab 用户详情
   params:
-    usernames: Array of usernames to search for (required)
+    usernames: 要搜索的用户名数组（必需）

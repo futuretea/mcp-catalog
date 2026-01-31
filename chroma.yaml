@@ -1,38 +1,38 @@
 name: Chroma Cloud
-shortDescription: Manage collections, documents, and vector search in Chroma embedding database
-description: 'A Model Context Protocol (MCP) server implementation that provides database capabilities for Chroma Cloud, the open-source embedding database. This server enables AI models to create collections, store documents with embeddings, and retrieve data using vector search, full-text search, metadata filtering, and more.
+shortDescription: 在 Chroma 嵌入数据库中管理集合、文档和向量搜索
+description: '一个 Model Context Protocol (MCP) 服务器实现，为 Chroma Cloud（开源嵌入数据库）提供数据库功能。该服务器使 AI 模型能够创建集合、存储带有嵌入的文档，并使用向量搜索、全文搜索、元数据过滤等方式检索数据。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Collection Management**: Create, modify, delete, and list collections with configurable HNSW parameters
+  - **集合管理**：创建、修改、删除和列出具有可配置 HNSW 参数的集合
 
-  - **Document Operations**: Add, query, update, and delete documents with optional metadata
+  - **文档操作**：添加、查询、更新和删除具有可选元数据的文档
 
-  - **Advanced Search**: Semantic search with vector embeddings, full-text search, and metadata filtering
+  - **高级搜索**：使用向量嵌入进行语义搜索、全文搜索和元数据过滤
 
-  - **Multiple Embedding Functions**: Support for default, Cohere, OpenAI, Jina, Voyage AI, and Roboflow embedding functions
+  - **多种嵌入函数**：支持默认、Cohere、OpenAI、Jina、Voyage AI 和 Roboflow 嵌入函数
 
 
-  ## What you''ll need to connect
+  ## 连接所需信息
 
-  - **Tenant ID**: Your Chroma Cloud tenant identifier
+  - **Tenant ID**：您的 Chroma Cloud 租户标识符
 
-  - **Database Name**: Your database name
+  - **Database Name**：您的数据库名称
 
-  - **API Key**: Your Chroma Cloud API key
+  - **API Key**：您的 Chroma Cloud API 密钥
 
-  ## Examples
+  ## 示例
 
-  - **Create Collection**: "Create a collection named ''customer-support'' with OpenAI embeddings"
+  - **创建集合**："Create a collection named ''customer-support'' with OpenAI embeddings"
 
-  - **Add Documents**: "Add these support messages to the collection with their metadata"
+  - **添加文档**："Add these support messages to the collection with their metadata"
 
-  - **Semantic Search**: "Find documents similar to ''billing issues'' in the support collection"
+  - **语义搜索**："Find documents similar to ''billing issues'' in the support collection"
 
-  - **Metadata Filtering**: "Get all documents from the category ''technical'' created after January 2025"
+  - **元数据过滤**："Get all documents from the category ''technical'' created after January 2025"
 
-  - **Update Documents**: "Update the documents in the collection"
+  - **更新文档**："Update the documents in the collection"
 
   '
 metadata:
@@ -44,17 +44,17 @@ env:
   name: Chroma Cloud Tenant ID
   required: true
   sensitive: false
-  description: Chroma Cloud tenant identifier
+  description: Chroma Cloud 租户标识符
 - key: CHROMA_DATABASE
   name: Chroma Cloud Database Name
   required: true
   sensitive: false
-  description: Database name
+  description: 数据库名称
 - key: CHROMA_API_KEY
   name: Chroma Cloud API Key
   required: true
   sensitive: true
-  description: API key for Chroma Cloud
+  description: Chroma Cloud 的 API 密钥
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/chroma:0.2.6
@@ -72,81 +72,81 @@ containerizedConfig:
   - ${CHROMA_API_KEY}
 toolPreview:
 - name: chroma_list_collections
-  description: List all collections with pagination support
+  description: 列出所有集合，支持分页
   params:
-    limit: Maximum number of collections to return (optional)
-    offset: Number of collections to skip before returning results (optional)
+    limit: 返回的最大集合数（可选）
+    offset: 返回结果前要跳过的集合数（可选）
 - name: chroma_create_collection
-  description: Create a new collection with configurable HNSW parameters and embedding function
+  description: 创建具有可配置 HNSW 参数和嵌入函数的新集合
   params:
-    collection_name: Name of the collection to create
-    embedding_function_name: Name of the embedding function to use (default, cohere, openai, jina, voyageai, roboflow) (optional)
-    metadata: Optional metadata dict to add to the collection (optional)
+    collection_name: 要创建的集合名称
+    embedding_function_name: 要使用的嵌入函数名称（default、cohere、openai、jina、voyageai、roboflow）（可选）
+    metadata: 要添加到集合的可选元数据字典（可选）
 - name: chroma_peek_collection
-  description: Peek at documents in a collection
+  description: 查看集合中的文档
   params:
-    collection_name: Name of the collection to peek into
-    limit: Number of documents to peek at (default is 5) (optional)
+    collection_name: 要查看的集合名称
+    limit: 要查看的文档数（默认为 5）（可选）
 - name: chroma_get_collection_info
-  description: Get detailed information about a collection including sample documents
+  description: 获取包含示例文档的集合详细信息
   params:
-    collection_name: Name of the collection to get info about
+    collection_name: 要获取信息的集合名称
 - name: chroma_get_collection_count
-  description: Get the number of documents in a collection
+  description: 获取集合中的文档数量
   params:
-    collection_name: Name of the collection to count
+    collection_name: 要计数的集合名称
 - name: chroma_modify_collection
-  description: Modify a collection's name or metadata
+  description: 修改集合的名称或元数据
   params:
-    collection_name: Name of the collection to modify
-    new_name: Optional new name for the collection (optional)
-    new_metadata: Optional new metadata for the collection (optional)
+    collection_name: 要修改的集合名称
+    new_name: 集合的可选新名称（可选）
+    new_metadata: 集合的可选新元数据（可选）
 - name: chroma_fork_collection
-  description: Fork a collection to create a copy
+  description: 分叉集合以创建副本
   params:
-    collection_name: Name of the collection to fork
-    new_collection_name: Name of the new collection to create
+    collection_name: 要分叉的集合名称
+    new_collection_name: 要创建的新集合名称
 - name: chroma_delete_collection
-  description: Delete a collection
+  description: 删除集合
   params:
-    collection_name: Name of the collection to delete
+    collection_name: 要删除的集合名称
 - name: chroma_add_documents
-  description: Add documents to a collection with optional metadata and custom IDs
+  description: 将文档添加到集合，支持可选元数据和自定义 ID
   params:
-    collection_name: Name of the collection to add documents to
-    documents: List of text documents to add
-    ids: List of IDs for the documents (required)
-    metadatas: Optional list of metadata dictionaries for each document (optional)
+    collection_name: 要添加文档的集合名称
+    documents: 要添加的文本文档列表
+    ids: 文档的 ID 列表（必需）
+    metadatas: 每个文档的可选元数据字典列表（可选）
 - name: chroma_query_documents
-  description: Query documents using semantic search with advanced filtering
+  description: 使用高级过滤进行语义搜索查询文档
   params:
-    collection_name: Name of the collection to query
-    query_texts: List of query texts to search for
-    n_results: Number of results to return per query (default is 5) (optional)
-    where: Optional metadata filters using Chroma's query operators (optional)
-    where_document: Optional document content filters (optional)
-    include: List of what to include in response (optional)
+    collection_name: 要查询的集合名称
+    query_texts: 要搜索的查询文本列表
+    n_results: 每个查询返回的结果数（默认为 5）（可选）
+    where: 使用 Chroma 查询运算符的可选元数据过滤器（可选）
+    where_document: 可选的文档内容过滤器（可选）
+    include: 响应中要包含的内容列表（可选）
 - name: chroma_get_documents
-  description: Get documents from a collection with optional filtering and pagination
+  description: 从集合中获取文档，支持可选过滤和分页
   params:
-    collection_name: Name of the collection to get documents from
-    ids: Optional list of document IDs to retrieve (optional)
-    where: Optional metadata filters using Chroma's query operators (optional)
-    where_document: Optional document content filters (optional)
-    include: List of what to include in response (optional)
-    limit: Optional maximum number of documents to return (optional)
-    offset: Optional number of documents to skip (optional)
+    collection_name: 要获取文档的集合名称
+    ids: 要检索的可选文档 ID 列表（可选）
+    where: 使用 Chroma 查询运算符的可选元数据过滤器（可选）
+    where_document: 可选的文档内容过滤器（可选）
+    include: 响应中要包含的内容列表（可选）
+    limit: 返回的最大文档数（可选）
+    offset: 要跳过的文档数（可选）
 - name: chroma_update_documents
-  description: Update existing documents' content, metadata, or embeddings
+  description: 更新现有文档的内容、元数据或嵌入
   params:
-    collection_name: Name of the collection to update documents in
-    ids: List of document IDs to update (required)
-    embeddings: Optional list of new embeddings for the documents (optional)
-    metadatas: Optional list of new metadata dictionaries (optional)
-    documents: Optional list of new text documents (optional)
+    collection_name: 要更新文档的集合名称
+    ids: 要更新的文档 ID 列表（必需）
+    embeddings: 文档的新嵌入列表（可选）
+    metadatas: 新的元数据字典列表（可选）
+    documents: 新的文本文档列表（可选）
 - name: chroma_delete_documents
-  description: Delete specific documents from a collection
+  description: 从集合中删除特定文档
   params:
-    collection_name: Name of the collection to delete documents from
-    ids: List of document IDs to delete
+    collection_name: 要删除文档的集合名称
+    ids: 要删除的文档 ID 列表
 

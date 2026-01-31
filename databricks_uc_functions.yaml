@@ -1,26 +1,26 @@
 name: Databricks Unity Catalog Functions
-shortDescription: Execute and manage Databricks Unity Catalog serverless functions
+shortDescription: 执行和管理 Databricks Unity Catalog 无服务器函数
 description: |
-  A Model Context Protocol (MCP) server that provides easy connection to Databricks Unity Catalog Functions using managed MCP servers. Execute and manage your registered serverless functions with built-in Unity Catalog security and governance.
+  一个 Model Context Protocol (MCP) 服务器，使用托管 MCP 服务器提供与 Databricks Unity Catalog Functions 的简单连接。执行和管理您注册的无服务器函数，并内置 Unity Catalog 安全性和治理功能。
 
-  ## Features
-  - **Function Execution**: Execute Unity Catalog functions with proper parameters
-  - **Function Discovery**: List and explore available functions in your catalogs
-  - **Serverless Compute**: Leverage serverless general compute for function execution
-  - **Function Management**: Get detailed information about function schemas and parameters
+  ## 功能特性
+  - **函数执行**：使用正确的参数执行 Unity Catalog 函数
+  - **函数发现**：列出和探索您的 catalogs 中的可用函数
+  - **无服务器计算**：利用无服务器通用计算进行函数执行
+  - **函数管理**：获取有关函数 schema 和参数的详细信息
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  ### Prerequisites
-  - **For admins**: Ensure the workspace has the **Managed MCP Servers** preview enabled. See [Databricks documentation](https://docs.databricks.com/en/admin/workspace-settings/manage-previews.html) for your cloud provider.
-  - **For users**: Ensure your account has access to the Unity Catalog resources (catalogs, schemas, functions) you want to use.
-  
-  ### Setup Steps
-  1. Navigate to your Databricks workspace
-  2. Go to **Catalog** → Select your catalog → Select your schema
-  3. Verify you have registered functions in the selected schema
-  4. Create a Personal Access Token in **Settings** → **Developer** → **Access tokens**
-  5. Configure the environment variables with your specific values
+  ### 前提条件
+  - **对于管理员**：确保工作区已启用 **Managed MCP Servers** 预览功能。请参阅适用于您的云提供商的 [Databricks 文档](https://docs.databricks.com/en/admin/workspace-settings/manage-previews.html)。
+  - **对于用户**：确保您的账户有权访问您要使用的 Unity Catalog 资源（catalogs、schemas、functions）。
+
+  ### 设置步骤
+  1. 导航到您的 Databricks 工作区
+  2. 转到 **Catalog** → 选择您的 catalog → 选择您的 schema
+  3. 验证选定的 schema 中是否有已注册的函数
+  4. 在 **Settings** → **Developer** → **Access tokens** 中创建 Personal Access Token
+  5. 使用您的特定值配置环境变量
 
 metadata:
   categories: Data Analytics, Business Intelligence
@@ -30,17 +30,17 @@ repoURL: https://docs.databricks.com/aws/en/generative-ai/mcp/
 env:
   - name: Databricks workspace hostname
     key: DATABRICKS_WORKSPACE_URL
-    description: Databricks workspace hostname, (e.g., https://your-workspace.cloud.databricks.com)
+    description: Databricks 工作区主机名（例如：https://your-workspace.cloud.databricks.com）
     required: true
     sensitive: false
   - name: Functions catalog
     key: DATABRICKS_FUNCTIONS_CATALOG
-    description: Functions catalog. You can find it in the Catalog tab.
+    description: Functions catalog。您可以在 Catalog 选项卡中找到它。
     required: true
     sensitive: false
   - name: Functions schema
     key: DATABRICKS_FUNCTIONS_SCHEMA
-    description: Functions schema, you can find it under the catalog
+    description: Functions schema，您可以在 catalog 下找到它
     required: true
     sensitive: false
 

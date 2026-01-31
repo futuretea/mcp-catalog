@@ -1,22 +1,22 @@
 name: Stripe
-shortDescription: Process payments, manage subscriptions, invoices, customers, and disputes with Stripe
+shortDescription: 处理付款、管理订阅、发票、客户和争议
 description: |
-  A Model Context Protocol (MCP) server for the Stripe API that enables AI agents to interact with Stripe payments, billing, and commerce functionality. This server provides comprehensive tools for managing customers, products, payments, subscriptions, invoices, and disputes with full API coverage for building agentic payment workflows.
+  用于 Stripe API 的 Model Context Protocol (MCP) 服务器，使 AI 代理能够与 Stripe 付款、计费和商务功能进行交互。此服务器提供管理客户、产品、付款、订阅、发票和争议的全面工具，具有完整的 API 覆盖范围，用于构建代理付款工作流。
 
-  ## Features
-  - **Customer Management**: Create, list, and manage customers with comprehensive data handling
-  - **Product & Pricing**: Create products and flexible pricing models including one-time and recurring billing
-  - **Payment Processing**: Handle payment intents, refunds, and payment links for seamless transactions
-  - **Subscription Billing**: Full subscription lifecycle management with updates, cancellations, and modifications
-  - **Invoice System**: Create, manage, finalize, and track invoices with line items
-  - **Dispute Resolution**: List and respond to disputes with evidence submission
-  - **Coupon Management**: Create and manage discount coupons with flexible terms
-  - **Search & Discovery**: Advanced search across all Stripe resources with custom query syntax
-  - **Account Operations**: Access account information and balance details
+  ## 功能特性
+  - **客户管理**：创建、列出和管理客户，处理全面的数据
+  - **产品与定价**：创建产品和灵活的定价模型，包括一次性计费和周期性计费
+  - **付款处理**：处理付款意图、退款和付款链接，实现无缝交易
+  - **订阅计费**：完整的订阅生命周期管理，包括更新、取消和修改
+  - **发票系统**：创建、管理、完成和跟踪带有明细项目的发票
+  - **争议解决**：列出和回应争议，提交证据
+  - **优惠券管理**：创建和管理具有灵活条款的折扣优惠券
+  - **搜索与发现**：使用自定义查询语法在所有 Stripe 资源中进行高级搜索
+  - **账户操作**：访问账户信息和余额详情
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow
+  **无需设置**：通过 OAuth2 工作流自动处理身份验证
 
 metadata:
   categories: SaaS & API Integrations,Payments,Billing
@@ -24,135 +24,135 @@ icon: https://avatars.githubusercontent.com/u/856813?s=200&v=4
 repoURL: https://docs.stripe.com/mcp
 toolPreview:
   - name: get_stripe_account_info
-    description: Retrieve account information for the authenticated Stripe account.
+    description: 检索已验证 Stripe 账户的账户信息。
     params: {}
   - name: retrieve_balance
-    description: Get the current balance and available funds in the Stripe account.
+    description: 获取 Stripe 账户的当前余额和可用资金。
     params: {}
   - name: create_customer
-    description: Create a new customer in Stripe.
+    description: 在 Stripe 中创建新客户。
     params:
-      name: The name of the customer
-      email: The email address of the customer (optional)
+      name: 客户姓名
+      email: 客户的电子邮件地址（可选）
   - name: list_customers
-    description: List customers with optional filtering and pagination.
+    description: 列出客户，可选择筛选和分页。
     params:
-      limit: Maximum number of customers to return (1-100)
-      email: Filter customers by email address
+      limit: 要返回的最大客户数（1-100）
+      email: 按电子邮件地址筛选客户
   - name: create_product
-    description: Create a new product in Stripe.
+    description: 在 Stripe 中创建新产品。
     params:
-      name: The name of the product
-      description: Description of the product (optional)
+      name: 产品名称
+      description: 产品描述（可选）
   - name: list_products
-    description: List all products with optional pagination.
+    description: 列出所有产品，可选择分页。
     params:
-      limit: Maximum number of products to return (1-100)
+      limit: 要返回的最大产品数（1-100）
   - name: create_price
-    description: Create a price for a product, supporting one-time or recurring billing.
+    description: 为产品创建价格，支持一次性或周期性计费。
     params:
-      product: The ID of the product to create the price for
-      unit_amount: The price amount in currency minor units (e.g., cents)
-      currency: The currency code (e.g., usd, eur)
-      recurring: Recurring billing configuration (optional)
+      product: 要为其创建价格的产品 ID
+      unit_amount: 以货币最小单位表示的价格金额（例如分）
+      currency: 货币代码（例如 usd、eur）
+      recurring: 周期性计费配置（可选）
   - name: list_prices
-    description: List prices with optional filtering by product.
+    description: 列出价格，可选择按产品筛选。
     params:
-      product: Filter prices by product ID (optional)
-      limit: Maximum number of prices to return (1-100)
+      product: 按产品 ID 筛选价格（可选）
+      limit: 要返回的最大价格数（1-100）
   - name: create_payment_link
-    description: Create a payment link for easy customer checkout.
+    description: 创建付款链接，方便客户结账。
     params:
-      price: The ID of the price to create the payment link for
-      quantity: The quantity of the product to include
+      price: 要为其创建付款链接的价格 ID
+      quantity: 要包含的产品数量
   - name: list_payment_intents
-    description: List payment intents with optional customer filtering.
+    description: 列出付款意图，可选择按客户筛选。
     params:
-      customer: Filter by customer ID (optional)
-      limit: Maximum number of payment intents to return (1-100)
+      customer: 按客户 ID 筛选（可选）
+      limit: 要返回的最大付款意图数（1-100）
   - name: create_refund
-    description: Refund a payment intent fully or partially.
+    description: 全额或部分退款付款意图。
     params:
-      payment_intent: The ID of the payment intent to refund
-      amount: Amount to refund in minor currency units (optional, defaults to full refund)
-      reason: Reason for refund - duplicate, fraudulent, or requested_by_customer (optional)
+      payment_intent: 要退款的付款意图 ID
+      amount: 以最小货币单位表示的退款金额（可选，默认为全额退款）
+      reason: 退款原因 - duplicate、fraudulent 或 requested_by_customer（可选）
   - name: create_invoice
-    description: Create a new invoice for a customer.
+    description: 为客户创建新发票。
     params:
-      customer: The ID of the customer to invoice
-      days_until_due: Number of days until invoice is due (optional)
+      customer: 要开具发票的客户 ID
+      days_until_due: 发票到期前的天数（可选）
   - name: list_invoices
-    description: List invoices with optional customer filtering.
+    description: 列出发票，可选择按客户筛选。
     params:
-      customer: Filter by customer ID (optional)
-      limit: Maximum number of invoices to return (1-100)
+      customer: 按客户 ID 筛选（可选）
+      limit: 要返回的最大发票数（1-100）
   - name: create_invoice_item
-    description: Add a line item to an existing invoice.
+    description: 向现有发票添加明细项目。
     params:
-      customer: The ID of the customer
-      price: The ID of the price for the line item
-      invoice: The ID of the invoice to add the item to
+      customer: 客户 ID
+      price: 明细项目的价格 ID
+      invoice: 要添加项目的invoice ID
   - name: finalize_invoice
-    description: Finalize an invoice to make it ready for payment.
+    description: 完成发票以使其准备好付款。
     params:
-      invoice: The ID of the invoice to finalize
+      invoice: 要完成的invoice ID
   - name: list_subscriptions
-    description: List subscriptions with filtering options.
+    description: 列出订阅，带有筛选选项。
     params:
-      customer: Filter by customer ID (optional)
-      price: Filter by price ID (optional)
-      status: Filter by subscription status (optional)
-      limit: Maximum number of subscriptions to return (1-100)
+      customer: 按客户 ID 筛选（可选）
+      price: 按价格 ID 筛选（可选）
+      status: 按订阅状态筛选（可选）
+      limit: 要返回的最大订阅数（1-100）
   - name: cancel_subscription
-    description: Cancel an active subscription.
+    description: 取消有效订阅。
     params:
-      subscription: The ID of the subscription to cancel
+      subscription: 要取消的订阅 ID
   - name: update_subscription
-    description: Update an existing subscription with new items or modifications.
+    description: 使用新项目或修改更新现有订阅。
     params:
-      subscription: The ID of the subscription to update
-      items: Array of subscription items to add, modify, or remove
-      proration_behavior: How to handle prorations (optional)
+      subscription: 要更新的订阅 ID
+      items: 要添加、修改或移除的订阅项目数组
+      proration_behavior: 如何处理按比例分配（可选）
   - name: create_coupon
-    description: Create a discount coupon with percentage or fixed amount off.
+    description: 创建百分比或固定金额折扣的优惠券。
     params:
-      name: Display name of the coupon
-      percent_off: Percentage discount (0-100, use either this or amount_off)
-      amount_off: Fixed amount discount in minor currency units (use either this or percent_off)
-      currency: Currency for amount_off (required if using amount_off)
-      duration: How long discount lasts - once, repeating, or forever (optional)
-      duration_in_months: Months for repeating duration (optional)
+      name: 优惠券的显示名称
+      percent_off: 百分比折扣（0-100，使用 percent_off 或 amount_off 之一）
+      amount_off: 以最小货币单位表示的固定金额折扣（使用 percent_off 或 amount_off 之一）
+      currency: amount_off 的货币（如果使用 amount_off 则必需）
+      duration: 折扣持续时间 - once、repeating 或 forever（可选）
+      duration_in_months: 重复持续时间的月数（可选）
   - name: list_coupons
-    description: List all available coupons.
+    description: 列出所有可用的优惠券。
     params:
-      limit: Maximum number of coupons to return (1-100)
+      limit: 要返回的最大优惠券数（1-100）
   - name: list_disputes
-    description: List payment disputes that need attention.
+    description: 列出需要关注的付款争议。
     params:
-      charge: Filter by specific charge ID (optional)
-      payment_intent: Filter by payment intent ID (optional)
-      limit: Maximum number of disputes to return (1-100)
+      charge: 按特定付款 ID 筛选（可选）
+      payment_intent: 按付款意图 ID 筛选（可选）
+      limit: 要返回的最大争议数（1-100）
   - name: update_dispute
-    description: Submit evidence or update information for a payment dispute.
+    description: 提交证据或更新付款争议的信息。
     params:
-      dispute: The ID of the dispute to update
-      evidence: Evidence object with supporting documentation
-      submit: Whether to immediately submit evidence to the bank (optional)
+      dispute: 要更新的争议 ID
+      evidence: 带有支持文档的证据对象
+      submit: 是否立即向银行提交证据（可选）
   - name: search_stripe_resources
-    description: Search across multiple Stripe resource types using custom query syntax.
+    description: 使用自定义查询语法在多个 Stripe 资源类型中进行搜索。
     params:
-      query: Search query in format 'resource:query_clause' (e.g., 'customers:email:"john@example.com"')
+      query: 格式为 'resource:query_clause' 的搜索查询（例如 'customers:email:"john@example.com"'）
   - name: fetch_stripe_resources
-    description: Retrieve detailed information for any Stripe object by its ID.
+    description: 通过 ID 检索任何 Stripe 对象的详细信息。
     params:
-      id: The Stripe object ID (e.g., cus_123, pi_456, sub_789)
+      id: Stripe 对象 ID（例如 cus_123、pi_456、sub_789）
   - name: search_stripe_documentation
-    description: Search Stripe documentation and knowledge base for help and guidance.
+    description: 搜索 Stripe 文档和知识库以获取帮助和指导。
     params:
-      question: Your question about Stripe integration or API usage
-      language: Programming language context (optional)
-      search_only_api_ref: Whether to search only API reference docs (optional)
+      question: 关于 Stripe 集成或 API 使用的问题
+      language: 编程语言上下文（可选）
+      search_only_api_ref: 是否仅搜索 API 参考文档（可选）
 
 runtime: remote
 remoteConfig:
-  fixedURL: https://mcp.stripe.com 
+  fixedURL: https://mcp.stripe.com

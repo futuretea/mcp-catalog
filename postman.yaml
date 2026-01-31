@@ -1,25 +1,25 @@
 name: Postman
-shortDescription: Manage Postman collections, mocks, monitors, environments, and API specs
+shortDescription: 管理 Postman 集合、模拟、监视器、环境和 API 规范
 description: |
-  A Model Context Protocol (MCP) server that provides seamless integration with Postman's API Platform. Connect your AI tools to Postman's comprehensive API development ecosystem, enabling intelligent workflows for collections, environments, mocks, monitors, and API specifications.
+  提供与 Postman API 平台无缝集成的 Model Context Protocol (MCP) 服务器。将您的 AI 工具连接到 Postman 全面的 API 开发生态系统，为集合、环境、模拟、监视器和 API 规范启用智能工作流。
 
-  ## Features
-  - **Collection Management**: Create, read, update, and manage Postman collections with full CRUD operations
-  - **Request & Response Operations**: Build and manage API requests, responses, folders, and examples
-  - **Mock Server Integration**: Create, configure, and manage mock servers for API testing
-  - **Monitor Management**: Set up and manage API monitors for continuous testing
-  - **Environment Management**: Create and manage environment variables and configurations
-  - **Workspace Operations**: Organize and manage workspaces with comprehensive access controls
-  - **API Specification Support**: Create, sync, and manage OpenAPI and AsyncAPI specifications
-  - **Documentation Publishing**: Publish and manage public API documentation
-  - **Collaboration Tools**: Comment threads, tagging, and team collaboration features
+  ## 功能特性
+  - **集合管理**: 创建、读取、更新和管理 Postman 集合，支持完整的 CRUD 操作
+  - **请求和响应操作**: 构建和管理 API 请求、响应、文件夹和示例
+  - **模拟服务器集成**: 创建、配置和管理用于 API 测试的模拟服务器
+  - **监视器管理**: 设置和管理用于持续测试的 API 监视器
+  - **环境管理**: 创建和管理环境变量和配置
+  - **工作区操作**: 使用全面的访问控制组织和管理工作区
+  - **API 规范支持**: 创建、同步和管理 OpenAPI 和 AsyncAPI 规范
+  - **文档发布**: 发布和管理公共 API 文档
+  - **协作工具**: 评论线程、标记和团队协作功能
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **Required:**
-  - **Postman API Key**: Your Postman API key
-  - **Host URL**: Choose between US (`https://mcp.postman.com`) or EU (`https://mcp.eu.postman.com`) regions
-  - **Tool Configuration**: Select between `minimal` (38 essential tools) or `mcp` (all 100+ tools) mode
+  **必需:**
+  - **Postman API Key**: 您的 Postman API 密钥
+  - **主机 URL**: 在美国（`https://mcp.postman.com`）或欧盟（`https://mcp.eu.postman.com`）区域之间选择
+  - **工具配置**: 在 `minimal`（38 个基本工具）或 `mcp`（所有 100+ 工具）模式之间选择
 
 
 metadata:
@@ -28,14 +28,14 @@ icon: https://avatars.githubusercontent.com/u/10251060?s=48&v=4
 repoURL: https://github.com/postmanlabs/postman-mcp-server
 
 env:
-  - name: Postman Host URL
+  - name: Postman 主机 URL
     key: HOST_URL
-    description: The URL of the Postman MCP server, choose between US (`https://mcp.postman.com`) or EU (`https://mcp.eu.postman.com`) regions
+    description: Postman MCP 服务器的 URL，在美国（`https://mcp.postman.com`）或欧盟（`https://mcp.eu.postman.com`）区域之间选择
     required: true
     sensitive: false
-  - name: Tool Configuration
+  - name: 工具配置
     key: TOOL_CONFIGURATION
-    description: Select between `minimal` (38 essential tools) or `mcp` (all 100+ tools) mode
+    description: 在 `minimal`（38 个基本工具）或 `mcp`（所有 100+ 工具）模式之间选择
     required: true
     sensitive: false
 
@@ -44,7 +44,7 @@ remoteConfig:
   URLTemplate: ${HOST_URL}/${TOOL_CONFIGURATION}
   headers:
   - name: Postman API Key
-    description: Your Postman API key
+    description: 您的 Postman API 密钥
     key: Authorization
     required: true
     sensitive: true
@@ -52,623 +52,623 @@ remoteConfig:
 
 toolPreview:
   - name: getAuthenticatedUser
-    description: Gets information about the authenticated user
+    description: 获取有关已认证用户的信息
     params: {}
   - name: createCollection
-    description: Creates a collection using the Postman Collection v2.1.0 schema format
+    description: 使用 Postman Collection v2.1.0 架构格式创建集合
     params:
-      workspace: The workspace's ID (required)
-      collection: Collection information including name, schema, and items (required)
+      workspace: 工作区 ID（必需）
+      collection: 包含名称、架构和项目的集合信息（必需）
   - name: getCollection
-    description: Gets information about a collection
+    description: 获取有关集合的信息
     params:
-      collectionId: The collection ID in <OWNER_ID>-<UUID> format (required)
-      access_key: Collection's read-only access key (optional)
-      model: Return minimal model with only root-level IDs (optional)
+      collectionId: <OWNER_ID>-<UUID> 格式的集合 ID（必需）
+      access_key: 集合的只读访问密钥（可选）
+      model: 仅返回根级 ID 的最小模型（可选）
   - name: getCollections
-    description: Gets all collections in a workspace
+    description: 获取工作区中的所有集合
     params:
-      workspace: The workspace's ID (required)
-      limit: Maximum number of rows to return (optional)
-      name: Filter by collection name (optional)
-      offset: Zero-based offset of first item (optional)
+      workspace: 工作区 ID（必需）
+      limit: 返回的最大行数（可选）
+      name: 按集合名称过滤（可选）
+      offset: 第一项的从零开始的偏移量（可选）
   - name: putCollection
-    description: Replaces the contents of a collection using Postman Collection v2.1.0 schema
+    description: 使用 Postman Collection v2.1.0 架构替换集合的内容
     params:
-      collectionId: The collection ID (required)
-      collection: Complete collection object (required)
-      Prefer: Use 'respond-async' for asynchronous updates (optional)
+      collectionId: 集合 ID（必需）
+      collection: 完整的集合对象（必需）
+      Prefer: 对异步更新使用 'respond-async'（可选）
   - name: patchCollection
-    description: Updates specific collection information such as name, events, or variables
+    description: 更新特定的集合信息，如名称、事件或变量
     params:
-      collectionId: The collection ID (required)
-      collection: Collection properties to update (required)
+      collectionId: 集合 ID（必需）
+      collection: 要更新的集合属性（必需）
   - name: deleteCollection
-    description: Deletes a collection
+    description: 删除集合
     params:
-      collectionId: The collection ID in <OWNER_ID>-<UUID> format (required)
+      collectionId: <OWNER_ID>-<UUID> 格式的集合 ID（必需）
   - name: createCollectionFolder
-    description: Creates a folder in a collection
+    description: 在集合中创建文件夹
     params:
-      collectionId: The collection's ID (required)
-      name: The folder's name (optional but recommended)
-      folder: ID of parent folder (optional)
+      collectionId: 集合 ID（必需）
+      name: 文件夹名称（可选但建议）
+      folder: 父文件夹 ID（可选）
   - name: getCollectionFolder
-    description: Gets information about a folder in a collection
+    description: 获取集合中文件夹的信息
     params:
-      collectionId: The collection's ID (required)
-      folderId: The folder's ID (required)
-      ids: Return only ID values (optional)
-      populate: Return all item contents (optional)
-      uid: Return IDs in UID format (optional)
+      collectionId: 集合 ID（必需）
+      folderId: 文件夹 ID（必需）
+      ids: 仅返回 ID 值（可选）
+      populate: 返回所有项目内容（可选）
+      uid: 以 UID 格式返回 ID（可选）
   - name: updateCollectionFolder
-    description: Updates a folder in a collection
+    description: 更新集合中的文件夹
     params:
-      collectionId: The collection's ID (required)
-      folderId: The folder's ID (required)
-      name: The folder's name (optional)
-      description: The folder's description (optional)
+      collectionId: 集合 ID（必需）
+      folderId: 文件夹 ID（必需）
+      name: 文件夹名称（可选）
+      description: 文件夹描述（可选）
   - name: deleteCollectionFolder
-    description: Deletes a folder in a collection
+    description: 删除集合中的文件夹
     params:
-      collectionId: The collection's ID (required)
-      folderId: The folder's ID (required)
+      collectionId: 集合 ID（必需）
+      folderId: 文件夹 ID（必需）
   - name: createCollectionRequest
-    description: Creates a request in a collection
+    description: 在集合中创建请求
     params:
-      collectionId: The collection's ID (required)
-      name: The request's name (optional but recommended)
-      folderId: The folder ID to create request in (optional)
+      collectionId: 集合 ID（必需）
+      name: 请求名称（可选但建议）
+      folderId: 要在其中创建请求的文件夹 ID（可选）
   - name: getCollectionRequest
-    description: Gets information about a request in a collection
+    description: 获取集合中请求的信息
     params:
-      collectionId: The collection's ID (required)
-      requestId: The request's ID (required)
-      ids: Return only ID values (optional)
-      populate: Return all item contents (optional)
-      uid: Return IDs in UID format (optional)
+      collectionId: 集合 ID（必需）
+      requestId: 请求 ID（必需）
+      ids: 仅返回 ID 值（可选）
+      populate: 返回所有项目内容（可选）
+      uid: 以 UID 格式返回 ID（可选）
   - name: updateCollectionRequest
-    description: Updates a request in a collection
+    description: 更新集合中的请求
     params:
-      collectionId: The collection's ID (required)
-      requestId: The request's ID (required)
-      name: The request's name (optional)
-      method: The request's HTTP method (optional)
+      collectionId: 集合 ID（必需）
+      requestId: 请求 ID（必需）
+      name: 请求名称（可选）
+      method: 请求的 HTTP 方法（可选）
   - name: deleteCollectionRequest
-    description: Deletes a request in a collection
+    description: 删除集合中的请求
     params:
-      collectionId: The collection's ID (required)
-      requestId: The request's ID (required)
+      collectionId: 集合 ID（必需）
+      requestId: 请求 ID（必需）
   - name: createCollectionResponse
-    description: Creates a request response in a collection
+    description: 在集合中创建请求响应
     params:
-      collectionId: The collection's ID (required)
-      requestId: The parent request's ID (required)
-      name: The response's name (optional but recommended)
+      collectionId: 集合 ID（必需）
+      requestId: 父请求 ID（必需）
+      name: 响应名称（可选但建议）
   - name: getCollectionResponse
-    description: Gets information about a response in a collection
+    description: 获取集合中响应的信息
     params:
-      collectionId: The collection's ID (required)
-      responseId: The response's ID (required)
-      ids: Return only ID values (optional)
-      populate: Return all item contents (optional)
-      uid: Return IDs in UID format (optional)
+      collectionId: 集合 ID（必需）
+      responseId: 响应 ID（必需）
+      ids: 仅返回 ID 值（可选）
+      populate: 返回所有项目内容（可选）
+      uid: 以 UID 格式返回 ID（可选）
   - name: updateCollectionResponse
-    description: Updates a response in a collection
+    description: 更新集合中的响应
     params:
-      collectionId: The collection's ID (required)
-      responseId: The response's ID (required)
-      name: The response's name (optional)
-      responseCode: HTTP response code information (optional)
+      collectionId: 集合 ID（必需）
+      responseId: 响应 ID（必需）
+      name: 响应名称（可选）
+      responseCode: HTTP 响应代码信息（可选）
   - name: deleteCollectionResponse
-    description: Deletes a response in a collection
+    description: 删除集合中的响应
     params:
-      collectionId: The collection's ID (required)
-      responseId: The response's ID (required)
+      collectionId: 集合 ID（必需）
+      responseId: 响应 ID（必需）
   - name: createCollectionFork
-    description: Creates a fork from an existing collection into a workspace
+    description: 从现有集合创建分支到工作区
     params:
-      collectionId: The collection's ID (required)
-      workspace: The workspace ID to create fork in (required)
-      label: The fork's label (required)
+      collectionId: 集合 ID（必需）
+      workspace: 要在其中创建分支的工作区 ID（必需）
+      label: 分支标签（必需）
   - name: getCollectionForks
-    description: Gets a collection's forked collections
+    description: 获取集合的分支集合
     params:
-      collectionId: The collection's ID (required)
-      cursor: Pointer to first record of paginated results (optional)
-      direction: Sort by creation date asc/desc (optional)
-      limit: Maximum rows to return (optional)
+      collectionId: 集合 ID（必需）
+      cursor: 分页结果第一条记录的指针（可选）
+      direction: 按创建日期升序/降序排序（可选）
+      limit: 返回的最大行数（可选）
   - name: mergeCollectionFork
-    description: Merges a forked collection back into its parent collection
+    description: 将分支集合合并回其父集合
     params:
-      source: The source collection's unique ID (required)
-      destination: The destination collection's unique ID (required)
-      strategy: Merge strategy - deleteSource or updateSourceWithDestination (optional)
+      source: 源集合的唯一 ID（必需）
+      destination: 目标集合的唯一 ID（必需）
+      strategy: 合并策略 - deleteSource 或 updateSourceWithDestination（可选）
   - name: pullCollectionChanges
-    description: Pulls changes from parent collection into forked collection
+    description: 将父集合的更改拉取到分支集合
     params:
-      collectionId: The collection's ID (required)
+      collectionId: 集合 ID（必需）
   - name: getSourceCollectionStatus
-    description: Checks if there are changes between forked collection and parent
+    description: 检查分支集合与父集合之间是否存在更改
     params:
-      collectionId: The collection's ID (required)
+      collectionId: 集合 ID（必需）
   - name: duplicateCollection
-    description: Creates a duplicate of a collection in another workspace
+    description: 在另一个工作区中创建集合的副本
     params:
-      collectionId: The collection's unique ID (required)
-      workspace: The workspace ID to duplicate into (required)
-      suffix: Optional suffix for duplicated collection name (optional)
+      collectionId: 集合的唯一 ID（必需）
+      workspace: 要复制到的工作区 ID（必需）
+      suffix: 复制集合名称的可选后缀（可选）
   - name: getDuplicateCollectionTaskStatus
-    description: Gets the status of a collection duplication task
+    description: 获取集合复制任务的状态
     params:
-      taskId: The task's unique ID (required)
+      taskId: 任务的唯一 ID（必需）
   - name: transferCollectionFolders
-    description: Copies or moves folders into a collection or folder
+    description: 将文件夹复制或移动到集合或文件夹中
     params:
-      ids: List of folder UIDs to transfer (required)
-      mode: Transfer operation - copy or move (required)
-      target: Destination location information (required)
-      location: Placement in target destination (required)
+      ids: 要传输的文件夹 UID 列表（必需）
+      mode: 传输操作 - copy 或 move（必需）
+      target: 目标位置信息（必需）
+      location: 在目标目的地中的放置位置（必需）
   - name: transferCollectionRequests
-    description: Copies or moves requests into a collection or folder
+    description: 将请求复制或移动到集合或文件夹中
     params:
-      ids: List of request UIDs to transfer (required)
-      mode: Transfer operation - copy or move (required)
-      target: Destination location information (required)
-      location: Placement in target destination (required)
+      ids: 要传输的请求 UID 列表（必需）
+      mode: 传输操作 - copy 或 move（必需）
+      target: 目标位置信息（必需）
+      location: 在目标目的地中的放置位置（必需）
   - name: transferCollectionResponses
-    description: Copies or moves responses into a request
+    description: 将响应复制或移动到请求中
     params:
-      ids: List of response UIDs to transfer (required)
-      mode: Transfer operation - copy or move (required)
-      target: Destination location information (required)
-      location: Placement in target destination (required)
+      ids: 要传输的响应 UID 列表（必需）
+      mode: 传输操作 - copy 或 move（必需）
+      target: 目标位置信息（必需）
+      location: 在目标目的地中的放置位置（必需）
   - name: getCollectionComments
-    description: Gets all comments left by users in a collection
+    description: 获取用户在集合中留下的所有评论
     params:
-      collectionId: The collection's unique ID (required)
+      collectionId: 集合的唯一 ID（必需）
   - name: createCollectionComment
-    description: Creates a comment on a collection
+    description: 在集合上创建评论
     params:
-      collectionId: The collection's unique ID (required)
-      body: The contents of the comment (required)
-      tags: Information about tagged users (optional)
-      threadId: Thread ID to create reply (optional)
+      collectionId: 集合的唯一 ID（必需）
+      body: 评论内容（必需）
+      tags: 有关标记用户的信息（可选）
+      threadId: 创建回复的线程 ID（可选）
   - name: updateCollectionComment
-    description: Updates a comment on a collection
+    description: 更新集合上的评论
     params:
-      collectionId: The collection's unique ID (required)
-      commentId: The comment's ID (required)
-      body: The updated comment contents (required)
-      tags: Information about tagged users (optional)
+      collectionId: 集合的唯一 ID（必需）
+      commentId: 评论 ID（必需）
+      body: 更新的评论内容（必需）
+      tags: 有关标记用户的信息（可选）
   - name: deleteCollectionComment
-    description: Deletes a comment from a collection
+    description: 从集合中删除评论
     params:
-      collectionId: The collection's unique ID (required)
-      commentId: The comment's ID (required)
+      collectionId: 集合的唯一 ID（必需）
+      commentId: 评论 ID（必需）
   - name: getFolderComments
-    description: Gets all comments left by users in a folder
+    description: 获取用户在文件夹中留下的所有评论
     params:
-      collectionId: The collection's unique ID (required)
-      folderId: The folder's unique ID (required)
+      collectionId: 集合的唯一 ID（必需）
+      folderId: 文件夹的唯一 ID（必需）
   - name: createFolderComment
-    description: Creates a comment on a folder
+    description: 在文件夹上创建评论
     params:
-      collectionId: The collection's unique ID (required)
-      folderId: The folder's unique ID (required)
-      body: The contents of the comment (required)
-      tags: Information about tagged users (optional)
-      threadId: Thread ID to create reply (optional)
+      collectionId: 集合的唯一 ID（必需）
+      folderId: 文件夹的唯一 ID（必需）
+      body: 评论内容（必需）
+      tags: 有关标记用户的信息（可选）
+      threadId: 创建回复的线程 ID（可选）
   - name: updateFolderComment
-    description: Updates a comment on a folder
+    description: 更新文件夹上的评论
     params:
-      collectionId: The collection's unique ID (required)
-      folderId: The folder's unique ID (required)
-      commentId: The comment's ID (required)
-      body: The updated comment contents (required)
-      tags: Information about tagged users (optional)
+      collectionId: 集合的唯一 ID（必需）
+      folderId: 文件夹的唯一 ID（必需）
+      commentId: 评论 ID（必需）
+      body: 更新的评论内容（必需）
+      tags: 有关标记用户的信息（可选）
   - name: deleteFolderComment
-    description: Deletes a comment from a folder
+    description: 从文件夹中删除评论
     params:
-      collectionId: The collection's unique ID (required)
-      folderId: The folder's unique ID (required)
-      commentId: The comment's ID (required)
+      collectionId: 集合的唯一 ID（必需）
+      folderId: 文件夹的唯一 ID（必需）
+      commentId: 评论 ID（必需）
   - name: getRequestComments
-    description: Gets all comments left by users in a request
+    description: 获取用户在请求中留下的所有评论
     params:
-      collectionId: The collection's unique ID (required)
-      requestId: The request ID with team ID prefix (required)
+      collectionId: 集合的唯一 ID（必需）
+      requestId: 带团队 ID 前缀的请求 ID（必需）
   - name: createRequestComment
-    description: Creates a comment on a request
+    description: 在请求上创建评论
     params:
-      collectionId: The collection's unique ID (required)
-      requestId: The request ID with team ID prefix (required)
-      body: The contents of the comment (required)
-      tags: Information about tagged users (optional)
-      threadId: Thread ID to create reply (optional)
+      collectionId: 集合的唯一 ID（必需）
+      requestId: 带团队 ID 前缀的请求 ID（必需）
+      body: 评论内容（必需）
+      tags: 有关标记用户的信息（可选）
+      threadId: 创建回复的线程 ID（可选）
   - name: updateRequestComment
-    description: Updates a comment on a request
+    description: 更新请求上的评论
     params:
-      collectionId: The collection's unique ID (required)
-      requestId: The request's unique ID (required)
-      commentId: The comment's ID (required)
-      body: The updated comment contents (required)
-      tags: Information about tagged users (optional)
+      collectionId: 集合的唯一 ID（必需）
+      requestId: 请求的唯一 ID（必需）
+      commentId: 评论 ID（必需）
+      body: 更新的评论内容（必需）
+      tags: 有关标记用户的信息（可选）
   - name: deleteRequestComment
-    description: Deletes a comment from a request
+    description: 从请求中删除评论
     params:
-      collectionId: The collection's unique ID (required)
-      requestId: The request's unique ID (required)
-      commentId: The comment's ID (required)
+      collectionId: 集合的唯一 ID（必需）
+      requestId: 请求的唯一 ID（必需）
+      commentId: 评论 ID（必需）
   - name: getResponseComments
-    description: Gets all comments left by users in a response
+    description: 获取用户在响应中留下的所有评论
     params:
-      collectionId: The collection's unique ID (required)
-      responseId: The response's unique ID (required)
+      collectionId: 集合的唯一 ID（必需）
+      responseId: 响应的唯一 ID（必需）
   - name: createResponseComment
-    description: Creates a comment on a response
+    description: 在响应上创建评论
     params:
-      collectionId: The collection's unique ID (required)
-      responseId: The response's unique ID (required)
-      body: The contents of the comment (required)
-      tags: Information about tagged users (optional)
-      threadId: Thread ID to create reply (optional)
+      collectionId: 集合的唯一 ID（必需）
+      responseId: 响应的唯一 ID（必需）
+      body: 评论内容（必需）
+      tags: 有关标记用户的信息（可选）
+      threadId: 创建回复的线程 ID（可选）
   - name: updateResponseComment
-    description: Updates a comment on a response
+    description: 更新响应上的评论
     params:
-      collectionId: The collection's unique ID (required)
-      responseId: The response's unique ID (required)
-      commentId: The comment's ID (required)
-      body: The updated comment contents (required)
-      tags: Information about tagged users (optional)
+      collectionId: 集合的唯一 ID（必需）
+      responseId: 响应的唯一 ID（必需）
+      commentId: 评论 ID（必需）
+      body: 更新的评论内容（必需）
+      tags: 有关标记用户的信息（可选）
   - name: deleteResponseComment
-    description: Deletes a comment from a response
+    description: 从响应中删除评论
     params:
-      collectionId: The collection's unique ID (required)
-      responseId: The response's unique ID (required)
-      commentId: The comment's ID (required)
+      collectionId: 集合的唯一 ID（必需）
+      responseId: 响应的唯一 ID（必需）
+      commentId: 评论 ID（必需）
   - name: resolveCommentThread
-    description: Resolves a comment thread and any associated replies
+    description: 解决评论线程及任何相关回复
     params:
-      threadId: The comment's thread ID (required)
+      threadId: 评论的线程 ID（必需）
   - name: getCollectionTags
-    description: Gets all tags associated with a collection
+    description: 获取与集合关联的所有标签
     params:
-      collectionId: The collection's unique ID (required)
+      collectionId: 集合的唯一 ID（必需）
   - name: updateCollectionTags
-    description: Updates a collection's associated tags
+    description: 更新集合的关联标签
     params:
-      collectionId: The collection's unique ID (required)
-      tags: List of associated tags as slugs (required)
+      collectionId: 集合的唯一 ID（必需）
+      tags: 关联标签的别名列表（必需）
   - name: getCollectionUpdatesTasks
-    description: Gets the status of an asynchronous collection update task
+    description: 获取异步集合更新任务的状态
     params:
-      taskId: The task's ID (required)
+      taskId: 任务 ID（必需）
   - name: getCollectionsForkedByUser
-    description: Gets a list of all authenticated user's forked collections
+    description: 获取所有已认证用户分支集合的列表
     params:
-      cursor: Pointer to first record of paginated results (optional)
-      direction: Sort by creation date asc/desc (optional)
-      limit: Maximum rows to return (optional)
+      cursor: 分页结果第一条记录的指针（可选）
+      direction: 按创建日期升序/降序排序（可选）
+      limit: 返回的最大行数（可选）
   - name: createEnvironment
-    description: Creates an environment
+    description: 创建环境
     params:
-      workspace: The workspace's ID (required)
-      environment: Environment information including name and values (required)
+      workspace: 工作区 ID（必需）
+      environment: 包含名称和值的环境信息（必需）
   - name: getEnvironment
-    description: Gets information about an environment
+    description: 获取有关环境的信息
     params:
-      environmentId: The environment's ID (required)
+      environmentId: 环境 ID（必需）
   - name: getEnvironments
-    description: Gets information about all environments
+    description: 获取有关所有环境的信息
     params:
-      workspace: The workspace's ID (optional)
+      workspace: 工作区 ID（可选）
   - name: putEnvironment
-    description: Replaces all contents of an environment
+    description: 替换环境的所有内容
     params:
-      environmentId: The environment's ID (required)
-      environment: Complete environment object (required)
+      environmentId: 环境 ID（必需）
+      environment: 完整的环境对象（必需）
   - name: patchEnvironment
-    description: Updates specific environment properties
+    description: 更新特定的环境属性
     params:
-      environmentId: The environment's ID (required)
-      body: Array of operations to perform (required)
+      environmentId: 环境 ID（必需）
+      body: 要执行的 operations 数组（必需）
   - name: deleteEnvironment
-    description: Deletes an environment
+    description: 删除环境
     params:
-      environmentId: The environment's ID (required)
+      environmentId: 环境 ID（必需）
   - name: createMock
-    description: Creates a mock server in a collection
+    description: 在集合中创建模拟服务器
     params:
-      workspace: The workspace's ID (required)
-      mock: Mock server information (required)
+      workspace: 工作区 ID（必需）
+      mock: 模拟服务器信息（必需）
   - name: getMock
-    description: Gets information about a mock server
+    description: 获取有关模拟服务器的信息
     params:
-      mockId: The mock's ID (required)
+      mockId: 模拟的 ID（必需）
   - name: getMocks
-    description: Gets all active mock servers
+    description: 获取所有活动的模拟服务器
     params:
-      teamId: Return results for team ID (optional)
-      workspace: Return results for workspace ID (optional)
+      teamId: 返回团队 ID 的结果（可选）
+      workspace: 返回工作区 ID 的结果（可选）
   - name: updateMock
-    description: Updates a mock server
+    description: 更新模拟服务器
     params:
-      mockId: The mock's ID (required)
-      mock: Mock server properties to update (required)
+      mockId: 模拟的 ID（必需）
+      mock: 要更新的模拟服务器属性（必需）
   - name: deleteMock
-    description: Deletes a mock server
+    description: 删除模拟服务器
     params:
-      mockId: The mock's ID (required)
+      mockId: 模拟的 ID（必需）
   - name: publishMock
-    description: Publishes a mock server (sets Access Control to public)
+    description: 发布模拟服务器（将访问控制设置为公开）
     params:
-      mockId: The mock's ID (required)
+      mockId: 模拟的 ID（必需）
   - name: unpublishMock
-    description: Unpublishes a mock server (sets Access Control to private)
+    description: 取消发布模拟服务器（将访问控制设置为私有）
     params:
-      mockId: The mock's ID (required)
+      mockId: 模拟的 ID（必需）
   - name: createMonitor
-    description: Creates a monitor
+    description: 创建监视器
     params:
-      workspace: The workspace's ID (required)
-      monitor: Monitor information (required)
+      workspace: 工作区 ID（必需）
+      monitor: 监视器信息（必需）
   - name: getMonitor
-    description: Gets information about a monitor
+    description: 获取有关监视器的信息
     params:
-      monitorId: The monitor's ID (required)
+      monitorId: 监视器 ID（必需）
   - name: getMonitors
-    description: Gets all monitors
+    description: 获取所有监视器
     params:
-      workspace: Return results for workspace ID (optional)
-      active: Return only active monitors (optional)
-      collectionUid: Filter by collection UID (optional)
-      environmentUid: Filter by environment UID (optional)
-      owner: Filter by user ID (optional)
-      cursor: Pointer to first record (optional)
-      limit: Maximum rows to return (optional)
+      workspace: 返回工作区 ID 的结果（可选）
+      active: 仅返回活动的监视器（可选）
+      collectionUid: 按集合 UID 过滤（可选）
+      environmentUid: 按环境 UID 过滤（可选）
+      owner: 按用户 ID 过滤（可选）
+      cursor: 第一条记录的指针（可选）
+      limit: 返回的最大行数（可选）
   - name: updateMonitor
-    description: Updates a monitor's configurations
+    description: 更新监视器的配置
     params:
-      monitorId: The monitor's ID (required)
-      monitor: Monitor properties to update (required)
+      monitorId: 监视器 ID（必需）
+      monitor: 要更新的监视器属性（必需）
   - name: deleteMonitor
-    description: Deletes a monitor
+    description: 删除监视器
     params:
-      monitorId: The monitor's ID (required)
+      monitorId: 监视器 ID（必需）
   - name: runMonitor
-    description: Runs a monitor and returns its run results
+    description: 运行监视器并返回其运行结果
     params:
-      monitorId: The monitor's ID (required)
-      async: Run asynchronously (optional)
+      monitorId: 监视器 ID（必需）
+      async: 异步运行（可选）
   - name: createWorkspace
-    description: Creates a new workspace
+    description: 创建新工作区
     params:
-      workspace: Workspace information (required)
+      workspace: 工作区信息（必需）
   - name: getWorkspace
-    description: Gets information about a workspace
+    description: 获取有关工作区的信息
     params:
-      workspaceId: The workspace's ID (required)
-      include: Include additional information (optional)
+      workspaceId: 工作区 ID（必需）
+      include: 包含附加信息（可选）
   - name: getWorkspaces
-    description: Gets all workspaces you have access to
+    description: 获取您有权访问的所有工作区
     params:
-      type: Filter by workspace type (optional)
-      createdBy: Filter by creator user ID (optional)
-      include: Include additional information (optional)
+      type: 按工作区类型过滤（可选）
+      createdBy: 按创建者用户 ID 过滤（可选）
+      include: 包含附加信息（可选）
   - name: updateWorkspace
-    description: Updates a workspace
+    description: 更新工作区
     params:
-      workspaceId: The workspace's ID (required)
-      workspace: Workspace properties to update (required)
+      workspaceId: 工作区 ID（必需）
+      workspace: 要更新的工作区属性（必需）
   - name: deleteWorkspace
-    description: Deletes an existing workspace
+    description: 删除现有工作区
     params:
-      workspaceId: The workspace's ID (required)
+      workspaceId: 工作区 ID（必需）
   - name: getWorkspaceGlobalVariables
-    description: Gets a workspace's global variables
+    description: 获取工作区的全局变量
     params:
-      workspaceId: The workspace's ID (required)
+      workspaceId: 工作区 ID（必需）
   - name: updateWorkspaceGlobalVariables
-    description: Updates a workspace's global variables
+    description: 更新工作区的全局变量
     params:
-      workspaceId: The workspace's ID (required)
-      values: Array of variable objects (required)
+      workspaceId: 工作区 ID（必需）
+      values: 变量对象数组（必需）
   - name: getWorkspaceTags
-    description: Gets all tags associated with a workspace
+    description: 获取与工作区关联的所有标签
     params:
-      workspaceId: The workspace's ID (required)
+      workspaceId: 工作区 ID（必需）
   - name: updateWorkspaceTags
-    description: Updates a workspace's associated tags
+    description: 更新工作区的关联标签
     params:
-      workspaceId: The workspace's ID (required)
-      tags: List of associated tags (required)
+      workspaceId: 工作区 ID（必需）
+      tags: 关联标签列表（必需）
   - name: createSpec
-    description: Creates an API specification in Postman's Spec Hub
+    description: 在 Postman 的 Spec Hub 中创建 API 规范
     params:
-      workspaceId: The workspace's ID (required)
-      name: The specification's name (required)
-      type: The specification's type - OPENAPI:3.0 or ASYNCAPI:2.0 (required)
-      files: List of specification files (required)
+      workspaceId: 工作区 ID（必需）
+      name: 规范名称（必需）
+      type: 规范类型 - OPENAPI:3.0 或 ASYNCAPI:2.0（必需）
+      files: 规范文件列表（必需）
   - name: getSpec
-    description: Gets information about an API specification
+    description: 获取有关 API 规范的信息
     params:
-      specId: The spec's ID (required)
+      specId: 规范的 ID（必需）
   - name: getAllSpecs
-    description: Gets all API specifications in a workspace
+    description: 获取工作区中的所有 API 规范
     params:
-      workspaceId: The workspace's ID (required)
-      cursor: Pointer to first record (optional)
-      limit: Maximum rows to return (optional)
+      workspaceId: 工作区 ID（必需）
+      cursor: 第一条记录的指针（可选）
+      limit: 返回的最大行数（可选）
   - name: updateSpec
-    description: Updates an API specification
+    description: 更新 API 规范
     params:
-      specId: The spec's ID (required)
-      spec: Specification properties to update (required)
+      specId: 规范的 ID（必需）
+      spec: 要更新的规范属性（必需）
   - name: deleteSpec
-    description: Deletes an API specification
+    description: 删除 API 规范
     params:
-      specId: The spec's ID (required)
+      specId: 规范的 ID（必需）
   - name: getSpecDefinition
-    description: Gets complete contents of an API specification's definition
+    description: 获取 API 规范定义的完整内容
     params:
-      specId: The spec's ID (required)
+      specId: 规范的 ID（必需）
   - name: getSpecFiles
-    description: Gets all files in an API specification
+    description: 获取 API 规范中的所有文件
     params:
-      specId: The spec's ID (required)
+      specId: 规范的 ID（必需）
   - name: createSpecFile
-    description: Creates an API specification file
+    description: 创建 API 规范文件
     params:
-      specId: The spec's ID (required)
-      path: The file's path (required)
-      content: The file's stringified contents (required)
+      specId: 规范的 ID（必需）
+      path: 文件路径（必需）
+      content: 文件的字符串化内容（必需）
   - name: getSpecFile
-    description: Gets the contents of an API specification's file
+    description: 获取 API 规范文件的内容
     params:
-      specId: The spec's ID (required)
-      filePath: The path to the file (required)
+      specId: 规范的 ID（必需）
+      filePath: 文件路径（必需）
   - name: updateSpecFile
-    description: Updates an API specification file
+    description: 更新 API 规范文件
     params:
-      specId: The spec's ID (required)
-      filePath: The path to the file (required)
-      content: The updated file contents (required)
+      specId: 规范的 ID（必需）
+      filePath: 文件路径（必需）
+      content: 更新的文件内容（必需）
   - name: deleteSpecFile
-    description: Deletes a file in an API specification
+    description: 删除 API 规范中的文件
     params:
-      specId: The spec's ID (required)
-      filePath: The path to the file (required)
+      specId: 规范的 ID（必需）
+      filePath: 文件路径（必需）
   - name: generateCollection
-    description: Creates a collection from an API specification
+    description: 从 API 规范创建集合
     params:
-      specId: The spec's ID (required)
-      elementType: The 'collection' element type (required)
-      name: The generated collection's name (required)
-      options: Advanced creation options (optional)
+      specId: 规范的 ID（必需）
+      elementType: 'collection' 元素类型（必需）
+      name: 生成的集合名称（必需）
+      options: 高级创建选项（可选）
   - name: getSpecCollections
-    description: Gets all of an API specification's generated collections
+    description: 获取 API 规范生成的所有集合
     params:
-      specId: The spec's ID (required)
-      elementType: The 'collection' element type (required)
-      cursor: Pointer to first record (optional)
-      limit: Maximum rows to return (optional)
+      specId: 规范的 ID（必需）
+      elementType: 'collection' 元素类型（必需）
+      cursor: 第一条记录的指针（可选）
+      limit: 返回的最大行数（可选）
   - name: syncCollectionWithSpec
-    description: Syncs a collection generated from an API specification
+    description: 同步从 API 规范生成的集合
     params:
-      collectionUid: The collection's unique ID (required)
-      specId: The spec's ID (required)
+      collectionUid: 集合的唯一 ID（必需）
+      specId: 规范的 ID（必需）
   - name: generateSpecFromCollection
-    description: Generates an API specification for a collection
+    description: 为集合生成 API 规范
     params:
-      collectionUid: The collection's unique ID (required)
-      elementType: The 'spec' value (required)
-      name: The API specification's name (required)
-      type: The specification's type (required)
-      format: The format - JSON or YAML (required)
+      collectionUid: 集合的唯一 ID（必需）
+      elementType: 'spec' 值（必需）
+      name: API 规范的名称（必需）
+      type: 规范类型（必需）
+      format: 格式 - JSON 或 YAML（必需）
   - name: getGeneratedCollectionSpecs
-    description: Gets the API specification generated for a collection
+    description: 获取为集合生成的 API 规范
     params:
-      collectionUid: The collection's unique ID (required)
-      elementType: The 'spec' value (required)
+      collectionUid: 集合的唯一 ID（必需）
+      elementType: 'spec' 值（必需）
   - name: syncSpecWithCollection
-    description: Syncs an API specification linked to a collection
+    description: 同步链接到集合的 API 规范
     params:
-      specId: The spec's ID (required)
-      collectionUid: The collection's unique ID (required)
+      specId: 规范的 ID（必需）
+      collectionUid: 集合的唯一 ID（必需）
   - name: getAsyncSpecTaskStatus
-    description: Gets the status of an asynchronous API specification creation task
+    description: 获取异步 API 规范创建任务的状态
     params:
-      elementType: Element to filter by - collections or specs (required)
-      elementId: The element's ID (required)
-      taskId: The task's ID (required)
+      elementType: 要过滤的元素 - collections 或 specs（必需）
+      elementId: 元素 ID（必需）
+      taskId: 任务 ID（必需）
   - name: publishDocumentation
-    description: Publishes a collection's documentation
+    description: 发布集合的文档
     params:
-      collectionId: The collection's unique ID (required)
-      documentationLayout: Default layout style (optional)
-      environmentUid: Environment UID to publish with (optional)
-      customColor: Theme colors in hexcode (optional)
-      customization: Documentation customization (optional)
+      collectionId: 集合的唯一 ID（必需）
+      documentationLayout: 默认布局样式（可选）
+      environmentUid: 要随其发布的环境 UID（可选）
+      customColor: 十六进制代码的主题颜色（可选）
+      customization: 文档自定义（可选）
   - name: unpublishDocumentation
-    description: Unpublishes a collection's documentation
+    description: 取消发布集合的文档
     params:
-      collectionId: The collection's unique ID (required)
+      collectionId: 集合的唯一 ID（必需）
   - name: getAllElementsAndFolders
-    description: Gets folders and elements in team's Private API Network
+    description: 获取团队 Private API Network 中的文件夹和元素
     params:
-      parentFolderId: Return elements in specific folder (optional)
-      type: Filter by element type (optional)
-      name: Filter by name (optional)
-      description: Filter by description (optional)
-      summary: Filter by summary (optional)
-      createdBy: Filter by creator user ID (optional)
-      addedBy: Filter by publisher user ID (optional)
-      since: Created since time (optional)
-      until: Created until time (optional)
-      sort: Sort by field (optional)
-      direction: Sort direction asc/desc (optional)
-      limit: Maximum results (optional)
-      offset: Zero-based offset (optional)
+      parentFolderId: 返回特定文件夹中的元素（可选）
+      type: 按元素类型过滤（可选）
+      name: 按名称过滤（可选）
+      description: 按描述过滤（可选）
+      summary: 按摘要过滤（可选）
+      createdBy: 按创建者用户 ID 过滤（可选）
+      addedBy: 按发布者用户 ID 过滤（可选）
+      since: 创建时间之后（可选）
+      until: 创建时间之前（可选）
+      sort: 按字段排序（可选）
+      direction: 排序方向升序/降序（可选）
+      limit: 最大结果数（可选）
+      offset: 从零开始的偏移量（可选）
   - name: postPanElementOrFolder
-    description: Publishes element or creates folder in Private API Network
+    description: 在 Private API Network 中发布元素或创建文件夹
     params:
-      body: Element or folder information (required)
+      body: 元素或文件夹信息（必需）
   - name: updatePanElementOrFolder
-    description: Updates element or folder in Private API Network
+    description: 在 Private API Network 中更新元素或文件夹
     params:
-      elementId: The element's ID or UUID (required)
-      elementType: The element type (required)
-      body: Updated properties (required)
+      elementId: 元素 ID 或 UUID（必需）
+      elementType: 元素类型（必需）
+      body: 更新的属性（必需）
   - name: deletePanElementOrFolder
-    description: Removes element or deletes folder from Private API Network
+    description: 从 Private API Network 中移除元素或删除文件夹
     params:
-      elementId: The element's ID or UUID (required)
-      elementType: The element type (required)
+      elementId: 元素 ID 或 UUID（必需）
+      elementType: 元素类型（必需）
   - name: getAllPanAddElementRequests
-    description: Gets list of requests to add elements to Private API Network
+    description: 获取向 Private API Network 添加元素的请求列表
     params:
-      name: Filter by element name (optional)
-      type: Filter by element type (optional)
-      status: Filter by request status (optional)
-      requestedBy: Filter by user ID (optional)
-      since: Created since time (optional)
-      until: Created until time (optional)
-      sort: Sort by field (optional)
-      direction: Sort direction asc/desc (optional)
-      limit: Maximum results (optional)
-      offset: Zero-based offset (optional)
+      name: 按元素名称过滤（可选）
+      type: 按元素类型过滤（可选）
+      status: 按请求状态过滤（可选）
+      requestedBy: 按用户 ID 过滤（可选）
+      since: 创建时间之后（可选）
+      until: 创建时间之前（可选）
+      sort: 按字段排序（可选）
+      direction: 排序方向升序/降序（可选）
+      limit: 最大结果数（可选）
+      offset: 从零开始的偏移量（可选）
   - name: respondPanElementAddRequest
-    description: Responds to a request to add element to Private API Network
+    description: 响应向 Private API Network 添加元素的请求
     params:
-      requestId: The request's ID (required)
-      response: Response with status and optional note (required)
+      requestId: 请求 ID（必需）
+      response: 包含状态和可选注释的响应（必需）
   - name: getTaggedEntities
-    description: Gets Postman elements by a given tag
+    description: 通过给定标签获取 Postman 元素
     params:
-      slug: The tag's ID (required)
-      entityType: Filter by entity type (optional)
-      direction: Sort direction asc/desc (optional)
-      limit: Maximum results (optional)
-      cursor: Cursor for pagination (optional)
+      slug: 标签 ID（必需）
+      entityType: 按实体类型过滤（可选）
+      direction: 排序方向升序/降序（可选）
+      limit: 最大结果数（可选）
+      cursor: 分页游标（可选）
   - name: getStatusOfAnAsyncApiTask
-    description: Gets the status of an asynchronous task
+    description: 获取异步任务的状态
     params:
-      apiId: The API's ID (required)
-      taskId: The task's ID (required)
-      Accept: The required request header (required)
+      apiId: API ID（必需）
+      taskId: 任务 ID（必需）
+      Accept: 必需的请求头（必需）
   - name: deleteApiCollectionComment
-    description: Deletes a comment from an API's collection
+    description: 从 API 集合中删除评论
     params:
-      apiId: The API's ID (required)
-      collectionId: The collection's unique ID (required)
-      commentId: The comment's ID (required)
+      apiId: API ID（必需）
+      collectionId: 集合的唯一 ID（必需）
+      commentId: 评论 ID（必需）
   - name: updateApiCollectionComment
-    description: Updates a comment on an API's collection
+    description: 更新 API 集合上的评论
     params:
-      apiId: The API's ID (required)
-      collectionId: The collection's unique ID (required)
-      commentId: The comment's ID (required)
-      body: The updated comment contents (required)
-      tags: Information about tagged users (optional)
+      apiId: API ID（必需）
+      collectionId: 集合的唯一 ID（必需）
+      commentId: 评论 ID（必需）
+      body: 更新的评论内容（必需）
+      tags: 有关标记用户的信息（可选）
 

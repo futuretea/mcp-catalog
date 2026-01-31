@@ -1,268 +1,268 @@
 name: Terraform
-shortDescription: Manage Terraform Cloud workspaces, runs, variables, and explore the registry
+shortDescription: 管理 Terraform Cloud 工作区、运行、变量，并浏览注册表
 description: |
-  A Model Context Protocol (MCP) server that provides seamless integration with the Terraform ecosystem, enabling advanced automation and interaction capabilities for Infrastructure as Code (IaC) development. Connect to Terraform Cloud or Terraform Enterprise to manage workspaces, runs, variables, and explore the Terraform Registry.
+  一个 Model Context Protocol (MCP) 服务器，提供与 Terraform 生态系统的无缝集成，为基础设施即代码 (IaC) 开发实现高级自动化和交互功能。连接到 Terraform Cloud 或 Terraform Enterprise 以管理工作区、运行、变量，并浏览 Terraform Registry。
 
-  ## Features
-  - **Workspace Management**: Create, update, list, and manage Terraform Cloud/Enterprise workspaces
-  - **Run Operations**: Create and monitor Terraform runs (plans and applies)
-  - **Variable Management**: Manage workspace variables and variable sets across your organization
-  - **Registry Search**: Search and retrieve documentation for public modules, providers, and policies
-  - **Private Registry**: Access your organization's private modules and providers
-  - **Tag Management**: Organize workspaces with tags for better organization
-  - **Organization Management**: List and manage Terraform organizations and projects
+  ## 功能特性
+  - **工作区管理**: 创建、更新、列出和管理 Terraform Cloud/Enterprise 工作区
+  - **运行操作**: 创建和监控 Terraform 运行 (计划和应用)
+  - **变量管理**: 管理组织中的工作区变量和变量集
+  - **注册表搜索**: 搜索和检索公共模块、提供者和策略的文档
+  - **私有注册表**: 访问您组织的私有模块和提供者
+  - **标签管理**: 使用标签组织工作区以进行更好的管理
+  - **组织管理**: 列出和管理 Terraform 组织和项目
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **Required:**
-  - **Terraform Cloud/Enterprise Token**: Your API token for authentication. Generate from User Settings > Tokens in Terraform Cloud.
+  **必需:**
+  - **Terraform Cloud/Enterprise Token**: 用于认证的 API 令牌。在 Terraform Cloud 的用户设置 > 令牌中生成。
 
-  **Optional:**
-  - **Terraform Address**: HCP Terraform or Terraform Enterprise address. default to https://app.terraform.io
+  **可选:**
+  - **Terraform Address**: HCP Terraform 或 Terraform Enterprise 地址。默认为 https://app.terraform.io
 
 metadata:
-  categories: DevOps, Cloud Infrastructure, Automation
+  categories: DevOps, 云基础设施, 自动化
 icon: https://raw.githubusercontent.com/hashicorp/terraform-mcp-server/5530ac1e1bc26b0e863fcd55634ea550bea18883/public/images/Terraform-LogoMark_onDark.svg
 repoURL: https://github.com/hashicorp/terraform-mcp-server
 
 toolPreview:
 - name: list_terraform_orgs
-  description: Lists all Terraform organizations you have access to. Use this to discover available organizations before performing other operations.
+  description: 列出您有权访问的所有 Terraform 组织。在执行其他操作之前使用此工具发现可用的组织。
   params:
-    page: "Optional. Page number for pagination (min 1)"
-    pageSize: "Optional. Results per page for pagination (min 1, max 100)"
+    page: "可选。分页的页码 (最小 1)"
+    pageSize: "可选。分页的每页结果数 (最小 1，最大 100)"
 - name: list_terraform_projects
-  description: Lists all projects within a Terraform organization. Projects help organize workspaces.
+  description: 列出 Terraform 组织中的所有项目。项目有助于组织工作区。
   params:
-    terraform_org_name: "The Terraform organization name to list projects for"
-    page: "Optional. Page number for pagination (min 1)"
-    pageSize: "Optional. Results per page for pagination (min 1, max 100)"
+    terraform_org_name: "要列出项目的 Terraform 组织名称"
+    page: "可选。分页的页码 (最小 1)"
+    pageSize: "可选。分页的每页结果数 (最小 1，最大 100)"
 - name: list_workspaces
-  description: Search and list Terraform workspaces within an organization. Returns all workspaces when no filters are applied, or filters by name patterns, tags, or search queries.
+  description: 搜索和列出组织中的 Terraform 工作区。未应用过滤器时返回所有工作区，或按名称模式、标签或搜索查询过滤。
   params:
-    terraform_org_name: "The Terraform organization name"
-    search_query: "Optional. Search query to filter workspaces by name"
-    wildcard_name: "Optional. Wildcard pattern to match workspace names"
-    tags: "Optional. Comma-separated list of tags to filter workspaces"
-    exclude_tags: "Optional. Comma-separated list of tags to exclude from results"
-    project_id: "Optional. Project ID to filter workspaces"
-    page: "Optional. Page number for pagination (min 1)"
-    pageSize: "Optional. Results per page for pagination (min 1, max 100)"
+    terraform_org_name: "Terraform 组织名称"
+    search_query: "可选。按名称过滤工作区的搜索查询"
+    wildcard_name: "可选。匹配工作区名称的通配符模式"
+    tags: "可选。用于过滤工作区的逗号分隔标签列表"
+    exclude_tags: "可选。要从结果中排除的逗号分隔标签列表"
+    project_id: "可选。用于过滤工作区的项目 ID"
+    page: "可选。分页的页码 (最小 1)"
+    pageSize: "可选。分页的每页结果数 (最小 1，最大 100)"
 - name: create_workspace
-  description: Creates a new Terraform workspace in the specified organization. This is a destructive operation that will create new infrastructure resources when runs are applied.
+  description: 在指定组织中创建新的 Terraform 工作区。这是一个破坏性操作，在运行应用时将创建新的基础设施资源。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The name of the workspace to create"
-    description: "Optional. Description for the workspace"
-    auto_apply: "Optional. Whether to automatically apply successful plans: 'true' or 'false' (default: 'false')"
-    execution_mode: "Optional. Execution mode: 'remote', 'local', or 'agent' (default: 'remote')"
-    terraform_version: "Optional. Terraform version to use (e.g., '1.5.0')"
-    working_directory: "Optional. Working directory for Terraform operations"
-    project_id: "Optional. Project ID to associate the workspace with"
-    tags: "Optional. Comma-separated list of tags to apply to the workspace"
-    vcs_repo_identifier: "Optional. VCS repository identifier (e.g., 'org/repo')"
-    vcs_repo_branch: "Optional. VCS repository branch (default: main/master)"
-    vcs_repo_oauth_token_id: "Optional. OAuth token ID for VCS integration"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "要创建的工作区名称"
+    description: "可选。工作区描述"
+    auto_apply: "可选。是否自动应用成功的计划: ''true'' 或 ''false'' (默认: ''false'')"
+    execution_mode: "可选。执行模式: ''remote''、''local'' 或 ''agent'' (默认: ''remote'')"
+    terraform_version: "可选。要使用的 Terraform 版本 (例如 ''1.5.0'')"
+    working_directory: "可选。Terraform 操作的工作目录"
+    project_id: "可选。要关联工作区的项目 ID"
+    tags: "可选。要应用到工作区的逗号分隔标签列表"
+    vcs_repo_identifier: "可选。VCS 仓库标识符 (例如 ''org/repo'')"
+    vcs_repo_branch: "可选。VCS 仓库分支 (默认: main/master)"
+    vcs_repo_oauth_token_id: "可选。VCS 集成的 OAuth 令牌 ID"
 - name: update_workspace
-  description: Updates an existing Terraform workspace configuration. This is a potentially destructive operation that may affect infrastructure resources.
+  description: 更新现有的 Terraform 工作区配置。这是一个潜在的破坏性操作，可能会影响基础设施资源。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The name of the workspace to update"
-    new_name: "Optional. New name for the workspace"
-    description: "Optional. New description for the workspace"
-    auto_apply: "Optional. Whether to automatically apply successful plans: 'true' or 'false'"
-    execution_mode: "Optional. Execution mode: 'remote', 'local', or 'agent'"
-    terraform_version: "Optional. New Terraform version to use"
-    working_directory: "Optional. New working directory"
-    tags: "Optional. Comma-separated list of tags to replace existing tags"
-    queue_all_runs: "Optional. Whether to queue all runs: 'true' or 'false'"
-    speculative_enabled: "Optional. Whether speculative plans are enabled: 'true' or 'false'"
-    trigger_prefixes: "Optional. Comma-separated list of trigger prefixes"
-    file_triggers_enabled: "Optional. Whether file triggers are enabled: 'true' or 'false'"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "要更新的工作区名称"
+    new_name: "可选。工作区的新名称"
+    description: "可选。工作区的新描述"
+    auto_apply: "可选。是否自动应用成功的计划: ''true'' 或 ''false''"
+    execution_mode: "可选。执行模式: ''remote''、''local'' 或 ''agent''"
+    terraform_version: "可选。要使用的新 Terraform 版本"
+    working_directory: "可选。新的工作目录"
+    tags: "可选。用于替换现有标签的逗号分隔标签列表"
+    queue_all_runs: "可选。是否排队所有运行: ''true'' 或 ''false''"
+    speculative_enabled: "可选。是否启用推测性计划: ''true'' 或 ''false''"
+    trigger_prefixes: "可选。逗号分隔的触发前缀列表"
+    file_triggers_enabled: "可选。是否启用文件触发器: ''true'' 或 ''false''"
 - name: get_workspace_details
-  description: Fetches detailed information about a specific Terraform workspace, including configuration, variables, and current state information.
+  description: 获取特定 Terraform 工作区的详细信息，包括配置、变量和当前状态信息。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The name of the workspace to get details for"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "要获取详细信息的工作区名称"
 - name: list_runs
-  description: List or search Terraform runs in a workspace or organization with optional filtering by status and other criteria.
+  description: 在工作区或组织中列出或搜索 Terraform 运行，可选择按状态和其他条件过滤。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "Optional. If specified, lists runs in the given workspace instead of the organization"
-    status: "Optional. Array of run status filters (e.g., ['pending', 'planning', 'applied'])"
-    vcs_username: "Optional. Searches for runs that match the VCS username"
-    page: "Optional. Page number for pagination (min 1)"
-    pageSize: "Optional. Results per page for pagination (min 1, max 100)"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "可选。如果指定，则列出给定工作区中的运行，而不是组织中的运行"
+    status: "可选。运行状态过滤器数组 (例如 [''pending'', ''planning'', ''applied''])"
+    vcs_username: "可选。搜索与 VCS 用户名匹配的运行"
+    page: "可选。分页的页码 (最小 1)"
+    pageSize: "可选。分页的每页结果数 (最小 1，最大 100)"
 - name: create_run
-  description: Creates a new Terraform run (plan/apply) in the specified workspace. This initiates infrastructure changes.
+  description: 在指定工作区中创建新的 Terraform 运行 (计划/应用)。这将启动基础设施更改。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The name of the workspace to create a run in"
-    message: "Optional. Message for the run"
-    run_type: "Optional. Run type: 'plan_and_apply', 'refresh_state', 'plan_only', or 'allow_empty_apply' (default: 'plan_and_apply')"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "要创建运行的工作区名称"
+    message: "可选。运行的消息"
+    run_type: "可选。运行类型: ''plan_and_apply''、''refresh_state''、''plan_only'' 或 ''allow_empty_apply'' (默认: ''plan_and_apply'')"
 - name: get_run_details
-  description: Fetches detailed information about a specific Terraform run, including status, logs, and resource changes.
+  description: 获取特定 Terraform 运行的详细信息，包括状态、日志和资源更改。
   params:
-    run_id: "The ID of the run to get details for"
+    run_id: "要获取详细信息的运行 ID"
 - name: list_workspace_variables
-  description: Lists all variables in a Terraform workspace. Returns all variables if query is empty.
+  description: 列出 Terraform 工作区中的所有变量。如果查询为空，则返回所有变量。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The workspace name"
-    page: "Optional. Page number for pagination (min 1)"
-    pageSize: "Optional. Results per page for pagination (min 1, max 100)"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "工作区名称"
+    page: "可选。分页的页码 (最小 1)"
+    pageSize: "可选。分页的每页结果数 (最小 1，最大 100)"
 - name: create_workspace_variable
-  description: Creates a new variable in a Terraform workspace. Variables can be Terraform variables or environment variables.
+  description: 在 Terraform 工作区中创建新变量。变量可以是 Terraform 变量或环境变量。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The workspace name"
-    key: "Variable key/name"
-    value: "Variable value"
-    category: "Variable category: 'terraform' or 'env' (default: 'env')"
-    description: "Optional. Variable description"
-    sensitive: "Optional. Whether variable is sensitive: true or false (default: false)"
-    hcl: "Optional. Whether variable is HCL: true or false (default: false)"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "工作区名称"
+    key: "变量键/名称"
+    value: "变量值"
+    category: "变量类别: ''terraform'' 或 ''env'' (默认: ''env'')"
+    description: "可选。变量描述"
+    sensitive: "可选。变量是否敏感: true 或 false (默认: false)"
+    hcl: "可选。变量是否为 HCL: true 或 false (默认: false)"
 - name: update_workspace_variable
-  description: Updates an existing variable in a Terraform workspace.
+  description: 更新 Terraform 工作区中的现有变量。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The workspace name"
-    variable_id: "Variable ID to update"
-    key: "Variable key/name"
-    value: "Variable value"
-    description: "Optional. Variable description"
-    sensitive: "Optional. Whether variable is sensitive: true or false"
-    hcl: "Optional. Whether variable is HCL: true or false"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "工作区名称"
+    variable_id: "要更新的变量 ID"
+    key: "变量键/名称"
+    value: "变量值"
+    description: "可选。变量描述"
+    sensitive: "可选。变量是否敏感: true 或 false"
+    hcl: "可选。变量是否为 HCL: true 或 false"
 - name: list_variable_sets
-  description: Lists all variable sets in an organization. Variable sets allow you to share variables across multiple workspaces.
+  description: 列出组织中的所有变量集。变量集允许您在多个工作区之间共享变量。
   params:
-    terraform_org_name: "The Terraform organization name"
-    query: "Optional. Filter query for variable set names"
-    page: "Optional. Page number for pagination (min 1)"
-    pageSize: "Optional. Results per page for pagination (min 1, max 100)"
+    terraform_org_name: "Terraform 组织名称"
+    query: "可选。用于变量集名称的过滤查询"
+    page: "可选。分页的页码 (最小 1)"
+    pageSize: "可选。分页的每页结果数 (最小 1，最大 100)"
 - name: create_variable_set
-  description: Creates a new variable set in an organization. Variable sets can be applied to multiple workspaces.
+  description: 在组织中创建新的变量集。变量集可以应用于多个工作区。
   params:
-    terraform_org_name: "The Terraform organization name"
-    name: "Variable set name"
-    description: "Optional. Variable set description"
-    global: "Optional. Whether variable set is global: true or false (default: false)"
+    terraform_org_name: "Terraform 组织名称"
+    name: "变量集名称"
+    description: "可选。变量集描述"
+    global: "可选。变量集是否为全局: true 或 false (默认: false)"
 - name: create_variable_in_variable_set
-  description: Creates a new variable in a variable set.
+  description: 在变量集中创建新变量。
   params:
-    variable_set_id: "Variable set ID"
-    key: "Variable key/name"
-    value: "Variable value"
-    category: "Optional. Variable category: 'terraform' or 'env' (default: 'terraform')"
-    description: "Optional. Variable description"
-    sensitive: "Optional. Whether variable is sensitive: true or false (default: false)"
-    hcl: "Optional. Whether variable is HCL: true or false (default: false)"
+    variable_set_id: "变量集 ID"
+    key: "变量键/名称"
+    value: "变量值"
+    category: "可选。变量类别: ''terraform'' 或 ''env'' (默认: ''terraform'')"
+    description: "可选。变量描述"
+    sensitive: "可选。变量是否敏感: true 或 false (默认: false)"
+    hcl: "可选。变量是否为 HCL: true 或 false (默认: false)"
 - name: delete_variable_in_variable_set
-  description: Deletes a variable from a variable set.
+  description: 从变量集中删除变量。
   params:
-    variable_set_id: "Variable set ID"
-    variable_id: "Variable ID to delete"
+    variable_set_id: "变量集 ID"
+    variable_id: "要删除的变量 ID"
 - name: attach_variable_set_to_workspaces
-  description: Attaches a variable set to one or more workspaces, making the variables available to those workspaces.
+  description: 将变量集附加到一个或多个工作区，使这些工作区可以使用这些变量。
   params:
-    variable_set_id: "Variable set ID"
-    workspace_ids: "Comma-separated list of workspace IDs"
+    variable_set_id: "变量集 ID"
+    workspace_ids: "逗号分隔的工作区 ID 列表"
 - name: detach_variable_set_from_workspaces
-  description: Detaches a variable set from one or more workspaces.
+  description: 从一个或多个工作区分离变量集。
   params:
-    variable_set_id: "Variable set ID"
-    workspace_ids: "Comma-separated list of workspace IDs"
+    variable_set_id: "变量集 ID"
+    workspace_ids: "逗号分隔的工作区 ID 列表"
 - name: read_workspace_tags
-  description: Reads all tags from a Terraform workspace. Tags help organize and filter workspaces.
+  description: 读取 Terraform 工作区的所有标签。标签有助于组织和过滤工作区。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The workspace name"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "工作区名称"
 - name: create_workspace_tags
-  description: Adds tags to a Terraform workspace. Use key:value format for key-value tags.
+  description: 向 Terraform 工作区添加标签。对键值标签使用 key:value 格式。
   params:
-    terraform_org_name: "The Terraform organization name"
-    workspace_name: "The workspace name"
-    tags: "Comma-separated list of tag names to add (e.g., 'environment:production,team:platform')"
+    terraform_org_name: "Terraform 组织名称"
+    workspace_name: "工作区名称"
+    tags: "要添加的逗号分隔标签名称列表 (例如 ''environment:production,team:platform'')"
 - name: search_modules
-  description: Searches for Terraform modules in the public Terraform Registry. Returns a list of matching modules with download counts and verification status.
+  description: 在公共 Terraform Registry 中搜索 Terraform 模块。返回匹配模块列表，包含下载次数和验证状态。
   params:
-    module_query: "The query to search for Terraform modules (e.g., 'vpc aws', 'kubernetes')"
-    current_offset: "Optional. Current offset for pagination (default: 0)"
+    module_query: "搜索 Terraform 模块的查询 (例如 ''vpc aws''、''kubernetes'')"
+    current_offset: "可选。分页的当前偏移量 (默认: 0)"
 - name: get_module_details
-  description: Fetches detailed documentation for a specific Terraform module, including inputs, outputs, dependencies, and usage examples. You must call 'search_modules' first to obtain the module_id.
+  description: 获取特定 Terraform 模块的详细文档，包括输入、输出、依赖项和使用示例。您必须先调用 ''search_modules'' 以获取 module_id。
   params:
-    module_id: "Exact module_id from search_modules (e.g., 'terraform-aws-modules/vpc/aws/6.4.0')"
+    module_id: "来自 search_modules 的精确 module_id (例如 ''terraform-aws-modules/vpc/aws/6.4.0'')"
 - name: get_latest_module_version
-  description: Fetches the latest version of a Terraform module from the public registry.
+  description: 从公共注册表获取 Terraform 模块的最新版本。
   params:
-    module_publisher: "The publisher of the module (e.g., 'hashicorp', 'terraform-aws-modules')"
-    module_name: "The name of the module (e.g., 'vpc', 'eks')"
-    module_provider: "The provider for the module (e.g., 'aws', 'google', 'azurerm')"
+    module_publisher: "模块的发布者 (例如 ''hashicorp''、''terraform-aws-modules'')"
+    module_name: "模块的名称 (例如 ''vpc''、''eks'')"
+    module_provider: "模块的提供者 (例如 ''aws''、''google''、''azurerm'')"
 - name: search_providers
-  description: Searches for Terraform provider documentation. Returns a list of matching resources, data sources, or guides. You must call this before 'get_provider_details' to obtain the provider_doc_id.
+  description: 搜索 Terraform 提供者文档。返回匹配资源、数据源或指南的列表。在调用 ''get_provider_details'' 之前必须先调用此工具以获取 provider_doc_id。
   params:
-    provider_namespace: "The namespace of the provider (e.g., 'hashicorp')"
-    provider_name: "The name of the provider (e.g., 'aws', 'google', 'azurerm')"
-    service_slug: "The service slug to search for (e.g., 's3', 'ec2', 'vpc')"
-    provider_version: "Optional. The provider version (e.g., '5.0.0' or 'latest')"
-    provider_data_type: "Optional. Type of documentation: 'resources', 'data-sources', 'functions', 'guides', or 'overview' (default: 'resources')"
+    provider_namespace: "提供者的命名空间 (例如 ''hashicorp'')"
+    provider_name: "提供者的名称 (例如 ''aws''、''google''、''azurerm'')"
+    service_slug: "要搜索的服务代码 (例如 ''s3''、''ec2''、''vpc'')"
+    provider_version: "可选。提供者版本 (例如 ''5.0.0'' 或 ''latest'')"
+    provider_data_type: "可选。文档类型: ''resources''、''data-sources''、''functions''、''guides'' 或 ''overview'' (默认: ''resources'')"
 - name: get_provider_details
-  description: Fetches detailed documentation for a specific Terraform provider resource, data source, or guide. You must call 'search_providers' first to obtain the provider_doc_id.
+  description: 获取特定 Terraform 提供者资源、数据源或指南的详细文档。您必须先调用 ''search_providers'' 以获取 provider_doc_id。
   params:
-    provider_doc_id: "Exact provider_doc_id from search_providers (e.g., '10177451')"
+    provider_doc_id: "来自 search_providers 的精确 provider_doc_id (例如 ''10177451'')"
 - name: get_latest_provider_version
-  description: Fetches the latest version of a Terraform provider from the public registry.
+  description: 从公共注册表获取 Terraform 提供者的最新版本。
   params:
-    namespace: "The namespace of the provider (e.g., 'hashicorp')"
-    name: "The name of the provider (e.g., 'aws', 'google', 'azurerm')"
+    namespace: "提供者的命名空间 (例如 ''hashicorp'')"
+    name: "提供者的名称 (例如 ''aws''、''google''、''azurerm'')"
 - name: search_policies
-  description: Searches for Terraform Sentinel policies in the public registry. Returns a list of matching policy sets.
+  description: 在公共注册表中搜索 Terraform Sentinel 策略。返回匹配的策略集列表。
   params:
-    policy_query: "The query to search for policies (e.g., 'CIS', 'aws security')"
+    policy_query: "搜索策略的查询 (例如 ''CIS''、''aws security'')"
 - name: get_policy_details
-  description: Fetches detailed documentation for a specific Terraform Sentinel policy, including policy code and usage instructions. You must call 'search_policies' first to obtain the terraform_policy_id.
+  description: 获取特定 Terraform Sentinel 策略的详细文档，包括策略代码和使用说明。您必须先调用 ''search_policies'' 以获取 terraform_policy_id。
   params:
-    terraform_policy_id: "Exact terraform_policy_id from search_policies (e.g., 'policies/hashicorp/CIS-Policy-Set-for-AWS-Terraform/1.0.1')"
+    terraform_policy_id: "来自 search_policies 的精确 terraform_policy_id (例如 ''policies/hashicorp/CIS-Policy-Set-for-AWS-Terraform/1.0.1'')"
 - name: search_private_modules
-  description: Searches for private modules in your Terraform Cloud/Enterprise organization. Returns modules that match the search criteria.
+  description: 在您的 Terraform Cloud/Enterprise 组织中搜索私有模块。返回符合搜索条件的模块。
   params:
-    terraform_org_name: "The Terraform organization name"
-    search_query: "Optional. Search query to filter modules by name or namespace"
-    page_number: "Optional. Page number for pagination (starts at 1)"
-    page_size: "Optional. Number of results per page (max 100)"
+    terraform_org_name: "Terraform 组织名称"
+    search_query: "可选。按名称或命名空间过滤模块的搜索查询"
+    page_number: "可选。分页的页码 (从 1 开始)"
+    page_size: "可选。每页结果数 (最大 100)"
 - name: get_private_module_details
-  description: Retrieves detailed information about a specific private module in your organization, including inputs, outputs, and usage examples. Call 'search_private_modules' first to obtain the private_module_id.
+  description: 检索组织中特定私有模块的详细信息，包括输入、输出和使用示例。先调用 ''search_private_modules'' 以获取 private_module_id。
   params:
-    terraform_org_name: "The Terraform organization name"
-    private_module_id: "The private module ID in format 'namespace/name/provider' (e.g., 'my-org/vpc/aws')"
-    private_module_version: "Optional. Specific version to retrieve (uses latest if not provided)"
-    registry_name: "Optional. Registry type: 'private' or 'public' (default: 'private')"
+    terraform_org_name: "Terraform 组织名称"
+    private_module_id: "格式为 ''namespace/name/provider'' 的私有模块 ID (例如 ''my-org/vpc/aws'')"
+    private_module_version: "可选。要检索的特定版本 (如果未提供则使用最新版本)"
+    registry_name: "可选。注册表类型: ''private'' 或 ''public'' (默认: ''private'')"
 - name: search_private_providers
-  description: Searches for private providers in your Terraform Cloud/Enterprise organization.
+  description: 在您的 Terraform Cloud/Enterprise 组织中搜索私有提供者。
   params:
-    terraform_org_name: "The Terraform organization name"
-    search_query: "Optional. Search query to filter providers by name or namespace"
-    registry_name: "Optional. Registry type: 'private' or 'public' (default: 'private')"
-    page_number: "Optional. Page number for pagination (starts at 1)"
-    page_size: "Optional. Number of results per page (max 100)"
+    terraform_org_name: "Terraform 组织名称"
+    search_query: "可选。按名称或命名空间过滤提供者的搜索查询"
+    registry_name: "可选。注册表类型: ''private'' 或 ''public'' (默认: ''private'')"
+    page_number: "可选。分页的页码 (从 1 开始)"
+    page_size: "可选。每页结果数 (最大 100)"
 - name: get_private_provider_details
-  description: Retrieves information about a specific private provider in your organization, including available versions and usage documentation.
+  description: 检索组织中特定私有提供者的信息，包括可用版本和使用文档。
   params:
-    terraform_org_name: "The Terraform organization name"
-    private_provider_namespace: "The namespace of the private provider"
-    private_provider_name: "The name of the private provider"
-    registry_name: "Optional. Registry type: 'private' or 'public' (default: 'private')"
-    include_versions: "Optional. Whether to include version information (default: true)"
+    terraform_org_name: "Terraform 组织名称"
+    private_provider_namespace: "私有提供者的命名空间"
+    private_provider_name: "私有提供者的名称"
+    registry_name: "可选。注册表类型: ''private'' 或 ''public'' (默认: ''private'')"
+    include_versions: "可选。是否包含版本信息 (默认: true)"
 
 env:
 - name: Terraform Cloud/Enterprise Token
   key: TFE_TOKEN
-  description: Your Terraform Cloud or Enterprise API token for authentication. Generate from User Settings > Tokens in Terraform Cloud.
+  description: 用于认证的 Terraform Cloud 或 Enterprise API 令牌。在 Terraform Cloud 的用户设置 > 令牌中生成。
   required: true
   sensitive: true
 - name: Terraform Address
   key: TFE_ADDRESS
-  description: HCP Terraform or Terraform Enterprise address. Defaults to https://app.terraform.io
+  description: HCP Terraform 或 Terraform Enterprise 地址。默认为 https://app.terraform.io
   required: false
   sensitive: false
 

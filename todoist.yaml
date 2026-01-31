@@ -1,19 +1,19 @@
 name: Todoist
-shortDescription: Manage Todoist tasks, projects, and team collaboration through natural language
+shortDescription: 通过自然语言管理 Todoist 任务、项目和团队协作
 description: |
 
-  A Model Context Protocol (MCP) server for Todoist integration, providing comprehensive task and project management capabilities through Todoist's API.
+  一个用于 Todoist 集成的 Model Context Protocol (MCP) 服务器，通过 Todoist API 提供全面的任务和项目管理功能。
 
-  ## Features
-  - **Access Todoist data from compatible AI applications**
-  - **Create and manage tasks, projects, and sections through natural language**
-  - **Track activity and completed tasks with detailed history**
-  - **Manage team collaboration and task assignments**
-  - **Search across tasks and projects efficiently**
+  ## 功能特性
+  - **从兼容的 AI 应用程序访问 Todoist 数据**
+  - **通过自然语言创建和管理任务、项目和分区**
+  - **使用详细历史记录跟踪活动和已完成的任务**
+  - **管理团队协作和任务分配**
+  - **跨任务和项目高效搜索**
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **No Setup Required**: Authentication is handled automatically through Todoist's OAuth2 workflow
+  **无需设置**：通过 Todoist 的 OAuth2 工作流自动处理身份验证
 
 metadata:
   categories: Business, Productivity
@@ -24,164 +24,164 @@ runtime: remote
 remoteConfig:
   fixedURL: https://ai.todoist.net/mcp
 toolPreview:
-  # User & Account Information
+  # 用户和账户信息
   - name: user-info
-    description: Get comprehensive user information including user ID, full name, email, timezone with current local time, week start day preferences, current week dates, daily/weekly goal progress, and user plan (Free/Pro/Business).
+    description: 获取全面的用户信息，包括用户 ID、全名、邮箱、带当前本地时间的时区、周起始日偏好、当前周日期、每日/每周目标进度以及用户计划（Free/Pro/Business）。
     params: {}
 
-  # Overview & Navigation
+  # 概览和导航
   - name: get-overview
-    description: Get a Markdown overview. If no projectId is provided, shows all projects with hierarchy and sections (useful for navigation). If projectId is provided, shows detailed overview of that specific project including all tasks grouped by sections.
+    description: 获取 Markdown 概览。如果未提供 projectId，则显示所有项目的层级和分区（对导航有用）。如果提供了 projectId，则显示该特定项目的详细概览，包括按分组的所有任务。
     params:
-      projectId: "Optional project ID. If provided, shows detailed overview of that project. If omitted, shows overview of all projects."
+      projectId: "可选的项目 ID。如果提供，则显示该项目的详细概览。如果省略，则显示所有项目的概览。"
 
-  # Project Management
+  # 项目管理
   - name: add-projects
-    description: Add one or more new projects. Essential for project setup and organization.
+    description: 添加一个或多个新项目。对项目设置和组织至关重要。
     params:
-      projects: "Array of projects to add, each with name (required), parentId (optional for sub-projects), viewStyle (optional: list, board, calendar), and isFavorite (optional boolean)"
+      projects: "要添加的项目数组，每个项目包含 name（必需）、parentId（子项目的可选）、viewStyle（可选：list、board、calendar）和 isFavorite（可选布尔值）"
   - name: update-projects
-    description: Update multiple existing projects with new values. Modify project properties like name, view style, favorite status, or parent (to reorganize hierarchy).
+    description: 使用新值更新多个现有项目。修改项目名称、视图样式、收藏状态或父级（以重新组织层级）。
     params:
-      projects: "Array of projects to update, each requiring id and optional fields: name, viewStyle, isFavorite, parentId"
+      projects: "要更新的项目数组，每个项目需要 id 和可选字段：name、viewStyle、isFavorite、parentId"
   - name: find-projects
-    description: List all projects or search for projects by name. If search parameter is omitted, all projects are returned. Use for project discovery and navigation.
+    description: 列出所有项目或按名称搜索项目。如果省略搜索参数，则返回所有项目。用于项目发现和导航。
     params:
-      search: "Search for a project by name (partial and case insensitive match). If omitted, all projects are returned."
-      limit: "Maximum number of projects to return (1-100, default: 50)"
-      cursor: "Cursor for pagination to get the next page of projects"
+      search: "按名称搜索项目（部分匹配且不区分大小写）。如果省略，则返回所有项目。"
+      limit: "返回的最大项目数（1-100，默认：50）"
+      cursor: "用于获取下一页项目的分页游标"
 
-  # Section Management
+  # 分区管理
   - name: add-sections
-    description: Add one or more new sections to projects. Essential for organizing tasks within projects.
+    description: 向项目添加一个或多个新分区。对组织项目内的任务至关重要。
     params:
-      sections: "Array of sections to add, each with name (required) and projectId (required)"
+      sections: "要添加的分区数组，每个分区包含 name（必需）和 projectId（必需）"
   - name: update-sections
-    description: Update multiple existing sections with new values. Modify section names.
+    description: 使用新值更新多个现有分区。修改分区名称。
     params:
-      sections: "Array of sections to update, each requiring id and name"
+      sections: "要更新的分区数组，每个分区需要 id 和 name"
   - name: find-sections
-    description: Search for sections by name or other criteria in a project. If search omitted, all sections in the project are returned.
+    description: 在项目中按名称或其他条件搜索分区。如果省略搜索，则返回项目中的所有分区。
     params:
-      projectId: "The ID of the project to search sections in (required)"
-      search: "Search for a section by name (partial and case insensitive match). If omitted, all sections returned."
+      projectId: "要搜索分区的项目 ID（必需）"
+      search: "按名称搜索分区（部分匹配且不区分大小写）。如果省略，则返回所有分区。"
 
-  # Task Management - Creation & Updates
+  # 任务管理 - 创建和更新
   - name: add-tasks
-    description: Add one or more tasks to a project, section, or parent. Supports assignment to project collaborators. Returns task IDs with confirmation.
+    description: 向项目、分区或父任务添加一个或多个任务。支持分配给项目协作者。返回带有确认的任务 ID。
     params:
-      tasks: "Array of tasks to add, each with content (required), projectId, sectionId, parentId, description, dueString (natural language), priority (p1-p4), labels (array), duration, deadlineDate, responsibleUser"
+      tasks: "要添加的任务数组，每个任务包含 content（必需）、projectId、sectionId、parentId、description、dueString（自然语言）、priority（p1-p4）、labels（数组）、duration、deadlineDate、responsibleUser"
   - name: update-tasks
-    description: Update existing tasks including content, dates, priorities, and assignments. Essential for task modifications.
+    description: 更新现有任务，包括内容、日期、优先级和分配。对任务修改至关重要。
     params:
-      tasks: "Array of tasks to update, each requiring id and optional fields: content, description, dueString, priority, labels, projectId, sectionId, parentId, responsibleUser, duration, deadlineDate, order"
+      tasks: "要更新的任务数组，每个任务需要 id 和可选字段：content、description、dueString、priority、labels、projectId、sectionId、parentId、responsibleUser、duration、deadlineDate、order"
   - name: complete-tasks
-    description: Complete one or more tasks by their IDs. Mark tasks as done.
+    description: 通过其 ID 完成一个或多个任务。将任务标记为已完成。
     params:
-      ids: "Array of task IDs to complete (required)"
+      ids: "要完成的任务 ID 数组（必需）"
 
-  # Task Management - Search & Discovery
+  # 任务管理 - 搜索和发现
   - name: find-tasks
-    description: Find tasks by text search, or by project/section/parent container/responsible user. At least one filter must be provided. Essential for task queries.
+    description: 通过文本搜索或按项目/分区/父容器/负责人查找任务。必须提供至少一个筛选器。对任务查询至关重要。
     params:
-      searchText: "The text to search for in tasks"
-      projectId: "Find tasks in this project"
-      sectionId: "Find tasks in this section"
-      parentId: "Find subtasks of this parent task"
-      responsibleUser: "Find tasks assigned to this user (can be user ID, name, or email)"
-      responsibleUserFiltering: "How to filter by responsible user: 'assigned' (only tasks assigned to others), 'unassignedOrMe' (default: unassigned or assigned to me), 'all' (all tasks)"
-      labels: "Array of labels to filter tasks by"
-      labelsOperator: "Operator for label filtering: 'and' (task has all labels) or 'or' (default: task has any label)"
-      limit: "Maximum number of tasks to return (1-100, default: 10)"
-      cursor: "Pagination cursor for retrieving more results"
+      searchText: "要在任务中搜索的文本"
+      projectId: "查找此项目中的任务"
+      sectionId: "查找此分区中的任务"
+      parentId: "查找此父任务的子任务"
+      responsibleUser: "查找分配给此用户的任务（可以是用户 ID、姓名或邮箱）"
+      responsibleUserFiltering: "如何按负责人筛选：'assigned'（仅分配给他人的任务）、'unassignedOrMe'（默认：未分配或分配给我）、'all'（所有任务）"
+      labels: "用于筛选任务的标签数组"
+      labelsOperator: "标签筛选的操作符：'and'（任务具有所有标签）或 'or'（默认：任务具有任何标签）"
+      limit: "返回的最大任务数（1-100，默认：10）"
+      cursor: "用于检索更多结果的分页游标"
   - name: find-tasks-by-date
-    description: Get tasks by date range. Use startDate 'today' to get today's tasks including overdue items, or provide a specific date/date range. Essential for daily planning.
+    description: 按日期范围获取任务。使用 startDate 'today' 获取今天的任务，包括逾期项目，或提供特定日期/日期范围。对每日规划至关重要。
     params:
-      startDate: "The start date to get tasks for (YYYY-MM-DD format or 'today')"
-      daysCount: "Number of days to get tasks for, starting from start date (1-30, default: 1)"
-      overdueOption: "How to handle overdue tasks: 'overdue-only', 'include-overdue' (default), or 'exclude-overdue'"
-      responsibleUser: "Find tasks assigned to this user (can be user ID, name, or email)"
-      responsibleUserFiltering: "How to filter by responsible user: 'assigned', 'unassignedOrMe' (default), or 'all'"
-      labels: "Array of labels to filter tasks by"
-      labelsOperator: "Operator for label filtering: 'and' or 'or' (default)"
-      limit: "Maximum number of tasks to return (1-100, default: 10)"
-      cursor: "Pagination cursor for retrieving more results"
+      startDate: "要获取任务的开始日期（YYYY-MM-DD 格式或 'today'）"
+      daysCount: "从开始日期起获取任务的天数（1-30，默认：1）"
+      overdueOption: "如何处理逾期任务：'overdue-only'、'include-overdue'（默认）或 'exclude-overdue'"
+      responsibleUser: "查找分配给此用户的任务（可以是用户 ID、姓名或邮箱）"
+      responsibleUserFiltering: "如何按负责人筛选：'assigned'、'unassignedOrMe'（默认）或 'all'"
+      labels: "用于筛选任务的标签数组"
+      labelsOperator: "标签筛选的操作符：'and' 或 'or'（默认）"
+      limit: "返回的最大任务数（1-100，默认：10）"
+      cursor: "用于检索更多结果的分页游标"
   - name: find-completed-tasks
-    description: Get completed tasks (includes all collaborators by default—use responsibleUser to narrow). Track task completion history.
+    description: 获取已完成的任务（默认包括所有协作者 - 使用 responsibleUser 缩小范围）。跟踪任务完成历史。
     params:
-      since: "The start date to get tasks for (YYYY-MM-DD format, required)"
-      until: "The end date to get tasks for (YYYY-MM-DD format, required)"
-      getBy: "Method to use: 'completion' (default: when task was completed) or 'due' (when task was due)"
-      projectId: "The ID of the project to get tasks for"
-      sectionId: "The ID of the section to get tasks for"
-      parentId: "The ID of the parent task to get tasks for"
-      responsibleUser: "Find tasks assigned to this user (defaults to all collaborators when omitted)"
-      labels: "Array of labels to filter tasks by"
-      labelsOperator: "Operator for label filtering: 'and' or 'or' (default)"
-      workspaceId: "The ID of the workspace to get tasks for"
-      limit: "Maximum number of tasks to return (1-200, default: 50)"
-      cursor: "Pagination cursor for retrieving more results"
+      since: "要获取任务的开始日期（YYYY-MM-DD 格式，必需）"
+      until: "要获取任务的结束日期（YYYY-MM-DD 格式，必需）"
+      getBy: "使用的方法：'completion'（默认：任务完成时间）或 'due'（任务到期时间）"
+      projectId: "要获取任务的项目 ID"
+      sectionId: "要获取任务的分区 ID"
+      parentId: "要获取任务的父任务 ID"
+      responsibleUser: "查找分配给此用户的任务（省略时默认为所有协作者）"
+      labels: "用于筛选任务的标签数组"
+      labelsOperator: "标签筛选的操作符：'and' 或 'or'（默认）"
+      workspaceId: "要获取任务的工作空间 ID"
+      limit: "返回的最大任务数（1-200，默认：50）"
+      cursor: "用于检索更多结果的分页游标"
 
-  # Comments & Collaboration
+  # 评论和协作
   - name: add-comments
-    description: Add multiple comments to tasks or projects. Each comment must specify either taskId or projectId. Use for discussion and feedback.
+    description: 向任务或项目添加多个评论。每个评论必须指定 taskId 或 projectId。用于讨论和反馈。
     params:
-      comments: "Array of comments to add, each with content (required) and either taskId or projectId"
+      comments: "要添加的评论数组，每个评论包含 content（必需）和 taskId 或 projectId 之一"
   - name: find-comments
-    description: Find comments by task, project, or get a specific comment by ID. Exactly one of taskId, projectId, or commentId must be provided.
+    description: 按任务、项目查找评论，或通过 ID 获取特定评论。必须提供 taskId、projectId 或 commentId 之一。
     params:
-      taskId: "Find comments for a specific task"
-      projectId: "Find comments for a specific project"
-      commentId: "Get a specific comment by ID"
-      limit: "Maximum number of comments to return (1-10)"
-      cursor: "Pagination cursor for retrieving more results"
+      taskId: "查找特定任务的评论"
+      projectId: "查找特定项目的评论"
+      commentId: "通过 ID 获取特定评论"
+      limit: "返回的最大评论数（1-10）"
+      cursor: "用于检索更多结果的分页游标"
   - name: update-comments
-    description: Update multiple existing comments with new content. Modify comment text.
+    description: 使用新内容更新多个现有评论。修改评论文本。
     params:
-      comments: "Array of comments to update, each requiring id and content"
+      comments: "要更新的评论数组，每个评论需要 id 和 content"
 
-  # Activity & History
+  # 活动和历史
   - name: find-activity
-    description: Retrieve recent activity logs to monitor and audit changes in Todoist. Shows events from all users by default (use initiatorId to filter by specific user). Track task completions, updates, deletions, project changes, and more with flexible filtering.
+    description: 检索最近的活动日志以监控和审计 Todoist 中的更改。默认显示所有用户的事件（使用 initiatorId 按特定用户筛选）。跟踪任务完成、更新、删除、项目更改等，具有灵活的筛选功能。
     params:
-      eventType: "Type of event to filter by: 'added', 'updated', 'deleted', 'completed', 'uncompleted', 'archived', 'unarchived', 'shared', 'left'"
-      objectType: "Type of object to filter by: 'task', 'project', 'comment'"
-      objectId: "Filter by specific object ID (task, project, or comment)"
-      projectId: "Filter events by parent project ID"
-      taskId: "Filter events by parent task ID (for subtask events)"
-      initiatorId: "Filter by the user ID who initiated the event"
-      limit: "Maximum number of activity events to return (1-100, default: 20)"
-      cursor: "Pagination cursor for retrieving the next page of results"
+      eventType: "要筛选的事件类型：'added'、'updated'、'deleted'、'completed'、'uncompleted'、'archived'、'unarchived'、'shared'、'left'"
+      objectType: "要筛选的对象类型：'task'、'project'、'comment'"
+      objectId: "按特定对象 ID 筛选（任务、项目或评论）"
+      projectId: "按父项目 ID 筛选事件"
+      taskId: "按父任务 ID 筛选事件（用于子任务事件）"
+      initiatorId: "按发起事件的用户 ID 筛选"
+      limit: "返回的最大活动事件数（1-100，默认：20）"
+      cursor: "用于检索下一页结果的分页游标"
 
-  # Team & Collaboration Management
+  # 团队和协作管理
   - name: find-project-collaborators
-    description: Search for collaborators by name or other criteria in a project. If search omitted, all collaborators in the project are returned.
+    description: 在项目中按名称或其他条件搜索协作者。如果省略搜索，则返回项目中的所有协作者。
     params:
-      projectId: "The ID of the project to search for collaborators in (required)"
-      searchTerm: "Search for a collaborator by name or email (partial and case insensitive match). If omitted, all collaborators returned."
+      projectId: "要搜索协作者的项目 ID（必需）"
+      searchTerm: "按姓名或邮箱搜索协作者（部分匹配且不区分大小写）。如果省略，则返回所有协作者。"
   - name: manage-assignments
-    description: Bulk assignment operations for multiple tasks. Supports assign, unassign, and reassign operations with atomic rollback on failures. Essential for team task management.
+    description: 多个任务的批量分配操作。支持分配、取消分配和重新分配操作，失败时自动回滚。对团队任务管理至关重要。
     params:
-      operation: "The assignment operation to perform: 'assign', 'unassign', 'reassign' (required)"
-      taskIds: "Array of task IDs to operate on (max 50, required)"
-      responsibleUser: "The user to assign tasks to (user ID, name, or email). Required for 'assign' and 'reassign' operations."
-      fromAssigneeUser: "For 'reassign' operations: the current assignee to reassign from (user ID, name, or email). Optional - if not provided, reassigns from any current assignee."
-      dryRun: "If true, validates operations without executing them (default: false)"
+      operation: "要执行的分配操作：'assign'、'unassign'、'reassign'（必需）"
+      taskIds: "要操作的任务 ID 数组（最多 50，必需）"
+      responsibleUser: "要分配任务的用户（用户 ID、姓名或邮箱）。'assign' 和 'reassign' 操作必需。"
+      fromAssigneeUser: "对于 'reassign' 操作：要从中重新分配的当前负责人（用户 ID、姓名或邮箱）。可选 - 如果未提供，则从任何当前负责人重新分配。"
+      dryRun: "如果为 true，则验证操作而不执行（默认：false）"
 
-  # Deletion
+  # 删除
   - name: delete-object
-    description: Delete a project, section, task, or comment by its ID. Use with caution as this action is irreversible.
+    description: 通过其 ID 删除项目、分区、任务或评论。请谨慎使用，因为此操作不可逆。
     params:
-      type: "The type of entity to delete: 'project', 'section', 'task', 'comment' (required)"
-      id: "The ID of the entity to delete (required)"
+      type: "要删除的实体类型：'project'、'section'、'task'、'comment'（必需）"
+      id: "要删除的实体 ID（必需）"
 
-  # OpenAI MCP Compatibility - Search & Fetch
+  # OpenAI MCP 兼容性 - 搜索和获取
   - name: search
-    description: Search across tasks and projects in Todoist. Returns a list of relevant results with IDs, titles, and URLs. OpenAI MCP compatible.
+    description: 在 Todoist 中跨任务和项目搜索。返回带有 ID、标题和 URL 的相关结果列表。兼容 OpenAI MCP。
     params:
-      query: "The search query string to find tasks and projects (required)"
+      query: "查找任务和项目的搜索查询字符串（必需）"
   - name: fetch
-    description: Fetch the full contents of a task or project by its ID. The ID should be in the format "task:{id}" or "project:{id}". OpenAI MCP compatible.
+    description: 通过其 ID 获取任务或项目的完整内容。ID 应采用 "task:{id}" 或 "project:{id}" 格式。兼容 OpenAI MCP。
     params:
-      id: "A unique identifier for the document in the format 'task:{id}' or 'project:{id}' (required)"
+      id: "文档的唯一标识符，格式为 'task:{id}' 或 'project:{id}'（必需）"
 

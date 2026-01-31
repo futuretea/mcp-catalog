@@ -1,35 +1,35 @@
 name: Browserbase
-shortDescription: Cloud browser automation with web scraping, screenshots, and AI interactions
-description: 'A Model Context Protocol (MCP) server that provides cloud browser automation capabilities using Browserbase and Stagehand. Enable LLMs to interact with web pages, take screenshots, extract information, and perform automated actions with atomic precision.
+shortDescription: 云端浏览器自动化，支持网页抓取、截图和 AI 交互
+description: '一个 Model Context Protocol (MCP) 服务器，使用 Browserbase 和 Stagehand 提供云端浏览器自动化功能。使 LLM 能够与网页交互、截取屏幕截图、提取信息，并以原子级精度执行自动化操作。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Browser Automation**: Control and orchestrate cloud browsers via Browserbase
+  - **浏览器自动化**：通过 Browserbase 控制和编排云端浏览器
 
-  - **Data Extraction**: Extract structured data from any webpage
+  - **数据提取**：从任何网页提取结构化数据
 
-  - **Web Interaction**: Navigate, click, and fill forms with ease
+  - **网页交互**：轻松导航、点击和填写表单
 
-  - **Screenshots**: Capture full-page and element screenshots
+  - **屏幕截图**：捕获整页和元素截图
 
-  - **AI-Powered Automation**: Natural language commands for web interactions
+  - **AI 驱动的自动化**：自然语言命令用于网页交互
 
-  - **Multi-Session Support**: Run multiple browser sessions in parallel
+  - **多会话支持**：并行运行多个浏览器会话
 
-  - **Advanced Features**: Proxy support, stealth mode, and context persistence
-
-
-  ## What you''ll need to connect
+  - **高级功能**：代理支持、隐身模式和上下文持久化
 
 
-  **Required Credentials:**
+  ## 连接所需
 
-  - **Browserbase API Key**: Your Browserbase API key
 
-  - **Browserbase Project ID**: Your Browserbase project ID
+  **必需凭证：**
 
-  - **Gemini API Key**: Your Gemini API key
+  - **Browserbase API Key**：您的 Browserbase API 密钥
+
+  - **Browserbase Project ID**：您的 Browserbase 项目 ID
+
+  - **Gemini API Key**：您的 Gemini API 密钥
 
   '
 metadata:
@@ -41,17 +41,17 @@ env:
   name: Browserbase API Key
   required: true
   sensitive: true
-  description: Your Browserbase API key.
+  description: 您的 Browserbase API 密钥。
 - key: BROWSERBASE_PROJECT_ID
   name: Browserbase Project ID
   required: true
   sensitive: false
-  description: Your Browserbase project ID.
+  description: 您的 Browserbase 项目 ID。
 - key: GEMINI_API_KEY
   name: Gemini API Key
   required: true
   sensitive: true
-  description: Your Gemini API key.
+  description: 您的 Gemini API 密钥。
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/browserbase:2.4.0
@@ -61,40 +61,40 @@ containerizedConfig:
   - mcp-server-browserbase
 toolPreview:
 - name: browserbase_session_create
-  description: Create or reuse a single cloud browser session using Browserbase with fully initialized Stagehand for single browser workflows.
+  description: 使用 Browserbase 创建或重用单个云端浏览器会话，为单浏览器工作流完全初始化 Stagehand。
   params:
-    sessionId: Optional session ID to reuse existing session
+    sessionId: 可选的会话 ID 用于重用现有会话
 - name: browserbase_stagehand_navigate
-  description: Navigate to a URL in the browser. Use https://google.com as starting point if unsure about URL stability.
+  description: 在浏览器中导航到 URL。如果不确定 URL 稳定性，请使用 https://google.com 作为起始点。
   params:
-    url: URL to navigate to
+    url: 要导航到的 URL
 - name: browserbase_stagehand_act
-  description: Perform atomic actions on web page elements like clicking buttons or typing in inputs.
+  description: 在网页元素上执行原子操作，如点击按钮或在输入框中输入。
   params:
-    action: Specific action to perform (e.g., "Click the sign in button")
-    variables: Optional variables for the action
+    action: 要执行的具体操作（例如，"点击登录按钮"）
+    variables: 操作的可选变量
 - name: browserbase_stagehand_extract
-  description: Extract structured information and text content from the current web page based on specific instructions.
+  description: 根据具体指令从当前网页提取结构化信息和文本内容。
   params:
-    instruction: Clear instructions about what to extract
+    instruction: 关于要提取内容的清晰指令
 - name: browserbase_stagehand_observe
-  description: Observe and identify interactive elements on the current web page for subsequent actions.
+  description: 观察并识别当前网页上的交互元素，用于后续操作。
   params:
-    instruction: Specific instruction for what elements to find
-    returnAction: Optional boolean to return action capabilities
+    instruction: 查找特定元素的具体指令
+    returnAction: 是否返回操作能力的可选布尔值
 - name: browserbase_screenshot
-  description: Take a screenshot of the current page to understand the page state when controlling the browser.
+  description: 截取当前页面的屏幕截图，以了解控制浏览器时的页面状态。
   params:
-    name: Optional name for the screenshot
+    name: 屏幕截图的可选名称
 - name: multi_browserbase_stagehand_session_create
-  description: Create parallel browser sessions for multi-session workflows like concurrent automation or A/B testing.
+  description: 为多会话工作流（如并发自动化或 A/B 测试）创建并行浏览器会话。
   params:
-    browserbaseSessionID: Optional Browserbase session ID
-    name: Optional name for the session
+    browserbaseSessionID: 可选的 Browserbase 会话 ID
+    name: 会话的可选名称
 - name: multi_browserbase_stagehand_session_list
-  description: Track all active parallel browser sessions with their IDs, names, and status for multi-session management.
+  description: 跟踪所有活动的并行浏览器会话，包括其 ID、名称和状态，用于多会话管理。
   params: {}
 - name: multi_browserbase_stagehand_session_close
-  description: Properly terminate a parallel browser session and free cloud resources.
+  description: 正确终止并行浏览器会话并释放云端资源。
   params:
-    sessionId: ID of the session to close
+    sessionId: 要关闭的会话 ID

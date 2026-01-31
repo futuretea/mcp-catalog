@@ -1,27 +1,27 @@
 name: Morningstar
-shortDescription: Access Morningstar financial data, analyst research, and investment screening
+shortDescription: 访问 Morningstar 金融数据、分析师研究和投资筛选
 description: |
 
-  A Model Context Protocol (MCP) server that provides comprehensive access to Morningstar's institutional-grade financial data and research. Retrieve real-time and historical market data, access professional analyst research with economic moat ratings, screen investments across stocks/ETFs/funds, analyze fund holdings, and explore 400+ financial datapoints for any publicly traded security.
+  提供全面访问 Morningstar 机构级金融数据和研究的 Model Context Protocol (MCP) 服务器。检索实时和历史市场数据，访问包含经济护城河评级的专业分析师研究，在股票/ETF/基金中进行投资筛选，分析基金持仓，并探索任何公开交易证券的 400+ 金融数据点。
 
-  ## Features
+  ## 功能特性
 
-  - **Investment & Datapoint Lookup**: Look up Morningstar IDs for any stock, ETF, or mutual fund by name or ticker, plus access to 400+ financial datapoints with definitions
+  - **投资与数据点查询**：通过名称或股票代码查询任何股票、ETF 或共同基金的 Morningstar ID，以及访问 400+ 金融数据点及其定义
 
-  - **Market Data & Time-Series**: Retrieve current and historical price data, market caps, P/E ratios, and other financial metrics with customizable date ranges
+  - **市场数据与时间序列**：检索当前和历史价格数据、市值、市盈率和其他财务指标，支持自定义日期范围
 
-  - **Analyst Research Reports**: Access comprehensive Morningstar analyst research including economic moat ratings, fair value estimates, financial health assessments, and risk analysis
+  - **分析师研究报告**：访问全面的 Morningstar 分析师研究，包括经济护城河评级、公允价值估计、财务健康评估和风险分析
 
-  - **Investment Screening**: Screen stocks, ETFs, and mutual funds with custom criteria using various financial metrics and operators
+  - **投资筛选**：使用各种财务指标和运算符，通过自定义条件筛选股票、ETF 和共同基金
 
-  - **Fund Holdings Analysis**: Get detailed portfolio composition and top holdings for any mutual fund or ETF with position weights
+  - **基金持仓分析**：获取任何共同基金或 ETF 的详细投资组合构成和主要持仓，包含持仓权重
 
-  - **Research Articles**: Search Morningstar's editorial content on investment strategies, retirement planning, and sustainable investing
+  - **研究文章**：搜索 Morningstar 关于投资策略、退休规划和可持续投资的编辑内容
 
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow
+  **无需设置**：通过 OAuth2 工作流自动处理身份验证
 
 metadata:
   categories: Finance & Business
@@ -32,33 +32,33 @@ remoteConfig:
   fixedURL: https://mcp.morningstar.com/mcp
 toolPreview:
 - name: morningstar-id-lookup-tool
-  description: Look up Morningstar IDs for investments and datapoints by their names or ticker symbols. This is typically the first tool to use before retrieving data, as most other tools require Morningstar IDs. Returns investment IDs, datapoint IDs, definitions, and time-series support information for over 400 available datapoints.
+  description: 通过投资名称或股票代码查询投资的 Morningstar ID 和数据点。这通常是获取数据前首先使用的工具，因为大多数其他工具需要 Morningstar ID。返回投资 ID、数据点 ID、定义以及 400+ 可用数据点的时间序列支持信息。
   params:
-    investments: List of investments with investment_name and/or ticker_symbol
-    datapoints: List of datapoint objects with name field (e.g., Current Price, Market Cap, P/E Ratio)
+    investments: 包含 investment_name 和/或 ticker_symbol 的投资列表
+    datapoints: 包含 name 字段的数据点对象列表（例如 Current Price、Market Cap、P/E Ratio）
 - name: morningstar-data-tool
-  description: Retrieve specific financial data for stocks, funds, or other investments using Morningstar IDs. Returns current values for non-time-series datapoints and historical time-series data where supported. Use this after obtaining IDs from the lookup tool to get actual market data, valuations, and financial metrics.
+  description: 使用 Morningstar ID 检索股票、基金或其他投资的特定金融数据。返回非时间序列数据点的当前值和支持的时间序列数据的历史时间序列数据。在从查询工具获取 ID 后使用此工具获取实际市场数据、估值和财务指标。
   params:
-    investment_ids: List of Morningstar Investment IDs (from lookup tool)
-    datapoints: List of objects with morningstar_datapoint_id and supports_time_series fields
-    start_date: Optional start date for time series data (YYYY-MM-DD format)
-    end_date: Optional end date for time series data (YYYY-MM-DD format)
+    investment_ids: Morningstar 投资 ID 列表（来自查询工具）
+    datapoints: 包含 morningstar_datapoint_id 和 supports_time_series 字段的对象列表
+    start_date: 时间序列数据的可选开始日期（YYYY-MM-DD 格式）
+    end_date: 时间序列数据的可选结束日期（YYYY-MM-DD 格式）
 - name: morningstar-articles-tool
-  description: Search and retrieve Morningstar research articles and editorial content on finance, investing, sustainable investing, investment strategies, portfolios, and retirement planning. Returns articles with content excerpts, publication dates, titles, and source URLs. Provides expert insights and analysis rather than real-time market data.
+  description: 搜索和检索 Morningstar 关于金融、投资、可持续投资、投资策略、投资组合和退休规划的研究文章和编辑内容。返回包含内容摘要、发布日期、标题和来源 URL 的文章。提供专家见解和分析，而非实时市场数据。
   params:
-    question: Natural language question about investment topics or strategies
+    question: 关于投资主题或策略的自然语言问题
 - name: morningstar-analyst-research-tool
-  description: Retrieve comprehensive Morningstar analyst research reports and analysis for a specific security. Returns detailed analyst notes, economic moat analysis, financial health assessments, valuation analysis, business strategy outlook, risk assessments, and bull/bear arguments. Requires a Morningstar investment ID.
+  description: 检索特定证券的全面 Morningstar 分析师研究报告和分析。返回详细的分析师笔记、经济护城河分析、财务健康评估、估值分析、业务战略展望、风险评估以及牛市/熊市论点。需要 Morningstar 投资 ID。
   params:
-    investment_id: Morningstar investment ID (from lookup tool, not ticker symbol)
+    investment_id: Morningstar 投资 ID（来自查询工具，非股票代码）
 - name: morningstar-screener-tool
-  description: Screen and filter investments based on specific criteria to find stocks, ETFs, or mutual funds that match your requirements. Returns up to 100 matching investments with key datapoints. Supports various operators (=, like, >, <) and multiple criteria with AND/OR logic. Use lookup tool first to get datapoint IDs.
+  description: 根据特定条件筛选和过滤投资，以找到符合您要求的股票、ETF 或共同基金。返回最多 100 个匹配的投资及其关键数据点。支持各种运算符（=、like、>、<）和多个条件的 AND/OR 逻辑。首先使用查询工具获取数据点 ID。
   params:
-    universe: Investment universe (ST for stocks, FE for ETFs, FO for mutual funds)
-    screener_criteria: List of criteria with datapoint_id, operator, value, and relation fields
+    universe: 投资范围（ST 表示股票，FE 表示 ETF，FO 表示共同基金）
+    screener_criteria: 包含 datapoint_id、operator、value 和 relation 字段的条件列表
 - name: morningstar-fund-holdings-tool
-  description: Retrieve the top holdings of Open-End mutual funds or ETFs with detailed position information. Returns Morningstar IDs, holding names, and portfolio weights for each holding. Supports up to 10 investment IDs per request with 10-100 holdings per fund. Use this to analyze fund composition and portfolio concentration.
+  description: 检索开放式共同基金或 ETF 的主要持仓及详细的持仓信息。返回每个持仓的 Morningstar ID、持仓名称和投资组合权重。每个请求支持最多 10 个投资 ID，每个基金 10-100 个持仓。使用此工具分析基金构成和投资组合集中度。
   params:
-    investment_ids: List of Morningstar Investment IDs for funds/ETFs (up to 10)
-    num_holdings: Number of holdings to retrieve per fund (10-100)
+    investment_ids: 基金/ETF 的 Morningstar 投资 ID 列表（最多 10 个）
+    num_holdings: 每个基金要检索的持仓数量（10-100）
 

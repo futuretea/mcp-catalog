@@ -1,54 +1,53 @@
 name: AntV Charts
-shortDescription: Generate 25+ professional chart types for data visualization and analysis
+shortDescription: 生成 25+ 种专业图表类型，用于数据可视化和分析
 description: |
   ![MCP Server](https://badge.mcpx.dev?type=server) [![build](https://github.com/antvis/mcp-server-chart/actions/workflows/build.yml/badge.svg)](https://github.com/antvis/mcp-server-chart/actions/workflows/build.yml) [![npm Version](https://img.shields.io/npm/v/@antv/mcp-server-chart.svg)](https://www.npmjs.com/package/@antv/mcp-server-chart) [![npm License](https://img.shields.io/npm/l/@antv/mcp-server-chart.svg)](https://www.npmjs.com/package/@antv/mcp-server-chart)
 
-  A Model Context Protocol (MCP) server for generating charts using AntV. Create various types of professional charts for data analysis and visualization with support for 25+ chart types including statistical, geographical, and specialized diagrams.
+  一个用于使用 AntV 生成图表的 Model Context Protocol (MCP) 服务器。创建各种类型的专业图表用于数据分析和可视化，支持 25+ 种图表类型，包括统计图表、地理图表和专用图表。
 
-  ## Features
-  # Now 25+ charts supported:
+  ## 功能特性
+  # 现已支持 25+ 种图表：
 
-  - **Statistical Charts**: Area, bar, column, line, pie, scatter, histogram, boxplot, violin charts
-  - **Advanced Visualizations**: Radar, funnel, Sankey, treemap, dual-axes, liquid charts
-  - **Text & Data**: Word cloud charts for frequency analysis
-  - **Relationship Diagrams**: Venn diagrams, network graphs, organization charts
-  - **Process & Analysis**: Mind maps, fishbone diagrams, flow diagrams
-  - **Geographic Maps**: District maps, pin maps, path maps (China region support via AMap)
+  - **统计图表**：面积图、条形图、柱状图、折线图、饼图、散点图、直方图、箱线图、小提琴图
+  - **高级可视化**：雷达图、漏斗图、桑基图、树图、双轴图、水波图
+  - **文本与数据**：词云图用于频率分析
+  - **关系图**：维恩图、网络图、组织架构图
+  - **流程与分析**：思维导图、鱼骨图、流程图
+  - **地理地图**：行政区划图、点标记地图、路径地图（通过 AMap 支持中国区域）
 
-  > **Note:** Geographic visualization charts use AMap service and currently only support map generation within China.
+  > **注意：** 地理可视化图表使用 AMap 服务，目前仅支持生成中国境内的地图。
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  This connector works out-of-the-box with no required configuration. All parameters are optional:
+  此连接器开箱即用，无需必需配置。所有参数均为可选：
 
-  - **VIS_REQUEST_SERVER** (Optional): Custom chart generation service URL for private deployment, example: `https://antv-studio.alipay.com/api/gpt-vis`
-  - **SERVICE_ID** (Optional): Service identifier for chart generation records, example: `your-service-id-123`
-  - **DISABLED_TOOLS** (Optional): Comma-separated list of tool names to disable, example: `generate_fishbone_diagram,generate_mind_map`
+  - **VIS_REQUEST_SERVER**（可选）：自定义图表生成服务 URL，用于私有部署，示例：`https://antv-studio.alipay.com/api/gpt-vis`
+  - **SERVICE_ID**（可选）：图表生成记录的服务标识符，示例：`your-service-id-123`
+  - **DISABLED_TOOLS**（可选）：要禁用的工具名称列表，以逗号分隔，示例：`generate_fishbone_diagram,generate_mind_map`
 
-  ### Private Deployment
+  ### 私有部署
 
-  `MCP Server Chart` provides a free chart generation service by default. For users with a need for private deployment, they can try using `VIS_REQUEST_SERVER` to customize their own chart generation service.
-  You can use AntV's project [GPT-Vis-SSR](https://github.com/antvis/GPT-Vis/tree/main/bindings/gpt-vis-ssr) to deploy an HTTP service in a private environment, and then pass the URL address through configuration option `VIS_REQUEST_SERVER`.
+  `MCP Server Chart` 默认提供免费的图表生成服务。对于有私有部署需求的用户，可以尝试使用 `VIS_REQUEST_SERVER` 自定义自己的图表生成服务。
+  您可以使用 AntV 的项目 [GPT-Vis-SSR](https://github.com/antvis/GPT-Vis/tree/main/bindings/gpt-vis-ssr) 在私有环境中部署 HTTP 服务，然后通过配置选项 `VIS_REQUEST_SERVER` 传递 URL 地址。
 
-  - **Method**: `POST`
-  - **Parameter**: Which will be passed to `GPT-Vis-SSR` for rendering. Such as, `{ "type": "line", "data": [{ "time": "2025-05", "value": 512 }, { "\
-  time": "2025-06", "value": 1024 }] }`.
-  - **Return**: The return object of HTTP service.
-  - **success**: `boolean` Whether generate chart image successfully.
-  - **resultObj**: `string` The chart image url.
-  - **errorMessage**: `string` When `success = false`, return the error message.
+  - **方法**：`POST`
+  - **参数**：将传递给 `GPT-Vis-SSR` 进行渲染。例如，`{ "type": "line", "data": [{ "time": "2025-05", "value": 512 }, { "time": "2025-06", "value": 1024 }] }`。
+  - **返回**：HTTP 服务的返回对象。
+  - **success**：`boolean` 是否成功生成图表图像。
+  - **resultObj**：`string` 图表图像 URL。
+  - **errorMessage**：`string` 当 `success = false` 时，返回错误消息。
 
   > [!NOTE]
-  > The private deployment solution currently does not support geographic visualization chart generation include 3 tools: `generate_district_map`, `generate_path_map`, `generate_pin_map`.
+  > 私有部署方案目前不支持地理可视化图表生成，包括 3 个工具：`generate_district_map`、`generate_path_map`、`generate_pin_map`。
 
-  ### Generate Records
+  ### 生成记录
 
-  By default, users are required to save the results themselves, but we also provide a service for viewing the chart generation records, which requires users to generate a service identifier for themselves and configure it.
-  Use Alipay to scan and open the mini program to generate a personal service identifier (click the "My" menu below, enter the "My Services" page, click the "Generate" button, and click the "Copy" button after success):
+  默认情况下，用户需要自行保存结果，但我们也提供了查看图表生成记录的服务，这需要用户为自己生成服务标识符并进行配置。
+  使用支付宝扫描并打开小程序以生成个人服务标识符（点击下方"我的"菜单，进入"我的服务"页面，点击"生成"按钮，成功后点击"复制"按钮）：
 
   <img alt="my service identifier website" width="240" src="https://mdn.alipayobjects.com/huamei_dxq8v0/afts/img/dASoTLt6EywAAAAARqAAAAgADu43AQFr/fmt.webp" />
 
-  You need to set proper value of `SERVICE_ID` to the MCP server configuration.
+  您需要将 `SERVICE_ID` 设置为适当的值到 MCP 服务器配置中。
 
 metadata:
   categories: Data & Analytics
@@ -59,17 +58,17 @@ env:
   name: Vis Request Server
   required: false
   sensitive: false
-  description: Custom chart generation service URL for private deployment, e.g., from GPT-Vis-SSR.
+  description: 用于私有部署的自定义图表生成服务 URL，例如来自 GPT-Vis-SSR。
 - key: DISABLED_TOOLS
   name: Disabled Tools
   required: false
   sensitive: false
-  description: Comma-separated list of tool names to disable
+  description: 要禁用的工具名称列表，以逗号分隔
 - key: SERVICE_ID
   name: Service ID
   required: false
   sensitive: false
-  description: Service identifier for chart generation records
+  description: 图表生成记录的服务标识符
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/antv-charts:0.9.4
@@ -79,246 +78,246 @@ containerizedConfig:
   - mcp-server-chart
 toolPreview:
 - name: generate_area_chart
-  description: Generate an area chart to show data trends under continuous independent variables and observe overall data trends, such as velocity over time.
+  description: 生成面积图以显示连续自变量下的数据趋势，观察整体数据趋势，如随时间变化的速度。
   params:
-    data: Array of data points with group, time, and value fields
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    axisYTitle: Y-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    stack: Whether to stack areas (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 group、time 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    axisYTitle: Y 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    stack: 是否堆叠面积（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_bar_chart
-  description: Generate a horizontal bar chart for numerical comparisons among different categories and horizontal comparisons.
+  description: 生成水平条形图，用于不同类别之间的数值比较和水平对比。
   params:
-    data: Array of data points with category, group, and value fields
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    axisYTitle: Y-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    group: Whether to group bars (optional)
-    stack: Whether to stack bars (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 category、group 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    axisYTitle: Y 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    group: 是否分组条形（可选）
+    stack: 是否堆叠条形（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_column_chart
-  description: Generate a column chart, best for comparing categorical data when values are close, as eyes are better at judging height than other visual elements.
+  description: 生成柱状图，最适合比较分类数据，当数值接近时效果更好，因为眼睛更善于判断高度而非其他视觉元素。
   params:
-    data: Array of data points with category, group, and value fields
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    axisYTitle: Y-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    group: Whether to group columns (optional)
-    stack: Whether to stack columns (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 category、group 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    axisYTitle: Y 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    group: 是否分组柱形（可选）
+    stack: 是否堆叠柱形（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_line_chart
-  description: Generate a line chart to show trends over time, such as tracking changes in sales or performance metrics over a period.
+  description: 生成折线图以显示随时间变化的趋势，例如跟踪一段时间内销售额或绩效指标的变化。
   params:
-    data: Array of data points with time and value fields
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    axisYTitle: Y-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    stack: Whether to stack lines (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture, lineWidth (optional)
+    data: 包含 time 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    axisYTitle: Y 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    stack: 是否堆叠折线（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture、lineWidth（可选）
 - name: generate_pie_chart
-  description: Generate a pie chart to show the proportion of parts, such as market share and budget allocation.
+  description: 生成饼图以显示部分的比例，如市场份额和预算分配。
   params:
-    data: Array of data points with category and value fields
-    title: Chart title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    innerRadius: Inner radius for donut charts (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 category 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    innerRadius: 环形图的内半径（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_scatter_chart
-  description: Generate a scatter chart to show the relationship between two variables, helps discover correlations and data distribution patterns.
+  description: 生成散点图以显示两个变量之间的关系，有助于发现相关性和数据分布模式。
   params:
-    data: Array of data points with x and y coordinate fields
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    axisYTitle: Y-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 x 和 y 坐标字段的数据点数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    axisYTitle: Y 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_histogram_chart
-  description: Generate a histogram chart to show the frequency of data points within ranges, observe data distribution and identify concentration areas.
+  description: 生成直方图以显示范围内数据点的频率，观察数据分布并识别集中区域。
   params:
-    data: Array of numerical values
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    axisYTitle: Y-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    binNumber: Number of bins for grouping data (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 数值数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    axisYTitle: Y 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    binNumber: 数据分组的分箱数（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_boxplot_chart
-  description: Generate a boxplot chart for statistical summaries among different categories, comparing the distribution of data points across categories.
+  description: 生成箱线图用于不同类别之间的统计摘要，比较跨类别的数据点分布。
   params:
-    data: Array of data points with category, group, and value fields
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    axisYTitle: Y-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 category、group 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    axisYTitle: Y 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_violin_chart
-  description: Generate a violin chart for statistical summaries among different categories, showing distribution shape and data density.
+  description: 生成小提琴图用于不同类别之间的统计摘要，显示分布形状和数据密度。
   params:
-    data: Array of data points with category, group, and value fields
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    axisYTitle: Y-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 category、group 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    axisYTitle: Y 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_radar_chart
-  description: Generate a radar chart to display multidimensional data (four dimensions or more), such as comparing products across multiple criteria.
+  description: 生成雷达图以显示多维数据（四维或更多），如跨多个标准比较产品。
   params:
-    data: Array of data points with group, name, and value fields
-    title: Chart title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 group、name 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_funnel_chart
-  description: Generate a funnel chart to visualize progressive reduction of data through stages, such as conversion rates in sales processes.
+  description: 生成漏斗图以可视化数据在各阶段的逐渐减少，如销售流程中的转化率。
   params:
-    data: Array of data points with category and value fields
-    title: Chart title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 category 和 value 字段的数据点数组
+    title: 图表标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_sankey_chart
-  description: Generate a sankey chart to visualize data flow between different stages or categories, such as user journey analysis.
+  description: 生成桑基图以可视化不同阶段或类别之间的数据流，如用户旅程分析。
   params:
-    data: Array of flow data with source, target, and value fields
-    title: Chart title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    nodeAlign: Alignment of nodes (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 source、target 和 value 字段的流数据数组
+    title: 图表标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    nodeAlign: 节点对齐方式（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_treemap_chart
-  description: Generate a treemap chart to display hierarchical data and show comparisons between items at the same level, such as disk space usage.
+  description: 生成树图以显示分层数据并显示同一级别项目之间的比较，如磁盘空间使用情况。
   params:
-    data: Array of hierarchical data with children, name, and value fields
-    title: Chart title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 children、name 和 value 字段的分层数据数组
+    title: 图表标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_dual_axes_chart
-  description: Generate a dual axes chart combining two different chart types, typically bar and line charts to display trends and comparisons.
+  description: 生成双轴图，组合两种不同的图表类型，通常是柱状图和折线图以显示趋势和比较。
   params:
-    categories: Array of category labels
-    series: Array of data series with axisYTitle, data, and type fields
-    title: Chart title (optional)
-    axisXTitle: X-axis title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    categories: 类别标签数组
+    series: 包含 axisYTitle、data 和 type 字段的数据系列数组
+    title: 图表标题（可选）
+    axisXTitle: X 轴标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_liquid_chart
-  description: Generate a liquid chart to visualize a single value as a percentage, such as reservoir occupancy or project completion rate.
+  description: 生成水波图以将单个值可视化为百分比，如水库占用率或项目完成率。
   params:
-    percent: Percentage value to display
-    title: Chart title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    shape: Shape of the liquid container (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, color, texture (optional)
+    percent: 要显示的百分比值
+    title: 图表标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    shape: 液体容器的形状（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、color、texture（可选）
 - name: generate_word_cloud_chart
-  description: Generate a word cloud chart to show word frequency or weight through text size variation, useful for analyzing common words in content.
+  description: 生成词云图以通过文本大小变化显示词频或权重，用于分析内容中的常见词汇。
   params:
-    data: Array of words with text and value fields
-    title: Chart title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 text 和 value 字段的词汇数组
+    title: 图表标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_venn_chart
-  description: Generate a Venn diagram to visualize relationships between different sets, showing intersections and overlaps between groups.
+  description: 生成维恩图以可视化不同集合之间的关系，显示组之间的交集和重叠。
   params:
-    data: Array of set data with label, sets, and value fields
-    title: Chart title (optional)
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including backgroundColor, palette, texture (optional)
+    data: 包含 label、sets 和 value 字段的集合数据数组
+    title: 图表标题（可选）
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 backgroundColor、palette、texture（可选）
 - name: generate_network_graph
-  description: Generate a network graph chart to show relationships (edges) between entities (nodes), such as social network connections.
+  description: 生成网络关系图以显示实体（节点）之间的关系（边），如社交网络连接。
   params:
-    data: Object with nodes and edges arrays
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including texture (optional)
+    data: 包含 nodes 和 edges 数组的对象
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 texture（可选）
 - name: generate_organization_chart
-  description: Generate an organization chart to visualize hierarchical structure, such as company reporting relationships.
+  description: 生成组织架构图以可视化层级结构，如公司汇报关系。
   params:
-    data: Hierarchical data with children, description, and name fields
-    width: Chart width (optional)
-    height: Chart height (optional)
-    orient: Chart orientation (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including texture (optional)
+    data: 包含 children、description 和 name 字段的分层数据
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    orient: 图表方向（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 texture（可选）
 - name: generate_mind_map
-  description: Generate a mind map chart to organize information in hierarchical structure with branches from a central topic.
+  description: 生成思维导图以层级结构组织信息，从中心主题分支展开。
   params:
-    data: Hierarchical data with children and name fields
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including texture (optional)
+    data: 包含 children 和 name 字段的分层数据
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 texture（可选）
 - name: generate_fishbone_diagram
-  description: Generate a fishbone diagram using fish skeleton structure to display causes or effects of a core problem.
+  description: 生成鱼骨图，使用鱼骨结构显示核心问题的原因或影响。
   params:
-    data: Hierarchical data with children and name fields
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including texture (optional)
+    data: 包含 children 和 name 字段的分层数据
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 texture（可选）
 - name: generate_flow_diagram
-  description: Generate a flow diagram chart to show steps and decision points of a process or system for linear process presentation.
+  description: 生成流程图以显示流程或系统的步骤和决策点，用于线性流程展示。
   params:
-    data: Object with nodes and edges arrays
-    width: Chart width (optional)
-    height: Chart height (optional)
-    theme: Chart theme (optional)
-    style: Style configuration including texture (optional)
+    data: 包含 nodes 和 edges 数组的对象
+    width: 图表宽度（可选）
+    height: 图表高度（可选）
+    theme: 图表主题（可选）
+    style: 样式配置，包括 texture（可选）
 - name: generate_district_map
-  description: Generate regional distribution maps for administrative divisions and coverage datasets, limited to generating data maps within China.
+  description: 生成行政区划的区域分布地图和覆盖数据集，仅限于生成中国境内的数据地图。
   params:
-    data: Map data with colors, labels, values, and subdistrictc configuration
-    title: Map title
-    width: Map width (optional)
-    height: Map height (optional)
+    data: 包含 colors、labels、values 和 subdistrictc 配置的地图数据
+    title: 地图标题
+    width: 地图宽度（可选）
+    height: 地图高度（可选）
 - name: generate_pin_map
-  description: Generate a point map to display location and distribution of point data, such as attractions, hospitals, or supermarkets.
+  description: 生成点标记地图以显示点数据的位置和分布，如景点、医院或超市。
   params:
-    data: Array of location data
-    title: Map title
-    width: Map width (optional)
-    height: Map height (optional)
-    markerPopup: Popup configuration for markers (optional)
+    data: 位置数据数组
+    title: 地图标题
+    width: 地图宽度（可选）
+    height: 地图高度（可选）
+    markerPopup: 标记的弹出配置（可选）
 - name: generate_path_map
-  description: Generate a route map to display planned routes, such as travel guide routes and navigation paths.
+  description: 生成路径地图以显示规划路线，如旅游指南路线和导航路径。
   params:
-    data: Array of route data
-    title: Map title
-    width: Map width (optional)
-    height: Map height (optional)
+    data: 路线数据数组
+    title: 地图标题
+    width: 地图宽度（可选）
+    height: 地图高度（可选）

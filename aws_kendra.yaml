@@ -1,44 +1,44 @@
 name: AWS Kendra
-shortDescription: Query Amazon Kendra indices for enhanced RAG context in AI applications
-description: 'A Model Context Protocol (MCP) server for Amazon Kendra developed by AWS Labs. Use Kendra Indices as additional context for RAG to enhance your existing MCP-enabled ChatBot and coding assistants.
+shortDescription: 查询 Amazon Kendra 索引以增强 AI 应用程序中的 RAG 上下文
+description: '一个由 AWS Labs 开发的用于 Amazon Kendra 的 Model Context Protocol (MCP) 服务器。使用 Kendra 索引作为 RAG 的额外上下文，以增强您现有的支持 MCP 的 ChatBot 和编码助手。
 
 
-  ## Features
+  ## 功能特性
 
-  - Enhance your existing MCP-enabled ChatBot with additional RAG indices
+  - 使用额外的 RAG 索引增强您现有的支持 MCP 的 ChatBot
 
-  - Enhance the responses from coding assistants such as Cline, Cursor, Windsurf, Amazon Q Developer, etc.
-
-
-  ## What you''ll need to connect
+  - 增强 Cline、Cursor、Windsurf、Amazon Q Developer 等编码助手的响应
 
 
-  **Required AWS Credentials:**
-
-  - **AWS Access Key ID**: Your AWS credential access key
-
-  - **AWS Secret Access Key**: Your AWS credential access secret
+  ## 连接所需条件
 
 
-  **Optional Configuration:**
+  **必需的 AWS 凭证:**
 
-  - **AWS Region**: AWS region to use (default: `us-east-1`)
+  - **AWS Access Key ID**: 您的 AWS 凭证访问密钥
 
-  - **AWS Session Token**: Required only for temporary credentials like SSO or STS AssumeRole
-
-
-  **Prerequisites:**
-
-  - An AWS account
-
-  - An existing Amazon Kendra Index with your RAG documentation
+  - **AWS Secret Access Key**: 您的 AWS 凭证访问密钥密文
 
 
-  **IAM Permissions Required:**
+  **可选配置:**
 
-  - `kendra:Query` and `kendra:ListIndices` permissions (minimum)
+  - **AWS Region**: 要使用的 AWS 区域 (默认: `us-east-1`)
 
-  - Alternatively, use the AWS Managed `AmazonKendraFullAccess` policy
+  - **AWS Session Token**: 仅在使用临时凭证（如 SSO 或 STS AssumeRole）时需要
+
+
+  **先决条件:**
+
+  - 一个 AWS 账户
+
+  - 一个包含您的 RAG 文档的现有 Amazon Kendra 索引
+
+
+  **所需的 IAM 权限:**
+
+  - `kendra:Query` 和 `kendra:ListIndices` 权限（最低要求）
+
+  - 或者，使用 AWS 托管的 `AmazonKendraFullAccess` 策略
 
   '
 metadata:
@@ -50,7 +50,7 @@ env:
   name: AWS Access Key ID
   required: true
   sensitive: true
-  description: Your AWS Access Key ID
+  description: 您的 AWS Access Key ID
 - key: AWS_SECRET_ACCESS_KEY
   name: AWS Secret Access Key
   required: true
@@ -60,12 +60,12 @@ env:
   name: AWS Session Token
   required: false
   sensitive: true
-  description: AWS Session Token, only required if using temporary credentials such as temporary AWS credentials, such as those obtained through aws sso login or other temporary access methods (for example, STS AssumeRole)
+  description: AWS Session Token，仅在使用临时凭证时需要，例如通过 aws sso login 或其他临时访问方法获得的临时 AWS 凭证（例如 STS AssumeRole）
 - key: AWS_REGION
   name: AWS Region
   required: false
   sensitive: false
-  description: AWS Region, default to us-east-1
+  description: AWS 区域，默认为 us-east-1
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/aws-kendra:1.0.7
@@ -75,12 +75,13 @@ containerizedConfig:
   - awslabs.amazon-kendra-index-mcp-server
 toolPreview:
 - name: KendraQueryTool
-  description: Query Amazon Kendra and retrieve content from the response.
+  description: 查询 Amazon Kendra 并从响应中检索内容。
   params:
-    query: The search query to send to Amazon Kendra
-    region: The region of the Kendra Index to send the search query to
-    indexId: The indexId of the Kendra index to send the search query to
+    query: 要发送到 Amazon Kendra 的搜索查询
+    region: 要发送搜索查询的 Kendra 索引所在区域
+    indexId: 要发送搜索查询的 Kendra 索引的 indexId
 - name: KendraListIndexesTool
-  description: List all Amazon Kendra indexes in the specified region.
+  description: 列出指定区域中的所有 Amazon Kendra 索引。
   params:
-    region: The AWS region to list Kendra indexes from
+    region: 要列出 Kendra 索引的 AWS 区域
+

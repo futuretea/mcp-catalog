@@ -1,48 +1,48 @@
 name: AWS Documentation
-shortDescription: Access, search, and get recommendations from AWS documentation
+shortDescription: 访问、搜索 AWS 文档并获取推荐
 description: '![AWS Documentation MCP Demo](https://github.com/awslabs/mcp/blob/main/src/aws-documentation-mcp-server/basic-usage.gif?raw=true)
 
 
-  A Model Context Protocol (MCP) server for AWS Documentation. Access, search, and get recommendations from AWS documentation with tools to fetch content, search globally, and discover related resources.
+  一个用于 AWS 文档的 Model Context Protocol (MCP) 服务器。访问、搜索 AWS 文档并获取推荐，提供获取内容、全局搜索和发现相关资源的工具。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Read Documentation**: Fetch and convert AWS documentation pages to markdown format
+  - **阅读文档**: 获取 AWS 文档页面并将其转换为 markdown 格式
 
-  - **Search Documentation**: Search AWS documentation using the official search API (global only)
+  - **搜索文档**: 使用官方搜索 API 搜索 AWS 文档（仅限全球）
 
-  - **Recommendations**: Get content recommendations for AWS documentation pages (global only)
+  - **推荐**: 获取 AWS 文档页面的内容推荐（仅限全球）
 
-  - **Get Available Services List**: Get a list of available AWS services in China regions (China only)
-
-
-  ## What you''ll need to connect
+  - **获取可用服务列表**: 获取中国区域可用的 AWS 服务列表（仅限中国）
 
 
-  **Required AWS Credentials:**
-
-  - **AWS Access Key ID**: Your AWS credential access key
-
-  - **AWS Secret Access Key**: Your AWS credential access secret
+  ## 连接所需条件
 
 
-  **Optional Configuration:**
+  **必需的 AWS 凭证:**
 
-  - **AWS Region**: AWS region to use (default: `us-east-1`)
+  - **AWS Access Key ID**: 您的 AWS 凭证访问密钥
 
-  - **AWS Session Token**: Required only for temporary credentials like SSO or STS AssumeRole
-
-
-  ## Basic Usage
+  - **AWS Secret Access Key**: 您的 AWS 凭证访问密钥密文
 
 
-  Example:
+  **可选配置:**
+
+  - **AWS Region**: 要使用的 AWS 区域 (默认: `us-east-1`)
+
+  - **AWS Session Token**: 仅在使用临时凭证（如 SSO 或 STS AssumeRole）时需要
 
 
-  - "look up documentation on S3 bucket naming rule. cite your sources"
+  ## 基本用法
 
-  - "recommend content for page https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html"
+
+  示例:
+
+
+  - "查找关于 S3 存储桶命名规则的文档。引用来源"
+
+  - "为页面 https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html 推荐内容"
 
   '
 metadata:
@@ -54,7 +54,7 @@ env:
   name: AWS Access Key ID
   required: true
   sensitive: true
-  description: Your AWS Access Key ID
+  description: 您的 AWS Access Key ID
 - key: AWS_SECRET_ACCESS_KEY
   name: AWS Secret Access Key
   required: true
@@ -64,12 +64,12 @@ env:
   name: AWS Session Token
   required: false
   sensitive: true
-  description: AWS Session Token, only required if using temporary credentials such as temporary AWS credentials, such as those obtained through aws sso login or other temporary access methods (for example, STS AssumeRole)
+  description: AWS Session Token，仅在使用临时凭证时需要，例如通过 aws sso login 或其他临时访问方法获得的临时 AWS 凭证（例如 STS AssumeRole）
 - key: AWS_REGION
   name: AWS Region
   required: false
   sensitive: false
-  description: AWS Region, default to us-east-1
+  description: AWS 区域，默认为 us-east-1
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/aws-documentation:1.1.9
@@ -79,17 +79,18 @@ containerizedConfig:
   - awslabs.aws-documentation-mcp-server
 toolPreview:
 - name: read_documentation
-  description: Fetch and convert an AWS documentation page to markdown format. Retrieves content from AWS documentation pages and converts it to markdown format. For long documents, you can make multiple calls with different start_index values to retrieve the entire content in chunks.
+  description: 获取 AWS 文档页面并将其转换为 markdown 格式。从 AWS 文档页面检索内容并将其转换为 markdown 格式。对于长文档，您可以使用不同的 start_index 值进行多次调用，以分块检索整个内容。
   params:
-    url: URL of the AWS documentation page to read (must be from docs.aws.amazon.com domain and end with .html)
-    max_length: Maximum number of characters to return (optional)
-    start_index: Starting character index for pagination of long documents (optional)
+    url: 要阅读的 AWS 文档页面的 URL（必须来自 docs.aws.amazon.com 域并以 .html 结尾）
+    max_length: 要返回的最大字符数（可选）
+    start_index: 长文档分页的起始字符索引（可选）
 - name: search_documentation
-  description: Search AWS documentation using the official AWS Documentation Search API. Searches across all AWS documentation for pages matching your search phrase. Use specific technical terms and include service names to narrow results. Available for global AWS partition only.
+  description: 使用官方 AWS 文档搜索 API 搜索 AWS 文档。在所有 AWS 文档中搜索与您的搜索词匹配的页面。使用特定的技术术语并包含服务名称以缩小结果范围。仅适用于全球 AWS 分区。
   params:
-    search_phrase: Search phrase to use (use specific technical terms and include service names for better results)
-    limit: Maximum number of results to return (optional)
+    search_phrase: 要使用的搜索词（使用特定的技术术语并包含服务名称以获得更好的结果）
+    limit: 要返回的最大结果数（可选）
 - name: recommend
-  description: Get content recommendations for an AWS documentation page. Provides recommendations for related AWS documentation pages including highly rated, new, similar, and journey categories. Available for global AWS partition only.
+  description: 获取 AWS 文档页面的内容推荐。为相关的 AWS 文档页面提供推荐，包括高评分、新内容、相似内容和旅程类别。仅适用于全球 AWS 分区。
   params:
-    url: URL of the AWS documentation page to get recommendations for (must be a valid AWS documentation URL)
+    url: 要获取推荐的 AWS 文档页面的 URL（必须是有效的 AWS 文档 URL）
+

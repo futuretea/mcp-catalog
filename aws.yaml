@@ -1,78 +1,78 @@
 name: AWS API
-shortDescription: Execute AWS CLI commands across all AWS services with intelligent suggestions
-description: 'A Model Context Protocol (MCP) server for AWS CLI operations. Execute AWS CLI commands and get intelligent command suggestions across all AWS services safely and efficiently.
+shortDescription: 在所有 AWS 服务中执行 AWS CLI 命令，并提供智能建议
+description: '一个用于 AWS CLI 操作的 Model Context Protocol (MCP) 服务器。安全高效地执行 AWS CLI 命令，并在所有 AWS 服务中获取智能命令建议。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Universal AWS CLI Access**: Execute any AWS CLI command across all AWS services
+  - **通用 AWS CLI 访问**: 在所有 AWS 服务中执行任何 AWS CLI 命令
 
-  - **Intelligent Command Suggestions**: Get AI-powered suggestions for AWS CLI commands based on natural language queries
+  - **智能命令建议**: 基于自然语言查询获取 AI 驱动的 AWS CLI 命令建议
 
-  - **Multi-Service Support**: Work with EC2, S3, Lambda, IAM, RDS, DynamoDB, and 200+ other AWS services
+  - **多服务支持**: 支持 EC2、S3、Lambda、IAM、RDS、DynamoDB 以及 200 多种其他 AWS 服务
 
-  - **Built-in Validation**: Commands are validated before execution to prevent errors
+  - **内置验证**: 命令在执行前会进行验证以防止错误
 
-  - **Automatic Pagination**: Handle large result sets with automatic pagination support
-
-
-  ## What you''ll need to connect
+  - **自动分页**: 通过自动分页支持处理大量结果集
 
 
-  **Required AWS Credentials:**
-
-  - **AWS Access Key ID**: Your AWS credential access key
-
-  - **AWS Secret Access Key**: Your AWS credential access secret
+  ## 连接所需条件
 
 
-  **Optional Configuration:**
+  **必需的 AWS 凭证:**
 
-  - **AWS Region**: AWS region to use (default: `us-east-1`)
+  - **AWS Access Key ID**: 您的 AWS 凭证访问密钥
 
-  - **AWS Session Token**: Required only for temporary credentials like SSO or STS AssumeRole
-
-
-  **IAM Permissions Required:**
-
-  - Permissions depend on the AWS services you want to interact with
-
-  - For read-only operations: Consider using AWS managed policy `ReadOnlyAccess`
-
-  - For administrative access: Use appropriate service-specific policies
+  - **AWS Secret Access Key**: 您的 AWS 凭证访问密钥密文
 
 
-  ## Basic Usage
+  **可选配置:**
+
+  - **AWS Region**: 要使用的 AWS 区域 (默认: `us-east-1`)
+
+  - **AWS Session Token**: 仅在使用临时凭证（如 SSO 或 STS AssumeRole）时需要
 
 
-  ### Common Workflows
+  **所需的 IAM 权限:**
+
+  - 权限取决于您希望交互的 AWS 服务
+
+  - 对于只读操作: 考虑使用 AWS 托管策略 `ReadOnlyAccess`
+
+  - 对于管理访问权限: 使用适当的服务特定策略
 
 
-  1. **Identity Verification**: Check your AWS credentials and account information
-
-  2. **Resource Discovery**: List and discover AWS resources across services
-
-  3. **Resource Management**: Create, update, and manage AWS resources
-
-  4. **Query and Monitoring**: Query resource states and monitor your infrastructure
+  ## 基本用法
 
 
-  ### Simple Examples
+  ### 常见工作流
 
 
-  - "List all my S3 buckets"
+  1. **身份验证**: 检查您的 AWS 凭证和账户信息
 
-  - "Show me all running EC2 instances"
+  2. **资源发现**: 跨服务列出和发现 AWS 资源
 
-  - "Get my AWS account information"
+  3. **资源管理**: 创建、更新和管理 AWS 资源
 
-  - "List all Lambda functions in us-west-2"
+  4. **查询和监控**: 查询资源状态并监控您的基础设施
 
-  - "Describe my RDS instances"
 
-  - "Show IAM users in my account"
+  ### 简单示例
 
-  - "Create a new S3 bucket named my-new-bucket"
+
+  - "列出我所有的 S3 存储桶"
+
+  - "显示我所有正在运行的 EC2 实例"
+
+  - "获取我的 AWS 账户信息"
+
+  - "列出 us-west-2 中的所有 Lambda 函数"
+
+  - "描述我的 RDS 实例"
+
+  - "显示我账户中的 IAM 用户"
+
+  - "创建一个名为 my-new-bucket 的新 S3 存储桶"
 
   '
 metadata:
@@ -84,7 +84,7 @@ env:
   name: AWS Access Key ID
   required: true
   sensitive: true
-  description: Your AWS Access Key ID
+  description: 您的 AWS Access Key ID
 - key: AWS_SECRET_ACCESS_KEY
   name: AWS Secret Access Key
   required: true
@@ -94,12 +94,12 @@ env:
   name: AWS Session Token
   required: false
   sensitive: true
-  description: AWS Session Token, only required if using temporary credentials such as temporary AWS credentials, such as those obtained through aws sso login or other temporary access methods (for example, STS AssumeRole)
+  description: AWS Session Token，仅在使用临时凭证时需要，例如通过 aws sso login 或其他临时访问方法获得的临时 AWS 凭证（例如 STS AssumeRole）
 - key: AWS_REGION
   name: AWS Region
   required: false
   sensitive: false
-  description: AWS Region, default to us-east-1
+  description: AWS 区域，默认为 us-east-1
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/aws-api:1.1.4
@@ -109,13 +109,13 @@ containerizedConfig:
   - awslabs.aws-api-mcp-server
 toolPreview:
 - name: call_aws
-  description: Execute AWS CLI commands with validation and proper error handling. Supports any AWS service and operation.
+  description: 执行带有验证和适当错误处理的 AWS CLI 命令。支持任何 AWS 服务和操作。
   params:
-    cli_command: The complete AWS CLI command to execute (must start with "aws")
-    max_results: Optional limit for number of results (useful for pagination)
+    cli_command: 要执行的完整 AWS CLI 命令（必须以 "aws" 开头）
+    max_results: 可选的结果数量限制（对分页有用）
 - name: suggest_aws_commands
-  description: Get AI-powered suggestions for AWS CLI commands based on natural language queries
+  description: 基于自然语言查询获取 AI 驱动的 AWS CLI 命令建议
   params:
-    query: A natural language description of what you want to accomplish in AWS
+    query: 描述您希望在 AWS 中完成什么的自然语言描述
 
 

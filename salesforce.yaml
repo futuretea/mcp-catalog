@@ -1,61 +1,61 @@
 name: Salesforce
-shortDescription: Manage Salesforce CRM records, execute SOQL queries, and access metadata
+shortDescription: 管理 Salesforce CRM 记录，执行 SOQL 查询，并访问元数据
 description: |
   ![Salesforce MCP Server](https://img.shields.io/badge/Salesforce-MCP%20Server-blue?style=for-the-badge&logo=salesforce)
   ![Python](https://img.shields.io/badge/Python-3.8+-green?style=for-the-badge&logo=python)
   ![Docker](https://img.shields.io/badge/Docker-Ready-blue?style=for-the-badge&logo=docker)
   ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-  A Model Context Protocol (MCP) server for Salesforce integration, providing comprehensive CRM management capabilities through the Salesforce API.
+  用于 Salesforce 集成的 Model Context Protocol (MCP) 服务器，通过 Salesforce API 提供全面的 CRM 管理能力。
 
-  ## Features
-  - **Object Management**: Create, read, update, and delete Salesforce records
-  - **SOQL Queries**: Execute Salesforce Object Query Language queries
-  - **Metadata Access**: Retrieve and manage Salesforce metadata
-  - **Multi-Object Support**: Work with standard and custom objects
-  - **Bulk Operations**: Handle large data operations efficiently
+  ## 功能特性
+  - **对象管理**：创建、读取、更新和删除 Salesforce 记录
+  - **SOQL 查询**：执行 Salesforce 对象查询语言查询
+  - **元数据访问**：检索和管理 Salesforce 元数据
+  - **多对象支持**：处理标准对象和自定义对象
+  - **批量操作**：高效处理大数据量操作
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **Salesforce Connected App**: You'll need to create a Connected App in Salesforce and get the client credentials
+  **Salesforce Connected App**：您需要在 Salesforce 中创建一个 Connected App 并获取客户端凭证
 
-  ### How to create a Connected App and get your credentials:
+  ### 如何创建 Connected App 并获取凭证：
 
-  1. **Create a new Salesforce External Client App**
-     - Log in to your Salesforce portal
-     - Go to Setup, and then search for 'External Client App Manager'
-     - Select 'New External Client App' from the top right
-     - Enter `Salesforce` as the External Client App Name
-     - Fill in a Contact Email for your Salesforce Administrator
-     - Set 'Distribution State' to 'Local' from the dropdown menu
-     - (Optionally) Fill in the other fields
-     - Click the `Create` button
+  1. **创建新的 Salesforce External Client App**
+     - 登录到您的 Salesforce 门户
+     - 进入设置(Setup)，然后搜索 "External Client App Manager"
+     - 从右上角选择 "New External Client App"
+     - 输入 `Salesforce` 作为 External Client App 名称
+     - 填写 Salesforce 管理员的联系邮箱
+     - 将 "Distribution State" 设置为 "Local"
+     - （可选）填写其他字段
+     - 点击 `Create` 按钮
 
-  2. **Configure OAuth Settings**
-     - Expand the 'Api (Enable OAuth Settings)' section, and check the box to Enable OAuth
-     - Enter your callback url. Any url will work, as we will only use the client id and secret to authenticate.
-     - Check on "Enable Client Credentials Flow".
-     - In the 'App Settings' section
-       - Select the `Manage user data via APIs (api)` and `Perform requests at any time (refresh_token, offline_access)` OAuth Scopes from the list
-     - Click the 'Create' button
+  2. **配置 OAuth 设置**
+     - 展开 "Api (Enable OAuth Settings)" 部分，勾选 Enable OAuth
+     - 输入您的回调 URL。任何 URL 都可以，因为我们只使用 client id 和 secret 进行身份验证。
+     - 勾选 "Enable Client Credentials Flow"。
+     - 在 "App Settings" 部分
+       - 从列表中选择 `Manage user data via APIs (api)` 和 `Perform requests at any time (refresh_token, offline_access)` OAuth 范围
+     - 点击 "Create" 按钮
 
-  3. **Register your OAuth App credentials**
-     - Go to Your app's settings page. Under the "Policy" -> "Oauth policy" section, click "Edit".
-     - Check on "Enable Client Credentials Flow". Put an username that you want to run as the user with client credentials.
-     - From the 'Settings' tab for your External Client App
-       - Expand the 'OAuth Settings' box and then click 'Consumer Key and Secret' from inside the 'App Settings' block
-     - Save the consumer key and secret as you will use them later.
+  3. **注册您的 OAuth 应用凭证**
+     - 进入您应用的设置页面。在 "Policy" -> "Oauth policy" 部分，点击 "Edit"。
+     - 勾选 "Enable Client Credentials Flow"。输入您希望用于 client credentials 的用户名。
+     - 在 External Client App 的 "Settings" 标签页中
+       - 展开 "OAuth Settings" 框，然后点击 "App Settings" 块中的 "Consumer Key and Secret"
+     - 保存 consumer key 和 secret，稍后您将使用它们。
 
-  4. **Find your Salesforce domain**
-     - Go to "Setup"
-     - in "Quick Find" search for "My Domain"
-     - Click on "My Domain". Find the domain in "Current My Domain URL". Use the one before salesforce.com. For example, if the url is https://mydomain.devloping.my.salesforce.com, the domain is mydomain.devloping.my.
-     - Copy the domain and save it for later.
+  4. **查找您的 Salesforce 域名**
+     - 进入 "Setup"
+     - 在 "Quick Find" 中搜索 "My Domain"
+     - 点击 "My Domain"。在 "Current My Domain URL" 中查找域名。使用 salesforce.com 之前的部分。例如，如果 URL 是 https://mydomain.devloping.my.salesforce.com，则域名是 mydomain.devloping.my。
+     - 复制域名并保存以备后用。
 
-  5. **Environment Variables**
-     - Set `SFDC_CLIENT_ID` to your Consumer Key
-     - Set `SFDC_CLIENT_SECRET` to your Consumer Secret
-     - Set `SFDC_DOMAIN` to your Salesforce domain (for example, mydomain.devloping.my)
+  5. **环境变量**
+     - 将 `SFDC_CLIENT_ID` 设置为您的 Consumer Key
+     - 将 `SFDC_CLIENT_SECRET` 设置为您的 Consumer Secret
+     - 将 `SFDC_DOMAIN` 设置为您的 Salesforce 域名（例如 mydomain.devloping.my）
 metadata:
   categories: CRM
   allow-multiple: "true"
@@ -71,124 +71,124 @@ env:
     name: Salesforce Client ID
     required: true
     sensitive: true
-    description: Your Salesforce Connected App Consumer Key (Client ID)
+    description: 您的 Salesforce Connected App Consumer Key (Client ID)
   - key: SFDC_CLIENT_SECRET
     name: Salesforce Client Secret
     required: true
     sensitive: true
-    description: Your Salesforce Connected App Consumer Secret (Client Secret)
+    description: 您的 Salesforce Connected App Consumer Secret (Client Secret)
   - key: SFDC_DOMAIN
     name: Salesforce Domain
     required: false
     sensitive: false
-    description: Your Salesforce domain (defaults to 'organization.my' if not specified)
+    description: 您的 Salesforce 域名（如果未指定，默认为 'organization.my'）
 
 toolPreview:
   - name: convert_lead_to_opportunity
-    description: Converts an existing lead into a new Opportunity in Salesforce.
+    description: 将现有潜在客户转换为 Salesforce 中的新商机。
     params:
-      account_id: The Salesforce Id of an existing account to associate with the opportunity
-      contact_id: The Salesforce Id of an existing contact to associate with the opportunity
-      converted_status: The converted status of the lead. Must exist within Salesforce.
-      lead_id: A string containing the Salesforce Id of the lead to update
-      opportunity_name: The name of the opportunity to create
+      account_id: 要与商机关联的现有账户的 Salesforce ID
+      contact_id: 要与商机关联的现有联系人的 Salesforce ID
+      converted_status: 潜在客户的转换状态。必须存在于 Salesforce 中。
+      lead_id: 包含要更新的潜在客户 Salesforce ID 的字符串
+      opportunity_name: 要创建的商机名称
   - name: create_account
-    description: Create a new account in Salesforce.
+    description: 在 Salesforce 中创建新账户。
     params:
-      account: A JSON-formatted string containing the account fields to use for the new account
+      account: 包含用于新账户的账户字段的 JSON 格式字符串
   - name: create_case
-    description: Create a new case in Salesforce.
+    description: 在 Salesforce 中创建新案例。
     params:
-      case: A JSON-formatted string containing the case fields to use for the new case
+      case: 包含用于新案例的案例字段的 JSON 格式字符串
   - name: create_contact
-    description: Create a new contact in Salesforce.
+    description: 在 Salesforce 中创建新联系人。
     params:
-      contact: A JSON-formatted string containing the contact fields to use for the new contact
+      contact: 包含用于新联系人的联系人字段的 JSON 格式字符串
   - name: create_lead
-    description: Create a new lead in Salesforce.
+    description: 在 Salesforce 中创建新潜在客户。
     params:
-      lead: A JSON-formatted string containing the lead fields to use for the new lead
+      lead: 包含用于新潜在客户的潜在客户字段的 JSON 格式字符串
   - name: create_opportunity
-    description: Create a new opportunity in Salesforce.
+    description: 在 Salesforce 中创建新商机。
     params:
-      opportunity: A JSON-formatted string containing the opportunity fields to use for the new opportunity
+      opportunity: 包含用于新商机的商机字段的 JSON 格式字符串
   - name: delete_account
-    description: Delete an existing account in Salesforce.
+    description: 删除 Salesforce 中的现有账户。
     params:
-      account_id: A string containing the Salesforce Id of the account to delete
+      account_id: 包含要删除账户的 Salesforce ID 的字符串
   - name: delete_case
-    description: Delete an existing case in Salesforce.
+    description: 删除 Salesforce 中的现有案例。
     params:
-      case_id: A string containing the Salesforce Id of the case to delete
+      case_id: 包含要删除案例的 Salesforce ID 的字符串
   - name: delete_contact
-    description: Delete an existing contact in Salesforce.
+    description: 删除 Salesforce 中的现有联系人。
     params:
-      contact_id: A string containing the Salesforce Id of the contact to delete
+      contact_id: 包含要删除联系人的 Salesforce ID 的字符串
   - name: delete_lead
-    description: Delete an existing lead in Salesforce.
+    description: 删除 Salesforce 中的现有潜在客户。
     params:
-      lead_id: A string containing the Salesforce Id of the lead to delete
+      lead_id: 包含要删除潜在客户的 Salesforce ID 的字符串
   - name: delete_opportunity
-    description: Delete an existing opportunity in Salesforce.
+    description: 删除 Salesforce 中的现有商机。
     params:
-      opportunity_id: A string containing the Salesforce Id of the opportunity to delete
+      opportunity_id: 包含要删除商机的 Salesforce ID 的字符串
   - name: describe_account_schema
-    description: Describes the available fields for an account object in Salesforce.
+    description: 描述 Salesforce 中账户对象的可用字段。
     params: {}
   - name: describe_case_schema
-    description: Describes the available fields for a case object in Salesforce.
+    description: 描述 Salesforce 中案例对象的可用字段。
     params: {}
   - name: describe_contact_schema
-    description: Describes the available fields for a contact object in Salesforce.
+    description: 描述 Salesforce 中联系人对象的可用字段。
     params: {}
   - name: describe_lead_schema
-    description: Describes the available fields for a lead object in Salesforce.
+    description: 描述 Salesforce 中潜在客户对象的可用字段。
     params: {}
   - name: describe_opportunity_schema
-    description: Describes the available fields for an opportunity object in Salesforce.
+    description: 描述 Salesforce 中商机对象的可用字段。
     params: {}
   - name: email_message
-    description: Create an Email in Salesforce using Enhanced Email functionality.
+    description: 使用 Enhanced Email 功能在 Salesforce 中创建电子邮件。
     params:
-      from_address: The email address of the sender
-      from_name: The name of the sender
-      html_body: The HTML body of the email
-      related_object_id: The Salesforce Id of the object to which the email should be related
-      status: The numeric status of the email (3 = Sent, 5 = Draft). Create messages as drafts by default.
-      subject: The subject of the email
-      text_body: The plaintext body of the email
-      to_address: The email address of the recipient
+      from_address: 发件人的电子邮件地址
+      from_name: 发件人姓名
+      html_body: 电子邮件的 HTML 正文
+      related_object_id: 电子邮件应关联到的对象的 Salesforce ID
+      status: 电子邮件的数字状态（3 = 已发送，5 = 草稿）。默认创建草稿消息。
+      subject: 电子邮件主题
+      text_body: 电子邮件的纯文本正文
+      to_address: 收件人的电子邮件地址
   - name: get_direct_link
-    description: Get a direct weblink to a Salesforce object.
+    description: 获取 Salesforce 对象的直接网页链接。
     params:
-      object_id: The ID of the Salesforce object to get the direct link for.
-      object_type: The type of Salesforce object to get the direct link for. Use singular form, starting with a capital letter (e.g., Account, Contact, Lead, Opportunity, Case)
+      object_id: 要获取直接链接的 Salesforce 对象的 ID。
+      object_type: 要获取直接链接的 Salesforce 对象类型。使用单数形式，首字母大写（例如 Account、Contact、Lead、Opportunity、Case）
   - name: query
-    description: Query Salesforce using SOQL.
+    description: 使用 SOQL 查询 Salesforce。
     params:
-      query: The SOQL query to execute
+      query: 要执行的 SOQL 查询
   - name: update_account
-    description: Update an existing account in Salesforce.
+    description: 更新 Salesforce 中的现有账户。
     params:
-      account: A JSON-formatted string containing the account fields to update in the existing account
-      account_id: A string containing the Salesforce Id of the account to update
+      account: 包含要在现有账户中更新的账户字段的 JSON 格式字符串
+      account_id: 包含要更新账户的 Salesforce ID 的字符串
   - name: update_case
-    description: Update an existing case in Salesforce.
+    description: 更新 Salesforce 中的现有案例。
     params:
-      case: A JSON-formatted string containing the case fields to update in the existing case
-      case_id: A string containing the Salesforce Id of the case to update
+      case: 包含要在现有案例中更新的案例字段的 JSON 格式字符串
+      case_id: 包含要更新案例的 Salesforce ID 的字符串
   - name: update_contact
-    description: Update an existing contact in Salesforce.
+    description: 更新 Salesforce 中的现有联系人。
     params:
-      contact: A JSON-formatted string containing the contact fields to update in the existing contact
-      contact_id: A string containing the Salesforce Id of the contact to update
+      contact: 包含要在现有联系人中更新的联系人字段的 JSON 格式字符串
+      contact_id: 包含要更新联系人的 Salesforce ID 的字符串
   - name: update_lead
-    description: Update an existing lead in Salesforce.
+    description: 更新 Salesforce 中的现有潜在客户。
     params:
-      lead: A JSON-formatted string containing the lead fields to update in the existing lead
-      lead_id: A string containing the Salesforce Id of the lead to update
+      lead: 包含要在现有潜在客户中更新的潜在客户字段的 JSON 格式字符串
+      lead_id: 包含要更新潜在客户的 Salesforce ID 的字符串
   - name: update_opportunity
-    description: Update an existing opportunity in Salesforce.
+    description: 更新 Salesforce 中的现有商机。
     params:
-      opportunity: A JSON-formatted string containing the opportunity fields to update in the existing opportunity
-      opportunity_id: A string containing the Salesforce Id of the opportunity to update
+      opportunity: 包含要在现有商机中更新的商机字段的 JSON 格式字符串
+      opportunity_id: 包含要更新商机的 Salesforce ID 的字符串

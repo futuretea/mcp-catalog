@@ -1,29 +1,29 @@
 name: Square
-shortDescription: Manage Square payments, customers, orders, catalog, and business operations
+shortDescription: 管理 Square 付款、客户、订单、目录和业务运营
 description: |
-  A Model Context Protocol (MCP) server for Square that connects AI assistants directly to the full Square API platform, providing programmatic access to customers, orders, items, payments, and commerce operations.
+  用于 Square 的 Model Context Protocol (MCP) 服务器，将 AI 助手直接连接到完整的 Square API 平台，提供对客户、订单、商品、付款和商务操作的程序化访问。
 
-  ## Features
-  - **Payment Ecosystem**: Complete payment processing including Apple Pay, cards, checkouts, refunds, and payouts
-  - **Customer & Loyalty**: Customer management, segmentation, groups, loyalty programs, and custom attributes
-  - **Catalog & Inventory**: Product catalogs, inventory tracking, categories, and item management
-  - **Order Management**: Order processing, custom attributes, and comprehensive order lifecycle
-  - **Business Operations**: Locations, merchants, team management, labor tracking, and workforce tools
-  - **Point of Sale**: Cash drawers, Square devices, Terminal management, and in-person transactions
-  - **Bookings & Appointments**: Appointment scheduling, booking management, and custom booking attributes
-  - **Gift Cards & Subscriptions**: Gift card activities, subscription management, and recurring billing
-  - **Financial Management**: Bank accounts, dispute handling, invoice management, and vendor relations
-  - **Integration Tools**: Webhooks, OAuth authentication, Square Online sites, and code snippets
-  - **AI-Powered Access**: Natural language interface to 25+ Square API services through unified tools
+  ## 功能特性
+  - **付款生态系统**：完整的付款处理，包括 Apple Pay、银行卡、结账、退款和付款
+  - **客户与忠诚度**：客户管理、细分、群组、忠诚度计划和自定义属性
+  - **目录与库存**：产品目录、库存跟踪、分类和商品管理
+  - **订单管理**：订单处理、自定义属性和全面的订单生命周期
+  - **业务运营**：位置、商家、团队管理、劳动力跟踪和劳动力工具
+  - **销售点**：收银机、Square 设备、Terminal 管理和面对面交易
+  - **预约与预订**：预约调度、预订管理和自定义预订属性
+  - **礼品卡与订阅**：礼品卡活动、订阅管理和周期性计费
+  - **财务管理**：银行账户、争议处理、invoice 管理和供应商关系
+  - **集成工具**：Webhook、OAuth 认证、Square Online 站点和代码片段
+  - **AI 驱动访问**：通过统一工具以自然语言界面访问 25+ Square API 服务
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **No Setup Required**: Authentication is handled automatically through OAuth workflow.
+  **无需设置**：通过 OAuth 工作流自动处理身份验证。
 
-  ## Known Issues
+  ## 已知问题
 
-  GPT-4.1 is generally not able to format its API requests correctly when calling the `make_api_request` tool.
-  Claude Sonnet 4 works better.
+  GPT-4.1 通常在调用 `make_api_request` 工具时无法正确格式化其 API 请求。
+  Claude Sonnet 4 效果更好。
 
 metadata:
   categories: Business
@@ -35,17 +35,17 @@ remoteConfig:
 
 toolPreview:
   - name: make_api_request
-    description: Unified tool for all Square API operations covering 25+ services including customers, orders, payments, inventory, and more
+    description: 用于所有 Square API 操作的统一工具，涵盖 25+ 服务，包括客户、订单、付款、库存等
     params:
-      method: HTTP method for the API request
-      service: Square API service (customers, orders, payments, catalog, inventory, etc.)
-      request: Request object with parameters for the API call (optional)
+      method: API 请求的 HTTP 方法
+      service: Square API 服务（customers、orders、payments、catalog、inventory 等）
+      request: API 调用的请求对象及参数（可选）
   - name: get_type_info
-    description: Get type information for a Square API method before making requests
+    description: 在发出请求之前获取 Square API 方法的类型信息
     params:
-      method: The API method to get type information for
-      service: The Square API service containing the method
+      method: 要获取类型信息的 API 方法
+      service: 包含该方法的 Square API 服务
   - name: get_service_info
-    description: Get information about a Square API service and its available methods
+    description: 获取有关 Square API 服务及其可用方法的信息
     params:
-      service: The Square API service to get information about
+      service: 要获取信息的 Square API 服务

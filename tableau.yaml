@@ -1,23 +1,23 @@
 name: Tableau
-shortDescription: Query Tableau data sources, access Pulse metrics, and explore workbooks
+shortDescription: 查询 Tableau 数据源、访问 Pulse 指标并探索工作簿
 description: |
-  A Model Context Protocol (MCP) server that provides comprehensive access to Tableau Cloud and Tableau Server through multiple APIs. Connect to published data sources, query data with VizQL, explore Pulse metrics, and access workbooks and views with full metadata support.
+  一个 Model Context Protocol (MCP) 服务器，通过多个 API 提供对 Tableau Cloud 和 Tableau Server 的全面访问。连接到已发布的数据源、使用 VizQL 查询数据、探索 Pulse 指标，并访问具有完整元数据支持的工作簿和视图。
 
-  ## Features
-  - **VizQL Data Service (VDS) API**: Access to Tableau published data sources with advanced querying capabilities
-  - **Tableau Metadata API**: Collect data source metadata including columns with rich descriptions
-  - **Pulse API Integration**: Access Pulse Metrics, Definitions, Subscriptions, and generate Insight Bundles
-  - **Cross-Platform Support**: Compatible with any published data source on Tableau Cloud or Tableau Server
+  ## 功能特性
+  - **VizQL Data Service (VDS) API**：访问 Tableau 已发布的数据源，具有高级查询功能
+  - **Tableau Metadata API**：收集数据源的元数据，包括具有丰富描述的列
+  - **Pulse API 集成**：访问 Pulse 指标、定义、订阅，并生成 Insight Bundles
+  - **跨平台支持**：兼容 Tableau Cloud 或 Tableau Server 上的任何已发布数据源
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  **Required:**
-  - **Tableau Server URL**: the URL of the Tableau Server instance
-  - **Personal Access Token Name**: the name of the Personal Access Token
-  - **Personal Access Token Value**: the value of the Personal Access Token
+  **必需：**
+  - **Tableau Server URL**：Tableau Server 实例的 URL
+  - **Personal Access Token Name**：Personal Access Token 的名称
+  - **Personal Access Token Value**：Personal Access Token 的值
 
-  **Optional:**
-  - **Tableau Site Name**: the name of the Tableau site to use. If not provided, the default site will be used.
+  **可选：**
+  - **Tableau Site Name**：要使用的 Tableau 站点名称。如果未提供，将使用默认站点。
 
 metadata:
   categories: Data Analytics, Business Intelligence, Visualization
@@ -26,91 +26,91 @@ repoURL: https://github.com/tableau/tableau-mcp
 
 toolPreview:
   - name: list-datasources
-    description: Retrieves a list of published data sources from a specified Tableau site using the Tableau REST API. Supports optional filtering via field:operator:value expressions for precise and flexible data source discovery.
+    description: 使用 Tableau REST API 从指定的 Tableau 站点检索已发布数据源的列表。支持通过 field:operator:value 表达式进行可选过滤，以实现精确灵活的数据源发现。
     params:
-      filter: "Optional filtering via field:operator:value expressions (e.g., name:eq:Views) - default: None"
-      limit: "Maximum number of results to return - default: None"
-      pageSize: "Number of items per page - default: None"
+      filter: "通过 field:operator:value 表达式进行可选过滤（例如，name:eq:Views）- 默认值：None"
+      limit: "要返回的最大结果数 - 默认值：None"
+      pageSize: "每页项目数 - 默认值：None"
   - name: list-fields
-    description: Fetches rich field metadata (name, description, inherited description, dataType, dataCategory, role, etc.) for the specified datasource via Tableau's Metadata API.
+    description: 通过 Tableau 的 Metadata API 获取指定数据源的丰富字段元数据（名称、描述、继承描述、dataType、dataCategory、role 等）。
     params:
-      datasourceLuid: "The LUID of the datasource to get field metadata for"
+      datasourceLuid: "要获取字段元数据的数据源 LUID"
   - name: query-datasource
-    description: Executes VizQL queries against Tableau data sources to answer business questions from published data. This tool allows you to retrieve aggregated and filtered data with proper sorting and grouping.
+    description: 对 Tableau 数据源执行 VizQL 查询，以从已发布数据回答业务问题。此工具允许您检索经过聚合和过滤的数据，并进行适当的排序和分组。
     params:
-      datasourceLuid: "The LUID of the datasource to query"
-      query: "Query object containing fields array and optional filters array"
+      datasourceLuid: "要查询的数据源 LUID"
+      query: "包含 fields 数组和可选 filters 数组的查询对象"
   - name: read-metadata
-    description: Returns basic, high-level metadata for a specified data source including fieldName, fieldCaption, dataType, defaultAggregation, and logicalTableId.
+    description: 返回指定数据源的基本高级元数据，包括 fieldName、fieldCaption、dataType、defaultAggregation 和 logicalTableId。
     params:
-      datasourceLuid: "The LUID of the datasource to read metadata for"
+      datasourceLuid: "要读取元数据的数据源 LUID"
   - name: list-workbooks
-    description: Retrieves a list of workbooks on a Tableau site including their metadata such as name, description, and information about the views contained in the workbook.
+    description: 检索 Tableau 站点上的工作簿列表，包括其元数据，如名称、描述以及工作簿中包含的视图信息。
     params:
-      filter: "Optional filtering via field:operator:value expressions (e.g., name:eq:Superstore) - default: None"
-      limit: "Maximum number of results to return - default: None"
-      pageSize: "Number of items per page - default: None"
+      filter: "通过 field:operator:value 表达式进行可选过滤（例如，name:eq:Superstore）- 默认值：None"
+      limit: "要返回的最大结果数 - 默认值：None"
+      pageSize: "每页项目数 - 默认值：None"
   - name: list-views
-    description: Retrieves a list of views on a Tableau site including their metadata such as name, owner, and the workbook they are found in.
+    description: 检索 Tableau 站点上的视图列表，包括其元数据，如名称、所有者以及视图所在的工作簿。
     params:
-      filter: "Optional filtering via field:operator:value expressions (e.g., name:eq:Overview) - default: None"
-      limit: "Maximum number of results to return - default: None"
-      pageSize: "Number of items per page - default: None"
+      filter: "通过 field:operator:value 表达式进行可选过滤（例如，name:eq:Overview）- 默认值：None"
+      limit: "要返回的最大结果数 - 默认值：None"
+      pageSize: "每页项目数 - 默认值：None"
   - name: get-workbook
-    description: Retrieves information about the specified workbook, including information about the views contained in the workbook.
+    description: 检索有关指定工作簿的信息，包括工作簿中包含的视图信息。
     params:
-      workbookId: "The ID of the workbook to retrieve"
+      workbookId: "要检索的工作簿 ID"
   - name: get-view-data
-    description: Retrieves data in comma separated value (CSV) format for the specified view in a Tableau workbook.
+    description: 以逗号分隔值（CSV）格式检索 Tableau 工作簿中指定视图的数据。
     params:
-      viewId: "The ID of the view to get data from"
+      viewId: "要获取数据的视图 ID"
   - name: get-view-image
-    description: Retrieves an image of the specified view in a Tableau workbook. The width and height in pixels can be provided.
+    description: 检索 Tableau 工作簿中指定视图的图像。可以提供以像素为单位的宽度和高度。
     params:
-      viewId: "The ID of the view to get image from"
-      height: "Height in pixels - default: 800"
-      width: "Width in pixels - default: 800"
+      viewId: "要获取图像的视图 ID"
+      height: "高度（像素）- 默认值：800"
+      width: "宽度（像素）- 默认值：800"
   - name: list-all-pulse-metric-definitions
-    description: Retrieves a list of all published Pulse Metric Definitions using the Tableau REST API.
+    description: 使用 Tableau REST API 检索所有已发布的 Pulse 指标定义列表。
     params:
-      view: "The range of metrics to return (DEFINITION_VIEW_BASIC, DEFINITION_VIEW_FULL, DEFINITION_VIEW_DEFAULT) - default: DEFINITION_VIEW_BASIC"
+      view: "要返回的指标范围（DEFINITION_VIEW_BASIC、DEFINITION_VIEW_FULL、DEFINITION_VIEW_DEFAULT）- 默认值：DEFINITION_VIEW_BASIC"
   - name: list-pulse-metrics-from-metric-definition-id
-    description: Retrieves a list of published Pulse Metrics from a Pulse Metric Definition using the Tableau REST API.
+    description: 使用 Tableau REST API 从 Pulse 指标定义检索已发布的 Pulse 指标列表。
     params:
-      pulseMetricDefinitionID: "The ID of the Pulse Metric Definition to list metrics for (36 character UUID)"
+      pulseMetricDefinitionID: "要列出指标的 Pulse 指标定义 ID（36 字符 UUID）"
   - name: list-pulse-metrics-from-metric-ids
-    description: Retrieves a list of published Pulse Metrics from a list of metric IDs using the Tableau REST API.
+    description: 使用 Tableau REST API 从指标 ID 列表检索已发布的 Pulse 指标列表。
     params:
-      metricIds: "Array of Pulse Metric IDs to list metrics for"
+      metricIds: "要列出指标的 Pulse 指标 ID 数组"
   - name: list-pulse-metric-subscriptions
-    description: Retrieves a list of published Pulse Metric Subscriptions for the current user using the Tableau REST API.
+    description: 使用 Tableau REST API 检索当前用户的已发布 Pulse 指标订阅列表。
     params:
-      random_string: "Dummy parameter for no-parameter tools - default: None"
+      random_string: "无参数工具的虚拟参数 - 默认值：None"
   - name: generate-pulse-metric-value-insight-bundle
-    description: Generate an insight bundle for the current aggregated value for Pulse Metric using Tableau REST API. You need the full information of the Pulse Metric and Pulse Metric Definition to use this tool.
+    description: 使用 Tableau REST API 为 Pulse 指标的当前聚合值生成洞察包。您需要 Pulse 指标和 Pulse 指标定义的完整信息才能使用此工具。
     params:
-      bundleRequest: "The request object to generate a bundle for, containing bundle_request with version, options, and input"
-      bundleType: "The type of bundle to generate (ban, springboard, basic, detail) - default: ban"
+      bundleRequest: "用于生成包的请求对象，包含 bundle_request 及其 version、options 和 input"
+      bundleType: "要生成的包类型（ban、springboard、basic、detail）- 默认值：ban"
 
 env:
   - name: Tableau Server URL
     key: SERVER
-    description: Your Tableau Cloud or Server URL (e.g., https://your-site.online.tableau.com)
+    description: 您的 Tableau Cloud 或 Server URL（例如，https://your-site.online.tableau.com）
     required: true
     sensitive: false
   - name: Tableau Site Name
     key: SITE_NAME
-    description: The name of the Tableau site to use. If not provided, the default site will be used.
+    description: 要使用的 Tableau 站点名称。如果未提供，将使用默认站点。
     required: false
     sensitive: false
   - name: Personal Access Token Name
     key: PAT_NAME
-    description: The name of your Personal Access Token
+    description: 您的 Personal Access Token 名称
     required: true
     sensitive: false
   - name: Personal Access Token Value
     key: PAT_VALUE
-    description: The secret value of your Personal Access Token
+    description: 您的 Personal Access Token 密钥值
     required: true
     sensitive: true
 

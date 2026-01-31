@@ -1,37 +1,37 @@
 name: Monday.com
-shortDescription: Manage Monday.com boards, items, workflows, and team collaboration
+shortDescription: 管理 Monday.com 看板、项目、工作流和团队协作
 description: |
 
-  A Model Context Protocol (MCP) server for monday.com integration, providing comprehensive work management capabilities through monday.com's API.
+  一个用于 monday.com 集成的 Model Context Protocol (MCP) 服务器，通过 monday.com API 提供全面的工作管理功能。
 
-  ## Features
-  - **Access monday.com data from compatible AI applications**
-  - **Create and manage boards, items, and projects through natural language**
-  - **Automate workflows and track progress across teams**
-  - **Generate reports and insights based on monday.com data**
-  - **Manage users, teams, and workspace organization**
-  - **Create forms and collect data submissions**
-  - **Build dashboards and visualizations**
+  ## 功能特性
+  - **从兼容的 AI 应用程序访问 monday.com 数据**
+  - **通过自然语言创建和管理看板、项目和任务**
+  - **自动化工作流并跟踪团队进度**
+  - **基于 monday.com 数据生成报告和洞察**
+  - **管理用户、团队和工作空间组织**
+  - **创建表单和收集数据提交**
+  - **构建仪表板和可视化**
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **Step 1: Install the Monday MCP App**
-  
-  Before using service, you need to install the Monday MCP app from the marketplace:
-  
-  - Visit [monday MCP app in the marketplace](https://monday.com/marketplace/listing/10000806/monday-mcp)
-  - Click "Install" and follow the instructions to add it to your account
-  
-  **Step 2: Authentication**
-  
-  Authentication is handled automatically through OAuth2 workflow.
+  **步骤 1：安装 Monday MCP 应用程序**
 
-  ## Examples
-  - "Create a new board for Q2 planning with status columns"
-  - "List all items with status 'Done' from the Marketing board"
-  - "Add a new team member to the project and assign them tasks"
-  - "Create a dashboard showing project progress across all boards"
-  - "Generate a report of completed tasks this week"
+  在使用服务之前，您需要从应用市场安装 Monday MCP 应用程序：
+
+  - 访问 [monday MCP 应用市场](https://monday.com/marketplace/listing/10000806/monday-mcp)
+  - 点击"安装"并按照说明将其添加到您的账户
+
+  **步骤 2：身份验证**
+
+  通过 OAuth2 工作流自动处理身份验证。
+
+  ## 示例
+  - "为 Q2 规划创建一个带有状态列的新看板"
+  - "列出市场营销看板中状态为'已完成'的所有项目"
+  - "向项目添加新团队成员并为他们分配任务"
+  - "创建一个显示所有看板项目进度的仪表板"
+  - "生成本周已完成任务的报告"
 
 metadata:
   categories: Business, Project Management, Productivity
@@ -42,227 +42,227 @@ runtime: remote
 remoteConfig:
   fixedURL: https://mcp.monday.com/sse
 toolPreview:
-  # Board Operations
+  # 看板操作
   - name: create_board
-    description: Create a new monday.com board with specified columns and structure.
+    description: 创建具有指定列和结构的新 monday.com 看板。
     params:
-      boardName: "The name of the board to create"
-      boardDescription: "The description of the board to create"
-      boardKind: "The kind of board to create (private, public, share)"
-      workspaceId: "The ID of the workspace to create the board in"
+      boardName: "要创建的看板名称"
+      boardDescription: "要创建的看板描述"
+      boardKind: "要创建的看板类型（private、public、share）"
+      workspaceId: "要在其中创建看板的工作空间 ID"
 
   - name: get_board_info
-    description: Get comprehensive board information including metadata, structure, owners, and configuration.
+    description: 获取包括元数据、结构、所有者和配置的全面看板信息。
     params:
-      boardId: "The id of the board to get information for"
+      boardId: "要获取信息的看板 ID"
 
   - name: get_board_activity
-    description: Get board activity logs for a specified time range (defaults to last 30 days).
+    description: 获取指定时间范围的看板活动日志（默认为最近 30 天）。
     params:
-      boardId: "The id of the board to get activity for"
-      fromDate: "Start date for activity range (ISO8601DateTime format)"
-      toDate: "End date for activity range (ISO8601DateTime format)"
+      boardId: "要获取活动的看板 ID"
+      fromDate: "活动范围的开始日期（ISO8601DateTime 格式）"
+      toDate: "活动范围的结束日期（ISO8601DateTime 格式）"
 
-  # Item Operations
+  # 项目操作
   - name: create_item
-    description: Create a new item in a monday.com board with specified column values.
+    description: 在 monday.com 看板中创建具有指定列值的新项目。
     params:
-      boardId: "The id of the board to which the new item will be added"
-      name: "The name of the new item to be created"
-      columnValues: "A string containing the new column values for the item"
-      groupId: "The id of the group to which the new item will be added"
+      boardId: "要添加新项目的看板 ID"
+      name: "要创建的新项目名称"
+      columnValues: "包含项目新列值的字符串"
+      groupId: "要添加新项目的组 ID"
 
   - name: get_board_items_by_name
-    description: Search for items by board ID and term/name.
+    description: 通过看板 ID 和词/名称搜索项目。
     params:
-      boardId: "The board ID to search in"
-      term: "The search term to find items"
+      boardId: "要搜索的看板 ID"
+      term: "查找项目的搜索词"
 
   - name: create_update
-    description: Create a new update/comment in a monday.com item.
+    description: 在 monday.com 项目中创建新的更新/评论。
     params:
-      itemId: "The id of the item to which the update will be added"
-      body: "The update content to be created"
+      itemId: "要添加更新的项目 ID"
+      body: "要创建的更新内容"
 
-  # Column Operations
+  # 列操作
   - name: create_column
-    description: Create a new column in a monday.com board.
+    description: 在 monday.com 看板中创建新列。
     params:
-      boardId: "The id of the board to which the new column will be added"
-      columnType: "The type of the column to be created"
-      columnTitle: "The title of the column to be created"
-      columnDescription: "The description of the column to be created"
-      columnSettings: "Column-specific configuration settings as a JSON string"
+      boardId: "要添加新列的看板 ID"
+      columnType: "要创建的列类型"
+      columnTitle: "要创建的列标题"
+      columnDescription: "要创建的列描述"
+      columnSettings: "列特定配置设置的 JSON 字符串"
 
   - name: get_column_type_info
-    description: Retrieves comprehensive information about a specific column type.
+    description: 检索有关特定列类型的全面信息。
     params:
-      columnType: "The column type to retrieve information for"
+      columnType: "要检索信息的列类型"
 
-  # Group Operations
+  # 组操作
   - name: create_group
-    description: Create a new group in a monday.com board for organizing items.
+    description: 在 monday.com 看板中创建新组以组织项目。
     params:
-      boardId: "The ID of the board to create the group in"
-      groupName: "The name of the new group"
-      groupColor: "The color for the group"
-      positionRelativeMethod: "Whether to position before or after another group"
-      relativeTo: "The ID of the group to position relative to"
+      boardId: "要创建组的看板 ID"
+      groupName: "新组的名称"
+      groupColor: "组的颜色"
+      positionRelativeMethod: "是在另一组之前还是之后定位"
+      relativeTo: "要相对定位的组的 ID"
 
-  # User & Team Management
+  # 用户和团队管理
   - name: list_users_and_teams
-    description: Precision-first user and team retrieval tool for getting user and team information.
+    description: 用于获取用户和团队信息的精确优先用户和团队检索工具。
     params:
-      getMe: "Get current authenticated user information"
-      name: "Name-based user search (fuzzy matching)"
-      userIds: "Specific user IDs to fetch (max 500)"
-      teamIds: "Specific team IDs to fetch (max 500)"
-      includeTeams: "Include general teams data alongside users"
-      teamsOnly: "Fetch only teams, no users returned"
-      includeTeamMembers: "Control team member data inclusion"
+      getMe: "获取当前认证用户信息"
+      name: "基于名称的用户搜索（模糊匹配）"
+      userIds: "要获取的特定用户 ID（最多 500）"
+      teamIds: "要获取的特定团队 ID（最多 500）"
+      includeTeams: "随用户一起包含一般团队数据"
+      teamsOnly: "仅获取团队，不返回用户"
+      includeTeamMembers: "控制团队成员数据包含"
 
-  # Workspace Operations
+  # 工作空间操作
   - name: list_workspaces
-    description: List all workspaces available to the user.
+    description: 列出用户可用的所有工作空间。
     params:
-      random_string: "Dummy parameter for no-parameter tools"
+      random_string: "无参数工具的虚拟参数"
 
   - name: workspace_info
-    description: Get boards, docs and folders in a workspace and their folder organization.
+    description: 获取工作空间中的看板、文档和文件夹及其文件夹组织信息。
     params:
-      workspace_id: "The ID of the workspace to get information for"
+      workspace_id: "要获取信息的工作空间 ID"
 
   - name: create_workspace
-    description: Create a new workspace in monday.com.
+    description: 在 monday.com 中创建新工作空间。
     params:
-      name: "The name of the new workspace to be created"
-      workspaceKind: "The kind of workspace to create (closed, open, template)"
-      description: "The description of the new workspace"
-      accountProductId: "The account product ID associated with the workspace"
+      name: "要创建的新工作空间名称"
+      workspaceKind: "要创建的工作空间类型（closed、open、template）"
+      description: "新工作空间的描述"
+      accountProductId: "与工作空间关联的账户产品 ID"
 
   - name: update_workspace
-    description: Update an existing workspace in monday.com.
+    description: 更新 monday.com 中的现有工作空间。
     params:
-      id: "The ID of the workspace to update"
-      attributes: "Attributes to update in the workspace"
+      id: "要更新的工作空间 ID"
+      attributes: "要在工作空间中更新的属性"
 
-  # Folder Operations
+  # 文件夹操作
   - name: create_folder
-    description: Create a new folder in a monday.com workspace.
+    description: 在 monday.com 工作空间中创建新文件夹。
     params:
-      workspaceId: "The ID of the workspace where the folder will be created"
-      name: "The name of the folder to be created"
-      color: "The color of the folder"
-      customIcon: "The custom icon of the folder"
-      fontWeight: "The font weight of the folder"
-      parentFolderId: "The ID of the parent folder"
+      workspaceId: "要创建文件夹的工作空间 ID"
+      name: "要创建的文件夹名称"
+      color: "文件夹的颜色"
+      customIcon: "文件夹的自定义图标"
+      fontWeight: "文件夹的字体重量"
+      parentFolderId: "父文件夹的 ID"
 
   - name: update_folder
-    description: Update an existing folder in monday.com.
+    description: 更新 monday.com 中的现有文件夹。
     params:
-      folderId: "The ID of the folder to update"
-      name: "The new name of the folder"
-      color: "The new color of the folder"
-      customIcon: "The new custom icon of the folder"
-      fontWeight: "The new font weight of the folder"
-      parentFolderId: "The ID of the new parent folder"
-      workspaceId: "The ID of the workspace containing the folder"
+      folderId: "要更新的文件夹 ID"
+      name: "文件夹的新名称"
+      color: "文件夹的新颜色"
+      customIcon: "文件夹的新自定义图标"
+      fontWeight: "文件夹的新字体重量"
+      parentFolderId: "新父文件夹的 ID"
+      workspaceId: "包含文件夹的工作空间 ID"
 
   - name: move_object
-    description: Move a folder, board, or overview in monday.com.
+    description: 在 monday.com 中移动文件夹、看板或概览。
     params:
-      objectType: "The type of object to move (Board, Folder, Overview)"
-      id: "The ID of the object to move"
-      parentFolderId: "The ID of the new parent folder"
-      workspaceId: "The ID of the workspace containing the object"
-      position: "The new position of the object"
+      objectType: "要移动的对象类型（Board、Folder、Overview）"
+      id: "要移动的对象 ID"
+      parentFolderId: "新父文件夹的 ID"
+      workspaceId: "包含对象的工作空间 ID"
+      position: "对象的新位置"
 
-  # Form Operations
+  # 表单操作
   - name: create_form
-    description: Create a monday.com form with a new board for storing responses.
+    description: 创建一个带有用于存储回复的新看板的 monday.com 表单。
     params:
-      destination_workspace_id: "The workspace in which the form will be created"
-      destination_name: "The name of the board for storing form responses"
-      board_kind: "The board kind for the response board"
-      board_owner_ids: "Array of user IDs who will have owner permissions"
-      board_subscriber_ids: "Array of user IDs who will receive notifications"
+      destination_workspace_id: "将在其中创建表单的工作空间"
+      destination_name: "用于存储表单回复的看板名称"
+      board_kind: "回复看板的看板类型"
+      board_owner_ids: "将拥有所有者权限的用户 ID 数组"
+      board_subscriber_ids: "将接收通知的用户 ID 数组"
 
   - name: get_form
-    description: Get a monday.com form by its form token.
+    description: 通过其表单令牌获取 monday.com 表单。
     params:
-      formToken: "The unique identifier token for the form"
+      formToken: "表单的唯一标识符令牌"
 
   - name: update_form
-    description: Update a monday.com form with various settings and configurations.
+    description: 使用各种设置和配置更新 monday.com 表单。
     params:
-      formToken: "The unique identifier token for the form"
-      action: "The type of update action to perform"
-      form: "The form data to update"
-      formPassword: "Set a password on a form to restrict access"
-      tag: "The tag data to create, update or delete"
+      formToken: "表单的唯一标识符令牌"
+      action: "要执行的更新操作类型"
+      form: "要更新的表单数据"
+      formPassword: "在表单上设置密码以限制访问"
+      tag: "要创建、更新或删除的标签数据"
 
   - name: form_questions_editor
-    description: Create, update, or delete a question in a monday.com form.
+    description: 在 monday.com 表单中创建、更新或删除问题。
     params:
-      action: "The type of operation to perform (delete, update, create)"
-      formToken: "The unique identifier token for the form"
-      question: "The question object containing all properties"
-      questionId: "The unique identifier for the question"
+      action: "要执行的操作类型（delete、update、create）"
+      formToken: "表单的唯一标识符令牌"
+      question: "包含所有属性的问题对象"
+      questionId: "问题的唯一标识符"
 
-  # Document Operations
+  # 文档操作
   - name: read_docs
-    description: Get a collection of monday.com documents with their content as markdown.
+    description: 获取 monday.com 文档集合及其 Markdown 格式的内容。
     params:
-      ids: "ID query object specifying type and array of values"
-      limit: "Number of docs per page (default: 25)"
-      order_by: "The order in which to retrieve docs (created_at, used_at)"
-      page: "The page number to return (starts at 1)"
+      ids: "指定类型和值数组的 ID 查询对象"
+      limit: "每页文档数（默认：25）"
+      order_by: "检索文档的顺序（created_at、used_at）"
+      page: "要返回的页码（从 1 开始）"
 
   - name: create_doc
-    description: Create a new monday.com doc either inside a workspace or attached to an item.
+    description: 在工作空间内或附加到项目创建新的 monday.com 文档。
     params:
-      location: "Location where the document should be created"
-      doc_name: "Name for the new document"
-      markdown: "Markdown content for the document"
+      location: "应创建文档的位置"
+      doc_name: "新文档的名称"
+      markdown: "文档的 Markdown 内容"
 
-  # Dashboard & Widget Operations
+  # 仪表板和小部件操作
   - name: create_dashboard
-    description: Create a new monday.com dashboard that aggregates data from boards.
+    description: 创建一个聚合来自看板数据的新 monday.com 仪表板。
     params:
-      name: "Human-readable dashboard title"
-      workspace_id: "ID of the workspace that will own the dashboard"
-      board_ids: "List of board IDs as strings (min 1 element)"
-      kind: "Visibility level (PUBLIC or PRIVATE)"
-      board_folder_id: "Optional folder ID to place dashboard"
+      name: "人类可读的仪表板标题"
+      workspace_id: "将拥有仪表板的工作空间 ID"
+      board_ids: "看板 ID 字符串列表（最少 1 个元素）"
+      kind: "可见性级别（PUBLIC 或 PRIVATE）"
+      board_folder_id: "放置仪表板的可选文件夹 ID"
 
   - name: all_widgets_schema
-    description: Fetch complete JSON Schema 7 definitions for all available widget types.
+    description: 获取所有可用小部件类型的完整 JSON Schema 7 定义。
     params:
-      random_string: "Dummy parameter for no-parameter tools"
+      random_string: "无参数工具的虚拟参数"
 
   - name: create_widget
-    description: Create a new widget in a dashboard or board view with specific configuration.
+    description: 在仪表板或看板视图中创建具有特定配置的新小部件。
     params:
-      parent_container_id: "ID of the parent container (dashboard or board view)"
-      parent_container_type: "Type of parent container (DASHBOARD or BOARD_VIEW)"
-      widget_kind: "Type of widget to create (CHART, NUMBER, BATTERY)"
-      widget_name: "Widget display name"
-      settings: "Widget-specific settings as JSON object"
+      parent_container_id: "父容器的 ID（仪表板或看板视图）"
+      parent_container_type: "父容器的类型（DASHBOARD 或 BOARD_VIEW）"
+      widget_kind: "要创建的小部件类型（CHART、NUMBER、BATTERY）"
+      widget_name: "小部件显示名称"
+      settings: "小部件特定设置的 JSON 对象"
 
-  # Advanced API Operations
+  # 高级 API 操作
   - name: all_monday_api
-    description: Execute any monday.com API operation by generating GraphQL queries dynamically.
+    description: 通过动态生成 GraphQL 查询执行任何 monday.com API 操作。
     params:
-      query: "Custom GraphQL query/mutation"
-      variables: "JSON string containing variables for the GraphQL operation"
+      query: "自定义 GraphQL 查询/变更"
+      variables: "包含 GraphQL 操作变量的 JSON 字符串"
 
   - name: get_graphql_schema
-    description: Fetch the monday.com GraphQL schema structure including queries and mutations.
+    description: 获取 monday.com GraphQL 模式结构，包括查询和变更。
     params:
-      operationType: "Type of operation: 'read' for queries, 'write' for mutations"
-      random_string: "Dummy parameter for no-parameter tools"
+      operationType: "操作类型：'read' 用于查询，'write' 用于变更"
+      random_string: "无参数工具的虚拟参数"
 
   - name: get_type_details
-    description: Get detailed information about a specific GraphQL type from monday.com API schema.
+    description: 从 monday.com API 模式获取有关特定 GraphQL 类型的详细信息。
     params:
-      typeName: "The name of the GraphQL type to get details for" 
+      typeName: "要获取详细信息的 GraphQL 类型名称"

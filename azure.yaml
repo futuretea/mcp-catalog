@@ -1,31 +1,31 @@
 name: Azure
-shortDescription: Manage Azure services including AI, databases, compute, storage, and monitoring
-description: 'A Model Context Protocol (MCP) server that implements the MCP specification to create a seamless connection between AI agents and Azure services. Supercharge your agents with Azure context across compute, storage, databases, AI services, and more.
+shortDescription: 管理 Azure 服务，包括 AI、数据库、计算、存储和监控
+description: '一个 Model Context Protocol (MCP) 服务器，实现 MCP 规范以在 AI 智能体与 Azure 服务之间创建无缝连接。通过 Azure 上下文增强您的智能体能力，涵盖计算、存储、数据库、AI 服务等。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Azure AI & Search**: Query Azure AI Search indexes and manage search services
+  - **Azure AI 与搜索**: 查询 Azure AI Search 索引并管理搜索服务
 
-  - **Data Services**: Cosmos DB, SQL Database, PostgreSQL, Redis Cache, and Data Explorer operations
+  - **数据服务**: Cosmos DB、SQL Database、PostgreSQL、Redis Cache 和 Data Explorer 操作
 
-  - **Compute & Containers**: AKS cluster management and container operations
+  - **计算与容器**: AKS 集群管理和容器操作
 
-  - **Storage & Configuration**: Azure Storage, App Configuration, and Key Vault management
+  - **存储与配置**: Azure Storage、App Configuration 和 Key Vault 管理
 
-  - **Monitoring & Analytics**: Azure Monitor, Log Analytics, Grafana, and Workbooks
+  - **监控与分析**: Azure Monitor、Log Analytics、Grafana 和 Workbooks
 
-  - **CLI Integration**: Execute Azure CLI and Azure Developer CLI commands directly
+  - **CLI 集成**: 直接执行 Azure CLI 和 Azure Developer CLI 命令
 
-  - **Resource Management**: Manage subscriptions, resource groups, and RBAC
-
-
-  ## What you''ll need to connect
+  - **资源管理**: 管理订阅、资源组和 RBAC
 
 
-  **Authentication:**
+  ## 连接所需条件
 
-  You will need to set the following environment variables:
+
+  **认证:**
+
+  您需要设置以下环境变量:
 
   - AZURE_TENANT_ID
 
@@ -33,7 +33,7 @@ description: 'A Model Context Protocol (MCP) server that implements the MCP spec
 
   - AZURE_CLIENT_SECRET
 
-  These must correspond to a service principal. You can create one using the (Azure web console)[https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal], or with the Azure CLI:
+  这些必须对应一个服务主体。您可以使用 (Azure Web 控制台)[https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal] 创建，或使用 Azure CLI:
 
 
   ```bash
@@ -47,35 +47,35 @@ description: 'A Model Context Protocol (MCP) server that implements the MCP spec
   ```
 
 
-  Replace `<my-service-principal>` with the name of the service principal you want to create, and `<your-subscription-id>` with your actual subscription ID. The role you assign to the service principal will determine the permissions it has.
+  将 `<my-service-principal>` 替换为您要创建的服务主体名称，`<your-subscription-id>` 替换为您的实际订阅 ID。分配给服务主体的角色将决定其拥有的权限。
 
 
-  **Optional Configuration:**
+  **可选配置:**
 
-  - **AZURE_MCP_COLLECT_TELEMETRY** (Optional): Set to `false` to opt out of telemetry collection (default: `true`)
+  - **AZURE_MCP_COLLECT_TELEMETRY** (可选): 设置为 `false` 以选择退出遥测收集 (默认: `true`)
 
 
-  ## Examples
+  ## 示例
 
-  - **Azure AI Search**: "What indexes do I have in my Azure AI Search service ''mysvc''?"
+  - **Azure AI Search**: "我的 Azure AI Search 服务 ''mysvc'' 中有哪些索引?"
 
-  - **App Configuration**: "List my App Configuration stores"
+  - **App Configuration**: "列出我的 App Configuration 存储"
 
-  - **AKS**: "List my AKS clusters in my subscription"
+  - **AKS**: "列出我订阅中的 AKS 集群"
 
-  - **Cosmos DB**: "Show me all my Cosmos DB databases"
+  - **Cosmos DB**: "显示我所有的 Cosmos DB 数据库"
 
-  - **Data Explorer**: "Sample 10 rows from table ''StormEvents'' in Azure Data Explorer database ''db1''"
+  - **Data Explorer**: "从 Azure Data Explorer 数据库 ''db1'' 的表 ''StormEvents'' 中采样 10 行数据"
 
-  - **Storage**: "List my Azure storage accounts"
+  - **Storage**: "列出我的 Azure 存储账户"
 
-  - **Monitor**: "Query my Log Analytics workspace"
+  - **Monitor**: "查询我的 Log Analytics 工作区"
 
-  - **Resource Management**: "List my resource groups"
+  - **资源管理**: "列出我的资源组"
 
   '
 metadata:
-  categories: Cloud & Infrastructure
+  categories: 云与基础设施
 icon: https://avatars.githubusercontent.com/u/6844498?s=200&v=4
 repoURL: https://github.com/Azure/azure-mcp
 env:
@@ -83,22 +83,22 @@ env:
   name: Azure Tenant ID
   required: true
   sensitive: false
-  description: The tenant ID of the Azure subscription you are authenticating to.
+  description: 您要认证的 Azure 订阅的租户 ID。
 - key: AZURE_CLIENT_ID
   name: Azure Client ID
   required: true
   sensitive: true
-  description: The Azure client ID of a service principal.
+  description: 服务主体的 Azure 客户端 ID。
 - key: AZURE_CLIENT_SECRET
   name: Azure Client Secret
   required: true
   sensitive: true
-  description: The Azure client secret of a service principal.
+  description: 服务主体的 Azure 客户端密钥。
 - key: AZURE_MCP_COLLECT_TELEMETRY
   name: Azure MCP Collect Telemetry
   required: false
   sensitive: false
-  description: Telemetry collection is on by default, to opt out, set this to false.
+  description: 遥测收集默认开启，要选择退出，请将此设置为 false。
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/azure:2.0.0-beta.1
@@ -110,214 +110,214 @@ containerizedConfig:
   - start
 toolPreview:
 - name: documentation
-  description: Search official Microsoft/Azure documentation to find the most relevant and trustworthy content for a user's query, returning up to 10 high-quality content chunks from Microsoft Learn and other official sources.
+  description: 搜索官方 Microsoft/Azure 文档，为用户查询找到最相关和可信赖的内容，从 Microsoft Learn 和其他官方来源返回最多 10 个高质量内容片段。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: bestpractices
-  description: Returns secure, production-grade Azure best practices. Call this before generating Azure SDK code.
+  description: 返回安全、生产级的 Azure 最佳实践。在生成 Azure SDK 代码之前调用此工具。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: subscription
-  description: Azure subscription operations - Commands for listing and managing Azure subscriptions accessible to your account.
+  description: Azure 订阅操作 - 用于列出和管理您账户可访问的 Azure 订阅的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: group
-  description: Resource group operations - Commands for listing and managing Azure resource groups in your subscriptions.
+  description: 资源组操作 - 用于列出和管理您订阅中的 Azure 资源组的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: aks
-  description: Azure Kubernetes Service operations - Commands for managing and listing Azure Kubernetes Service (AKS) clusters.
+  description: Azure Kubernetes Service 操作 - 用于管理和列出 Azure Kubernetes Service (AKS) 集群的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: storage
-  description: Storage operations - Commands for managing and accessing Azure Storage resources. Includes operations for containers, blobs, and tables.
+  description: 存储操作 - 用于管理和访问 Azure 存储资源的命令。包括容器、blob 和表的操作。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: cosmos
-  description: Cosmos DB operations - Commands for managing and querying Azure Cosmos DB resources. Includes operations for databases, containers, and document queries.
+  description: Cosmos DB 操作 - 用于管理和查询 Azure Cosmos DB 资源的命令。包括数据库、容器和文档查询的操作。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: postgres
-  description: PostgreSQL operations - Commands for listing and managing Azure Database for PostgreSQL - Flexible server.
+  description: PostgreSQL 操作 - 用于列出和管理 Azure Database for PostgreSQL - 弹性服务器的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: redis
-  description: Redis Cache operations - Commands for managing and accessing Azure Redis Cache resources.
+  description: Redis Cache 操作 - 用于管理和访问 Azure Redis Cache 资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: sql
-  description: Azure SQL operations - Commands for managing Azure SQL databases and servers.
+  description: Azure SQL 操作 - 用于管理 Azure SQL 数据库和服务器的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: keyvault
-  description: Key Vault operations - Commands for managing and accessing Azure Key Vault resources.
+  description: Key Vault 操作 - 用于管理和访问 Azure Key Vault 资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: appconfig
-  description: App Configuration operations - Commands for managing App Configuration stores.
+  description: App Configuration 操作 - 用于管理 App Configuration 存储的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: role
-  description: Authorization operations - Commands for managing Azure RBAC resources.
+  description: 授权操作 - 用于管理 Azure RBAC 资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: monitor
-  description: Azure Monitor operations - Commands for querying and analyzing Azure Monitor logs and metrics.
+  description: Azure Monitor 操作 - 用于查询和分析 Azure Monitor 日志和指标的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: grafana
-  description: Grafana workspace operations - Commands for managing and accessing Azure Managed Grafana resources.
+  description: Grafana 工作区操作 - 用于管理和访问 Azure Managed Grafana 资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: kusto
-  description: Kusto operations - Commands for managing and querying Azure Kusto clusters.
+  description: Kusto 操作 - 用于管理和查询 Azure Kusto 集群的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: workbooks
-  description: Workbooks operations - Commands for managing Azure Workbooks resources.
+  description: Workbooks 操作 - 用于管理 Azure Workbooks 资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: servicebus
-  description: Service Bus operations - Commands for managing Azure Service Bus resources.
+  description: Service Bus 操作 - 用于管理 Azure Service Bus 资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: search
-  description: Search operations - Commands for managing and listing Azure AI Search services.
+  description: 搜索操作 - 用于管理和列出 Azure AI Search 服务的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: bicepschema
-  description: Bicep schema operations - Commands for working with Bicep IaC generation.
+  description: Bicep 架构操作 - 用于处理 Bicep IaC 生成的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: azureterraformbestpractices
-  description: Returns Terraform best practices for Azure. Call this before generating Terraform code for Azure Providers.
+  description: 返回 Azure 的 Terraform 最佳实践。在为 Azure Providers 生成 Terraform 代码之前调用此工具。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: loadtesting
-  description: Load Testing operations - Commands for managing Azure Load Testing resources.
+  description: 负载测试操作 - 用于管理 Azure Load Testing 资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: foundry
-  description: Foundry service operations - Commands for listing and managing services and resources in AI Foundry.
+  description: Foundry 服务操作 - 用于列出和管理 AI Foundry 中的服务和资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: marketplace
-  description: Marketplace operations - Commands for managing and accessing Azure Marketplace products and offers.
+  description: Marketplace 操作 - 用于管理和访问 Azure Marketplace 产品和服务的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: datadog
-  description: Datadog operations - Commands for managing and querying Datadog resources.
+  description: Datadog 操作 - 用于管理和查询 Datadog 资源的命令。
   params:
-    intent: The intent of the azure operation to perform
-    command: The command to execute against the specified tool (optional)
-    learn: To learn about the tool and its supported child tools and parameters (optional)
-    parameters: The parameters to pass to the tool command (optional)
+    intent: 要执行的 Azure 操作意图
+    command: 针对指定工具执行的命令 (可选)
+    learn: 了解该工具及其支持的子工具和参数 (可选)
+    parameters: 传递给工具命令的参数 (可选)
 - name: extension_az
-  description: Execute Azure CLI commands directly for comprehensive Azure resource management. Use the Azure CLI to manage Azure resources and services with proper confirmation for destructive operations.
+  description: 直接执行 Azure CLI 命令以进行全面的 Azure 资源管理。使用 Azure CLI 管理 Azure 资源和服务，对破坏性操作进行适当的确认。
   params:
-    command: The Azure CLI command to execute (without the 'az' prefix)
-    auth-method: Authentication method to use (optional)
-    retry-delay: Initial delay in seconds between retry attempts (optional)
-    retry-max-delay: Maximum delay in seconds between retries (optional)
-    retry-max-retries: Maximum number of retry attempts (optional)
-    retry-mode: Retry strategy to use (optional)
-    retry-network-timeout: Network operation timeout in seconds (optional)
-    tenant: The Microsoft Entra ID tenant ID or name (optional)
+    command: 要执行的 Azure CLI 命令 (不带 ''az'' 前缀)
+    auth-method: 要使用的认证方法 (可选)
+    retry-delay: 重试尝试之间的初始延迟秒数 (可选)
+    retry-max-delay: 重试之间的最大延迟秒数 (可选)
+    retry-max-retries: 最大重试次数 (可选)
+    retry-mode: 要使用的重试策略 (可选)
+    retry-network-timeout: 网络操作超时秒数 (可选)
+    tenant: Microsoft Entra ID 租户 ID 或名称 (可选)
 - name: extension_azd
-  description: Use Azure Developer CLI for project lifecycle management including initialization, provisioning, deployment, and monitoring. Always run with 'learn' parameter on first use.
+  description: 使用 Azure Developer CLI 进行项目生命周期管理，包括初始化、配置、部署和监控。首次使用时始终使用 ''learn'' 参数运行。
   params:
-    cwd: The current working directory for the command
-    command: The Azure Developer CLI command and arguments to execute (optional)
-    environment: The name of the azd environment to use (optional)
-    learn: Flag to learn best practices and usage patterns (optional)
-    auth-method: Authentication method to use (optional)
-    retry-delay: Initial delay in seconds between retry attempts (optional)
-    retry-max-delay: Maximum delay in seconds between retries (optional)
-    retry-max-retries: Maximum number of retry attempts (optional)
-    retry-mode: Retry strategy to use (optional)
-    retry-network-timeout: Network operation timeout in seconds (optional)
-    tenant: The Microsoft Entra ID tenant ID or name (optional)
+    cwd: 命令的当前工作目录
+    command: 要执行的 Azure Developer CLI 命令和参数 (可选)
+    environment: 要使用的 azd 环境名称 (可选)
+    learn: 了解最佳实践和使用模式的标志 (可选)
+    auth-method: 要使用的认证方法 (可选)
+    retry-delay: 重试尝试之间的初始延迟秒数 (可选)
+    retry-max-delay: 重试之间的最大延迟秒数 (可选)
+    retry-max-retries: 最大重试次数 (可选)
+    retry-mode: 要使用的重试策略 (可选)
+    retry-network-timeout: 网络操作超时秒数 (可选)
+    tenant: Microsoft Entra ID 租户 ID 或名称 (可选)
 - name: extension_azqr
-  description: Generate compliance and security reports for Azure resources using Azure Quick Review CLI to identify non-compliant configurations and areas for improvement.
+  description: 使用 Azure Quick Review CLI 为 Azure 资源生成合规性和安全报告，以识别不合规的配置和需要改进的领域。
   params:
-    subscription: Specifies the Azure subscription to use (optional)
-    resource-group: The name of the Azure resource group (optional)
-    auth-method: Authentication method to use (optional)
-    retry-delay: Initial delay in seconds between retry attempts (optional)
-    retry-max-delay: Maximum delay in seconds between retries (optional)
-    retry-max-retries: Maximum number of retry attempts (optional)
-    retry-mode: Retry strategy to use (optional)
-    retry-network-timeout: Network operation timeout in seconds (optional)
-    tenant: The Microsoft Entra ID tenant ID or name (optional)
+    subscription: 指定要使用的 Azure 订阅 (可选)
+    resource-group: Azure 资源组名称 (可选)
+    auth-method: 要使用的认证方法 (可选)
+    retry-delay: 重试尝试之间的初始延迟秒数 (可选)
+    retry-max-delay: 重试之间的最大延迟秒数 (可选)
+    retry-max-retries: 最大重试次数 (可选)
+    retry-mode: 要使用的重试策略 (可选)
+    retry-network-timeout: 网络操作超时秒数 (可选)
+    tenant: Microsoft Entra ID 租户 ID 或名称 (可选)

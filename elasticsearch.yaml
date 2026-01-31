@@ -1,38 +1,38 @@
 name: Elasticsearch
-shortDescription: Search, query, and manage Elasticsearch indices with vector and full-text search
+shortDescription: 使用向量搜索和全文搜索来搜索、查询和管理 Elasticsearch 索引
 description: |
   > [!CAUTION]
-  > **WARNING: this MCP server is EXPERIMENTAL.**
+  > **警告：此 MCP 服务器为实验性版本。**
 
-  A Model Context Protocol (MCP) server that connects to your Elasticsearch data directly from any MCP Client. Elasticsearch is a distributed search and analytics engine, scalable data store and vector database optimized for speed and relevance on production-scale workloads.
+  一个 Model Context Protocol (MCP) 服务器，可直接从任何 MCP 客户端连接到您的 Elasticsearch 数据。Elasticsearch 是一个分布式搜索和分析引擎，是可扩展的数据存储和向量数据库，针对生产规模工作负载的速度和相关性进行了优化。
 
-  ## Features
-  - **Index Management**: List all available Elasticsearch indices and get field mappings
-  - **Search Capabilities**: Perform Elasticsearch searches with query DSL and ES|QL queries
-  - **Vector Search**: Enable vector search for AI applications and RAG implementations
-  - **Shard Information**: Get detailed shard information for indices
-  - **Full-text Search**: Search across massive datasets in near real-time
-  - **Analytics**: Support for logs, metrics, APM, and security logs
+  ## 功能特性
+  - **索引管理**：列出所有可用的 Elasticsearch 索引并获取字段映射
+  - **搜索功能**：使用 Query DSL 和 ES|QL 查询执行 Elasticsearch 搜索
+  - **向量搜索**：为 AI 应用和 RAG 实现启用向量搜索
+  - **分片信息**：获取索引的详细分片信息
+  - **全文搜索**：在近实时的情况下搜索海量数据集
+  - **分析**：支持日志、指标、APM 和安全日志
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **Required:**
-  - **ES URL**: Your Elasticsearch instance URL
+  **必需：**
+  - **ES URL**：您的 Elasticsearch 实例 URL
 
-  **Authentication (choose one method):**
-  - **Option 1 - API Key (Recommended)**: `ES API Key`
-  - **Option 2 - Username/Password**: `ES Username` and `ES Password`
+  **认证（选择一种方式）：**
+  - **选项 1 - API Key（推荐）**：`ES API Key`
+  - **选项 2 - 用户名/密码**：`ES Username` 和 `ES Password`
 
-  **Prerequisites:**
-  - An Elasticsearch instance (versions 8.x and 9.x officially supported)
-  - Elasticsearch authentication credentials
+  **前提条件：**
+  - Elasticsearch 实例（官方支持 8.x 和 9.x 版本）
+  - Elasticsearch 认证凭据
 
-  **Note**: If both authentication methods are provided, API key takes precedence.
+  **注意**：如果同时提供了两种认证方式，API Key 优先。
 
-  ## Known Issues
+  ## 已知问题
 
-  GPT-4.1 is generally not able to format its API requests correctly when calling the `search` tool.
-  Claude Sonnet 4 works better.
+  GPT-4.1 通常在调用 `search` 工具时无法正确格式化其 API 请求。
+  Claude Sonnet 4 表现更好。
 
 metadata:
   categories: Databases
@@ -43,22 +43,22 @@ env:
     name: ES URL
     required: true
     sensitive: false
-    description: Your Elasticsearch instance URL
+    description: 您的 Elasticsearch 实例 URL
   - key: ES_API_KEY
     name: ES API Key
     required: false
     sensitive: true
-    description: Elasticsearch API key for authentication
+    description: 用于认证的 Elasticsearch API Key
   - key: ES_USERNAME
     name: ES Username
     required: false
     sensitive: true
-    description: Elasticsearch username for basic authentication
+    description: 用于基本认证的 Elasticsearch 用户名
   - key: ES_PASSWORD
     name: ES Password
     required: false
     sensitive: true
-    description: Elasticsearch password for basic authentication
+    description: 用于基本认证的 Elasticsearch 密码
 
 runtime: containerized
 containerizedConfig:
@@ -70,24 +70,24 @@ containerizedConfig:
 
 toolPreview:
   - name: list_indices
-    description: List all available Elasticsearch indices
+    description: 列出所有可用的 Elasticsearch 索引
     params:
-      index_pattern: Index pattern of Elasticsearch indices to list
+      index_pattern: 要列出的 Elasticsearch 索引的索引模式
   - name: get_shards
-    description: Get shard information for all or specific indices.
+    description: 获取所有或特定索引的分片信息
     params:
-      index: Optional index name to get shard information for
+      index: 要获取分片信息的可选索引名称
   - name: get_mappings
-    description: Get field mappings for a specific Elasticsearch index
+    description: 获取特定 Elasticsearch 索引的字段映射
     params:
-      index: Name of the Elasticsearch index to get mappings for
+      index: 要获取映射的 Elasticsearch 索引名称
   - name: search
-    description: Perform an Elasticsearch search with the provided query DSL.
+    description: 使用提供的 Query DSL 执行 Elasticsearch 搜索
     params:
-      fields: Name of the fields that need to be returned (optional)
-      index: Name of the Elasticsearch index to search
-      query_body: Complete Elasticsearch query DSL object that can include query, size, from, sort, etc.
+      fields: 需要返回的字段名称（可选）
+      index: 要搜索的 Elasticsearch 索引名称
+      query_body: 完整的 Elasticsearch Query DSL 对象，可包含 query、size、from、sort 等
   - name: esql
-    description: Perform an Elasticsearch ES|QL query.
+    description: 执行 Elasticsearch ES|QL 查询
     params:
-      query: Complete Elasticsearch ES|QL query
+      query: 完整的 Elasticsearch ES|QL 查询

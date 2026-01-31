@@ -1,24 +1,24 @@
 name: Gmail
-shortDescription: Send, read, draft, and organize Gmail emails with label management and search
+shortDescription: 发送、阅读、起草和组织 Gmail 邮件，支持标签管理和搜索
 description: |
   ![Gmail MCP Server](https://img.shields.io/badge/Gmail-MCP%20Server-blue?style=for-the-badge&logo=gmail)
   ![Python](https://img.shields.io/badge/Python-3.13+-green?style=for-the-badge&logo=python)
   ![FastMCP](https://img.shields.io/badge/FastMCP-2.11.1+-orange?style=for-the-badge)
   ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-  A Model Context Protocol (MCP) server for Gmail integration, providing comprehensive email management capabilities through a modern API interface.
+  一个用于 Gmail 集成的 Model Context Protocol (MCP) 服务器，通过现代 API 接口提供全面的电子邮件管理功能。
 
-  ## Features
-  - **OAuth2 Authentication**: Secure Google OAuth integration with automatic token refresh
-  - **Complete Email Management**: Read, send, draft, and organize emails with advanced filtering
-  - **Label Management**: Create, update, and manage Gmail labels and organization
-  - **Advanced Search**: Powerful query-based email filtering and search capabilities
-  - **Attachment Support**: List and manage email attachments
-  - **Draft Management**: Create, update, send, and delete draft emails
+  ## 功能特性
+  - **OAuth2 认证**：安全的 Google OAuth 集成，支持自动令牌刷新
+  - **完整的邮件管理**：阅读、发送、起草和组织邮件，支持高级筛选
+  - **标签管理**：创建、更新和管理 Gmail 标签及邮件分类
+  - **高级搜索**：强大的基于查询的邮件筛选和搜索功能
+  - **附件支持**：列出和管理邮件附件
+  - **草稿管理**：创建、更新、发送和删除草稿邮件
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow
+  **无需设置**：通过 OAuth2 流程自动处理认证
 
 metadata:
   categories: Business
@@ -30,74 +30,74 @@ remoteConfig:
   fixedURL: https://gmail-mcp.obot.ai/mcp
 toolPreview:
   - name: list_emails
-    description: List emails in the user's Gmail account with advanced filtering options.
+    description: 列出用户 Gmail 账户中的邮件，支持高级筛选选项。
     params:
-      max_results: "Maximum number of emails to return (1-1000, default: 100)"
-      query: Gmail search query for filtering emails
-      label_ids: Comma-separated list of label IDs to filter by
-      category: Email category filter (primary, social, promotions, updates, forums)
-      after: Date to search for emails after
-      before: Date to search for emails before
+      max_results: "返回的最大邮件数量（1-1000，默认：100）"
+      query: Gmail 搜索查询用于筛选邮件
+      label_ids: 用于筛选的标签 ID 列表，以逗号分隔
+      category: 邮件类别筛选（primary、social、promotions、updates、forums）
+      after: 搜索此日期之后的邮件
+      before: 搜索此日期之前的邮件
   - name: read_email
-    description: Read a specific email by ID or subject.
+    description: 通过 ID 或主题阅读特定邮件。
     params:
-      email_id: Email ID to read
-      email_subject: Email subject to search for
-      user_timezone: "User's timezone (default: UTC)"
+      email_id: 要阅读的邮件 ID
+      email_subject: 要搜索的邮件主题
+      user_timezone: "用户的时区（默认：UTC）"
   - name: send_email
-    description: Send a new email immediately.
+    description: 立即发送新邮件。
     params:
-      to_emails: Comma-separated list of recipient email addresses
-      subject: Email subject
-      message: Email body content
-      cc_emails: Comma-separated list of CC recipients
-      bcc_emails: Comma-separated list of BCC recipients
+      to_emails: 收件人邮箱地址列表，以逗号分隔
+      subject: 邮件主题
+      message: 邮件正文内容
+      cc_emails: 抄送收件人列表，以逗号分隔
+      bcc_emails: 密送收件人列表，以逗号分隔
   - name: list_drafts
-    description: List all draft emails in the user's account.
+    description: 列出用户账户中的所有草稿邮件。
     params:
-      max_results: "Maximum number of drafts to return (1-1000, default: 100)"
+      max_results: "返回的最大草稿数量（1-1000，默认：100）"
   - name: create_draft
-    description: Create a new draft email.
+    description: 创建新的草稿邮件。
     params:
-      to_emails: Comma-separated list of recipient email addresses
-      subject: Email subject
-      message: Email body content
-      cc_emails: Comma-separated list of CC recipients
-      bcc_emails: Comma-separated list of BCC recipients
-      reply_to_email_id: ID of email to reply to
-      reply_all: Whether to reply to all recipients
+      to_emails: 收件人邮箱地址列表，以逗号分隔
+      subject: 邮件主题
+      message: 邮件正文内容
+      cc_emails: 抄送收件人列表，以逗号分隔
+      bcc_emails: 密送收件人列表，以逗号分隔
+      reply_to_email_id: 要回复的邮件 ID
+      reply_all: 是否回复所有收件人
   - name: send_draft
-    description: Send a draft email.
+    description: 发送草稿邮件。
     params:
-      draft_id: ID of the draft to send
+      draft_id: 要发送的草稿 ID
   - name: list_labels
-    description: List all custom labels in the user's account.
+    description: 列出用户账户中的所有自定义标签。
     params:
-      label_id: Specific label ID to fetch (optional)
+      label_id: 要获取的特定标签 ID（可选）
   - name: create_label
-    description: Create a new custom label.
+    description: 创建新的自定义标签。
     params:
-      label_name: Name of the label to create
-      label_list_visibility: Label list visibility (labelShow, labelHide, labelShowIfUnread)
-      message_list_visibility: Message list visibility (show, hide)
+      label_name: 要创建的标签名称
+      label_list_visibility: 标签列表可见性（labelShow、labelHide、labelShowIfUnread）
+      message_list_visibility: 邮件列表可见性（show、hide）
   - name: modify_message_labels
-    description: Modify labels and properties of an email message.
+    description: 修改邮件消息的标签和属性。
     params:
-      email_id: ID of the email message
-      add_label_ids: List of label IDs to add
-      remove_label_ids: List of label IDs to remove
-      archive: Whether to archive the message
-      mark_as_read: Whether to mark as read
-      mark_as_starred: Whether to mark as starred
-      mark_as_important: Whether to mark as important
-      apply_action_to_thread: Apply action to entire thread
+      email_id: 邮件消息 ID
+      add_label_ids: 要添加的标签 ID 列表
+      remove_label_ids: 要移除的标签 ID 列表
+      archive: 是否归档该邮件
+      mark_as_read: 是否标记为已读
+      mark_as_starred: 是否标记为星标
+      mark_as_important: 是否标记为重要
+      apply_action_to_thread: 是否将操作应用到整个会话
   - name: delete_email
-    description: Delete an email message.
+    description: 删除邮件消息。
     params:
-      email_id: ID of the email to delete
+      email_id: 要删除的邮件 ID
   - name: list_attachments
-    description: List all attachments in an email.
+    description: 列出邮件中的所有附件。
     params:
-      email_id: ID of the email to check for attachments
+      email_id: 要检查附件的邮件 ID
   - name: get_current_email_address
-    description: Get the current user's email address.
+    description: 获取当前用户的邮箱地址。

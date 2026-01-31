@@ -1,24 +1,24 @@
 name: Asana
-shortDescription: Manage Asana tasks and projects with natural language through AI integration
+shortDescription: 通过 AI 集成使用自然语言管理 Asana 任务和项目
 description: |
 
-  A Model Context Protocol (MCP) server for Asana integration, providing comprehensive project management capabilities through Asana's API.
+  一个用于 Asana 集成的 Model Context Protocol (MCP) 服务器，通过 Asana API 提供全面的项目管理功能。
 
-  ## Features
-  - **Access Asana data from compatible AI applications**
-  - **Create and manage tasks and projects through natural language**
-  - **Generate reports and summaries based on Asana data**
-  - **Analyze project data and get AI-powered suggestions**
+  ## 功能特性
+  - **从兼容的 AI 应用程序访问 Asana 数据**
+  - **通过自然语言创建和管理任务和项目**
+  - **基于 Asana 数据生成报告和摘要**
+  - **分析项目数据并获取 AI 驱动的建议**
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **No Setup Required**: Authentication is handled automatically through Asana's OAuth2 workflow
+  **无需设置**：通过 Asana 的 OAuth2 工作流自动处理身份验证
 
-  ## Examples
-  - "Find all my incomplete tasks due this week"
-  - "Create a new task in the Marketing project assigned to me"
-  - "List all sections in the Product Launch project"
-  - "Show me the status of the Q2 Planning project"
+  ## 示例
+  - "查找本周到期的所有未完成任务"
+  - "在市场营销项目中为我创建一个新任务"
+  - "列出产品发布项目中的所有分区"
+  - "显示 Q2 规划项目的状态"
 
 metadata:
   categories: Business, Developer Tools
@@ -29,362 +29,362 @@ runtime: remote
 remoteConfig:
   fixedURL: https://mcp.asana.com/sse
 toolPreview:
-  # Workspace & Team Management
+  # 工作空间和团队管理
   - name: asana_list_workspaces
-    description: Get all accessible workspaces. Returns workspace IDs needed for most other operations.
+    description: 获取所有可访问的工作空间。返回大多数其他操作所需的工作空间 ID。
     params:
-      limit: "Number of workspaces to return (1-100)"
-      opt_fields: "Comma-separated list of optional fields to include"
+      limit: "返回的工作空间数量（1-100）"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_teams_for_workspace
-    description: List all teams in workspace. Essential for workspace structure understanding.
+    description: 列出工作空间中的所有团队。对理解工作空间结构至关重要。
     params:
-      workspace_gid: "Globally unique identifier for the workspace"
-      limit: "Number of teams to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      workspace_gid: "工作空间的全局唯一标识符"
+      limit: "每页返回的团队数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_teams_for_user
-    description: Get teams user belongs to. Use to check user team access.
+    description: 获取用户所属的团队。用于检查用户团队访问权限。
     params:
-      user_gid: "User identifier ('me', email, or user GID)"
-      organization: "Globally unique identifier of the workspace or organization"
-      limit: "Number of teams to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      user_gid: "用户标识符（'me'、邮箱或用户 GID）"
+      organization: "工作空间或组织的全局唯一标识符"
+      limit: "每页返回的团队数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # User Management
+  # 用户管理
   - name: asana_get_user
-    description: Get user details by ID, email, or 'me'. Essential before assigning tasks.
+    description: 通过 ID、邮箱或 'me' 获取用户详情。在分配任务之前必不可少。
     params:
-      user_id: "User identifier ('me', email, or user GID). Defaults to 'me'"
-      opt_fields: "Comma-separated list of optional fields to include"
+      user_id: "用户标识符（'me'、邮箱或用户 GID）。默认为 'me'"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_team_users
-    description: List all team members. Returns user names and IDs.
+    description: 列出所有团队成员。返回用户姓名和 ID。
     params:
-      team_id: "Globally unique identifier for the team"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      team_id: "团队的全局唯一标识符"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_workspace_users
-    description: Get all users in workspace. Results are sorted alphabetically.
+    description: 获取工作空间中的所有用户。结果按字母顺序排序。
     params:
-      workspace_gid: "Globally unique identifier for the workspace"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      workspace_gid: "工作空间的全局唯一标识符"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Project Management
+  # 项目管理
   - name: asana_get_projects
-    description: List projects filtered by workspace. Supports team and archived filters.
+    description: 按工作空间筛选列出项目。支持团队和已归档筛选器。
     params:
-      workspace: "Globally unique identifier for the workspace"
-      team: "Filter projects by team ID"
-      archived: "Include archived projects (default: false)"
-      limit: "Number of projects to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      workspace: "工作空间的全局唯一标识符"
+      team: "按团队 ID 筛选项目"
+      archived: "包含已归档项目（默认：false）"
+      limit: "每页返回的项目数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_project
-    description: Get detailed project data including name, description, owner, members, and settings.
+    description: 获取详细的项目数据，包括名称、描述、所有者、成员和设置。
     params:
-      project_id: "Globally unique identifier for the project"
-      opt_fields: "Comma-separated list of optional fields to include"
+      project_id: "项目的全局唯一标识符"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_create_project
-    description: Create new project in Asana. Essential for project setup.
+    description: 在 Asana 中创建新项目。对项目设置至关重要。
     params:
-      name: "Name of the project"
-      workspace: "Globally unique identifier for the workspace"
-      team: "Globally unique identifier for the team"
-      notes: "Project description"
-      html_notes: "HTML-formatted description for the project"
-      due_date: "Date on which this project is due (YYYY-MM-DD format)"
-      start_date: "Date on which this project is started (YYYY-MM-DD format)"
-      owner: "User identifier for project owner ('me', email, or user GID)"
-      privacy_setting: "Privacy level (public_to_workspace, private_to_team, private)"
-      default_view: "Default view of the project (list, board, calendar, timeline)"
-      color: "Color of the project"
-      archived: "Whether the project is archived (default: false)"
+      name: "项目名称"
+      workspace: "工作空间的全局唯一标识符"
+      team: "团队的全局唯一标识符"
+      notes: "项目描述"
+      html_notes: "项目的 HTML 格式描述"
+      due_date: "项目到期日期（YYYY-MM-DD 格式）"
+      start_date: "项目开始日期（YYYY-MM-DD 格式）"
+      owner: "项目所有者的用户标识符（'me'、邮箱或用户 GID）"
+      privacy_setting: "隐私级别（public_to_workspace、private_to_team、private）"
+      default_view: "项目的默认视图（list、board、calendar、timeline）"
+      color: "项目的颜色"
+      archived: "项目是否已归档（默认：false）"
   - name: asana_get_projects_for_team
-    description: List all projects for a team. Essential for team portfolio views.
+    description: 列出团队的所有项目。对团队项目组合视图至关重要。
     params:
-      team_gid: "Globally unique identifier for the team"
-      archived: "Filter projects by archived status (default: false)"
-      limit: "Number of projects to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      team_gid: "团队的全局唯一标识符"
+      archived: "按归档状态筛选项目（默认：false）"
+      limit: "每页返回的项目数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_projects_for_workspace
-    description: Get ALL projects in a workspace across all teams.
+    description: 获取工作空间中所有团队的所有项目。
     params:
-      workspace_gid: "Globally unique identifier for the workspace"
-      archived: "Filter projects by archived status (default: false)"
-      limit: "Number of projects to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      workspace_gid: "工作空间的全局唯一标识符"
+      archived: "按归档状态筛选项目（默认：false）"
+      limit: "每页返回的项目数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Project Sections
+  # 项目分区
   - name: asana_get_project_sections
-    description: List all sections in a project. Essential for task placement and organization.
+    description: 列出项目中的所有分区。对任务放置和组织至关重要。
     params:
-      project_id: "Globally unique identifier for the project"
-      limit: "Number of sections to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      project_id: "项目的全局唯一标识符"
+      limit: "每页返回的分区数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Project Status Updates
+  # 项目状态更新
   - name: asana_get_project_statuses
-    description: List all status updates for a project chronologically. Track project health over time.
+    description: 按时间顺序列出项目的所有状态更新。跟踪项目健康状况随时间的变化。
     params:
-      project_gid: "The project GID to get statuses for"
-      limit: "Results per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      project_gid: "要获取状态的项目 GID"
+      limit: "每页结果数（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_project_status
-    description: Get single status update by ID. Returns color, text, author, and timestamp.
+    description: 通过 ID 获取单个状态更新。返回颜色、文本、作者和时间戳。
     params:
-      project_status_gid: "The project status GID to retrieve"
-      opt_fields: "Comma-separated list of optional fields to include"
+      project_status_gid: "要检索的项目状态 GID"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_create_project_status
-    description: Create project status update with color and text. Use for regular project health updates.
+    description: 使用颜色和文本创建项目状态更新。用于定期项目健康状况更新。
     params:
-      project_gid: "The project GID to create the status for"
-      text: "The text content of the status update"
-      color: "The color of the status (green, yellow, red, blue, complete)"
-      title: "The title of the status update"
-      html_text: "HTML formatted text for the status update"
-      opt_fields: "Comma-separated list of optional fields to include"
+      project_gid: "要为其创建状态的项目 GID"
+      text: "状态更新的文本内容"
+      color: "状态的颜色（green、yellow、red、blue、complete）"
+      title: "状态更新的标题"
+      html_text: "状态更新的 HTML 格式文本"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_project_task_counts
-    description: Get task statistics for a project. Use for quick project progress overview.
+    description: 获取项目的任务统计信息。用于快速项目进度概览。
     params:
-      project_id: "The project ID to get task counts for"
-      opt_fields: "Comma-separated list of optional fields to include"
+      project_id: "要获取任务计数的项目 ID"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Task Management
+  # 任务管理
   - name: asana_search_tasks
-    description: Advanced task search with multiple filters. Handles complex queries and bulk operations.
+    description: 使用多个筛选器进行高级任务搜索。处理复杂查询和批量操作。
     params:
-      workspace: "Globally unique identifier for the workspace"
-      text: "Text to search for in task name or description"
-      assignee_any: "Comma-separated list of user identifiers"
-      projects_any: "Comma-separated list of project IDs"
-      sections_any: "Comma-separated list of section or column IDs"
-      completed: "Filter for completed or incomplete tasks"
-      due_on: "ISO 8601 date string for due date"
-      due_on_after: "ISO 8601 date string for due date after filter"
-      due_on_before: "ISO 8601 date string for due date before filter"
-      created_on_after: "ISO 8601 date string for creation date after filter"
-      created_on_before: "ISO 8601 date string for creation date before filter"
-      modified_on_after: "ISO 8601 date string for modified date after filter"
-      modified_on_before: "ISO 8601 date string for modified date before filter"
-      limit: "Number of results to return (1-100)"
-      sort_by: "Field to sort by (due_date, created_at, completed_at, modified_at)"
-      sort_ascending: "Sort in ascending order (default: false)"
+      workspace: "工作空间的全局唯一标识符"
+      text: "在任务名称或描述中搜索的文本"
+      assignee_any: "用户标识符的逗号分隔列表"
+      projects_any: "项目 ID 的逗号分隔列表"
+      sections_any: "分区或列 ID 的逗号分隔列表"
+      completed: "筛选已完成或未完成的任务"
+      due_on: "到期日期的 ISO 8601 日期字符串"
+      due_on_after: "到期日期之后筛选的 ISO 8601 日期字符串"
+      due_on_before: "到期日期之前筛选的 ISO 8601 日期字符串"
+      created_on_after: "创建日期之后筛选的 ISO 8601 日期字符串"
+      created_on_before: "创建日期之前筛选的 ISO 8601 日期字符串"
+      modified_on_after: "修改日期之后筛选的 ISO 8601 日期字符串"
+      modified_on_before: "修改日期之前筛选的 ISO 8601 日期字符串"
+      limit: "返回的结果数量（1-100）"
+      sort_by: "排序字段（due_date、created_at、completed_at、modified_at）"
+      sort_ascending: "按升序排序（默认：false）"
   - name: asana_get_tasks
-    description: List tasks filtered by context. One context required (workspace/project/tag/section).
+    description: 按上下文筛选列出任务。需要一个上下文（工作空间/项目/标签/分区）。
     params:
-      workspace: "Globally unique identifier for the workspace"
-      project: "Globally unique identifier for the project"
-      section: "Globally unique identifier for the section"
-      tag: "The tag GID to retrieve tasks for"
-      assignee: "User identifier ('me', email, or user GID)"
-      completed_since: "Filter for tasks completed since this date"
-      modified_since: "Filter for tasks modified since this date"
-      limit: "Number of tasks to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      workspace: "工作空间的全局唯一标识符"
+      project: "项目的全局唯一标识符"
+      section: "分区的全局唯一标识符"
+      tag: "要检索任务的标签 GID"
+      assignee: "用户标识符（'me'、邮箱或用户 GID）"
+      completed_since: "筛选自此日期以来完成的任务"
+      modified_since: "筛选自此日期以来修改的任务"
+      limit: "每页返回的任务数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_task
-    description: Get full task details by ID. Essential before updating tasks.
+    description: 通过 ID 获取完整的任务详情。在更新任务之前必不可少。
     params:
-      task_id: "Globally unique identifier for the task"
-      opt_fields: "Comma-separated list of optional fields to include"
+      task_id: "任务的全局唯一标识符"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_create_task
-    description: Create task in Asana with context. Returns task ID with confirmation.
+    description: 在 Asana 中创建带有上下文的任务。返回带有确认的任务 ID。
     params:
-      name: "Name of the task"
-      project_id: "Project GID for task creation"
-      workspace: "Workspace GID where task will be created"
-      assignee: "User identifier to assign the task to ('me', email, or user GID)"
-      notes: "Task description and details"
-      html_notes: "Task description in HTML format"
-      due_on: "Due date in ISO 8601 format (YYYY-MM-DD)"
-      due_at: "Due date and time in ISO 8601 format"
-      start_on: "Start date in ISO 8601 format (YYYY-MM-DD)"
-      start_at: "Start date and time in ISO 8601 format"
-      parent: "Parent task GID to create this as a subtask"
-      followers: "Comma-separated list of user identifiers"
-      completed: "True if the task is initially marked complete"
-      resource_subtype: "Task type (default_task, milestone, section, approval)"
-      custom_fields: "JSON string of custom fields"
+      name: "任务名称"
+      project_id: "任务创建的项目 GID"
+      workspace: "任务将在其中创建的工作空间 GID"
+      assignee: "要分配任务的用户标识符（'me'、邮箱或用户 GID）"
+      notes: "任务描述和详情"
+      html_notes: "HTML 格式的任务描述"
+      due_on: "ISO 8601 格式的到期日期（YYYY-MM-DD）"
+      due_at: "ISO 8601 格式的到期日期和时间"
+      start_on: "ISO 8601 格式的开始日期（YYYY-MM-DD）"
+      start_at: "ISO 8601 格式的开始日期和时间"
+      parent: "父任务 GID，用于创建此子任务"
+      followers: "用户标识符的逗号分隔列表"
+      completed: "如果任务最初标记为完成则为 True"
+      resource_subtype: "任务类型（default_task、milestone、section、approval）"
+      custom_fields: "自定义字段的 JSON 字符串"
   - name: asana_update_task
-    description: Update existing task properties. Use asana_get_task first to understand current state.
+    description: 更新现有任务属性。首先使用 asana_get_task 了解当前状态。
     params:
-      task_id: "Globally unique identifier for the task to update"
-      name: "New name for the task"
-      notes: "New task description and details"
-      assignee: "User identifier to assign the task to ('me', email, or user GID)"
-      completed: "Mark the task as completed"
-      due_on: "Due date in ISO 8601 format (YYYY-MM-DD)"
-      due_at: "Due date and time in ISO 8601 format"
-      custom_fields: "JSON string of custom fields"
+      task_id: "要更新的任务的全局唯一标识符"
+      name: "任务的新名称"
+      notes: "新的任务描述和详情"
+      assignee: "要分配任务的用户标识符（'me'、邮箱或用户 GID）"
+      completed: "将任务标记为已完成"
+      due_on: "ISO 8601 格式的到期日期（YYYY-MM-DD）"
+      due_at: "ISO 8601 格式的到期日期和时间"
+      custom_fields: "自定义字段的 JSON 字符串"
   - name: asana_delete_task
-    description: Delete task from Asana. Use with extreme caution as recovery is challenging.
+    description: 从 Asana 中删除任务。请极其谨慎地使用，因为恢复具有挑战性。
     params:
-      task_id: "Globally unique identifier for the task to delete"
+      task_id: "要删除的任务的全局唯一标识符"
 
-  # Task Dependencies & Hierarchy
+  # 任务依赖和层级
   - name: asana_set_task_dependencies
-    description: Set tasks this task depends on (prerequisites). Use for workflow sequencing.
+    description: 设置此任务依赖的任务（先决条件）。用于工作流排序。
     params:
-      task_id: "The task ID to add dependencies to"
-      dependencies: "Array of task IDs that this task depends on"
+      task_id: "要添加依赖的任务 ID"
+      dependencies: "此任务依赖的任务 ID 数组"
   - name: asana_set_task_dependents
-    description: Set tasks blocked by this task. Use for blocking relationships in project schedules.
+    description: 设置被此任务阻塞的任务。用于项目进度中的阻塞关系。
     params:
-      task_id: "The task ID to add dependents to"
-      dependents: "Array of task IDs that depend on this task"
+      task_id: "要添加依赖者的任务 ID"
+      dependents: "依赖此任务的任务 ID 数组"
   - name: asana_set_parent_for_task
-    description: Change task parent (convert to/from subtask). Use for reorganizing task hierarchy.
+    description: 更改任务父级（转换为/从子任务转换）。用于重新组织任务层级。
     params:
-      task_id: "The task ID to operate on"
-      parent: "The GID of the new parent of the task, or null for no parent"
-      insert_after: "A subtask of the parent to insert the task after"
-      insert_before: "A subtask of the parent to insert the task before"
-      opt_fields: "Comma-separated list of optional fields to include"
+      task_id: "要操作的任务 ID"
+      parent: "任务的新父级 GID，或 null 表示无父级"
+      insert_after: "父级的子任务，用于在其后插入任务"
+      insert_before: "父级的子任务，用于在其前插入任务"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Task Collaboration
+  # 任务协作
   - name: asana_get_stories_for_task
-    description: Get task activity history (comments, status changes, system events).
+    description: 获取任务活动历史（评论、状态更改、系统事件）。
     params:
-      task_id: "Globally unique identifier for the task"
-      limit: "Number of stories to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      task_id: "任务的全局唯一标识符"
+      limit: "每页返回的故事数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_create_task_story
-    description: Add explicit comment to task. Use for discussion, feedback, questions.
+    description: 向任务添加显式评论。用于讨论、反馈、问题。
     params:
-      task_id: "Globally unique identifier for the task"
-      text: "The text content of the comment"
-      opt_fields: "Comma-separated list of optional fields to include"
+      task_id: "任务的全局唯一标识符"
+      text: "评论的文本内容"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_add_task_followers
-    description: Add followers to task (team members to notify of updates).
+    description: 向任务添加关注者（团队成员以接收更新通知）。
     params:
-      task_id: "Globally unique identifier for the task"
-      followers: "Comma-separated list of user identifiers ('me', emails, or user GIDs)"
-      opt_fields: "Comma-separated list of optional fields to include"
+      task_id: "任务的全局唯一标识符"
+      followers: "用户标识符的逗号分隔列表（'me'、邮箱或用户 GID）"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_remove_task_followers
-    description: Remove followers from task (stop notification subscriptions).
+    description: 从任务中移除关注者（停止通知订阅）。
     params:
-      task_id: "Globally unique identifier for the task"
-      followers: "Comma-separated list of user identifiers ('me', emails, or user GIDs)"
-      opt_fields: "Comma-separated list of optional fields to include"
+      task_id: "任务的全局唯一标识符"
+      followers: "用户标识符的逗号分隔列表（'me'、邮箱或用户 GID）"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Goals & OKRs
+  # 目标和 OKR
   - name: asana_get_goals
-    description: List goals filtered by context (portfolio, project, task, workspace, or team).
+    description: 按上下文（项目组合、项目、任务、工作空间或团队）筛选列出目标。
     params:
-      workspace: "The workspace to filter goals on"
-      team: "The team to filter goals on"
-      project: "The project to filter goals on"
-      portfolio: "The portfolio to filter goals on"
-      task: "The task to filter goals on"
-      time_periods: "Array of time period IDs to filter goals on"
-      is_workspace_level: "Filter to workspace-level goals"
-      limit: "Number of goals to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      workspace: "筛选目标的工作空间"
+      team: "筛选目标的团队"
+      project: "筛选目标的项目"
+      portfolio: "筛选目标的项目组合"
+      task: "筛选目标的任务"
+      time_periods: "筛选目标的时间段 ID 数组"
+      is_workspace_level: "筛选到工作空间级别的目标"
+      limit: "每页返回的目标数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_goal
-    description: Get detailed goal data including name, owner, current_status_update, and due_on.
+    description: 获取详细的目标数据，包括名称、所有者、current_status_update 和 due_on。
     params:
-      goal_gid: "Globally unique identifier for the goal"
-      opt_fields: "Comma-separated list of optional fields to include"
+      goal_gid: "目标的全局唯一标识符"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_create_goal
-    description: Create a new goal. Use to establish objectives and key results.
+    description: 创建新目标。用于建立目标和关键结果。
     params:
-      name: "The name of the goal"
-      time_period: "The ID of the time period"
-      workspace: "Globally unique identifier for the workspace"
-      team: "The team associated with the goal"
-      owner: "The owner of the goal (user or team GID)"
-      notes: "Free-form textual information associated with the goal"
-      html_notes: "HTML-formatted notes for the goal"
-      due_on: "The due date for the goal in YYYY-MM-DD format"
-      start_on: "The start date for the goal in YYYY-MM-DD format"
-      is_workspace_level: "Whether the goal is a workspace-level goal"
-      followers: "Comma-separated list of user IDs to follow the goal"
-      opt_fields: "Comma-separated list of optional fields to include"
+      name: "目标的名称"
+      time_period: "时间段的 ID"
+      workspace: "工作空间的全局唯一标识符"
+      team: "与目标关联的团队"
+      owner: "目标的所有者（用户或团队 GID）"
+      notes: "与目标关联的自由格式文本信息"
+      html_notes: "目标的 HTML 格式备注"
+      due_on: "目标的到期日期，YYYY-MM-DD 格式"
+      start_on: "目标的开始日期，YYYY-MM-DD 格式"
+      is_workspace_level: "目标是否为工作空间级别的目标"
+      followers: "关注目标的用户 ID 的逗号分隔列表"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_update_goal
-    description: Update goal properties like name, owner, dates, metrics, or status.
+    description: 更新目标属性，如名称、所有者、日期、指标或状态。
     params:
-      goal_gid: "Globally unique identifier for the goal"
-      name: "The name of the goal"
-      owner: "The owner of the goal (user or team GID)"
-      notes: "Free-form textual information associated with the goal"
-      html_notes: "HTML-formatted notes for the goal"
-      due_on: "The due date for the goal in YYYY-MM-DD format"
-      start_on: "The start date for the goal in YYYY-MM-DD format"
-      status: "Current status (green, yellow, red, missed, achieved, partial, dropped)"
-      time_period: "The ID of the time period"
-      team: "The team associated with the goal"
-      workspace: "Globally unique identifier for the workspace"
-      is_workspace_level: "Whether the goal is a workspace-level goal"
-      opt_fields: "Comma-separated list of optional fields to include"
+      goal_gid: "目标的全局唯一标识符"
+      name: "目标的名称"
+      owner: "目标的所有者（用户或团队 GID）"
+      notes: "与目标关联的自由格式文本信息"
+      html_notes: "目标的 HTML 格式备注"
+      due_on: "目标的到期日期，YYYY-MM-DD 格式"
+      start_on: "目标的开始日期，YYYY-MM-DD 格式"
+      status: "当前状态（green、yellow、red、missed、achieved、partial、dropped）"
+      time_period: "时间段的 ID"
+      team: "与目标关联的团队"
+      workspace: "工作空间的全局唯一标识符"
+      is_workspace_level: "目标是否为工作空间级别的目标"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_parent_goals_for_goal
-    description: List all parent goals for a specific goal. Use to understand goal hierarchy.
+    description: 列出特定目标的所有父目标。用于理解目标层级。
     params:
-      goal_gid: "Globally unique identifier for the goal"
-      opt_fields: "Comma-separated list of optional fields to include"
+      goal_gid: "目标的全局唯一标识符"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Portfolios
+  # 项目组合
   - name: asana_get_portfolios
-    description: List portfolios filtered by workspace and owner. Use for portfolio discovery.
+    description: 按工作空间和所有者筛选列出项目组合。用于项目组合发现。
     params:
-      workspace: "Globally unique identifier for the workspace"
-      limit: "Results per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      workspace: "工作空间的全局唯一标识符"
+      limit: "每页结果数（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_portfolio
-    description: Get detailed portfolio data by ID including name, owner, and projects.
+    description: 通过 ID 获取详细的项目组合数据，包括名称、所有者和项目。
     params:
-      portfolio_gid: "Globally unique identifier for the portfolio"
-      opt_fields: "Comma-separated list of optional fields to include"
+      portfolio_gid: "项目组合的全局唯一标识符"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_items_for_portfolio
-    description: List projects, goals, and other items in a portfolio.
+    description: 列出项目组合中的项目、目标和其他项目。
     params:
-      portfolio_gid: "Globally unique identifier for the portfolio"
-      limit: "Results per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      portfolio_gid: "项目组合的全局唯一标识符"
+      limit: "每页结果数（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Time Periods
+  # 时间段
   - name: asana_get_time_periods
-    description: List available time periods in a workspace. Use for goal planning and OKR cycles.
+    description: 列出工作空间中的可用时间段。用于目标规划和 OKR 周期。
     params:
-      workspace: "Globally unique identifier for the workspace"
-      start_on: "ISO 8601 date string for filtering periods starting on or after this date"
-      end_on: "ISO 8601 date string for filtering periods ending on or before this date"
-      limit: "Number of time periods to return per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      workspace: "工作空间的全局唯一标识符"
+      start_on: "用于筛选自此日期或之后开始的时间段 ISO 8601 日期字符串"
+      end_on: "用于筛选自此日期或之前结束的时间段 ISO 8601 日期字符串"
+      limit: "每页返回的时间段数量（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_time_period
-    description: Get detailed information about a time period by ID.
+    description: 通过 ID 获取有关时间段的详细信息。
     params:
-      time_period_gid: "Globally unique identifier for the time period"
-      opt_fields: "Comma-separated list of optional fields to include"
+      time_period_gid: "时间段的全局唯一标识符"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Attachments
+  # 附件
   - name: asana_get_attachments_for_object
-    description: List all attachments for a project, project brief, or task.
+    description: 列出项目、项目简介或任务的所有附件。
     params:
-      parent: "The GID of the parent project, project_brief, or task"
-      limit: "Results per page (1-100)"
-      offset: "Pagination offset token"
-      opt_fields: "Comma-separated list of optional fields to include"
+      parent: "父项目、project_brief 或任务的 GID"
+      limit: "每页结果数（1-100）"
+      offset: "分页偏移令牌"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
   - name: asana_get_attachment
-    description: Get detailed attachment data including name, resource type, and URLs.
+    description: 获取详细的附件数据，包括名称、资源类型和 URL。
     params:
-      attachment_gid: "Globally unique identifier for the attachment"
-      opt_fields: "Comma-separated list of optional fields to include"
+      attachment_gid: "附件的全局唯一标识符"
+      opt_fields: "要包含的可选字段的逗号分隔列表"
 
-  # Search & Discovery
+  # 搜索和发现
   - name: asana_typeahead_search
-    description: Quick search across Asana objects. Use this FIRST before specialized search.
+    description: 跨 Asana 对象快速搜索。在专门搜索之前首先使用此功能。
     params:
-      workspace_gid: "Globally unique identifier for the workspace"
-      resource_type: "Type of resource to search (user, project, task, team, tag, portfolio, goal)"
-      query: "The search query (can be empty for default results)"
-      count: "Number of results to return (1-100, default: 20)" 
+      workspace_gid: "工作空间的全局唯一标识符"
+      resource_type: "要搜索的资源类型（user、project、task、team、tag、portfolio、goal）"
+      query: "搜索查询（可以为空以获取默认结果）"
+      count: "返回的结果数量（1-100，默认：20）"

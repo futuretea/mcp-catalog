@@ -1,35 +1,35 @@
 name: MongoDB Database
-shortDescription: Manage MongoDB databases, collections, documents, and aggregation pipelines
+shortDescription: 管理 MongoDB 数据库、集合、文档和聚合管道
 description: |
-  A Model Context Protocol (MCP) server for interacting with MongoDB databases. Provides comprehensive tools for database operations, collection management, and data manipulation with any MongoDB instance (local, cloud, or self-hosted).
+  一个用于与 MongoDB 数据库交互的模型上下文协议（MCP）服务器。提供全面的数据库操作、集合管理和数据操作工具，适用于任何 MongoDB 实例（本地、云或自托管）。
 
-  ## Features
-  - **Database Operations**: Connect, list databases, and get database statistics
-  - **Collection Management**: Create, drop, rename collections and manage schemas
-  - **Data Operations**: Find, insert, update, delete documents with flexible filtering
-  - **Aggregation Support**: Run complex aggregation pipelines for data analysis
-  - **Index Management**: Create and manage indexes for collection optimization
-  - **Storage Analytics**: Get collection sizes and database statistics
-  - **Query Optimization**: Explain query execution plans for performance tuning
+  ## 功能特性
+  - **数据库操作**：连接、列出数据库和获取数据库统计信息
+  - **集合管理**：创建、删除、重命名集合和管理模式
+  - **数据操作**：使用灵活的过滤查找、插入、更新、删除文档
+  - **聚合支持**：运行复杂的聚合管道进行数据分析
+  - **索引管理**：创建和管理索引以优化集合
+  - **存储分析**：获取集合大小和数据库统计信息
+  - **查询优化**：解释查询执行计划以进行性能调优
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **Required:**
-  - **MongoDB Connection String**: Valid connection string to your MongoDB instance
+  **必需：**
+  - **MongoDB 连接字符串**：有效的 MongoDB 实例连接字符串
 
-  **Compatibility:**
-  - Works with any MongoDB instance (local, cloud, or self-hosted)
-  # - Optional read-only mode available for safer operations
+  **兼容性：**
+  - 适用于任何 MongoDB 实例（本地、云或自托管）
+  # - 可选的只读模式可用于更安全的操作
 metadata:
   categories: Databases,Data & Analytics
 icon: https://avatars.githubusercontent.com/u/45120?s=48&v=4
 repoURL: https://github.com/mongodb-js/mongodb-mcp-server
 env:
   - key: MDB_MCP_CONNECTION_STRING
-    name: MongoDB Connection String
+    name: MongoDB 连接字符串
     required: true
     sensitive: true
-    description: The connection string for your MongoDB database.
+    description: MongoDB 数据库的连接字符串
   # - key: MDB_MCP_READ_ONLY ## TODO: need dynamic args support, see issue https://github.com/obot-platform/obot/issues/3619 feature request 1
   #   name: MongoDB Read Only
   #   required: false
@@ -37,114 +37,114 @@ env:
   #   description: Whether to run the MongoDB MCP server in read-only mode, default is false.
 toolPreview:
   - name: connect
-    description: Connect to a MongoDB instance
+    description: 连接到 MongoDB 实例
     params:
-      connectionString: MongoDB connection string
+      connectionString: MongoDB 连接字符串
   - name: list-collections
-    description: List all collections for a given database
+    description: 列出给定数据库的所有集合
     params:
-      database: Database name
+      database: 数据库名称
   - name: list-databases
-    description: List all databases for a MongoDB connection
+    description: 列出 MongoDB 连接的所有数据库
   - name: collection-indexes
-    description: Describe the indexes for a collection
+    description: 描述集合的索引
     params:
-      collection: Collection name
-      database: Database name
+      collection: 集合名称
+      database: 数据库名称
   - name: create-index
-    description: Create an index for a collection
+    description: 为集合创建索引
     params:
-      collection: Collection name
-      database: Database name
-      keys: Index keys specification object
-      name: Optional index name
+      collection: 集合名称
+      database: 数据库名称
+      keys: 索引键规范对象
+      name: 可选的索引名称
   - name: collection-schema
-    description: Describe the schema for a collection
+    description: 描述集合的模式
     params:
-      collection: Collection name
-      database: Database name
+      collection: 集合名称
+      database: 数据库名称
   - name: find
-    description: Run a find query against a MongoDB collection
+    description: 对 MongoDB 集合运行查找查询
     params:
-      collection: Collection name
-      database: Database name
-      filter: Optional query filter object
-      limit: Optional maximum number of documents to return
-      projection: Optional projection object
-      sort: Optional sort specification object
+      collection: 集合名称
+      database: 数据库名称
+      filter: 可选的查询过滤器对象
+      limit: 可选的要返回的最大文档数
+      projection: 可选的投影对象
+      sort: 可选的排序规范对象
   - name: insert-many
-    description: Insert an array of documents into a MongoDB collection
+    description: 将文档数组插入 MongoDB 集合
     params:
-      collection: Collection name
-      database: Database name
-      documents: Array of documents to insert
+      collection: 集合名称
+      database: 数据库名称
+      documents: 要插入的文档数组
   - name: delete-many
-    description: Removes all documents that match the filter from a MongoDB collection
+    description: 从 MongoDB 集合中删除所有匹配过滤器的文档
     params:
-      collection: Collection name
-      database: Database name
-      filter: Optional filter object
+      collection: 集合名称
+      database: 数据库名称
+      filter: 可选的过滤器对象
   - name: collection-storage-size
-    description: Gets the size of the collection
+    description: 获取集合的大小
     params:
-      collection: Collection name
-      database: Database name
+      collection: 集合名称
+      database: 数据库名称
   - name: count
-    description: Gets the number of documents in a MongoDB collection using db.collection.count() and query as an optional filter parameter
+    description: 使用 db.collection.count() 和可选的查询过滤器参数获取 MongoDB 集合中的文档数
     params:
-      collection: Collection name
-      database: Database name
-      query: Optional filter/query object
+      collection: 集合名称
+      database: 数据库名称
+      query: 可选的过滤器/查询对象
   - name: db-stats
-    description: Returns statistics that reflect the use state of a single database
+    description: 返回反映单个数据库使用状态的统计信息
     params:
-      database: Database name
+      database: 数据库名称
   - name: aggregate
-    description: Run an aggregation against a MongoDB collection
+    description: 对 MongoDB 集合运行聚合
     params:
-      collection: Collection name
-      database: Database name
-      pipeline: Array of aggregation pipeline stages
+      collection: 集合名称
+      database: 数据库名称
+      pipeline: 聚合管道阶段数组
   - name: update-many
-    description: Updates all documents that match the specified filter for a collection
+    description: 更新集合中所有匹配指定过滤器的文档
     params:
-      collection: Collection name
-      database: Database name
-      update: Update specification object
-      filter: Optional filter object
-      upsert: Optional boolean to insert if no match found
+      collection: 集合名称
+      database: 数据库名称
+      update: 更新规范对象
+      filter: 可选的过滤器对象
+      upsert: 可选的布尔值，如果未找到匹配则插入
   - name: rename-collection
-    description: Renames a collection in a MongoDB database
+    description: 在 MongoDB 数据库中重命名集合
     params:
-      collection: Collection name
-      database: Database name
-      newName: New collection name
-      dropTarget: Optional boolean to drop target collection if it exists
+      collection: 集合名称
+      database: 数据库名称
+      newName: 新集合名称
+      dropTarget: 可选的布尔值，如果目标集合存在则删除
   - name: drop-database
-    description: Removes the specified database, deleting the associated data files
+    description: 删除指定的数据库，删除关联的数据文件
     params:
-      database: Database name
+      database: 数据库名称
   - name: drop-collection
-    description: Removes a collection or view from the database. The method also removes any indexes associated with the dropped collection.
+    description: 从数据库中删除集合或视图。该方法还会删除与被删除集合关联的任何索引。
     params:
-      collection: Collection name
-      database: Database name
+      collection: 集合名称
+      database: 数据库名称
   - name: explain
-    description: Returns statistics describing the execution of the winning plan chosen by the query optimizer for the evaluated method
+    description: 返回描述查询优化器为评估方法选择的获胜计划执行的统计信息
     params:
-      collection: Collection name
-      database: Database name
-      method: Array specifying the method and arguments to explain
+      collection: 集合名称
+      database: 数据库名称
+      method: 指定要解释的方法和参数的数组
   - name: create-collection
-    description: Creates a new collection in a database. If the database doesn't exist, it will be created automatically.
+    description: 在数据库中创建新集合。如果数据库不存在，将自动创建。
     params:
-      collection: Collection name
-      database: Database name
+      collection: 集合名称
+      database: 数据库名称
   - name: mongodb-logs
-    description: Returns the most recent logged mongod events
+    description: 返回最近的 mongod 日志事件
     params:
-      limit: Optional maximum number of log entries to return
-      type: Optional log type filter
+      limit: 可选的要返回的最大日志条目数
+      type: 可选的日志类型过滤器
 
 runtime: containerized
 containerizedConfig:

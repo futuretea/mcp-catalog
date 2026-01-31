@@ -1,25 +1,25 @@
 name: Dynatrace
-shortDescription: Query logs, metrics, spans, and manage problems with Dynatrace observability
-description: |2
+shortDescription: 使用 Dynatrace 可观测性查询日志、指标、追踪并管理问题
+description: |
 
-  A Model Context Protocol (MCP) server for Dynatrace integration, providing comprehensive observability and monitoring capabilities through Dynatrace API.
+  一个用于 Dynatrace 集成的 Model Context Protocol (MCP) 服务器，通过 Dynatrace API 提供全面的可观测性和监控能力。
 
-  ## Features
-  - **Access Dynatrace observability data from compatible AI applications**
-  - **Query logs, metrics, spans, and events using natural language**
-  - **Manage problems, vulnerabilities, and entities through Dynatrace APIs**
-  - **Generate reports and insights based on Dynatrace monitoring data**
-  - **Analyze performance data and get AI-powered troubleshooting suggestions**
+  ## 功能特性
+  - **从兼容的 AI 应用程序访问 Dynatrace 可观测性数据**
+  - **使用自然语言查询日志、指标、追踪和事件**
+  - **通过 Dynatrace API 管理问题、漏洞和实体**
+  - **基于 Dynatrace 监控数据生成报告和洞察**
+  - **分析性能数据并获取 AI 驱动的故障排除建议**
 
-  ## What you will need to connect
+  ## 连接所需信息
 
-  **Required Credentials**:
-  - `DT_PLATFORM_TOKEN`: Your Dynatrace Platform Token. To create one, refer to the [Dynatrace documentation](https://www.dynatrace.com/support/help/shortlink/platform-tokens) for more details.
-  - `DT_ENVIRONMENT`: Your Dynatrace environment URL (e.g., https://abc12345.apps.dynatrace.com)
+  **必需凭证**：
+  - `DT_PLATFORM_TOKEN`：您的 Dynatrace Platform Token。要创建平台令牌，请参阅 [Dynatrace 文档](https://www.dynatrace.com/support/help/shortlink/platform-tokens) 获取更多详情。
+  - `DT_ENVIRONMENT`：您的 Dynatrace 环境 URL（例如 https://abc12345.apps.dynatrace.com）
 
 
 metadata:
-  categories: Monitoring, Developer Tools, DevOps
+  categories: 监控, 开发者工具, DevOps
   allow-multiple: "true"
 icon: https://avatars.githubusercontent.com/u/58178984?s=48&v=4
 repoURL: https://github.com/dynatrace-oss/dynatrace-mcp
@@ -28,12 +28,12 @@ env:
   name: Dynatrace Platform Token
   required: true
   sensitive: true
-  description: Your Dynatrace Platform Token.
+  description: 您的 Dynatrace Platform Token。
 - key: DT_ENVIRONMENT
   name: Dynatrace Environment
   required: true
   sensitive: false
-  description: Your Dynatrace environment URL
+  description: 您的 Dynatrace 环境 URL
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/dynatrace:1.0.0
@@ -43,95 +43,95 @@ containerizedConfig:
   - mcp-server-dynatrace
 toolPreview:
 - name: get_environment_info
-  description: Get information about the connected Dynatrace Environment (Tenant) and verify the connection and authentication.
+  description: 获取有关连接的 Dynatrace 环境（租户）的信息，并验证连接和认证。
   params:
-    random_string: "Dummy parameter for no-parameter tools"
+    random_string: "无参数工具的虚拟参数"
 
-# Vulnerability Management
+# 漏洞管理
 - name: list_vulnerabilities
-  description: List all non-muted vulnerabilities from Dynatrace for the last 30 days. An additional filter can be provided using DQL filter.
+  description: 列出 Dynatrace 中最近 30 天的所有非静音漏洞。可以使用 DQL 过滤器提供额外的过滤条件。
   params:
-    additionalFilter: "Additional filter for DQL statement for vulnerabilities, e.g., 'vulnerability.stack == \"CODE_LIBRARY\"' or 'vulnerability.risk.level == \"CRITICAL\"'"
-    maxVulnerabilitiesToDisplay: "Maximum number of vulnerabilities to display in the response (default: 25)"
-    riskScore: "Minimum risk score of vulnerabilities to list (default: 8.0)"
+    additionalFilter: "漏洞的 DQL 语句额外过滤器，例如 'vulnerability.stack == \"CODE_LIBRARY\"' 或 'vulnerability.risk.level == \"CRITICAL\"'"
+    maxVulnerabilitiesToDisplay: "响应中显示的最大漏洞数量（默认：25）"
+    riskScore: "要列出的漏洞的最低风险评分（默认：8.0）"
 
-# Problem Management
+# 问题管理
 - name: list_problems
-  description: List all problems (dt.davis.problems) known on Dynatrace, sorted by their recency, for the last 12h. An additional filter can be provided using DQL filter.
+  description: 列出 Dynatrace 上已知的所有问题（dt.davis.problems），按最近发生时间排序，最近 12 小时。可以使用 DQL 过滤器提供额外的过滤条件。
   params:
-    additionalFilter: "Additional filter for DQL statement for dt.davis.problems, e.g., 'entity_tags == array(\"dt.owner:team-foobar\", \"tag:tag\")'"
-    maxProblemsToDisplay: "Maximum number of problems to display in the response (default: 10)"
+    additionalFilter: "dt.davis.problems 的 DQL 语句额外过滤器，例如 'entity_tags == array(\"dt.owner:team-foobar\", \"tag:tag\")'"
+    maxProblemsToDisplay: "响应中显示的最大问题数量（默认：10）"
 
-# Entity Management
+# 实体管理
 - name: find_entity_by_name
-  description: Get the entityId of a monitored entity (service, host, process-group, application, kubernetes-node, ...) within the topology based on the name of the entity on Dynatrace.
+  description: 根据 Dynatrace 上实体的名称，在拓扑中获取受监控实体（服务、主机、进程组、应用程序、kubernetes 节点等）的 entityId。
   params:
-    entityName: "Name of the entity to search for, e.g., \"my-service\" or \"my-host\""
+    entityName: "要搜索的实体名称，例如 \"my-service\" 或 \"my-host\""
 
 - name: get_entity_details
-  description: Get details of a monitored entity based on the entityId on Dynatrace.
+  description: 根据 Dynatrace 上的 entityId 获取受监控实体的详细信息。
   params:
-    entityId: "The entity ID to get details for"
+    entityId: "要获取详细信息的实体 ID"
 
 - name: get_ownership
-  description: Get detailed Ownership information for one or multiple entities on Dynatrace.
+  description: 获取 Dynatrace 上一个或多个实体的详细所有权信息。
   params:
-    entityIds: "Comma separated list of entityIds"
+    entityIds: "以逗号分隔的 entityId 列表"
 
-# Data Querying (GRAIL)
+# 数据查询（GRAIL）
 - name: execute_dql
-  description: Get Logs, Metrics, Spans or Events from Dynatrace GRAIL by executing a Dynatrace Query Language (DQL) statement.
+  description: 通过执行 Dynatrace Query Language (DQL) 语句，从 Dynatrace GRAIL 获取日志、指标、追踪或事件。
   params:
-    dqlStatement: "DQL Statement (Ex: \"fetch [logs, spans, events] | filter <some-filter> | summarize count(), by:{some-fields}.\", or for metrics: \"timeseries { avg(<metric-name>), value.A = avg(<metric-name>, scalar: true) }\")"
+    dqlStatement: "DQL 语句（例如：\"fetch [logs, spans, events] | filter <some-filter> | summarize count(), by:{some-fields}.\"，或用于指标：\"timeseries { avg(<metric-name>), value.A = avg(<metric-name>, scalar: true) }\")"
 
 - name: verify_dql
-  description: Verify a Dynatrace Query Language (DQL) statement on Dynatrace GRAIL before executing it. This step is recommended for DQL statements that have been dynamically created by non-expert tools.
+  description: 在执行之前验证 Dynatrace GRAIL 上的 Dynatrace Query Language (DQL) 语句。对于由非专业工具动态创建的 DQL 语句，建议执行此步骤。
   params:
-    dqlStatement: "The DQL statement to verify"
+    dqlStatement: "要验证的 DQL 语句"
 
 - name: explain_dql_in_natural_language
-  description: Explain Dynatrace Query Language (DQL) statements in natural language using Davis CoPilot AI.
+  description: 使用 Davis CoPilot AI 以自然语言解释 Dynatrace Query Language (DQL) 语句。
   params:
-    dql: "The DQL statement to explain"
+    dql: "要解释的 DQL 语句"
 
-# AI Assistant
+# AI 助手
 - name: chat_with_davis_copilot
-  description: "Use this tool in case no specific tool is available. Get an answer to any Dynatrace related question as well as troubleshooting, and guidance. *(Note: Davis CoPilot AI is GA, but the Davis CoPilot APIs are in preview)*"
+  description: "在没有特定工具可用时使用此工具。获取任何 Dynatrace 相关问题的答案以及故障排除和指导。*(注意：Davis CoPilot AI 已正式发布，但 Davis CoPilot API 处于预览阶段)*"
   params:
-    text: "Your question or request for Davis CoPilot"
-    context: "Optional context to provide additional information"
-    instruction: "Optional instruction for how to format the response"
+    text: "您的问题或 Davis CoPilot 的请求"
+    context: "提供额外信息的可选上下文"
+    instruction: "格式化响应的可选指令"
 
-# Kubernetes Integration
+# Kubernetes 集成
 - name: get_kubernetes_events
-  description: Get all events from a specific Kubernetes (K8s) cluster.
+  description: 从特定的 Kubernetes (K8s) 集群获取所有事件。
   params:
-    clusterId: "The Kubernetes (K8s) Cluster Id, referred to as k8s.cluster.uid (this is NOT the Dynatrace environment)"
+    clusterId: "Kubernetes (K8s) 集群 ID，称为 k8s.cluster.uid（这不是 Dynatrace 环境）"
 
-# Communication & Notifications
+# 通信与通知
 - name: send_slack_message
-  description: Sends a Slack message to a dedicated Slack Channel via Slack Connector on Dynatrace.
+  description: 通过 Dynatrace 上的 Slack Connector 向专用 Slack 频道发送 Slack 消息。
   params:
-    channel: "The Slack channel to send the message to"
-    message: "The message content to send"
+    channel: "要发送消息的 Slack 频道"
+    message: "要发送的消息内容"
 
 - name: send_email
-  description: Send an email using the Dynatrace Email API. The sender will be no-reply@apps.dynatrace.com. Maximum 10 recipients total across TO, CC, and BCC.
+  description: 使用 Dynatrace Email API 发送电子邮件。发件人将是 no-reply@apps.dynatrace.com。TO、CC 和 BCC 总共最多 10 个收件人。
   params:
-    toRecipients: "Array of email addresses for TO recipients"
-    subject: "Subject line of the email"
-    body: "Body content of the email (plain text only)"
-    ccRecipients: "Array of email addresses for CC recipients"
-    bccRecipients: "Array of email addresses for BCC recipients"
+    toRecipients: "TO 收件人的电子邮件地址数组"
+    subject: "电子邮件的主题行"
+    body: "电子邮件的正文内容（仅纯文本）"
+    ccRecipients: "CC 收件人的电子邮件地址数组"
+    bccRecipients: "BCC 收件人的电子邮件地址数组"
 
-# Workflow Management
+# 工作流管理
 - name: make_workflow_public
-  description: Modify a workflow and make it publicly available to everyone on the Dynatrace Environment.
+  description: 修改工作流并使其对 Dynatrace 环境中的所有人公开可用。
   params:
-    workflowId: "The workflow ID to make public"
+    workflowId: "要公开的工作流 ID"
 
-# Budget Management
+# 预算管理
 - name: reset_grail_budget
-  description: Reset the Grail query budget after it was exhausted, allowing new queries to be executed. This clears all tracked bytes scanned in the current session.
+  description: 在 Grail 查询预算耗尽后重置它，允许执行新查询。这将清除当前会话中所有跟踪的已扫描字节数。
   params:
-    random_string: "Dummy parameter for no-parameter tools"
+    random_string: "无参数工具的虚拟参数"

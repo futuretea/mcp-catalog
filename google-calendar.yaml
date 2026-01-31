@@ -1,28 +1,28 @@
 name: Google Calendar
-shortDescription: Manage Google Calendar events, recurring events, and attendees with OAuth2
+shortDescription: 管理 Google Calendar 活动、重复事件和参与者，支持 OAuth2 认证
 description: |
   ![Google Calendar MCP Server](https://img.shields.io/badge/Google%20Calendar-MCP%20Server-blue?style=for-the-badge&logo=google-calendar)
   ![Python](https://img.shields.io/badge/Python-3.13+-green?style=for-the-badge&logo=python)
   ![FastMCP](https://img.shields.io/badge/FastMCP-2.11.1+-orange?style=for-the-badge)
   ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-  A Model Context Protocol (MCP) server for Google Calendar integration, providing comprehensive calendar and event management capabilities through a modern API interface.
+  一个用于 Google Calendar 集成的 Model Context Protocol (MCP) 服务器，通过现代 API 接口提供全面的日历和活动管理功能。
 
-  ## Features
-  - **OAuth2 Authentication**: Secure Google OAuth integration with automatic token refresh
-  - **Calendar Management**: List, create, update, and delete calendars with timezone and location support
-  - **Event Management**: Full CRUD operations for events with support for all-day and timed events
-  - **Recurring Events**: Create and manage recurring events using RFC5545 RRULE patterns
-  - **Attendee Management**: Add, replace, and manage event attendees with RSVP tracking
-  - **Event Response**: Accept, decline, or tentatively respond to calendar invitations
-  - **Advanced Search**: Filter events by type, time range, and free-text search queries
-  - **Quick Add**: Create events from natural language text descriptions
-  - **Event Movement**: Move events between different calendars
-  - **Recurring Event Instances**: List and manage individual instances of recurring events
+  ## 功能特性
+  - **OAuth2 认证**：安全的 Google OAuth 集成，支持自动令牌刷新
+  - **日历管理**：列出、创建、更新和删除日历，支持时区和位置
+  - **活动管理**：对活动进行完整的 CRUD 操作，支持全天和定时活动
+  - **重复活动**：使用 RFC5545 RRULE 模式创建和管理重复活动
+  - **参与者管理**：添加、替换和管理活动参与者，支持 RSVP 跟踪
+  - **活动回复**：接受、拒绝或暂时回复日历邀请
+  - **高级搜索**：按类型、时间范围和自由文本搜索查询筛选活动
+  - **快速添加**：从自然语言文本描述创建活动
+  - **活动移动**：在不同日历之间移动活动
+  - **重复活动实例**：列出和管理重复活动的单个实例
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow
+  **无需设置**：通过 OAuth2 流程自动处理认证
 
 metadata:
   categories: Business
@@ -34,101 +34,101 @@ remoteConfig:
   fixedURL: https://google-calendar-mcp.obot.ai/mcp/
 toolPreview:
   - name: list_calendars
-    description: Lists all calendars for the authenticated user.
+    description: 列出认证用户的所有日历。
   - name: get_calendar
-    description: Get details of a specific google calendar
+    description: 获取特定 Google 日历的详细信息
     params:
-      calendar_id: calendar id to get
+      calendar_id: 要获取的日历 ID
   - name: create_calendar
-    description: Creates a new google calendar.
+    description: 创建新的 Google 日历。
     params:
-      summary: calendar title to create
-      time_zone: calendar timezone to create
+      summary: 要创建的日历标题
+      time_zone: 要创建的日历时区
   - name: update_calendar
-    description: Updates an existing google calendar
+    description: 更新现有的 Google 日历
     params:
-      calendar_id: calendar id to update
-      summary: calendar title to update
-      time_zone: calendar timezone to update
-      description: calendar description to update
-      location: Geographic location of the calendar as free-form text to update
+      calendar_id: 要更新的日历 ID
+      summary: 要更新的日历标题
+      time_zone: 要更新的日历时区
+      description: 要更新的日历描述
+      location: 要更新的日历地理位置，自由格式文本
   - name: delete_calendar
-    description: Deletes a google calendar
+    description: 删除 Google 日历
     params:
-      calendar_id: calendar id to delete
+      calendar_id: 要删除的日历 ID
   - name: list_events
-    description: Lists events for a specific google calendar.
+    description: 列出特定 Google 日历的活动。
     params:
-      calendar_id: calendar id
-      event_type: "The type of event to list (birthday, default, focusTime, fromGmail, outOfOffice, workingLocation). Defaults to 'default'"
-      single_event: Whether to list only single event.
-      time_min: "Upper bound (exclusive) for an event's start time to filter by. Must be an RFC3339 timestamp with mandatory time zone offset."
-      time_max: "Lower bound (exclusive) for an event's end time to filter by. Must be an RFC3339 timestamp with mandatory time zone offset."
-      order_by: "Order by which to sort events. Valid options are: updated. If set, results will be returned in ascending order."
-      q: Free text search terms to find events by
-      max_results: "Maximum number of events to return (1-500, default: 250)"
+      calendar_id: 日历 ID
+      event_type: "要列出的活动类型（birthday、default、focusTime、fromGmail、outOfOffice、workingLocation）。默认为 'default'"
+      single_event: 是否仅列出单个活动
+      time_min: "用于筛选活动开始时间的上限（不包含）。必须是带有时区偏移的 RFC3339 时间戳。"
+      time_max: "用于筛选活动结束时间的下限（不包含）。必须是带有时区偏移的 RFC3339 时间戳。"
+      order_by: "活动排序方式。有效选项为：updated。如果设置，结果将按升序返回。"
+      q: 用于查找活动的自由文本搜索词
+      max_results: "返回的最大活动数量（1-500，默认：250）"
   - name: get_event
-    description: Gets details of a specific google event.
+    description: 获取特定 Google 活动的详细信息。
     params:
-      calendar_id: calendar id to get event from
-      event_id: event id to get
+      calendar_id: 要从中获取活动的日历 ID
+      event_id: 要获取的活动 ID
   - name: move_event
-    description: Moves an event to a different google calendar.
+    description: 将活动移动到不同的 Google 日历。
     params:
-      calendar_id: calendar id to move event from
-      event_id: event id to move
-      new_calendar_id: calendar id to move the event to
+      calendar_id: 要从中移动活动的日历 ID
+      event_id: 要移动的活动 ID
+      new_calendar_id: 要将活动移动到的日历 ID
   - name: quick_add_event
-    description: Quickly adds an event to the calendar based on a simple text string.
+    description: 基于简单的文本字符串快速向日历添加活动。
     params:
-      text: The text of the event to add
-      calendar_id: "The ID of the calendar to add event for (default: primary)"
+      text: 要添加的活动文本
+      calendar_id: "要添加活动的日历 ID（默认：primary）"
   - name: create_event
-    description: Creates an event in a given google calendar.
+    description: 在给定的 Google 日历中创建活动。
     params:
-      calendar_id: "Calendar id to create event in. Set to `primary` to create event in the primary calendar"
-      summary: "Event title (default: My Event)"
-      location: Geographic location of the event as free-form text.
-      description: Event description
-      time_zone: "Event time zone to create. Defaults to the user's timezone. Must be a valid IANA timezone string"
-      start_date: "Event start date in the format 'yyyy-mm-dd', only used if this is an all-day event"
-      start_datetime: "Event start date and time to create. Must be a valid RFC 3339 formatted date/time string"
-      end_date: "Event end date in the format 'yyyy-mm-dd', only used if this is an all-day event"
-      end_datetime: "Event end date and time to create. Must be a valid RFC 3339 formatted date/time string"
-      recurrence: "List of strings for recurring events (RRULE, EXRULE, RDATE, or EXDATE lines as defined by RFC5545)"
-      attendees: A list of email addresses of the attendees
+      calendar_id: "要创建活动的日历 ID。设置为 `primary` 以在主日历中创建活动"
+      summary: "活动标题（默认：My Event）"
+      location: 活动的地理位置，自由格式文本。
+      description: 活动描述
+      time_zone: "要创建的活动时区。默认为用户的时区。必须是有效的 IANA 时区字符串"
+      start_date: "活动开始日期，格式为 'yyyy-mm-dd'，仅用于全天活动"
+      start_datetime: "要创建的活动开始日期和时间。必须是有效的 RFC 3339 格式日期/时间字符串"
+      end_date: "活动结束日期，格式为 'yyyy-mm-dd'，仅用于全天活动"
+      end_datetime: "要创建的活动结束日期和时间。必须是有效的 RFC 3339 格式日期/时间字符串"
+      recurrence: "重复活动的字符串列表（RRULE、EXRULE、RDATE 或 EXDATE 行，如 RFC5545 所定义）"
+      attendees: 参与者的邮箱地址列表
   - name: update_event
-    description: Updates an existing google calendar event.
+    description: 更新现有的 Google 日历活动。
     params:
-      calendar_id: Calendar id to update event in.
-      event_id: Event id to update
-      summary: Event title
-      location: Geographic location of the event as free-form text.
-      description: Event description
-      time_zone: "Event time zone to update. Must be a valid IANA timezone string"
-      start_date: "Event date in the format 'yyyy-mm-dd', only used if this is an all-day event"
-      start_datetime: "Event start date and time to update. Must be a valid RFC 3339 formatted date/time string"
-      end_date: "Event end date in the format 'yyyy-mm-dd', only used if this is an all-day event"
-      end_datetime: "Event end date and time to update. Must be a valid RFC 3339 formatted date/time string"
-      recurrence: "List of strings for recurring events (RRULE, EXRULE, RDATE, or EXDATE lines as defined by RFC5545)"
-      add_attendees: A list of email addresses of the attendees to add
-      replace_attendees: A list of email addresses of the attendees to replace
+      calendar_id: 要更新活动的日历 ID。
+      event_id: 要更新的活动 ID
+      summary: 活动标题
+      location: 活动的地理位置，自由格式文本。
+      description: 活动描述
+      time_zone: "要更新的活动时区。必须是有效的 IANA 时区字符串"
+      start_date: "活动日期，格式为 'yyyy-mm-dd'，仅用于全天活动"
+      start_datetime: "要更新的活动开始日期和时间。必须是有效的 RFC 3339 格式日期/时间字符串"
+      end_date: "活动结束日期，格式为 'yyyy-mm-dd'，仅用于全天活动"
+      end_datetime: "要更新的活动结束日期和时间。必须是有效的 RFC 3339 格式日期/时间字符串"
+      recurrence: "重复活动的字符串列表（RRULE、EXRULE、RDATE 或 EXDATE 行，如 RFC5545 所定义）"
+      add_attendees: 要添加的参与者邮箱地址列表
+      replace_attendees: 要替换的参与者邮箱地址列表
   - name: respond_to_event
-    description: Responds to a calendar event by updating the current user's attendee status.
+    description: 通过更新当前用户的参与者状态来回复日历活动。
     params:
-      calendar_id: Calendar id to respond to event in.
-      event_id: Event id to respond to
-      response: "The response to the event invitation (accepted, declined, tentative)"
+      calendar_id: 要回复活动的日历 ID。
+      event_id: 要回复的活动 ID
+      response: "对活动邀请的回复（accepted、declined、tentative）"
   - name: delete_event
-    description: Deletes an event from the calendar.
+    description: 从日历中删除活动。
     params:
-      calendar_id: Calendar id to delete event from.
-      event_id: Event id to delete
+      calendar_id: 要从中删除活动的日历 ID。
+      event_id: 要删除的活动 ID
   - name: list_recurring_event_instances
-    description: Gets all instances of a recurring event.
+    description: 获取重复活动的所有实例。
     params:
-      calendar_id: Calendar id to list recurring event instances from.
-      event_id: Event id to list recurring event instances for
-      time_min: "Upper bound (exclusive) for an event's start time to filter by. Must be an RFC3339 timestamp with mandatory time zone offset."
-      time_max: "Lower bound (exclusive) for an event's end time to filter by. Must be an RFC3339 timestamp with mandatory time zone offset."
-      max_results: "Maximum number of events to return (1-500, default: 250)"  
+      calendar_id: 要列出重复活动实例的日历 ID。
+      event_id: 要列出重复活动实例的活动 ID
+      time_min: "用于筛选活动开始时间的上限（不包含）。必须是带有时区偏移的 RFC3339 时间戳。"
+      time_max: "用于筛选活动结束时间的下限（不包含）。必须是带有时区偏移的 RFC3339 时间戳。"
+      max_results: "返回的最大活动数量（1-500，默认：250）"

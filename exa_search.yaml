@@ -1,38 +1,38 @@
 name: Exa Search
-shortDescription: AI-powered web search for research, company intelligence, and content extraction
+shortDescription: 用于研究、企业情报和内容提取的 AI 驱动网页搜索
 description: '[![npm version](https://badge.fury.io/js/exa-mcp-server.svg)](https://www.npmjs.com/package/exa-mcp-server)
 
 
-  A Model Context Protocol (MCP) server that lets AI assistants use the Exa AI Search API for web searches. Get real-time web information in a safe and controlled way with advanced search capabilities and content extraction.
+  一个 Model Context Protocol (MCP) 服务器，让 AI 助手能够使用 Exa AI Search API 进行网页搜索。以安全可控的方式获取实时网页信息，具备高级搜索能力和内容提取功能。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Web Search**: Real-time web searches with optimized results and content extraction
+  - **网页搜索**：实时网页搜索，优化结果和内容提取
 
-  - **Research Tools**: Specialized search for academic papers and research content
+  - **研究工具**：针对学术论文和研究内容的专用搜索
 
-  - **Company Research**: Comprehensive business intelligence and company analysis
+  - **企业研究**：全面的商业情报和企业分析
 
-  - **Content Crawling**: Extract content from specific URLs, articles, and PDFs
+  - **内容爬取**：从特定 URL、文章和 PDF 中提取内容
 
-  - **Platform-Specific Search**: LinkedIn, Wikipedia, and GitHub specialized searches
+  - **平台专用搜索**：LinkedIn、Wikipedia 和 GitHub 专用搜索
 
-  - **Deep Research**: AI-powered comprehensive research agent for complex queries
+  - **深度研究**：用于复杂查询的 AI 驱动综合研究代理
 
-  - **Competitor Analysis**: Identify and analyze business competitors
-
-
-  ## What you''ll need to connect
+  - **竞争对手分析**：识别和分析商业竞争对手
 
 
-  **Required:**
+  ## 连接所需条件
 
-  - **EXA API Key**: Your Exa API key from [dashboard.exa.ai/api-keys](https://dashboard.exa.ai/api-keys)
+
+  **必需：**
+
+  - **EXA API Key**：从 [dashboard.exa.ai/api-keys](https://dashboard.exa.ai/api-keys) 获取您的 Exa API 密钥
 
   '
 metadata:
-  categories: Retrieval & Search,Science & Research,Developer Tools
+  categories: 检索与搜索, 科学与研究, 开发者工具
 icon: https://avatars.githubusercontent.com/u/77906174?v=4
 repoURL: https://github.com/exa-labs/exa-mcp-server
 env:
@@ -40,38 +40,38 @@ env:
   name: Exa API Key
   required: true
   sensitive: true
-  description: Your Exa API key.
+  description: 您的 Exa API 密钥。
 toolPreview:
 - name: web_search_exa
-  description: Search the web using Exa AI - performs real-time web searches and can scrape content from specific URLs. Supports configurable result counts and returns the content from the most relevant websites.
+  description: 使用 Exa AI 搜索网页 - 执行实时网页搜索并可以从特定 URL 抓取内容。支持可配置的结果数量，并返回最相关网站的内容。
   params:
-    query: The search query string
-    numResults: Optional number of results to return
+    query: 搜索查询字符串
+    numResults: 可选的返回结果数量
 - name: company_research_exa
-  description: Research companies using Exa AI - finds comprehensive information about businesses, organizations, and corporations. Provides insights into company operations, news, financial information, and industry analysis.
+  description: 使用 Exa AI 研究企业 - 查找关于企业、组织和公司的综合信息。提供对企业运营、新闻、财务信息和行业分析的洞察。
   params:
-    companyName: Name of the company to research
-    numResults: Optional number of results to return
+    companyName: 要研究的企业名称
+    numResults: 可选的返回结果数量
 - name: crawling_exa
-  description: Extract and crawl content from specific URLs using Exa AI - retrieves full text content, metadata, and structured information from web pages. Ideal for extracting detailed content from known URLs.
+  description: 使用 Exa AI 从特定 URL 提取和爬取内容 - 检索网页的完整文本内容、元数据和结构化信息。非常适合从已知 URL 提取详细内容。
   params:
-    url: The URL to crawl and extract content from
-    maxCharacters: Optional maximum number of characters to extract
+    url: 要爬取和提取内容的 URL
+    maxCharacters: 可选的最大提取字符数
 - name: linkedin_search_exa
-  description: Search LinkedIn profiles and companies using Exa AI - finds professional profiles, company pages, and business-related content on LinkedIn. Useful for networking, recruitment, and business research.
+  description: 使用 Exa AI 搜索 LinkedIn 个人资料和企业 - 查找 LinkedIn 上的专业个人资料、企业页面和商业相关内容。用于社交、招聘和商业研究。
   params:
-    query: The LinkedIn search query
-    numResults: Optional number of results to return
-    searchType: Optional search type specification
+    query: LinkedIn 搜索查询
+    numResults: 可选的返回结果数量
+    searchType: 可选的搜索类型规范
 - name: deep_researcher_start
-  description: Start a comprehensive AI-powered deep research task for complex queries. This tool initiates an intelligent agent that performs extensive web searches, crawls relevant pages, analyzes information, and synthesizes findings into a detailed research report. The agent thinks critically about the research topic and provides thorough, well-sourced answers. Use this for complex research questions that require in-depth analysis rather than simple searches. After starting a research task, IMMEDIATELY use deep_researcher_check with the returned task ID to monitor progress and retrieve results.
+  description: 为复杂查询启动一个全面的 AI 驱动深度研究任务。此工具启动一个智能代理，执行广泛的网页搜索、爬取相关页面、分析信息，并将发现综合成详细的研究报告。代理对研究主题进行批判性思考，提供全面、有充分来源支持的答案。用于需要深入分析而非简单搜索的复杂研究问题。启动研究任务后，立即使用返回的任务 ID 调用 deep_researcher_check 来监控进度并检索结果。
   params:
-    instructions: Research instructions and topic description
-    model: Optional AI model to use for research
+    instructions: 研究指令和主题描述
+    model: 用于研究的可选 AI 模型
 - name: deep_researcher_check
-  description: Check the status and retrieve results of a deep research task. This tool monitors the progress of an AI agent that performs comprehensive web searches, analyzes multiple sources, and synthesizes findings into detailed research reports. The tool includes a built-in 5-second delay before checking to allow processing time. IMPORTANT - You must call this tool repeatedly (poll) until the status becomes 'completed' to get the final research results. When status is 'running', wait a few seconds and call this tool again with the same task ID.
+  description: 检查深度研究任务的状态并检索结果。此工具监控执行综合网页搜索、分析多个来源并将发现综合成详细研究报告的 AI 代理的进度。该工具在检查前内置 5 秒延迟以允许处理时间。重要提示 - 您必须重复调用（轮询）此工具，直到状态变为 'completed' 才能获得最终研究结果。当状态为 'running' 时，等待几秒钟后使用相同的任务 ID 再次调用此工具。
   params:
-    taskId: The task ID returned from deep_researcher_start
+    taskId: deep_researcher_start 返回的任务 ID
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/exa-search:3.0.9
@@ -80,3 +80,4 @@ containerizedConfig:
   args:
   - exa-mcp-server
   - --tools=web_search_exa,research_paper_search,company_research,crawling,competitor_finder,linkedin_search,wikipedia_search_exa,github_search
+

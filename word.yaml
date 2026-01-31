@@ -1,23 +1,23 @@
 name: Word
-shortDescription: Create and manage Microsoft Word documents with markdown content conversion
+shortDescription: 使用 Markdown 内容转换创建和管理 Microsoft Word 文档
 description: |
   ![Word MCP Server](https://img.shields.io/badge/Word-MCP%20Server-blue?style=for-the-badge&logo=microsoft-word)
   ![Go](https://img.shields.io/badge/Go-1.23+-green?style=for-the-badge&logo=go)
   ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-  A Model Context Protocol (MCP) server for Microsoft Word integration, providing comprehensive document management capabilities through Microsoft Graph API.
+  一个用于 Microsoft Word 集成的 Model Context Protocol (MCP) 服务器，通过 Microsoft Graph API 提供全面的文档管理功能。
 
-  ## Features
-  - **Document Discovery**: List and search all Word documents across OneDrive with detailed metadata
-  - **Content Reading**: Extract plain text content from Word documents (.doc and .docx formats)
-  - **Document Creation**: Create new Word documents with markdown content conversion
-  - **Content Writing**: Write and update document content with automatic markdown to DOCX conversion
+  ## 功能特性
+  - **文档发现**：列出和搜索 OneDrive 中的所有 Word 文档，并提供详细的元数据
+  - **内容读取**：从 Word 文档（.doc 和 .docx 格式）中提取纯文本内容
+  - **文档创建**：使用 Markdown 内容转换创建新的 Word 文档
+  - **内容写入**：编写和更新文档内容，自动将 Markdown 转换为 DOCX 格式
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow with Microsoft Graph API
+  **无需设置**：通过 Microsoft Graph API 的 OAuth2 工作流自动处理身份验证
 
-  **Microsoft Account**: Requires valid Microsoft/Word account for authentication
+  **Microsoft 账户**：需要有效的 Microsoft/Word 账户进行身份验证
 
 metadata:
   categories: Business
@@ -29,15 +29,15 @@ remoteConfig:
   fixedURL: https://m365-word-mcp.obot.ai/mcp
 toolPreview:
   - name: list_docs
-    description: List all Microsoft Word documents available to the user in OneDrive.
+    description: 列出用户在 OneDrive 中可用的所有 Microsoft Word 文档。
     params: {}
   - name: read_doc
-    description: Read the contents of a Microsoft Word document from OneDrive.
+    description: 从 OneDrive 读取 Microsoft Word 文档的内容。
     params:
-      doc_id: ID or Path of the Microsoft Word document to get (prefer ID if available)
+      doc_id: 要获取的 Microsoft Word 文档的 ID 或路径（如果可用，优先使用 ID）
   - name: write_doc
-    description: Write a Microsoft Word document in OneDrive with the specified title and optional content.
+    description: 在 OneDrive 中写入指定标题和可选内容的 Microsoft Word 文档。
     params:
-      doc_name: The name of the document to write to (OneDrive ID or filepath)
-      doc_content: Markdown formatted content to write to the document (optional)
-      overwrite_if_exists: Whether to overwrite the document if it already exists (optional, defaults to false)
+      doc_name: 要写入的文档名称（OneDrive ID 或文件路径）
+      doc_content: 要写入文档的 Markdown 格式内容（可选）
+      overwrite_if_exists: 如果文档已存在是否覆盖（可选，默认为 false）

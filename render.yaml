@@ -1,36 +1,36 @@
 name: Render
-shortDescription: Manage Render services, databases, deployments, logs, and performance metrics
-description: 'A Model Context Protocol (MCP) server that enables you to manage your Render infrastructure directly from compatible AI apps. Using natural language prompts, you can spin up new services, query your databases, analyze metrics and logs, and more.
+shortDescription: 管理 Render 服务、数据库、部署、日志和性能指标
+description: '一个 Model Context Protocol (MCP) 服务器，使您能够直接从兼容的 AI 应用程序管理您的 Render 基础设施。使用自然语言提示，您可以启动新服务、查询数据库、分析指标和日志等。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Service Management**: Create and manage web services, static sites, and background workers
+  - **服务管理**：创建和管理 Web 服务、静态站点和后台工作进程
 
-  - **Database Operations**: Create and query Postgres databases with read-only SQL execution
+  - **数据库操作**：创建和查询 Postgres 数据库，支持只读 SQL 执行
 
-  - **Key-Value Stores**: Manage Redis-compatible Key Value instances
+  - **键值存储**：管理兼容 Redis 的 Key Value 实例
 
-  - **Deployment Tracking**: List and monitor deploy history and status
+  - **部署跟踪**：列出和监控部署历史记录和状态
 
-  - **Log Analysis**: Retrieve and filter logs with advanced label-based filtering
+  - **日志分析**：检索和过滤日志，支持高级基于标签的过滤
 
-  - **Performance Metrics**: Fetch CPU, memory, instance counts, HTTP metrics, and connection data
+  - **性能指标**：获取 CPU、内存、实例数量、HTTP 指标和连接数据
 
-  - **Environment Variables**: Update service configurations dynamically
+  - **环境变量**：动态更新服务配置
 
-  - **Workspace Management**: Organize resources across multiple workspaces
-
-
-  ## What you''ll need to connect
+  - **工作区管理**：跨多个工作区组织资源
 
 
-  **Required:**
-
-  - **Render API Key**: Create an API key from your Render Account Settings page at [dashboard.render.com/account/settings](https://dashboard.render.com/account/settings)
+  ## 连接所需条件
 
 
-  **Note:** Render API keys are broadly scoped and grant access to all workspaces and services your account can access. Before using, ensure you''re comfortable granting these permissions to your AI app.
+  **必需：**
+
+  - **Render API Key**：从您的 Render 账户设置页面创建 API 密钥，访问地址：[dashboard.render.com/account/settings](https://dashboard.render.com/account/settings)
+
+
+  **注意：** Render API 密钥具有广泛的权限范围，可授予对您账户可访问的所有工作区和服务的访问权限。在使用之前，请确保您愿意向 AI 应用程序授予这些权限。
 
   '
 metadata:
@@ -49,132 +49,132 @@ remoteConfig:
     prefix: "Bearer "
 toolPreview:
 - name: mcp_render_list_workspaces
-  description: List the workspaces that you have access to
+  description: 列出您有权访问的工作区
   params: {}
 - name: mcp_render_get_selected_workspace
-  description: Get the currently selected workspace
+  description: 获取当前选定的工作区
   params: {}
 - name: mcp_render_select_workspace
-  description: Select a workspace to use for all actions. This tool should only be used after explicitly asking the user to select one, it should not be invoked as part of an automated process.
+  description: 选择用于所有操作的工作区。此工具仅在明确要求用户选择时才应使用，不应作为自动化流程的一部分调用。
   params:
-    ownerID: The ID of the owner to select
+    ownerID: 要选择的所有者 ID
 - name: mcp_render_list_services
-  description: List all services in your Render account
+  description: 列出您的 Render 账户中的所有服务
   params:
-    includePreviews: Whether to include preview services in the response. Defaults to false. (optional)
+    includePreviews: 是否在响应中包含预览服务。默认为 false。（可选）
 - name: mcp_render_get_service
-  description: Get details about a specific service
+  description: 获取特定服务的详细信息
   params:
-    serviceId: The ID of the service to retrieve
+    serviceId: 要检索的服务 ID
 - name: mcp_render_create_web_service
-  description: Create a new web service in your Render account. A web service is a public-facing service that can be accessed by users on the internet.
+  description: 在您的 Render 账户中创建一个新的 Web 服务。Web 服务是一种面向公众的服务，可由互联网上的用户访问。
   params:
-    name: A unique name for your service
-    runtime: The runtime environment for your service (node, python, go, rust, ruby, elixir, docker)
-    buildCommand: The command used to build your service
-    startCommand: The command used to start your service
-    repo: The repository containing the source code for your service (optional)
-    branch: The repository branch to deploy (optional)
-    plan: The pricing plan for your service (starter, standard, pro, pro_max, pro_plus, pro_ultra) (optional)
-    region: The geographic region where your service will be deployed (oregon, frankfurt, singapore, ohio, virginia) (optional)
-    autoDeploy: Whether to automatically deploy the service when the specified branch is updated (yes, no) (optional)
-    envVars: Environment variables to set for your service (optional)
+    name: 服务的唯一名称
+    runtime: 服务的运行时环境（node, python, go, rust, ruby, elixir, docker）
+    buildCommand: 用于构建服务的命令
+    startCommand: 用于启动服务的命令
+    repo: 包含服务源代码的仓库（可选）
+    branch: 要部署的仓库分支（可选）
+    plan: 服务的定价方案（starter, standard, pro, pro_max, pro_plus, pro_ultra）（可选）
+    region: 服务将部署的地理区域（oregon, frankfurt, singapore, ohio, virginia）（可选）
+    autoDeploy: 当指定分支更新时是否自动部署服务（yes, no）（可选）
+    envVars: 为服务设置的环境变量（可选）
 - name: mcp_render_create_static_site
-  description: Create a new static site in your Render account. Apps that consist entirely of statically served assets (commonly HTML, CSS, and JS).
+  description: 在您的 Render 账户中创建一个新的静态站点。完全由静态服务资源组成的应用程序（通常是 HTML、CSS 和 JS）。
   params:
-    name: A unique name for your service
-    buildCommand: Render runs this command to build your app before each deploy
-    repo: The repository containing the source code for your service (optional)
-    branch: The repository branch to deploy (optional)
-    publishPath: The relative path of the directory containing built assets to publish (optional)
-    autoDeploy: Whether to automatically deploy the service when the specified branch is updated (yes, no) (optional)
-    envVars: Environment variables to set for your service (optional)
+    name: 服务的唯一名称
+    buildCommand: Render 在每次部署之前运行此命令来构建您的应用
+    repo: 包含服务源代码的仓库（可选）
+    branch: 要部署的仓库分支（可选）
+    publishPath: 包含要发布的构建资源的目录的相对路径（可选）
+    autoDeploy: 当指定分支更新时是否自动部署服务（yes, no）（可选）
+    envVars: 为服务设置的环境变量（可选）
 - name: mcp_render_update_environment_variables
-  description: Update environment variables for a service. By default, environment variables passed in will be merged with the service's existing environment variables.
+  description: 更新服务的环境变量。默认情况下，传入的环境变量将与服务的现有环境变量合并。
   params:
-    serviceId: The ID of the service to update
-    envVars: The list of environment variables to update or set for the service
-    replace: Whether to replace all existing environment variables with the provided list, or merge with the existing ones (optional)
+    serviceId: 要更新的服务 ID
+    envVars: 要更新或为服务设置的环境变量列表
+    replace: 是否用提供的列表替换所有现有环境变量，或与现有变量合并（可选）
 - name: mcp_render_list_deploys
-  description: List deploys matching the provided filters. If no filters are provided, all deploys for the service are returned.
+  description: 列出与提供的过滤器匹配的部署。如果未提供过滤器，则返回服务的所有部署。
   params:
-    serviceId: The ID of the service to get deployments for
-    limit: The maximum number of deploys to return in a single page (optional)
-    cursor: A unique string that corresponds to a position in the result list (optional)
+    serviceId: 要获取部署的服务 ID
+    limit: 单个页面返回的最大部署数量（可选）
+    cursor: 对应结果列表中位置的唯一字符串（可选）
 - name: mcp_render_get_deploy
-  description: Retrieve the details of a particular deploy for a particular service
+  description: 检索特定服务的特定部署的详细信息
   params:
-    serviceId: The ID of the service to get deployments for
-    deployId: The ID of the deployment to retrieve
+    serviceId: 要获取部署的服务 ID
+    deployId: 要检索的部署 ID
 - name: mcp_render_list_logs
-  description: List logs matching the provided filters. Logs are paginated by start and end timestamps. You can query for logs across multiple resources, but all resources must be in the same region and belong to the same owner.
+  description: 列出与提供的过滤器匹配的日志。日志按开始和结束时间戳分页。您可以查询多个资源的日志，但所有资源必须位于同一区域并属于同一所有者。
   params:
-    resource: Filter logs by their resource. A resource is the id of a server, cronjob, job, postgres, or redis
-    limit: Maximum number of logs to return (optional)
-    direction: The direction to query logs for. Backward will return most recent logs first (optional)
-    startTime: Start time for log query (RFC3339 format) (optional)
-    endTime: End time for log query (RFC3339 format) (optional)
-    type: Filter logs by their type (app, request, build) (optional)
-    level: Filter logs by their severity level (optional)
-    text: Filter by the text of the logs (optional)
-    instance: Filter logs by the instance they were emitted from (optional)
-    host: Filter request logs by their host (optional)
-    method: Filter request logs by their requests method (optional)
-    path: Filter request logs by their path (optional)
-    statusCode: Filter request logs by their status code (optional)
+    resource: 按资源过滤日志。资源是服务器、cronjob、job、postgres 或 redis 的 ID
+    limit: 返回的最大日志数量（可选）
+    direction: 查询日志的方向。Backward 将首先返回最新的日志（可选）
+    startTime: 日志查询的开始时间（RFC3339 格式）（可选）
+    endTime: 日志查询的结束时间（RFC3339 格式）（可选）
+    type: 按类型过滤日志（app, request, build）（可选）
+    level: 按严重级别过滤日志（可选）
+    text: 按日志文本过滤（可选）
+    instance: 按发出日志的实例过滤（可选）
+    host: 按主机过滤请求日志（可选）
+    method: 按请求方法过滤请求日志（可选）
+    path: 按路径过滤请求日志（可选）
+    statusCode: 按状态码过滤请求日志（可选）
 - name: mcp_render_list_log_label_values
-  description: List all values for a given log label in the logs matching the provided filters. This can be used to discover what values are available for filtering logs.
+  description: 列出与提供的过滤器匹配的日志中给定日志标签的所有值。这可用于发现可用于过滤日志的值。
   params:
-    resource: Filter by resource. A resource is the id of a server, cronjob, job, postgres, or redis
-    label: The label to list values for (host, instance, level, method, statusCode, type)
-    direction: The direction to query logs for (optional)
-    startTime: Start time for log query (RFC3339 format) (optional)
-    endTime: End time for log query (RFC3339 format) (optional)
+    resource: 按资源过滤。资源是服务器、cronjob、job、postgres 或 redis 的 ID
+    label: 要列出值的标签（host, instance, level, method, statusCode, type）
+    direction: 查询日志的方向（可选）
+    startTime: 日志查询的开始时间（RFC3339 格式）（可选）
+    endTime: 日志查询的结束时间（RFC3339 格式）（可选）
 - name: mcp_render_get_metrics
-  description: Get performance metrics for any Render resource (services, Postgres databases, key-value stores). Supports CPU usage/limits/targets, memory usage/limits/targets, service instance counts, HTTP request counts and response time metrics, bandwidth usage metrics, and database active connection counts.
+  description: 获取任何 Render 资源（服务、Postgres 数据库、键值存储）的性能指标。支持 CPU 使用率/限制/目标、内存使用率/限制/目标、服务实例数量、HTTP 请求数量和响应时间指标、带宽使用指标以及数据库活动连接数。
   params:
-    resourceId: The ID of the resource to get metrics for (service ID, Postgres ID, or key-value store ID)
-    metricTypes: Which metrics to fetch (cpu_usage, memory_usage, http_request_count, active_connections, instance_count, http_latency, cpu_limit, cpu_target, memory_limit, memory_target, bandwidth_usage)
-    startTime: Start time for metrics query in RFC3339 format (optional)
-    endTime: End time for metrics query in RFC3339 format (optional)
-    resolution: Time resolution for data points in seconds (optional)
-    cpuUsageAggregationMethod: Method for aggregating metric values over time intervals (AVG, MAX, MIN) (optional)
-    httpLatencyQuantile: The quantile/percentile of HTTP latency to fetch (0.5, 0.95, 0.99) (optional)
-    httpHost: Filter HTTP metrics to specific request hosts (optional)
-    httpPath: Filter HTTP metrics to specific request paths (optional)
-    aggregateHttpRequestCountsBy: Field to aggregate HTTP request metrics by (host, statusCode) (optional)
+    resourceId: 要获取指标的资源 ID（服务 ID、Postgres ID 或键值存储 ID）
+    metricTypes: 要获取的指标（cpu_usage, memory_usage, http_request_count, active_connections, instance_count, http_latency, cpu_limit, cpu_target, memory_limit, memory_target, bandwidth_usage）
+    startTime: 指标查询的开始时间，RFC3339 格式（可选）
+    endTime: 指标查询的结束时间，RFC3339 格式（可选）
+    resolution: 数据点的时间分辨率，以秒为单位（可选）
+    cpuUsageAggregationMethod: 随时间间隔聚合指标值的方法（AVG, MAX, MIN）（可选）
+    httpLatencyQuantile: 要获取的 HTTP 延迟分位数/百分位数（0.5, 0.95, 0.99）（可选）
+    httpHost: 将 HTTP 指标过滤到特定请求主机（可选）
+    httpPath: 将 HTTP 指标过滤到特定请求路径（可选）
+    aggregateHttpRequestCountsBy: 用于聚合 HTTP 请求指标的字段（host, statusCode）（可选）
 - name: mcp_render_list_postgres_instances
-  description: List all Postgres databases in your Render account
+  description: 列出您的 Render 账户中的所有 Postgres 数据库
   params: {}
 - name: mcp_render_get_postgres
-  description: Retrieve a Postgres instance by ID
+  description: 按 ID 检索 Postgres 实例
   params:
-    postgresId: The ID of the Postgres instance to retrieve
+    postgresId: 要检索的 Postgres 实例 ID
 - name: mcp_render_create_postgres
-  description: Create a new Postgres instance in your Render account
+  description: 在您的 Render 账户中创建一个新的 Postgres 实例
   params:
-    name: The name of the database as it will appear in the Render Dashboard
-    plan: Pricing plan for the database (free, basic_256mb, basic_1gb, basic_4gb, pro_4gb, etc.)
-    region: Region where the database will be deployed (oregon, frankfurt, singapore, ohio, virginia) (optional)
-    version: PostgreSQL version to use (12-16, defaults to 16) (optional)
-    diskSizeGb: Your database's capacity, in GB (optional)
+    name: 数据库在 Render Dashboard 中显示的名称
+    plan: 数据库的定价方案（free, basic_256mb, basic_1gb, basic_4gb, pro_4gb 等）
+    region: 数据库将部署的区域（oregon, frankfurt, singapore, ohio, virginia）（可选）
+    version: 要使用的 PostgreSQL 版本（12-16，默认为 16）（可选）
+    diskSizeGb: 数据库的容量，以 GB 为单位（可选）
 - name: mcp_render_query_render_postgres
-  description: Run a read-only SQL query against a Render-hosted Postgres database. This tool creates a new connection for each query and closes it after the query completes.
+  description: 对 Render 托管的 Postgres 数据库运行只读 SQL 查询。此工具为每个查询创建一个新连接，并在查询完成后关闭它。
   params:
-    postgresId: The ID of the Postgres instance to query
-    sql: The SQL query to run. Note that the query will be wrapped in a read-only transaction
+    postgresId: 要查询的 Postgres 实例 ID
+    sql: 要运行的 SQL 查询。注意，查询将在只读事务中包装
 - name: mcp_render_list_key_value
-  description: List all Key Value instances in your Render account
+  description: 列出您的 Render 账户中的所有 Key Value 实例
   params: {}
 - name: mcp_render_get_key_value
-  description: Retrieve a Key Value instance by ID
+  description: 按 ID 检索 Key Value 实例
   params:
-    keyValueId: The ID of the Key Value instance to retrieve
+    keyValueId: 要检索的 Key Value 实例 ID
 - name: mcp_render_create_key_value
-  description: Create a new Key Value instance in your Render account
+  description: 在您的 Render 账户中创建一个新的 Key Value 实例
   params:
-    name: Name of the Key Value instance
-    plan: Pricing plan for the Key Value instance (free, starter, standard, pro, pro_plus)
-    region: Region where the Key Value instance will be deployed (oregon, frankfurt, singapore, ohio, virginia) (optional)
-    maxmemoryPolicy: The eviction policy for the Key Value store (noeviction, allkeys_lfu, allkeys_lru, allkeys_random, volatile_lfu, volatile_lru, volatile_random, volatile_ttl) (optional)
+    name: Key Value 实例的名称
+    plan: Key Value 实例的定价方案（free, starter, standard, pro, pro_plus）
+    region: Key Value 实例将部署的区域（oregon, frankfurt, singapore, ohio, virginia）（可选）
+    maxmemoryPolicy: Key Value 存储的驱逐策略（noeviction, allkeys_lfu, allkeys_lru, allkeys_random, volatile_lfu, volatile_lru, volatile_random, volatile_ttl）（可选）
 

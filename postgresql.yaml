@@ -1,5 +1,5 @@
 name: PostgreSQL
-shortDescription: Analyze performance, optimize queries, and tune PostgreSQL databases with health checks
+shortDescription: 分析性能、优化查询和调优 PostgreSQL 数据库，并进行健康检查
 description: '[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
   [![PyPI - Version](https://img.shields.io/pypi/v/postgres-mcp)](https://pypi.org/project/postgres-mcp/)
@@ -7,52 +7,52 @@ description: '[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg
   [![Contributors](https://img.shields.io/github/contributors/crystaldba/postgres-mcp)](https://github.com/crystaldba/postgres-mcp/graphs/contributors)
 
 
-  A Model Context Protocol (MCP) server designed for deep SQL performance analysis and optimization. It delivers advanced index tuning, workload-aware query insights, safe execution controls, and schema-aware SQL generation—backed by comprehensive database health diagnostics and EXPLAIN plan simulation.
+  一个专为深度 SQL 性能分析和优化而设计的模型上下文协议（MCP）服务器。它提供高级索引调优、工作负载感知查询洞察、安全执行控制和基于模式的 SQL 生成——以全面的数据库健康诊断和 EXPLAIN 计划模拟为支撑。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Database Health Analysis**: Comprehensive health checks including index health, connection utilization, buffer cache analysis, vacuum health, and replication lag monitoring
+  - **数据库健康分析**：全面的健康检查，包括索引健康、连接利用率、缓冲区分析、真空健康和复制延迟监控
 
-  - **Advanced Index Tuning**: Industrial-strength algorithms that explore thousands of possible indexes using proven optimization techniques
+  - **高级索引调优**：使用经过验证的优化技术探索数千种可能索引的工业级算法
 
-  - **Query Performance Optimization**: EXPLAIN plan analysis and hypothetical index simulation for performance validation
+  - **查询性能优化**：EXPLAIN 计划分析和假设索引模拟以验证性能
 
-  - **Schema Intelligence**: Context-aware SQL generation based on detailed database schema understanding
+  - **模式智能**：基于详细数据库模式理解的上下文感知 SQL 生成
 
-  - **Safe SQL Execution**: Configurable access control with read-only mode and SQL parsing for both development and production environments
+  - **安全 SQL 执行**：可配置的访问控制，支持只读模式和 SQL 解析，适用于开发和生产环境
 
-  - **Workload Analysis**: Identify resource-intensive queries and get targeted optimization recommendations
-
-
-  ## What you''ll need to connect
+  - **工作负载分析**：识别资源密集型查询并提供针对性的优化建议
 
 
-  **Required:**
-
-  - **Database URI**: PostgreSQL connection string (e.g., `postgresql://username:password@localhost:5432/dbname`)
+  ## 连接所需条件
 
 
-  ## Example Usage
+  **必需：**
+
+  - **数据库 URI**：PostgreSQL 连接字符串（例如 `postgresql://username:password@localhost:5432/dbname`）
 
 
-  - "Check the health of my database and identify any issues"
-
-  - "What are the slowest queries in my database? And how can I speed them up?"
-
-  - "Analyze my database workload and suggest indexes to improve performance"
-
-  - "Help me optimize this query: SELECT * FROM orders JOIN customers ON orders.customer_id = customers.id WHERE orders.created_at > ''2023-01-01''"
+  ## 使用示例
 
 
-  ## Known Issues
+  - "检查我的数据库健康状况并识别任何问题"
+
+  - "我的数据库中哪些查询最慢？如何加速？"
+
+  - "分析我的数据库工作负载并提议优化性能的索引"
+
+  - "帮我优化这个查询：SELECT * FROM orders JOIN customers ON orders.customer_id = customers.id WHERE orders.created_at > ''2023-01-01''"
 
 
-  Some tools require extensions to be installed in the target postgres instance:
+  ## 已知问题
 
-  - `get_top_queries` requires the `pg_stat_statements` extension
 
-  - `analyze_workload_indexes` and `analyze_query_indexes` require the `hypopg` extension
+  某些工具需要在目标 PostgreSQL 实例中安装扩展：
+
+  - `get_top_queries` 需要 `pg_stat_statements` 扩展
+
+  - `analyze_workload_indexes` 和 `analyze_query_indexes` 需要 `hypopg` 扩展
 
   '
 metadata:
@@ -61,29 +61,29 @@ icon: https://avatars.githubusercontent.com/u/177543?s=48&v=4
 repoURL: https://github.com/crystaldba/postgres-mcp
 env:
 - key: DATABASE_URI
-  name: Database URI
+  name: 数据库 URI
   required: true
   sensitive: false
-  description: The connection string for your Postgres database; e.g. "postgresql://username:password@localhost:5432/dbname"
+  description: Postgres 数据库的连接字符串；例如 "postgresql://username:password@localhost:5432/dbname"
 toolPreview:
 - name: list_schemas
-  description: Lists all database schemas available in the PostgreSQL instance
+  description: 列出 PostgreSQL 实例中所有可用的数据库模式
 - name: list_objects
-  description: Lists database objects (tables, views, sequences, extensions) within a specified schema
+  description: 列出指定模式中的数据库对象（表、视图、序列、扩展）
 - name: get_object_details
-  description: Provides detailed information about a specific database object including columns, constraints, and indexes
+  description: 提供特定数据库对象的详细信息，包括列、约束和索引
 - name: execute_sql
-  description: Executes SQL statements with read-only limitations in restricted mode
+  description: 在受限模式下执行 SQL 语句，具有只读限制
 - name: explain_query
-  description: Shows execution plan for SQL queries and can simulate hypothetical indexes
+  description: 显示 SQL 查询的执行计划，可以模拟假设索引
 - name: get_top_queries
-  description: Reports slowest SQL queries based on execution statistics from pg_stat_statements
+  description: 根据 pg_stat_statements 的执行统计信息报告最慢的 SQL 查询
 - name: analyze_workload_indexes
-  description: Analyzes database workload to identify resource-intensive queries and recommends optimal indexes
+  description: 分析数据库工作负载以识别资源密集型查询，并推荐最优索引
 - name: analyze_query_indexes
-  description: Analyzes specific SQL queries (up to 10) and recommends optimal indexes for them
+  description: 分析特定 SQL 查询（最多 10 个）并推荐最优索引
 - name: analyze_db_health
-  description: Performs comprehensive health checks including cache hit rates, connections, indexes, and vacuum status
+  description: 执行全面的健康检查，包括缓存命中率、连接、索引和真空状态
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/postgresql:0.3.0

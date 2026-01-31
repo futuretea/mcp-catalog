@@ -1,19 +1,19 @@
 name: WordPress
-shortDescription: Manage WordPress posts, categories, tags, and media on self-hosted sites
+shortDescription: 在自托管站点上管理 WordPress 文章、分类、标签和媒体
 description: |
-  A Model Context Protocol (MCP) server that integrates with a self-hosted WordPress site (wordpress.com not supported).
-  
-  ## Features
-  - **Posts**: Manage blog posts
-  - **Categories and Tags**: Create, read, update, delete categories and tags
-  - **Media**: Manage the uploaded media files
-  
-  ## What you'll need to connect
-  
-  **Required:**
-  - **WordPress Site URL**
-  - **WordPress username**
-  - **WordPress app password**: this is different from your user password, and can be generated in the settings
+  与自托管 WordPress 站点集成的 Model Context Protocol (MCP) 服务器（不支持 wordpress.com）。
+
+  ## 功能特性
+  - **文章**: 管理博客文章
+  - **分类和标签**: 创建、读取、更新、删除分类和标签
+  - **媒体**: 管理上传的媒体文件
+
+  ## 连接所需信息
+
+  **必需:**
+  - **WordPress 站点 URL**
+  - **WordPress 用户名**
+  - **WordPress 应用密码**: 这与您的用户密码不同，可以在设置中生成
 
 metadata:
   categories: Blogging, SaaS & API Integrations
@@ -22,218 +22,217 @@ repoURL: https://github.com/obot-platform/wordpress-mcp-server
 
 toolPreview:
 - name: create_category
-  description: Create a new category in WordPress site.
+  description: 在 WordPress 站点中创建新分类。
   params:
-    category_name: The name of the category
-    description: 'The description of the category (accepts HTML tags) - default: None'
-    parent_id: 'The ID of the parent category - default: None'
-    slug: 'The slug for the category - default: None'
+    category_name: 分类的名称
+    description: '分类的描述（接受 HTML 标签）- 默认值: None'
+    parent_id: '父分类的 ID - 默认值: None'
+    slug: '分类的别名 - 默认值: None'
 - name: create_post
   description: |-
-    Create a post in WordPress site.
-    
-    Use HTML tags to format the content, for example, <strong>Bold Text</strong> for bold text.
-    By default, the post will be created as a draft. Do NOT set status to publish unless it is confirmed by the user.
-    
-    Date must be ISO 8601 format. Future dates will schedule the post.
+    在 WordPress 站点中创建文章。
+
+    使用 HTML 标签格式化内容，例如，<strong>粗体文本</strong> 表示粗体。
+    默认情况下，文章将创建为草稿。除非用户确认，否则不要将状态设置为发布。
+
+    日期必须是 ISO 8601 格式。未来的日期将安排文章发布。
   params:
-    author_id: 'ID of the author - default: None'
-    categories: 'Comma-separated list of category IDs - default: None'
-    comment_status: 'Comment status - default: open'
-    content: 'The content of the post (use HTML tags for formatting) - default: empty'
-    date: 'ISO 8601 date string for publishing - default: None'
-    excerpt: 'Post excerpt - default: None'
-    featured_media: 'ID of featured media file - default: None'
-    format: 'Post format - default: standard'
-    password: 'Password for the post - default: None'
-    ping_status: 'Ping status - default: open'
-    slug: 'URL slug for the post - default: None'
-    status: 'Status of the post - default: draft'
-    sticky: 'Whether the post is sticky - default: false'
-    tags: 'Comma-separated list of tag IDs - default: None'
-    title: 'The title of the post - default: empty'
+    author_id: '作者 ID - 默认值: None'
+    categories: '逗号分隔的分类 ID 列表 - 默认值: None'
+    comment_status: '评论状态 - 默认值: open'
+    content: '文章内容（使用 HTML 标签进行格式化）- 默认值: empty'
+    date: 'ISO 8601 日期字符串用于发布 - 默认值: None'
+    excerpt: '文章摘要 - 默认值: None'
+    featured_media: '特色媒体文件 ID - 默认值: None'
+    format: '文章格式 - 默认值: standard'
+    password: '文章密码 - 默认值: None'
+    ping_status: 'Ping 状态 - 默认值: open'
+    slug: '文章的 URL 别名 - 默认值: None'
+    status: '文章状态 - 默认值: draft'
+    sticky: '文章是否置顶 - 默认值: false'
+    tags: '逗号分隔的标签 ID 列表 - 默认值: None'
+    title: '文章标题 - 默认值: empty'
 - name: create_tag
-  description: Create a new tag in WordPress site.
+  description: 在 WordPress 站点中创建新标签。
   params:
-    description: 'The description of the tag (accepts HTML tags) - default: None'
-    name: The name of the tag
-    slug: 'The slug for the tag - default: None'
+    description: '标签的描述（接受 HTML 标签）- 默认值: None'
+    name: 标签的名称
+    slug: '标签的别名 - 默认值: None'
 - name: delete_category
   description: |-
-    Delete a category in WordPress site.
-    
-    Posts previously assigned to this category will be moved to 'Uncategorized'.
+    删除 WordPress 站点中的分类。
+
+    先前分配给此分类的文章将移至"未分类"。
   params:
-    category_id: The ID of the category to delete
+    category_id: 要删除的分类 ID
 - name: delete_media
-  description: Delete a media file in WordPress site.
+  description: 删除 WordPress 站点中的媒体文件。
   params:
-    media_id: The ID of the media file to delete
+    media_id: 要删除的媒体文件 ID
 - name: delete_post
   description: |-
-    Delete a post in WordPress site.
-    
-    If force=false, post is moved to trash. If force=true, post is permanently deleted.
+    删除 WordPress 站点中的文章。
+
+    如果 force=false，文章将移至回收站。如果 force=true，文章将永久删除。
   params:
-    force: 'Whether to permanently delete (true) or move to trash (false) - default: false'
-    post_id: ID of the post to delete
+    force: '是否永久删除（true）或移至回收站（false）- 默认值: false'
+    post_id: 要删除的文章 ID
 - name: delete_tag
   description: |-
-    Delete a tag in WordPress site.
-    
-    Posts previously assigned to this tag will no longer have it.
+    删除 WordPress 站点中的标签。
+
+    先前分配给此标签的文章将不再具有该标签。
   params:
-    tag_id: The ID of the tag to delete
+    tag_id: 要删除的标签 ID
 - name: get_me
   description: |-
-    Get all metadata of the current user in WordPress site, including roles and capabilities.
-    
-    Failed to get user info indicates authentication is not working correctly.
+    获取 WordPress 站点中当前用户的所有元数据，包括角色和权限。
+
+    获取用户信息失败表示身份验证未正常工作。
   params:
-    context: 'The context of user info to retrieve - default: edit'
+    context: '要检索的用户信息上下文 - 默认值: edit'
 - name: get_site_settings
   description: |-
-    Get the settings of the WordPress site. Only admin users have permission to do this.
-    
-    Returns basic site information and settings that are publicly available
-    or accessible to authenticated users with appropriate permissions.
+    获取 WordPress 站点的设置。只有管理员用户才有权限执行此操作。
+
+    返回公开可用或具有适当权限的认证用户可访问的基本站点信息和设置。
 - name: list_categories
-  description: List available categories in WordPress site.
+  description: 列出 WordPress 站点中的可用分类。
   params:
-    context: 'The context of categories to list - default: view'
-    order: 'Sort order - default: asc'
-    page: 'Page number to list - default: 1'
-    parent_id: 'Limit to categories assigned to a specific parent ID - default: None'
-    per_page: 'Number of categories per page - default: 10'
-    post_id: 'Limit to categories assigned to a specific post ID - default: None'
-    search_query: 'Limit results to those matching a string - default: None'
-    slug: 'Limit to category matching a specific slug - default: None'
+    context: '要列出的分类上下文 - 默认值: view'
+    order: '排序顺序 - 默认值: asc'
+    page: '要列出的页码 - 默认值: 1'
+    parent_id: '限制为分配给特定父 ID 的分类 - 默认值: None'
+    per_page: '每页分类数 - 默认值: 10'
+    post_id: '限制为分配给特定文章 ID 的分类 - 默认值: None'
+    search_query: '将结果限制为匹配字符串的项 - 默认值: None'
+    slug: '限制为匹配特定别名的分类 - 默认值: None'
 - name: list_media
   description: |-
-    List media files in WordPress site and get basic information of each media file.
-    
-    Date parameters must be valid ISO 8601 date strings (YYYY-MM-DDTHH:MM:SS).
+    列出 WordPress 站点中的媒体文件并获取每个媒体文件的基本信息。
+
+    日期参数必须是有效的 ISO 8601 日期字符串（YYYY-MM-DDTHH:MM:SS）。
   params:
-    author_ids: 'Comma-separated list of author IDs - default: None'
-    context: 'The context of media files to list - default: view'
-    media_type: 'Limit to specific media type - default: None'
-    modified_after: 'ISO 8601 date to filter media files modified after - default: None'
-    modified_before: 'ISO 8601 date to filter media files modified before - default: None'
-    order: 'Sort order - default: desc'
-    page: 'Page number to list - default: 1'
-    per_page: 'Number of media files per page - default: 10'
-    publish_after: 'ISO 8601 date to filter media files uploaded after - default: None'
-    publish_before: 'ISO 8601 date to filter media files uploaded before - default: None'
-    search_query: 'Limit results to those matching a string - default: None'
+    author_ids: '逗号分隔的作者 ID 列表 - 默认值: None'
+    context: '要列出的媒体文件上下文 - 默认值: view'
+    media_type: '限制为特定媒体类型 - 默认值: None'
+    modified_after: 'ISO 8601 日期以过滤在此之后修改的媒体文件 - 默认值: None'
+    modified_before: 'ISO 8601 日期以过滤在此之前修改的媒体文件 - 默认值: None'
+    order: '排序顺序 - 默认值: desc'
+    page: '要列出的页码 - 默认值: 1'
+    per_page: '每页媒体文件数 - 默认值: 10'
+    publish_after: 'ISO 8601 日期以过滤在此之后上传的媒体文件 - 默认值: None'
+    publish_before: 'ISO 8601 日期以过滤在此之前上传的媒体文件 - 默认值: None'
+    search_query: '将结果限制为匹配字符串的项 - 默认值: None'
 - name: list_posts
   description: |-
-    List posts in WordPress site and get basic information of each post.
-    
-    Date parameters must be valid ISO 8601 date strings (YYYY-MM-DDTHH:MM:SS).
+    列出 WordPress 站点中的文章并获取每篇文章的基本信息。
+
+    日期参数必须是有效的 ISO 8601 日期字符串（YYYY-MM-DDTHH:MM:SS）。
   params:
-    author_ids: 'Comma-separated list of author IDs - default: None'
-    categories: 'Comma-separated list of category IDs - default: None'
-    context: 'The context of posts to list - default: view'
-    modified_after: 'ISO 8601 date to filter posts modified after - default: None'
-    modified_before: 'ISO 8601 date to filter posts modified before - default: None'
-    order: 'Sort order - default: desc'
-    page: 'Page number to list - default: 1'
-    per_page: 'Number of posts per page - default: 10'
-    publish_after: 'ISO 8601 date to filter posts published after - default: None'
-    publish_before: 'ISO 8601 date to filter posts published before - default: None'
-    search_query: 'Limit results to those matching a string - default: None'
-    statuses: 'Comma-separated list of statuses (publish, future, draft, pending, private, trash, auto-draft, inherit, request-pending, request-confirmed, request-failed, request-completed) - default: publish'
-    tags: 'Comma-separated list of tag IDs - default: None'
+    author_ids: '逗号分隔的作者 ID 列表 - 默认值: None'
+    categories: '逗号分隔的分类 ID 列表 - 默认值: None'
+    context: '要列出的文章上下文 - 默认值: view'
+    modified_after: 'ISO 8601 日期以过滤在此之后修改的文章 - 默认值: None'
+    modified_before: 'ISO 8601 日期以过滤在此之前修改的文章 - 默认值: None'
+    order: '排序顺序 - 默认值: desc'
+    page: '要列出的页码 - 默认值: 1'
+    per_page: '每页文章数 - 默认值: 10'
+    publish_after: 'ISO 8601 日期以过滤在此之后发布的文章 - 默认值: None'
+    publish_before: 'ISO 8601 日期以过滤在此之前发布的文章 - 默认值: None'
+    search_query: '将结果限制为匹配字符串的项 - 默认值: None'
+    statuses: '逗号分隔的状态列表（publish, future, draft, pending, private, trash, auto-draft, inherit, request-pending, request-confirmed, request-failed, request-completed）- 默认值: publish'
+    tags: '逗号分隔的标签 ID 列表 - 默认值: None'
 - name: list_tags
-  description: List available tags in WordPress site.
+  description: 列出 WordPress 站点中的可用标签。
   params:
-    context: 'The context of tags to list - default: view'
-    order: 'Sort order - default: asc'
-    page: 'Page number to list - default: 1'
-    per_page: 'Number of tags per page - default: 10'
-    post_id: 'Limit to tags assigned to a specific post ID - default: None'
-    search_query: 'Limit results to those matching a string - default: None'
-    slug: 'Limit to tag matching a specific slug - default: None'
+    context: '要列出的标签上下文 - 默认值: view'
+    order: '排序顺序 - 默认值: asc'
+    page: '要列出的页码 - 默认值: 1'
+    per_page: '每页标签数 - 默认值: 10'
+    post_id: '限制为分配给特定文章 ID 的标签 - 默认值: None'
+    search_query: '将结果限制为匹配字符串的项 - 默认值: None'
+    slug: '限制为匹配特定别名的标签 - 默认值: None'
 - name: list_users
-  description: List users in WordPress site. Only admin users have permission to do this.
+  description: 列出 WordPress 站点中的用户。只有管理员用户才有权限执行此操作。
   params:
-    context: 'The context of users to list - default: view'
-    has_published_posts: 'Whether to show users who haven''t published posts - default: true'
+    context: '要列出的用户上下文 - 默认值: view'
+    has_published_posts: '是否显示未发布文章的用户 - 默认值: true'
 - name: retrieve_post
-  description: Retrieve all metadata of a post in WordPress site.
+  description: 检索 WordPress 站点中文章的所有元数据。
   params:
-    context: 'The context of the post - default: view'
-    password: 'Password for protected posts - default: None'
-    post_id: The ID of the post
+    context: '文章上下文 - 默认值: view'
+    password: '受保护文章的密码 - 默认值: None'
+    post_id: 文章 ID
 - name: update_category
   description: |-
-    Update an existing category in WordPress site. Only provided fields will be updated.
-    
-    At least one field must be provided to update.
+    更新 WordPress 站点中的现有分类。仅更新提供的字段。
+
+    必须至少提供一个字段进行更新。
   params:
-    category_id: The ID of the category to update
-    description: 'New description of the category (accepts HTML tags) - default: None'
-    name: 'New name of the category - default: None'
-    parent_id: 'New parent ID of the category - default: None'
-    slug: 'New slug for the category - default: None'
+    category_id: 要更新的分类 ID
+    description: '分类的新描述（接受 HTML 标签）- 默认值: None'
+    name: '分类的新名称 - 默认值: None'
+    parent_id: '分类的新父 ID - 默认值: None'
+    slug: '分类的新别名 - 默认值: None'
 - name: update_media
   description: |-
-    Update the metadata of a media file in WordPress site.
-    
-    At least one field must be provided to update.
+    更新 WordPress 站点中媒体文件的元数据。
+
+    必须至少提供一个字段进行更新。
   params:
-    author_id: 'New author ID for the media file - default: None'
-    media_id: The ID of the media file
-    slug: 'New slug for the media file - default: None'
-    title: 'New title for the media file - default: None'
+    author_id: '媒体文件的新作者 ID - 默认值: None'
+    media_id: 媒体文件 ID
+    slug: '媒体文件的新别名 - 默认值: None'
+    title: '媒体文件的新标题 - 默认值: None'
 - name: update_post
   description: |-
-    Update a post in WordPress site. Only provided fields will be updated.
-    
-    Use HTML tags for content formatting. Date must be ISO 8601 format.
+    更新 WordPress 站点中的文章。仅更新提供的字段。
+
+    使用 HTML 标签进行内容格式化。日期必须是 ISO 8601 格式。
   params:
-    author_id: 'New author ID - default: None'
-    categories: 'New comma-separated list of category IDs - default: None'
-    comment_status: 'New comment status - default: None'
-    content: 'New content for the post (use HTML tags for formatting) - default: None'
-    date: 'New publication date (ISO 8601 format) - default: None'
-    excerpt: 'New excerpt - default: None'
-    featured_media: 'New featured media ID - default: None'
-    format: 'New post format - default: None'
-    password: 'New password for the post - default: None'
-    ping_status: 'New ping status - default: None'
-    post_id: ID of the post to update
-    slug: 'New URL slug - default: None'
-    status: 'New status - default: None'
-    sticky: 'Whether the post should be sticky - default: None'
-    tags: 'New comma-separated list of tag IDs - default: None'
-    title: 'New title for the post - default: None'
+    author_id: '新作者 ID - 默认值: None'
+    categories: '新的逗号分隔分类 ID 列表 - 默认值: None'
+    comment_status: '新评论状态 - 默认值: None'
+    content: '文章的新内容（使用 HTML 标签进行格式化）- 默认值: None'
+    date: '新发布日期（ISO 8601 格式）- 默认值: None'
+    excerpt: '新摘要 - 默认值: None'
+    featured_media: '新特色媒体 ID - 默认值: None'
+    format: '新文章格式 - 默认值: None'
+    password: '文章的新密码 - 默认值: None'
+    ping_status: '新 ping 状态 - 默认值: None'
+    post_id: 要更新的文章 ID
+    slug: '新 URL 别名 - 默认值: None'
+    status: '新状态 - 默认值: None'
+    sticky: '文章是否应置顶 - 默认值: None'
+    tags: '新的逗号分隔标签 ID 列表 - 默认值: None'
+    title: '文章的新标题 - 默认值: None'
 - name: update_tag
   description: |-
-    Update an existing tag in WordPress site. Only provided fields will be updated.
-    
-    At least one field must be provided to update.
+    更新 WordPress 站点中的现有标签。仅更新提供的字段。
+
+    必须至少提供一个字段进行更新。
   params:
-    description: 'New description of the tag (accepts HTML tags) - default: None'
-    name: 'New name of the tag - default: None'
-    slug: 'New slug for the tag - default: None'
-    tag_id: The ID of the tag to update
+    description: '标签的新描述（接受 HTML 标签）- 默认值: None'
+    name: '标签的新名称 - 默认值: None'
+    slug: '标签的新别名 - 默认值: None'
+    tag_id: 要更新的标签 ID
 - name: validate_credential
   description: |-
-    Validate WordPress credentials by attempting to get current user profile.
-    This is useful for testing authentication before performing other operations.
+    通过尝试获取当前用户个人资料来验证 WordPress 凭据。
+    这对于在执行其他操作之前测试身份验证很有用。
 
 env:
-- name: WordPress Site URL
-  description: 'The full URL to your WordPress site (wordpress.com not supported). Must start with http:// or https://.'
+- name: WordPress 站点 URL
+  description: '您的 WordPress 站点的完整 URL（不支持 wordpress.com）。必须以 http:// 或 https:// 开头。'
   key: WORDPRESS_SITE
   required: true
-- name: WordPress Username
-  description: The username of your account on this WordPress site.
+- name: WordPress 用户名
+  description: 您在此 WordPress 站点上的账户用户名。
   key: WORDPRESS_USERNAME
   required: true
-- name: WordPress App Password
-  description: The app password that you generated in your WordPress settings.
+- name: WordPress 应用密码
+  description: 您在 WordPress 设置中生成的应用密码。
   key: WORDPRESS_PASSWORD
   required: true
   sensitive: true

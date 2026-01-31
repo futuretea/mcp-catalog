@@ -1,61 +1,61 @@
 name: BigQuery Toolbox
-shortDescription: Execute SQL queries and explore Google BigQuery datasets with secure access
+shortDescription: 执行 SQL 查询并探索 Google BigQuery 数据集，实现安全访问
 description: |
-  A Model Context Protocol (MCP) server that enables secure interaction with Google BigQuery. This server facilitates communication between AI applications and BigQuery datasets, making data exploration and analysis structured through a controlled interface.
+  一个 Model Context Protocol (MCP) 服务器，支持与 Google BigQuery 进行安全交互。该服务器促进 AI 应用程序与 BigQuery 数据集之间的通信，通过受控接口实现结构化的数据探索和分析。
 
-  It uses [BigQuery Toolbox](https://github.com/googleapis/genai-toolbox) to provide tools for BigQuery.
+  它使用 [BigQuery Toolbox](https://github.com/googleapis/genai-toolbox) 为 BigQuery 提供工具。
 
-  ## Features
-  - **Data Exploration**: Execute SQL queries against BigQuery datasets
-  - **Secure Access**: Uses Google Cloud credentials for authenticated access
-  - **Query Execution**: Execute SQL queries with proper error handling
-  - **Custom Tools**: Support for custom tools configuration via YAML
+  ## 功能特性
+  - **数据探索**：对 BigQuery 数据集执行 SQL 查询
+  - **安全访问**：使用 Google Cloud 凭证进行身份验证访问
+  - **查询执行**：执行具有适当错误处理的 SQL 查询
+  - **自定义工具**：支持通过 YAML 进行自定义工具配置
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **Required:**
-  - **Google Cloud Project ID**: Your Google Cloud project ID ([How to find your project ID](https://support.google.com/googleapi/answer/7014113))
-  - **Google Application Credentials**: Service account JSON credentials file
+  **必需：**
+  - **Google Cloud Project ID**：您的 Google Cloud 项目 ID ([如何查找您的项目 ID](https://support.google.com/googleapi/answer/7014113))
+  - **Google Application Credentials**：服务账号 JSON 凭证文件
 
-  **Optional:**
-  - **Tools YAML**: Custom tools configuration file
-  - **BigQuery Dataset Name**: BigQuery dataset name to use for the tools to replace ${BIGQUERY_DATASET_NAME} placeholder
+  **可选：**
+  - **Tools YAML**：自定义工具配置文件
+  - **BigQuery Dataset Name**：BigQuery 数据集名称，用于替换工具中的 ${BIGQUERY_DATASET_NAME} 占位符
 
-  ## Setting up Google Cloud credentials
+  ## 设置 Google Cloud 凭证
 
-  1. **Find your Google Cloud Project ID:**
-     - Go to the [Google Cloud Console](https://console.cloud.google.com/)
-     - Select your project from the project dropdown at the top
-     - Your Project ID is displayed in the project info panel
+  1. **查找您的 Google Cloud Project ID：**
+     - 前往 [Google Cloud Console](https://console.cloud.google.com/)
+     - 从顶部的项目下拉菜单中选择您的项目
+     - 您的 Project ID 显示在项目信息面板中
 
-  2. **Create a service account and download credentials:**
-     - Go to the [Google Cloud Console](https://console.cloud.google.com/)
-     - Navigate to "IAM & Admin" > "Service Accounts"
-     - Click "Create Service Account"
-     - Fill in the service account details and click "Create"
-     - Grant the service account appropriate BigQuery permissions:
-       - `BigQuery Data Viewer` (to read data)
-       - `BigQuery Job User` (to run queries)
-       - `BigQuery User` (general BigQuery access)
-     - Click "Done" to create the service account
-     - Click on the created service account
-     - Go to the "Keys" tab and click "Add Key" > "Create new key"
-     - Choose "JSON" format and click "Create"
-     - The credentials file will be downloaded to your computer
-     - Upload this JSON file when configuring the MCP server
-    
-    You can also create using gcloud cli:
+  2. **创建服务账号并下载凭证：**
+     - 前往 [Google Cloud Console](https://console.cloud.google.com/)
+     - 导航到 "IAM & Admin" > "Service Accounts"
+     - 点击 "Create Service Account"
+     - 填写服务账号详情并点击 "Create"
+     - 为服务账号授予适当的 BigQuery 权限：
+       - `BigQuery Data Viewer`（读取数据）
+       - `BigQuery Job User`（运行查询）
+       - `BigQuery User`（通用 BigQuery 访问）
+     - 点击 "Done" 创建服务账号
+     - 点击创建的服务账号
+     - 进入 "Keys" 标签页，点击 "Add Key" > "Create new key"
+     - 选择 "JSON" 格式并点击 "Create"
+     - 凭证文件将下载到您的计算机
+     - 配置 MCP 服务器时上传此 JSON 文件
+
+    您也可以使用 gcloud cli 创建：
     ```
     gcloud auth application-default login
     ```
 
-    Once you finished the oauth login in your browser, the credential file will be saved to your home directory as `~/.config/gcloud/application_default_credentials.json`.
+    在浏览器中完成 OAuth 登录后，凭证文件将保存到您的主目录为 `~/.config/gcloud/application_default_credentials.json`。
 
-  3. You can provide custom tools configuration YAML file to extend available tools. Check [here](https://googleapis.github.io/genai-toolbox/samples/bigquery/mcp_quickstart/) for examples.
+  3. 您可以提供自定义工具配置 YAML 文件来扩展可用工具。查看 [此处](https://googleapis.github.io/genai-toolbox/samples/bigquery/mcp_quickstart/) 获取示例。
 
-  By default, you can use ${GOOGLE_CLOUD_PROJECT} and ${BIGQUERY_DATASET_NAME} as placeholder to dynamically set the project and dataset name in your tools configuration YAML file.
+  默认情况下，您可以在工具配置 YAML 文件中使用 ${GOOGLE_CLOUD_PROJECT} 和 ${BIGQUERY_DATASET_NAME} 作为占位符来动态设置项目和数据集名称。
 
-  For example:
+  例如：
 
   ```yaml
 
@@ -137,23 +137,23 @@ env:
     name: Google Cloud Project ID
     required: true
     sensitive: false
-    description: Your Google Cloud project ID
+    description: 您的 Google Cloud 项目 ID
   - key: GOOGLE_APPLICATION_CREDENTIALS
     name: Google Application Credentials
     required: true
     sensitive: true
-    description: Your service account JSON credentials file
+    description: 您的服务账号 JSON 凭证文件
     file: true
   - key: BIGQUERY_DATASET_NAME
     name: BigQuery Dataset Name
     required: false
     sensitive: false
-    description: BigQuery dataset name to use for the tools to replace ${BIGQUERY_DATASET_NAME} placeholder
+    description: BigQuery 数据集名称，用于替换工具中的 ${BIGQUERY_DATASET_NAME} 占位符
   - key: TOOLS_YAML
     name: Tools YAML
     required: false
     sensitive: false
-    description: Optional custom tools configuration YAML file to extend available tools
+    description: 可选的自定义工具配置 YAML 文件，用于扩展可用工具
     file: true
 runtime: containerized
 containerizedConfig:
@@ -163,15 +163,15 @@ containerizedConfig:
 toolPreview:
   - name: query
     description: |
-      Execute SQL queries against BigQuery datasets in the current project.
-      Use standard BigQuery SQL syntax. You can query any dataset in the project.
+      对当前项目中的 BigQuery 数据集执行 SQL 查询。
+      使用标准 BigQuery SQL 语法。您可以查询项目中的任何数据集。
 
-      Example usage:
+      使用示例：
       {
           "query": "SELECT * FROM `dataset.table` LIMIT 10"
       }
 
-      The query parameter should contain the full SQL statement using BigQuery syntax.
-      Make sure to use backticks around fully qualified table names like `project.dataset.table`.
+      query 参数应包含使用 BigQuery 语法的完整 SQL 语句。
+      确保在完全限定的表名周围使用反引号，如 `project.dataset.table`。
     params:
-      sql: The SQL query to execute
+      sql: 要执行的 SQL 查询

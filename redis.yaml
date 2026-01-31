@@ -1,104 +1,104 @@
 name: Redis
-shortDescription: Manage Redis data types, vector search, streams, and pub/sub messaging
+shortDescription: 管理 Redis 数据类型、向量搜索、流和发布/订阅消息
 description: |
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Python Version](https://img.shields.io/badge/python-3.13%2B-blue)](https://www.python.org/downloads/)
-  A Model Context Protocol (MCP) server that provides a natural language interface designed for agentic applications to efficiently manage and search data in Redis. It integrates seamlessly with MCP clients, enabling AI-driven workflows to interact with structured and unstructured data using conversational commands.
-  ## Features
-  - **Natural Language Queries**: Enable AI agents to query and update Redis using conversational commands
-  - **Complete Redis Data Types**: Support for strings, hashes, lists, sets, sorted sets, streams, and JSON documents
-  - **Advanced Search Capabilities**: Vector indexing, search operations, and efficient data retrieval
-  - **Real-time Operations**: Pub/sub messaging, stream processing, and event handling
-  - **Performance Optimized**: High-performance data operations with scalable architecture
-  - **Security Controls**: Redis ACL support for access restriction and user management
-  ## What you'll need to connect
-  **Required:**
-  - **Redis URI**: Connection string for your Redis instance (e.g., `redis://user:pass@localhost:6379/0`)
-  **Optional Security:**
-  - **Redis ACL**: Configure access controls and user permissions for restricted database access
-  ## Example Usage
-  - "Store the entire conversation in a stream"
-  - "Cache this item with expiration time"
-  - "Index and search this vector embedding"
-  - "Create a leaderboard with sorted scores"
+  一个为智能应用设计的模型上下文协议（MCP）服务器，提供自然语言接口，用于高效管理和搜索 Redis 中的数据。它与 MCP 客户端无缝集成，使 AI 驱动的工作流能够使用对话命令与结构化和非结构化数据进行交互。
+  ## 功能特性
+  - **自然语言查询**：使 AI 代理能够使用对话命令查询和更新 Redis
+  - **完整的 Redis 数据类型**：支持字符串、哈希、列表、集合、有序集合、流和 JSON 文档
+  - **高级搜索功能**：向量索引、搜索操作和高效数据检索
+  - **实时操作**：发布/订阅消息、流处理和事件处理
+  - **性能优化**：高性能数据操作和可扩展架构
+  - **安全控制**：支持 Redis ACL 进行访问限制和用户管理
+  ## 连接所需条件
+  **必需：**
+  - **Redis URI**：Redis 实例的连接字符串（例如 `redis://user:pass@localhost:6379/0`）
+  **可选安全：**
+  - **Redis ACL**：配置访问控制和用户权限以限制数据库访问
+  ## 使用示例
+  - "将整个对话存储在流中"
+  - "设置此项目的缓存过期时间"
+  - "索引和搜索此向量嵌入"
+  - "创建带排序分数的排行榜"
 toolPreview:
 - name: set
-  description: Set a Redis string value with an optional expiration time
+  description: 设置 Redis 字符串值，可指定过期时间
   params:
-    key: The key to set
-    value: The value to store
-    expiration: Optional expiration time in seconds
+    key: 要设置的键
+    value: 要存储的值
+    expiration: 可选的过期时间（秒）
 - name: get
-  description: Get a Redis string value
+  description: 获取 Redis 字符串值
   params:
-    key: The key to retrieve
+    key: 要检索的键
 - name: hset
-  description: Set a field in a hash stored at key with an optional expiration time
+  description: 在键存储的哈希中设置字段，可指定过期时间
   params:
-    name: The Redis hash key
-    key: The field name inside the hash
-    value: The value to set (string, int, or float)
-    expire_seconds: Optional time in seconds after which the key should expire
+    name: Redis 哈希键
+    key: 哈希内部的字段名
+    value: 要设置的值（字符串、整数或浮点数）
+    expire_seconds: 键应过期的可选时间（秒）
 - name: hget
-  description: Get the value of a field in a Redis hash
+  description: 获取 Redis 哈希中字段的值
   params:
-    name: The Redis hash key
-    key: The field name inside the hash
+    name: Redis 哈希键
+    key: 哈希内部的字段名
 - name: hdel
-  description: Delete a field from a Redis hash
+  description: 从 Redis 哈希中删除字段
   params:
-    name: The Redis hash key
-    key: The field name inside the hash
+    name: Redis 哈希键
+    key: 哈希内部的字段名
 - name: hgetall
-  description: Get all fields and values from a Redis hash
+  description: 从 Redis 哈希中获取所有字段和值
   params:
-    name: The Redis hash key
+    name: Redis 哈希键
 - name: hexists
-  description: Check if a field exists in a Redis hash
+  description: 检查字段是否存在于 Redis 哈希中
   params:
-    name: The Redis hash key
-    key: The field name inside the hash
+    name: Redis 哈希键
+    key: 哈希内部的字段名
 - name: set_vector_in_hash
-  description: Store a vector as a field in a Redis hash (for embeddings)
+  description: 将向量作为字段存储在 Redis 哈希中（用于嵌入）
   params:
-    name: The Redis hash key
-    vector: The vector (list of numbers) to store in the hash
-    vector_field: The field name inside the hash (default "vector")
+    name: Redis 哈希键
+    vector: 要存储在哈希中的向量（数字列表）
+    vector_field: 哈希内部的字段名（默认 "vector"）
 - name: get_vector_from_hash
-  description: Retrieve a vector from a Redis hash and convert it back from binary blob
+  description: 从 Redis 哈希中检索向量并将其从二进制 blob 转换回来
   params:
-    name: The Redis hash key
-    vector_field: The field name inside the hash (default "vector")
+    name: Redis 哈希键
+    vector_field: 哈希内部的字段名（默认 "vector"）
 - name: lpush
-  description: Push a value onto the left of a Redis list with optional expiration
+  description: 将值推入 Redis 列表的左侧，可指定过期时间
   params:
-    name: The Redis list key
-    value: Value to push to the list
-    expire: Optional expiration time in seconds
+    name: Redis 列表键
+    value: 推入列表的值
+    expire: 可选的过期时间（秒）
 - name: rpush
-  description: Push a value onto the right of a Redis list with optional expiration
+  description: 将值推入 Redis 列表的右侧，可指定过期时间
   params:
-    name: The Redis list key
-    value: Value to push to the list
-    expire: Optional expiration time in seconds
+    name: Redis 列表键
+    value: 推入列表的值
+    expire: 可选的过期时间（秒）
 - name: lpop
-  description: Remove and return the first element from a Redis list
+  description: 移除并返回 Redis 列表的第一个元素
   params:
-    name: The Redis list key
+    name: Redis 列表键
 - name: rpop
-  description: Remove and return the last element from a Redis list
+  description: 移除并返回 Redis 列表的最后一个元素
   params:
-    name: The Redis list key
+    name: Redis 列表键
 - name: lrange
-  description: Get elements from a Redis list within a specific range
+  description: 从 Redis 列表中获取特定范围内的元素
   params:
-    name: The Redis list key
-    start: Start index for the range
-    stop: Stop index for the range
+    name: Redis 列表键
+    start: 范围的起始索引
+    stop: 范围的结束索引
 - name: llen
-  description: Get the length of a Redis list
+  description: 获取 Redis 列表的长度
   params:
-    name: The Redis list key
+    name: Redis 列表键
 
 metadata:
   categories: Databases
@@ -109,7 +109,7 @@ env:
   name: Redis URI
   required: true
   sensitive: false
-  description: URL for connecting to the Redis instance (e.g. redis://user:pass@localhost:6379/0).
+  description: 连接 Redis 实例的 URL（例如 redis://user:pass@localhost:6379/0）
 
 runtime: containerized
 containerizedConfig:

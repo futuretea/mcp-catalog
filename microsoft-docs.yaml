@@ -1,44 +1,44 @@
 name: Microsoft Learn
-shortDescription: Search Microsoft Learn documentation and find official code samples
+shortDescription: 搜索 Microsoft Learn 文档并查找官方代码示例
 description: |
 
-  The official Microsoft Learn MCP Server that enables AI assistants to access trusted, up-to-date information directly from Microsoft's official documentation and code samples.
+  官方 Microsoft Learn MCP 服务器，使 AI 助手能够直接从 Microsoft 官方文档和代码示例获取可信的、最新的信息。
 
-  ## Features
-  - **Search Microsoft Learn documentation** using semantic search across official Microsoft docs
-  - **Find official code samples** with language-specific filtering (Python, C#, JavaScript, TypeScript, etc.)
-  - **Fetch complete documentation pages** in markdown format for comprehensive deep dives
-  - **Real-time updates** - access the latest Microsoft documentation as it's published
-  - **High-quality content** - all content comes from Microsoft's official documentation sources
+  ## 功能特性
+  - **搜索 Microsoft Learn 文档**：使用语义搜索跨 Microsoft 官方文档进行搜索
+  - **查找官方代码示例**：支持按语言筛选（Python、C#、JavaScript、TypeScript 等）
+  - **获取完整文档页面**：以 markdown 格式获取全面的深入内容
+  - **实时更新** - 访问 Microsoft 发布的最新文档
+  - **高质量内容** - 所有内容均来自 Microsoft 官方文档来源
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **No Setup Required**: This is a public MCP server that requires no authentication or API keys.
+  **无需设置**：这是一个公共 MCP 服务器，无需身份验证或 API 密钥。
 
 metadata:
-  categories: Documentation, Developer Tools
+  categories: 文档, 开发者工具
 icon: https://avatars.githubusercontent.com/u/22479449?s=48&v=4
 repoURL: https://github.com/microsoftdocs/mcp
 runtime: remote
 remoteConfig:
   fixedURL: https://learn.microsoft.com/api/mcp
 toolPreview:
-  # Documentation Search
+  # 文档搜索
   - name: microsoft_docs_search
-    description: Search official Microsoft/Azure documentation to find the most relevant and trustworthy content for a user's query. Returns up to 10 high-quality content chunks (each max 500 tokens) from Microsoft Learn and other official sources. Each result includes the article title, URL, and a self-contained content excerpt.
+    description: 搜索官方 Microsoft/Azure 文档，为用户查询查找最相关和可信的内容。从 Microsoft Learn 和其他官方来源返回最多 10 个高质量内容块（每个最多 500 个 token）。每个结果包含文章标题、URL 和自包含的内容摘录。
     params:
-      query: "A query or topic about Microsoft/Azure products, services, platforms, developer tools, frameworks, or APIs"
+      query: "关于 Microsoft/Azure 产品、服务、平台、开发者工具、框架或 API 的查询或主题"
 
-  # Code Sample Search
+  # 代码示例搜索
   - name: microsoft_code_sample_search
-    description: Search for code snippets and examples in official Microsoft Learn documentation. Retrieves relevant code samples from Microsoft documentation pages providing developers with practical implementation examples and best practices for Microsoft/Azure products and services. Use this when generating any Microsoft/Azure related code.
+    description: 在官方 Microsoft Learn 文档中搜索代码片段和示例。从 Microsoft 文档页面检索相关代码示例，为开发者提供 Microsoft/Azure 产品和服务的实用实现示例和最佳实践。在生成任何 Microsoft/Azure 相关代码时使用此工具。
     params:
-      query: "A descriptive query, SDK name, method name or code snippet related to Microsoft/Azure products, services, platforms, developer tools, frameworks, APIs or SDKs"
-      language: "Optional parameter specifying the programming language of code snippets to retrieve. Can significantly improve search quality if provided. Eligible values: csharp, javascript, typescript, python, powershell, azurecli, al, sql, java, kusto, cpp, go, rust, ruby, php"
+      query: "关于 Microsoft/Azure 产品、服务、平台、开发者工具、框架、API 或 SDK 的描述性查询、SDK 名称、方法名称或代码片段"
+      language: "可选参数，指定要检索的代码片段的编程语言。如果提供可以显著提高搜索质量。可选值：csharp、javascript、typescript、python、powershell、azurecli、al、sql、java、kusto、cpp、go、rust、ruby、php"
 
-  # Full Documentation Fetch
+  # 完整文档获取
   - name: microsoft_docs_fetch
-    description: Fetch and convert a Microsoft Learn documentation page to markdown format. Retrieves the latest complete content of Microsoft documentation pages including Azure, .NET, Microsoft 365, and other Microsoft technologies. Use this when search results provide incomplete information or when you need complete step-by-step procedures, tutorials, troubleshooting sections, or detailed explanations.
+    description: 获取 Microsoft Learn 文档页面并将其转换为 markdown 格式。检索 Microsoft 文档页面的最新完整内容，包括 Azure、.NET、Microsoft 365 和其他 Microsoft 技术。当搜索结果提供不完整信息，或当您需要完整的分步程序、教程、故障排除部分或详细说明时使用此工具。
     params:
-      url: "URL of the Microsoft documentation page to read (must be a valid link from the microsoft.com domain)"
+      url: "要阅读的 Microsoft 文档页面 URL（必须是 microsoft.com 域的有效链接）"
 

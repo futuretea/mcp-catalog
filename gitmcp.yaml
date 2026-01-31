@@ -1,31 +1,31 @@
 name: GitMCP
-shortDescription: Access any GitHub project's documentation and code in real-time with AI assistance
+shortDescription: 通过 AI 辅助实时访问任何 GitHub 项目的文档和代码
 description: |
-  A Model Context Protocol (MCP) server that transforms any GitHub project into a documentation hub. It enables AI tools like Cursor to access up-to-date documentation and code, eliminating code hallucinations by providing real-time access to the latest project information.
+  一个 Model Context Protocol (MCP) 服务器，可将任何 GitHub 项目转换为文档中心。它使 Cursor 等 AI 工具能够访问最新的文档和代码，通过提供对最新项目信息的实时访问来消除代码幻觉。
 
-  ## Features
-  - **Latest Documentation Access**: Grant AI assistants seamless access to any GitHub project's documentation and code with smart search capabilities
-  - **Zero Setup**: Runs in the cloud - simply add the GitMCP URL as an MCP server in your IDE
-  - **Open, Free, and Private**: Open-source, completely free, doesn't collect personal information or store queries
-  - **Flexible Access**: Support for specific repositories or generic endpoint for maximum flexibility
+  ## 功能特性
+  - **最新文档访问**：授予 AI 助手无缝访问任何 GitHub 项目的文档和代码的能力，具有智能搜索功能
+  - **零设置**：在云端运行 - 只需将 GitMCP URL 添加为 IDE 中的 MCP 服务器
+  - **开放、免费和私密**：开源、完全免费、不收集个人信息或存储查询
+  - **灵活访问**：支持特定仓库或通用端点以获得最大灵活性
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **No Setup Required**: GitMCP runs in the cloud with no authentication needed
+  **无需设置**：GitMCP 在云端运行，无需身份验证
 
-  **Connection Options:**
-  - **Specific Repository**: `gitmcp.io/{owner}/{repo}` - Use for select specific repositories
-  - **Generic Server**: `gitmcp.io/docs` - Use for maximum flexibility when switching between repositories
+  **连接选项：**
+  - **特定仓库**：`gitmcp.io/{owner}/{repo}` - 用于选择特定仓库
+  - **通用服务器**：`gitmcp.io/docs` - 用于在仓库之间切换时获得最大灵活性
 
-  ## Example Usage
+  ## 使用示例
 
-  ### Specific Repository
-  - **URL**: `https://gitmcp.io/microsoft/playwright-mcp`
-  - **Prompt**: "How do I use the Playwright MCP?"
+  ### 特定仓库
+  - **URL**：`https://gitmcp.io/microsoft/playwright-mcp`
+  - **提示**："如何使用 Playwright MCP？"
 
-  ### Dynamic Endpoint
-  - **URL**: `gitmcp.io/docs`
-  - **Prompt**: "I want to learn about the OpenAI Whisper speech recognition model"
+  ### 动态端点
+  - **URL**：`gitmcp.io/docs`
+  - **提示**："我想了解 OpenAI Whisper 语音识别模型"
 
 
 metadata:
@@ -37,17 +37,17 @@ remoteConfig:
   hostname: gitmcp.io
 toolPreview:
   - name: fetch_<repo>_documentation
-    description: 'Fetch entire documentation file from GitHub repository: <org>/<repo>. Useful for general questions. Always call this tool first if asked about <org>/<repo>.'
+    description: '从 GitHub 仓库获取完整文档文件：<org>/<repo>。适用于一般问题。如果被问及 <org>/<repo>，请始终首先调用此工具。'
   - name: search_<repo>_documentation
-    description: 'Semantically search within the fetched documentation from GitHub repository: <org>/<repo>. Useful for specific queries.'
+    description: '在从 GitHub 仓库获取的文档中进行语义搜索：<org>/<repo>。适用于特定查询。'
     params:
-      query: The search query to find relevant documentation
+      query: 查找相关文档的搜索查询
   - name: search_<repo>_code
-    description: 'Search for code within the GitHub repository: "<org>/<repo>" using the GitHub Search API (exact match). Returns matching files for you to query further if relevant.'
+    description: '使用 GitHub Search API（精确匹配）在 GitHub 仓库中搜索代码："<org>/<repo>"。返回匹配的文件供您进一步查询（如果相关）。'
     params:
-      page: Page number to retrieve (starting from 1). Each page contains 30 results.
-      query: The search query to find relevant code files
+      page: 要检索的页码（从 1 开始）。每页包含 30 个结果。
+      query: 查找相关代码文件的搜索查询
   - name: fetch_generic_url_content
-    description: Generic tool to fetch content from any absolute URL, respecting robots.txt rules. Use this to retrieve referenced urls (absolute urls) that were mentioned in previously fetched documentation.
+    description: 用于从任何绝对 URL 获取内容的通用工具，遵守 robots.txt 规则。使用此工具检索在先前获取的文档中提到的引用 URL（绝对 URL）。
     params:
-      url: The URL of the document or page to fetch
+      url: 要获取的文档或页面的 URL

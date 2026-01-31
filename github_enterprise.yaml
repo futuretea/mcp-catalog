@@ -1,201 +1,201 @@
 name: GitHub Enterprise
-shortDescription: Connect AI tools to GitHub Enterprise Server and Enterprise Cloud with data residency
+shortDescription: 将 AI 工具连接到 GitHub Enterprise Server 和具有数据驻留功能的 Enterprise Cloud
 description: |
-  A Model Context Protocol (MCP) server that connects AI tools directly to GitHub's platform or [GitHub Enterprise](https://github.com/github/github-mcp-server?tab=readme-ov-file#github-enterprise-server-and-enterprise-cloud-with-data-residency-ghecom). This gives AI agents, assistants, and chatbots the ability to read repositories and code files, manage issues and PRs, analyze code, and automate workflows through natural language interactions. Supports GitHub Enterprise Server and Enterprise Cloud with data residency.
+  一个 Model Context Protocol (MCP) 服务器，可将 AI 工具直接连接到 GitHub 平台或 [GitHub Enterprise](https://github.com/github/github-mcp-server?tab=readme-ov-file#github-enterprise-server-and-enterprise-cloud-with-data-residency-ghecom)。这使 AI 代理、助手和聊天机器人能够通过自然语言交互读取仓库和代码文件、管理 Issues 和 PRs、分析代码以及自动化工作流。支持 GitHub Enterprise Server 和具有数据驻留功能的 Enterprise Cloud。
 
-  ## Features
-  - **Repository Management**: Browse and query code, search files, analyze commits, and understand project structure
-  - **Issue & PR Automation**: Create, update, and manage issues and pull requests with AI assistance
-  - **CI/CD & Workflow Intelligence**: Monitor GitHub Actions workflow runs, analyze build failures, and manage releases
-  - **Code Analysis**: Examine security findings, review Dependabot alerts, and understand code patterns
-  - **Team Collaboration**: Access discussions, manage notifications, and streamline team processes
-  - **Modular Toolsets**: Enable or disable specific groups of functionality via configuration
-  - **Dynamic Tool Discovery**: Turn on toolsets in response to user prompts (beta)
+  ## 功能特性
+  - **仓库管理**：浏览和查询代码、搜索文件、分析提交记录以及了解项目结构
+  - **Issue 与 PR 自动化**：通过 AI 辅助创建、更新和管理 Issues 和 Pull Requests
+  - **CI/CD 与工作流智能**：监控 GitHub Actions 工作流运行、分析构建失败并管理发布
+  - **代码分析**：检查安全发现、查看 Dependabot 警报并了解代码模式
+  - **团队协作**：访问讨论、管理通知并简化团队流程
+  - **模块化工具集**：通过配置启用或禁用特定功能组
+  - **动态工具发现**：根据用户提示开启工具集（测试版）
 
-  ## What you'll need to connect
+  ## 连接所需条件
 
-  **Required:**
-  - **GitHub Personal Access Token**: GitHub Personal Access Token with appropriate repository permissions
+  **必需：**
+  - **GitHub Personal Access Token**：具有适当仓库权限的 GitHub Personal Access Token
 
-  **Optional:**
-  - **GitHub Toolsets**: Comma-separated list of enabled GitHub toolsets (e.g., repos,issues,pull_requests). Defaults to all
-  - **Dynamic Toolsets**: Set to 1 to enable dynamic tool discovery (beta feature)
-  - **GitHub Enterprise Host**: For GitHub Enterprise Server or Enterprise Cloud with data residency
+  **可选：**
+  - **GitHub Toolsets**：启用的 GitHub 工具集的逗号分隔列表（例如 repos,issues,pull_requests）。默认为全部
+  - **Dynamic Toolsets**：设置为 1 以启用动态工具发现（测试版功能）
+  - **GitHub Enterprise Host**：用于 GitHub Enterprise Server 或具有数据驻留功能的 Enterprise Cloud
 
-  ## Available Toolsets
+  ## 可用工具集
 
-  The following toolsets are available (all enabled by default):
+  以下工具集可用（默认全部启用）：
 
-  | Toolset | Description |
+  | 工具集 | 描述 |
   |---------|-------------|
-  | **context** | **Strongly recommended**: Tools that provide context about the current user and GitHub context |
-  | **actions** | GitHub Actions workflows and CI/CD operations |
-  | **code_security** | Code security related tools, such as GitHub Code Scanning |
-  | **dependabot** | Dependabot tools |
-  | **discussions** | GitHub Discussions related tools |
-  | **experiments** | Experimental features that are not considered stable yet |
-  | **issues** | GitHub Issues related tools |
-  | **notifications** | GitHub Notifications related tools |
-  | **orgs** | GitHub Organization related tools |
-  | **pull_requests** | GitHub Pull Request related tools |
-  | **repos** | GitHub Repository related tools |
-  | **secret_protection** | Secret protection related tools, such as GitHub Secret Scanning |
-  | **users** | GitHub User related tools |
+  | **context** | **强烈推荐**：提供关于当前用户和 GitHub 上下文信息的工具 |
+  | **actions** | GitHub Actions 工作流和 CI/CD 操作 |
+  | **code_security** | 代码安全相关工具，如 GitHub Code Scanning |
+  | **dependabot** | Dependabot 工具 |
+  | **discussions** | GitHub Discussions 相关工具 |
+  | **experiments** | 尚未稳定的实验性功能 |
+  | **issues** | GitHub Issues 相关工具 |
+  | **notifications** | GitHub Notifications 相关工具 |
+  | **orgs** | GitHub Organization 相关工具 |
+  | **pull_requests** | GitHub Pull Request 相关工具 |
+  | **repos** | GitHub Repository 相关工具 |
+  | **secret_protection** | 密钥保护相关工具，如 GitHub Secret Scanning |
+  | **users** | GitHub User 相关工具 |
 
 toolPreview:
   - name: add_comment_to_pending_review
-    description: Add review comment to the requester's latest pending pull request review
+    description: 向请求者最新的待处理 Pull Request 评审添加评审评论
     params:
-      body: The text of the review comment
-      owner: Repository owner
-      path: The relative path to the file that necessitates a comment
-      pullNumber: Pull request number
-      repo: Repository name
-      subjectType: The level at which the comment is targeted
-      line: The line of the blob in the pull request diff that the comment applies to (optional)
-      side: The side of the diff to comment on (optional)
-      startLine: For multi-line comments, the first line of the range (optional)
-      startSide: For multi-line comments, the starting side of the diff (optional)
+      body: 评审评论的文本内容
+      owner: 仓库所有者
+      path: 需要评论的文件的相对路径
+      pullNumber: Pull Request 编号
+      repo: 仓库名称
+      subjectType: 评论针对的级别
+      line: Pull Request diff 中评论适用的 blob 行号（可选）
+      side: 要评论的 diff 侧（可选）
+      startLine: 对于多行评论，范围的第一行（可选）
+      startSide: 对于多行评论，diff 的起始侧（可选）
   - name: add_issue_comment
-    description: Add a comment to a specific issue in a GitHub repository
+    description: 向 GitHub 仓库中的特定 Issue 添加评论
     params:
-      body: Comment content
-      issue_number: Issue number to comment on
-      owner: Repository owner
-      repo: Repository name
+      body: 评论内容
+      issue_number: 要评论的 Issue 编号
+      owner: 仓库所有者
+      repo: 仓库名称
   - name: add_sub_issue
-    description: Add a sub-issue to a parent issue in a GitHub repository
+    description: 向 GitHub 仓库中的父 Issue 添加子 Issue
     params:
-      issue_number: The number of the parent issue
-      owner: Repository owner
-      repo: Repository name
-      sub_issue_id: The ID of the sub-issue to add
-      replace_parent: When true, replaces the sub-issue's current parent issue (optional)
+      issue_number: 父 Issue 的编号
+      owner: 仓库所有者
+      repo: 仓库名称
+      sub_issue_id: 要添加的子 Issue 的 ID
+      replace_parent: 当为 true 时，替换子 Issue 当前的父 Issue（可选）
   - name: assign_copilot_to_issue
-    description: Assign Copilot to a specific issue in a GitHub repository
+    description: 将 Copilot 分配给 GitHub 仓库中的特定 Issue
     params:
-      issueNumber: Issue number
-      owner: Repository owner
-      repo: Repository name
+      issueNumber: Issue 编号
+      owner: 仓库所有者
+      repo: 仓库名称
   - name: cancel_workflow_run
-    description: Cancel a workflow run
+    description: 取消工作流运行
     params:
-      owner: Repository owner
-      repo: Repository name
-      run_id: The unique identifier of the workflow run
+      owner: 仓库所有者
+      repo: 仓库名称
+      run_id: 工作流运行的唯一标识符
   - name: create_and_submit_pull_request_review
-    description: Create and submit a review for a pull request without review comments
+    description: 创建并提交没有评审评论的 Pull Request 评审
     params:
-      body: Review comment text
-      event: Review action to perform
-      owner: Repository owner
-      pullNumber: Pull request number
-      repo: Repository name
-      commitID: SHA of commit to review (optional)
+      body: 评审评论文本
+      event: 要执行的评审操作
+      owner: 仓库所有者
+      pullNumber: Pull Request 编号
+      repo: 仓库名称
+      commitID: 要评审的提交的 SHA（可选）
   - name: create_branch
-    description: Create a new branch in a GitHub repository
+    description: 在 GitHub 仓库中创建新分支
     params:
-      branch: Name for new branch
-      owner: Repository owner
-      repo: Repository name
-      from_branch: Source branch (defaults to repo default) (optional)
+      branch: 新分支的名称
+      owner: 仓库所有者
+      repo: 仓库名称
+      from_branch: 源分支（默认为仓库默认分支）（可选）
   - name: create_gist
-    description: Create a new gist
+    description: 创建新的 Gist
     params:
-      content: Gist content
-      filename: Gist filename
-      description: Gist description (optional)
-      public: Whether gist should be public (optional)
+      content: Gist 内容
+      filename: Gist 文件名
+      description: Gist 描述（可选）
+      public: Gist 是否应为公开（可选）
   - name: create_issue
-    description: Create a new issue in a GitHub repository
+    description: 在 GitHub 仓库中创建新 Issue
     params:
-      owner: Repository owner
-      repo: Repository name
-      title: Issue title
-      assignees: Usernames to assign to this issue (optional)
-      body: Issue body content (optional)
-      labels: Labels to apply to this issue (optional)
-      milestone: Milestone number (optional)
+      owner: 仓库所有者
+      repo: 仓库名称
+      title: Issue 标题
+      assignees: 分配给此 Issue 的用户名（可选）
+      body: Issue 正文内容（可选）
+      labels: 应用于此 Issue 的标签（可选）
+      milestone: 里程碑编号（可选）
   - name: create_or_update_file
-    description: Create or update a single file in a GitHub repository
+    description: 在 GitHub 仓库中创建或更新单个文件
     params:
-      branch: Branch to create/update the file in
-      content: Content of the file
-      message: Commit message
-      owner: Repository owner (username or organization)
-      path: Path where to create/update the file
-      repo: Repository name
-      sha: Required if updating an existing file. The blob SHA of the file being replaced (optional)
+      branch: 要创建/更新文件的分支
+      content: 文件内容
+      message: 提交消息
+      owner: 仓库所有者（用户名或组织）
+      path: 创建/更新文件的路径
+      repo: 仓库名称
+      sha: 如果更新现有文件则需要。被替换文件的 blob SHA（可选）
   - name: create_pending_pull_request_review
-    description: Create a pending review for a pull request
+    description: 为 Pull Request 创建待处理评审
     params:
-      owner: Repository owner
-      pullNumber: Pull request number
-      repo: Repository name
-      commitID: SHA of commit to review (optional)
+      owner: 仓库所有者
+      pullNumber: Pull Request 编号
+      repo: 仓库名称
+      commitID: 要评审的提交的 SHA（可选）
   - name: create_pull_request
-    description: Create a new pull request in a GitHub repository
+    description: 在 GitHub 仓库中创建新 Pull Request
     params:
-      base: Branch to merge into
-      head: Branch containing changes
-      owner: Repository owner
-      repo: Repository name
-      title: PR title
-      body: PR description (optional)
-      draft: Create as draft PR (optional)
-      maintainer_can_modify: Allow maintainer edits (optional)
+      base: 要合并到的分支
+      head: 包含更改的分支
+      owner: 仓库所有者
+      repo: 仓库名称
+      title: PR 标题
+      body: PR 描述（可选）
+      draft: 创建为草稿 PR（可选）
+      maintainer_can_modify: 允许维护者编辑（可选）
   - name: create_pull_request_with_copilot
-    description: Delegate a task to GitHub Copilot coding agent to perform in the background
+    description: 将任务委托给 GitHub Copilot 编码代理在后台执行
     params:
-      owner: Repository owner
-      problem_statement: Detailed description of the task to be performed
-      repo: Repository name
-      title: Title for the pull request that will be created
-      base_ref: Git reference (e.g., branch) that the agent will start its work from (optional)
+      owner: 仓库所有者
+      problem_statement: 要执行的任务的详细描述
+      repo: 仓库名称
+      title: 将要创建的 Pull Request 的标题
+      base_ref: 代理将开始工作的 Git 引用（例如分支）（可选）
   - name: create_repository
-    description: Create a new GitHub repository in your account
+    description: 在您的账户中创建新的 GitHub 仓库
     params:
-      name: Repository name
-      autoInit: Initialize with README (optional)
-      description: Repository description (optional)
-      private: Whether repo should be private (optional)
+      name: 仓库名称
+      autoInit: 使用 README 初始化（可选）
+      description: 仓库描述（可选）
+      private: 仓库是否应为私有（可选）
   - name: delete_file
-    description: Delete a file from a GitHub repository
+    description: 从 GitHub 仓库中删除文件
     params:
-      branch: Branch to delete the file from
-      message: Commit message
-      owner: Repository owner (username or organization)
-      path: Path to the file to delete
-      repo: Repository name
+      branch: 要从中删除文件的分支
+      message: 提交消息
+      owner: 仓库所有者（用户名或组织）
+      path: 要删除的文件路径
+      repo: 仓库名称
   - name: delete_pending_pull_request_review
-    description: Delete the requester's latest pending pull request review
+    description: 删除请求者最新的待处理 Pull Request 评审
     params:
-      owner: Repository owner
-      pullNumber: Pull request number
-      repo: Repository name
+      owner: 仓库所有者
+      pullNumber: Pull Request 编号
+      repo: 仓库名称
   - name: delete_workflow_run_logs
-    description: Delete logs for a workflow run
+    description: 删除工作流运行的日志
     params:
-      owner: Repository owner
-      repo: Repository name
-      run_id: The unique identifier of the workflow run
+      owner: 仓库所有者
+      repo: 仓库名称
+      run_id: 工作流运行的唯一标识符
   - name: dismiss_notification
-    description: Dismiss a notification by marking it as read or done
+    description: 通过标记为已读或已完成来关闭通知
     params:
-      threadID: The ID of the notification thread
-      state: The new state of the notification (read/done) (optional)
+      threadID: 通知线程的 ID
+      state: 通知的新状态（read/done）（可选）
   - name: download_workflow_run_artifact
-    description: Get download URL for a workflow run artifact
+    description: 获取工作流运行产物的下载 URL
     params:
-      artifact_id: The unique identifier of the artifact
-      owner: Repository owner
-      repo: Repository name
+      artifact_id: 产物的唯一标识符
+      owner: 仓库所有者
+      repo: 仓库名称
   - name: fork_repository
-    description: Fork a GitHub repository to your account or specified organization
+    description: 将 GitHub 仓库 Fork 到您的账户或指定组织
     params:
-      owner: Repository owner
-      repo: Repository name
-      organization: Organization to fork to (optional)
+      owner: 仓库所有者
+      repo: 仓库名称
+      organization: 要 Fork 到的组织（可选）
 
 metadata:
   categories: Developer Tools
@@ -207,22 +207,22 @@ env:
     name: GitHub Personal Access Token
     required: true
     sensitive: true
-    description: GitHub Personal Access Token used to authenticate with the GitHub API. Required for all GitHub operations.
+    description: 用于与 GitHub API 认证的 GitHub Personal Access Token。所有 GitHub 操作都需要。
   - key: GITHUB_TOOLSETS
     name: GitHub Toolsets
     required: false
     sensitive: false
-    description: Comma-separated list of enabled GitHub toolsets (e.g. repos,issues,pull_requests,code_security,experiments,all). Optional, defaults to all.
+    description: 启用的 GitHub 工具集的逗号分隔列表（例如 repos,issues,pull_requests,code_security,experiments,all）。可选，默认为全部。
   - key: GITHUB_DYNAMIC_TOOLSETS
     name: GitHub Dynamic Toolsets
     required: false
     sensitive: false
-    description: Set to 1 to enable dynamic tool discovery. Optional.
+    description: 设置为 1 以启用动态工具发现。可选。
   - key: GITHUB_HOST
     name: GitHub Enterprise Host
     required: false
     sensitive: false
-    description: GitHub Enterprise Server hostname (e.g. https://ghes.example.com). Optional, for GitHub Enterprise integration.
+    description: GitHub Enterprise Server 主机名（例如 https://ghes.example.com）。可选，用于 GitHub Enterprise 集成。
 
 runtime: containerized
 containerizedConfig:

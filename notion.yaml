@@ -1,106 +1,101 @@
 name: Notion
-shortDescription: Manage Notion pages, databases, blocks, comments, and workspace content
+shortDescription: 管理 Notion 页面、数据库、块、评论和工作区内容
 description: |
   ![notion-mcp-sm](https://github.com/user-attachments/assets/6c07003c-8455-4636-b298-d60ffdf46cd8)
 
-  A Model Context Protocol (MCP) server for the Notion API that enables AI agents to interact with Notion workspaces. This server provides comprehensive tools for managing pages, databases, blocks, comments, and users with optimized token consumption for AI applications.
+  一个用于 Notion API 的 Model Context Protocol (MCP) 服务器，使 AI 智能体能够与 Notion 工作区进行交互。该服务器提供全面的工具，用于管理页面、数据库、块、评论和用户，并针对 AI 应用进行了 token 消耗优化。
 
-  ## Features
-  - **Page Management**: Create, retrieve, update, and archive pages with full content support
-  - **Database Operations**: Query, create, and update databases with advanced filtering and sorting
-  - **Block Manipulation**: Manage content blocks including text, media, and structured content
-  - **Search & Discovery**: Powerful search capabilities across all workspace content
-  - **Comment System**: Create and retrieve comments on pages and blocks
-  - **User Management**: Access user information and workspace members
+  ## 功能特性
+  - **页面管理**：创建、检索、更新和归档页面，支持完整内容
+  - **数据库操作**：查询、创建和更新数据库，支持高级筛选和排序
+  - **块操作**：管理内容块，包括文本、媒体和结构化内容
+  - **搜索与发现**：强大的工作区内容搜索功能
+  - **评论系统**：在页面和块上创建和检索评论
+  - **用户管理**：访问用户信息和团队成员
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow
+  **无需设置**：通过 OAuth2 流程自动处理认证
 
-  ## Example Usage
+  ## 使用示例
 
-  - "Comment 'Hello MCP' on page 'Getting started'"
-  - "Add a page titled 'Notion MCP' to page 'Development'"
+  - "在页面 'Getting started' 上评论 'Hello MCP'"
+  - "在页面 'Development' 下添加一个标题为 'Notion MCP' 的页面"
 
 metadata:
-  categories: SaaS & API Integrations,Databases
+  categories: SaaS & API 集成,数据库
 icon: https://avatars.githubusercontent.com/u/4792552?v=4
 repoURL: https://github.com/makenotion/notion-mcp-server
 toolPreview:
   - name: search
-    description: Search within the Notion workspace.
+    description: 在 Notion 工作区中搜索。
     params:
       data_source_url: |-
-        Optionally, provide the URL of a Data source to search. This will perform a semantic search over
-        the pages in the Data Source.
+        可选，提供数据源的 URL 进行搜索。这将对数据源中的页面执行语义搜索。
       page_url: |-
-        Optionally, provide the URL or ID of a page to search within. This will perform a semantic search
-        over the content within and under the specified page.
+        可选，提供要搜索的页面的 URL 或 ID。这将对指定页面及其子页面中的内容执行语义搜索。
       query: |-
-        Semantic search query over your entire Notion workspace and connected sources
-        (Slack, Google Drive, Github, Jira, Microsoft Teams, Sharepoint, OneDrive,
-        or Linear).
+        对整个 Notion 工作区和连接的数据源（Slack、Google Drive、Github、Jira、
+        Microsoft Teams、Sharepoint、OneDrive 或 Linear）进行语义搜索查询。
       query_type: |-
-        Specify type of the query as either "internal" or "user". Always include this input if performing
-        "user" search.
+        将查询类型指定为 "internal" 或 "user"。如果执行 "user" 搜索，请始终包含此输入。
       teamspace_id: |-
-        Optionally, provide the ID of a teamspace to restrict search results to. This will perform a search
-        over content within the specified teamspace only.
+        可选，提供团队空间的 ID 以将搜索结果限制在该空间内。这将仅对指定团队空间中的内容执行搜索。
   - name: fetch
-    description: Retrieves details about a Notion entity by its URL or ID.
+    description: 通过 URL 或 ID 检索 Notion 实体的详细信息。
     params:
-      id: The ID or URL of the Notion page to fetch
+      id: 要获取的 Notion 页面的 ID 或 URL
   - name: notion-create-pages
-    description: Creates one or more Notion pages with specified properties and content.
+    description: 创建一个或多个具有指定属性和内容的 Notion 页面。
     params:
-      pages: The pages to create.
-      parent: The parent under which the new pages will be created. This can be a page or a database. If omitted, the new pages will be created as private pages at the workspace level.
+      pages: 要创建的页面。
+      parent: 新页面将创建在其下的父级。可以是页面或数据库。如果省略，新页面将作为工作区级别的私人页面创建。
   - name: notion-update-page
-    description: Update a Notion page's properties or content.
+    description: 更新 Notion 页面的属性或内容。
     params:
-      data: The data required for updating a page
+      data: 更新页面所需的数据
   - name: notion-move-pages
-    description: Move one or more Notion pages or databases to a new parent.
+    description: 将一个或多个 Notion 页面或数据库移动到新的父级。
     params:
-      new_parent: The new parent under which the pages will be moved. This can be a page or a database.
-      page_or_database_ids: An array of up to 100 page or database IDs to move.
+      new_parent: 页面将移动到其下的新父级。可以是页面或数据库。
+      page_or_database_ids: 最多 100 个要移动的页面或数据库 ID 的数组。
   - name: notion-duplicate-page
-    description: Duplicate a Notion page. The page must be within the current workspace, and you must have permission to access it.
+    description: 复制一个 Notion 页面。该页面必须位于当前工作区内，并且您必须具有访问权限。
     params:
-      page_id: The ID of the page to duplicate.
+      page_id: 要复制的页面的 ID。
   - name: notion-create-database
-    description: Creates a new Notion database with the specified properties.
+    description: 创建具有指定属性的新 Notion 数据库。
     params:
-      description: The description of the new database, as a rich text object.
-      parent: The parent under which to create the new database. If omitted, the database will be created as a private page at the workspace level.
-      properties: The property schema of the new database. Must at least have a title property.
-      title: The title of the new database, as a rich text object.
+      description: 新数据库的描述，作为富文本对象。
+      parent: 创建新数据库的父级。如果省略，数据库将作为工作区级别的私人页面创建。
+      properties: 新数据库的属性架构。必须至少有一个标题属性。
+      title: 新数据库的标题，作为富文本对象。
   - name: notion-update-database
-    description: Update a Notion database's properties, name, description, or other attributes.
+    description: 更新 Notion 数据库的属性、名称、描述或其他属性。
     params:
-      database_id: The ID of the database to update.
-      description: The new description of the database, as a rich text object, if you want to update it.
-      in_trash: Whether to move the database to the trash.
-      is_inline: Whether the database should be displayed inline in the parent page, if you want to change this setting.
-      properties: Updates to make to the database's schema. Use null to remove a property, or provide the `name` only to rename a property.
-      title: The new title of the database, as a rich text object, if you want to update it.
+      database_id: 要更新的数据库的 ID。
+      description: 数据库的新描述，作为富文本对象，如果您想更新它。
+      in_trash: 是否将数据库移到回收站。
+      is_inline: 数据库是否应在父页面中内联显示，如果您想更改此设置。
+      properties: 对数据库架构的更新。使用 null 删除属性，或仅提供 `name` 来重命名属性。
+      title: 数据库的新标题，作为富文本对象，如果您想更新它。
   - name: notion-create-comment
-    description: Add a comment to a page
+    description: 在页面上添加评论
     params:
-      parent: The parent of the comment. This must be a page.
-      rich_text: An array of rich text objects that represent the content of the comment.
+      parent: 评论的父级。必须是页面。
+      rich_text: 表示评论内容的富文本对象数组。
   - name: notion-get-comments
-    description: Get all comments of a page
+    description: 获取页面的所有评论
     params:
-      page_id: Identifier for a Notion page.
+      page_id: Notion 页面的标识符。
   - name: notion-get-users
-    description: List all users
+    description: 列出所有用户
     params:
       query: ""
   - name: notion-get-self
-    description: Retrieve your token's bot user
+    description: 检索您 token 的机器人用户
   - name: notion-get-user
-    description: Retrieve a user
+    description: 检索用户
     params:
       path: ""
 

@@ -1,45 +1,45 @@
 name: MongoDB Atlas Management
-shortDescription: Create and manage MongoDB Atlas projects, clusters, and database users
+shortDescription: 创建和管理 MongoDB Atlas 项目、集群和数据库用户
 description: |
-  A Model Context Protocol (MCP) server for interacting with the MongoDB Atlas Cloud Service. This connector allows you to perform management actions with clusters, projects, databases, collections, and database users.
+  一个用于与 MongoDB Atlas 云服务交互的 Model Context Protocol (MCP) 服务器。此连接器允许您对集群、项目、数据库、集合和数据库用户执行管理操作。
 
-  ## Features
-  - **Atlas Management**: Create and manage MongoDB Atlas projects, clusters, and database users
-  - **Cluster Management**: List, inspect, and create MongoDB Atlas clusters including free tier clusters
+  ## 功能特性
+  - **Atlas 管理**：创建和管理 MongoDB Atlas 项目、集群和数据库用户
+  - **集群管理**：列出、查看和创建 MongoDB Atlas 集群，包括免费层集群
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  ### MongoDB Atlas API Credentials (Required)
-  You'll need Service Account Atlas API credentials to use the Atlas management tools:
+  ### MongoDB Atlas API 凭证（必需）
+  您需要服务账号 Atlas API 凭证才能使用 Atlas 管理工具：
 
-  - **API Client ID**: Your MongoDB Atlas Service Account Client ID
-  - **API Client Secret**: Your MongoDB Atlas Service Account Client Secret (keep this secure)
+  - **API Client ID**：您的 MongoDB Atlas 服务账号 Client ID
+  - **API Client Secret**：您的 MongoDB Atlas 服务账号 Client Secret（请妥善保管）
 
-  ### Setting up Atlas API Access
+  ### 设置 Atlas API 访问
 
-  1. **Create a Service Account:**
-  - Log in to MongoDB Atlas at [cloud.mongodb.com](https://cloud.mongodb.com)
-  - Navigate to Access Manager > Organization Access
-  - Click Add New > Applications > Service Accounts
-  - Enter name, description and expiration for your service account
-  - (Recommended) Assign only the minimum permissions needed for your use case
+  1. **创建服务账号：**
+  - 登录 MongoDB Atlas [cloud.mongodb.com](https://cloud.mongodb.com)
+  - 导航到 Access Manager > Organization Access
+  - 点击 Add New > Applications > Service Accounts
+  - 输入服务账号的名称、描述和过期时间
+  - （推荐）仅分配用例所需的最低权限
 
-  2. **Save Client Credentials:**
-  - After creation, copy and save the Client ID and Client Secret
-  - **Important:** The Client Secret won't be displayed again
+  2. **保存客户端凭证：**
+  - 创建完成后，复制并保存 Client ID 和 Client Secret
+  - **重要：** Client Secret 只会显示一次
 
-  ### Required Permissions by Operation
+  ### 各操作所需的权限
 
-  | Operation | Required Role | Scope |
+  | 操作 | 所需角色 | 范围 |
   # |-----------|---------------|-------|
-  | List organizations/projects | Org Member or Org Read Only | Organization |
-  | Create new projects | Org Project Creator | Organization |
-  | View clusters/databases | Project Read Only | Project |
-  | Create/manage clusters | Project Cluster Manager | Project |
-  | Manage IP access lists | Project IP Access List Admin | Project |
-  | Manage database users | Project Database Access Admin | Project |
+  | 列出组织/项目 | Org Member 或 Org Read Only | Organization |
+  | 创建新项目 | Org Project Creator | Organization |
+  | 查看集群/数据库 | Project Read Only | Project |
+  | 创建/管理集群 | Project Cluster Manager | Project |
+  | 管理 IP 访问列表 | Project IP Access List Admin | Project |
+  | 管理数据库用户 | Project Database Access Admin | Project |
 
-  **Security Note:** Prefer project-level roles for most operations. Avoid Organization Owner unless you require full administrative control.
+  **安全提示：** 对于大多数操作，建议使用项目级角色。除非需要完全的管理控制，否则避免使用 Organization Owner。
 
 metadata:
   categories: Databases,Data & Analytics
@@ -50,72 +50,72 @@ env:
   name: MongoDB API Client ID
   required: true
   sensitive: false
-  description: The client ID for your MongoDB Service Accounts Atlas API credentials.
+  description: 您的 MongoDB 服务账号 Atlas API 凭证的 client ID。
 - key: MDB_MCP_API_CLIENT_SECRET
   name: MongoDB API Client Secret
   required: true
   sensitive: true
-  description: The client secret for your MongoDB Service Accounts Atlas API credentials.
+  description: 您的 MongoDB 服务账号 Atlas API 凭证的 client secret。
 toolPreview:
 - name: atlas-list-clusters
-  description: List MongoDB Atlas clusters
+  description: 列出 MongoDB Atlas 集群
   params:
-    projectId: Optional project ID to filter clusters
+    projectId: 可选的项目 ID，用于过滤集群
 - name: atlas-list-projects
-  description: List MongoDB Atlas projects
+  description: 列出 MongoDB Atlas 项目
   params:
-    orgId: Optional organization ID to filter projects
+    orgId: 可选的组织 ID，用于过滤项目
 - name: atlas-inspect-cluster
-  description: Inspect MongoDB Atlas cluster
+  description: 查看 MongoDB Atlas 集群详情
   params:
-    clusterName: Name of the cluster to inspect
-    projectId: Project ID containing the cluster
+    clusterName: 要查看的集群名称
+    projectId: 包含该集群的项目 ID
 - name: atlas-create-free-cluster
-  description: Create a free MongoDB Atlas cluster
+  description: 创建免费的 MongoDB Atlas 集群
   params:
-    name: Name for the new cluster
-    projectId: Project ID where cluster will be created
-    region: Optional region for the cluster
+    name: 新集群的名称
+    projectId: 要创建集群的项目 ID
+    region: 集群的可选区域
 - name: atlas-create-access-list
-  description: Allow Ip/CIDR ranges to access your MongoDB Atlas clusters.
+  description: 允许 IP/CIDR 范围访问您的 MongoDB Atlas 集群。
   params:
-    projectId: Project ID to configure access for
-    cidrBlocks: Optional array of CIDR blocks to allow
-    comment: Optional comment for the access list entry
-    currentIpAddress: Optional boolean to allow current IP address
-    ipAddresses: Optional array of IP addresses to allow
+    projectId: 要配置访问权限的项目 ID
+    cidrBlocks: 可选的 CIDR 块数组，用于允许访问
+    comment: 访问列表条目的可选注释
+    currentIpAddress: 可选的布尔值，用于允许当前 IP 地址
+    ipAddresses: 可选的 IP 地址数组，用于允许访问
 - name: atlas-inspect-access-list
-  description: Inspect Ip/CIDR ranges with access to your MongoDB Atlas clusters.
+  description: 查看有权访问您的 MongoDB Atlas 集群的 IP/CIDR 范围。
   params:
-    projectId: Project ID to inspect access list for
+    projectId: 要查看访问列表的项目 ID
 - name: atlas-list-db-users
-  description: List MongoDB Atlas database users
+  description: 列出 MongoDB Atlas 数据库用户
   params:
-    projectId: Project ID to list users for
+    projectId: 要列出用户的项目 ID
 - name: atlas-create-db-user
-  description: Create an MongoDB Atlas database user
+  description: 创建 MongoDB Atlas 数据库用户
   params:
-    projectId: Project ID to create user in
-    roles: Array of role objects with collectionName, databaseName, and roleName
-    username: Username for the new database user
-    clusters: Optional array of cluster names to restrict access to
-    password: Optional password for the user
+    projectId: 要创建用户的项目 ID
+    roles: 角色对象数组，包含 collectionName、databaseName 和 roleName
+    username: 新数据库用户的用户名
+    clusters: 可选的集群名称数组，用于限制访问
+    password: 用户的可选密码
 - name: atlas-create-project
-  description: Create a MongoDB Atlas project
+  description: 创建 MongoDB Atlas 项目
   params:
-    organizationId: Optional organization ID
-    projectName: Optional name for the new project
+    organizationId: 可选的组织 ID
+    projectName: 新项目的可选名称
 - name: atlas-list-orgs
-  description: List MongoDB Atlas organizations
+  description: 列出 MongoDB Atlas 组织
 - name: atlas-connect-cluster
-  description: Connect to MongoDB Atlas cluster
+  description: 连接到 MongoDB Atlas 集群
   params:
-    clusterName: Name of the cluster to connect to
-    projectId: Project ID containing the cluster
+    clusterName: 要连接的集群名称
+    projectId: 包含该集群的项目 ID
 - name: atlas-list-alerts
-  description: List MongoDB Atlas alerts
+  description: 列出 MongoDB Atlas 告警
   params:
-    projectId: Project ID to list alerts for
+    projectId: 要列出告警的项目 ID
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/mongodb-atlas:1.3.0

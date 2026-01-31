@@ -1,33 +1,33 @@
 name: Ref
-shortDescription: Token-efficient search over documentation to prevent AI hallucinations
+shortDescription: 对文档进行高效的 Token 搜索，防止 AI 幻觉
 description: '![Ref MCP](https://github.com/ref-tools/ref-tools-mcp/raw/main/header.png)
 
 
   ![GitHub Repo stars](https://img.shields.io/github/stars/ref-tools/ref-tools-mcp?style=social)
 
 
-  A Model Context Protocol (MCP) server that provides token-efficient search over public and private documentation. Ref MCP is designed to stop hallucinations by giving your AI coding tool or agent access to accurate, up-to-date documentation for APIs, services, libraries, and frameworks in a fast and token-efficient way.
+  一个 Model Context Protocol (MCP) 服务器，提供对公共和私有文档的高效 Token 搜索。Ref MCP 旨在通过为您的 AI 编码工具或代理提供对 API、服务、库和框架的准确、最新文档的快速且高效的 Token 访问来阻止幻觉。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Agentic Documentation Search**: Intelligent search designed to match how models search while using minimal context to reduce context rot
+  - **智能文档搜索**：智能搜索旨在匹配模型的搜索方式，同时使用最少的上下文来减少上下文衰减
 
-  - **Token Efficiency**: Filters repeated search results in sessions and fetches only the most relevant 5k tokens from documentation pages
+  - **Token 效率**：在会话中过滤重复的搜索结果，仅从文档页面获取最相关的 5k Token
 
-  - **Public & Private Docs**: Search across web documentation, GitHub repositories, and private resources like repos and PDFs
+  - **公共和私有文档**：搜索网络文档、GitHub 仓库以及私有资源（如仓库和 PDF）
 
-  - **Smart Context Management**: Uses MCP sessions to track search trajectory and minimize context usage
+  - **智能上下文管理**：使用 MCP 会话来跟踪搜索轨迹并最小化上下文使用
 
-  - **URL Content Fetching**: Convert web pages to markdown with intelligent section filtering based on search history
-
-
-  ## What you''ll need to connect
+  - **URL 内容获取**：将网页转换为 Markdown，并根据搜索历史进行智能章节过滤
 
 
-  **Required:**
+  ## 连接所需条件
 
-  - **Ref API Key**: Sign up at [ref.tools](https://ref.tools) to get your API key
+
+  **必需：**
+
+  - **Ref API Key**：在 [ref.tools](https://ref.tools) 注册以获取您的 API 密钥
 
   '
 metadata:
@@ -46,11 +46,11 @@ remoteConfig:
 
 toolPreview:
 - name: ref_search_documentation
-  description: Search technical documentation from public and private sources. Use this tool when you need to find facts, code snippets, or API documentation. Can search web documentation, GitHub repositories, and private resources. Returns relevant documentation snippets with URLs. The search is optimized to avoid returning duplicate results in the same session and provides exactly what you need with minimal token usage.
+  description: 从公共和私有来源搜索技术文档。当您需要查找事实、代码片段或 API 文档时使用此工具。可以搜索网络文档、GitHub 仓库和私有资源。返回带有 URL 的相关文档片段。搜索经过优化，可避免在同一会话中返回重复结果，并以最少的 Token 使用量提供您需要的确切内容。
   params:
-    query: Query to search for relevant documentation. Should be a full sentence or question (e.g., "How to authenticate with FastAPI OAuth2?" or "React hooks best practices"). Can include 'ref_src=private' to search private documentation.
+    query: 搜索相关文档的查询。应该是完整的句子或问题（例如，"如何使用 FastAPI OAuth2 进行身份验证？"或"React hooks 最佳实践"）。可以包含 'ref_src=private' 以搜索私有文档。
 - name: ref_read_url
-  description: Fetch and read content from a URL, converting it to clean markdown format. Use this tool to read the full content from URLs returned by ref_search_documentation. Ref intelligently extracts the most relevant 5k tokens from the page based on your search history, filtering out irrelevant sections. This is more efficient than standard web scraping which can pull in 20k+ tokens of mostly irrelevant content.
+  description: 从 URL 获取并读取内容，将其转换为干净的 Markdown 格式。使用此工具读取从 ref_search_documentation 返回的 URL 的完整内容。Ref 根据您的搜索历史智能地从页面中提取最相关的 5k Token，过滤掉不相关的章节。这比可能提取 20k+ Token 大部分不相关内容的标准网页抓取更高效。
   params:
-    url: The complete URL of the webpage to read (typically from ref_search_documentation results)
+    url: 要读取的网页的完整 URL（通常来自 ref_search_documentation 结果）
 

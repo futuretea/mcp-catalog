@@ -1,228 +1,228 @@
 name: PagerDuty
-shortDescription: Manage incidents, services, teams, on-call schedules, and escalation policies
+shortDescription: 管理事件、服务、团队、值班计划和升级策略
 description: |
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   [![Python Version](https://img.shields.io/badge/python-3.13%2B-blue)](https://www.python.org/downloads/)
 
-  A Model Context Protocol (MCP) server that provides tools to interact with your PagerDuty account directly from your MCP-enabled client. Manage incidents, services, teams, on-call schedules, and more using natural language commands.
+  一个 Model Context Protocol (MCP) 服务器，提供工具让您可以直接从 MCP 客户端与 PagerDuty 账户进行交互。使用自然语言命令管理事件、服务、团队、值班计划等。
 
-  ## Features
-  - **Incident Management**: Create, update, resolve incidents, add notes and responders
-  - **Service Operations**: Manage services and their configurations
-  - **Team Management**: Create and manage teams, add/remove members
-  - **On-Call & Schedules**: View on-call rotations, create schedule overrides
-  - **Alert Grouping**: Configure intelligent alert grouping settings
-  - **Event Orchestrations**: Manage event routing and orchestration rules
-  - **Escalation Policies**: View and manage escalation policies
+  ## 功能特性
+  - **事件管理**：创建、更新、解决事件，添加备注和响应者
+  - **服务操作**：管理服务及其配置
+  - **团队管理**：创建和管理团队，添加/移除成员
+  - **值班与计划**：查看值班轮换，创建计划覆盖
+  - **告警分组**：配置智能告警分组设置
+  - **事件编排**：管理事件路由和编排规则
+  - **升级策略**：查看和管理升级策略
 
-  ## What you'll need to connect
-  **Required:**
-  - **PagerDuty API Key**: User API token from your PagerDuty account with appropriate permissions
+  ## 连接所需信息
+  **必需：**
+  - **PagerDuty API Key**：来自您 PagerDuty 账户的用户 API 令牌，具有适当的权限
 
-  **Optional:**
-  - **API Host**: Custom API host for EU region (`https://api.eu.pagerduty.com`) or use default US region
+  **可选：**
+  - **API Host**：EU 区域的自定义 API 主机（`https://api.eu.pagerduty.com`）或使用默认的美国区域
 
 toolPreview:
 - name: list_incidents
-  description: Lists incidents with optional filtering by status, urgency, service, and date range
+  description: 列出事件，支持按状态、紧急程度、服务和日期范围进行可选过滤
   params:
-    status: Filter by incident status (triggered, acknowledged, resolved)
-    urgency: Filter by urgency level (high, low)
-    service_ids: Filter by service IDs
-    limit: Maximum number of results (up to 1000)
+    status: 按事件状态过滤（triggered、acknowledged、resolved）
+    urgency: 按紧急程度过滤（high、low）
+    service_ids: 按服务 ID 过滤
+    limit: 最大结果数（最多 1000）
 - name: get_incident
-  description: Retrieves details for a specific incident
+  description: 检索特定事件的详细信息
   params:
-    incident_id: The ID or number of the incident to retrieve
+    incident_id: 要检索的事件 ID 或编号
 - name: create_incident
-  description: Creates a new incident
+  description: 创建新事件
   params:
-    title: The incident title
-    service: The service reference with ID
-    urgency: Incident urgency (high or low)
-    body: Additional details about the incident
+    title: 事件标题
+    service: 具有 ID 的服务引用
+    urgency: 事件紧急程度（high 或 low）
+    body: 有关事件的额外详细信息
 - name: manage_incidents
-  description: Bulk update incidents (acknowledge, resolve, change urgency, reassign)
+  description: 批量更新事件（确认、解决、更改紧急程度、重新分配）
   params:
-    incident_ids: Array of incident IDs to update
-    status: New status (acknowledged or resolved)
-    urgency: New urgency level
-    assignment: User to assign incidents to
+    incident_ids: 要更新的事件 ID 数组
+    status: 新状态（acknowledged 或 resolved）
+    urgency: 新紧急程度级别
+    assignment: 要分配事件的用户
 - name: add_note_to_incident
-  description: Adds a note to an existing incident
+  description: 向现有事件添加备注
   params:
-    incident_id: The incident ID
-    note: The note text to add
+    incident_id: 事件 ID
+    note: 要添加的备注文本
 - name: add_responders
-  description: Request additional responders for an incident
+  description: 为事件请求额外的响应者
   params:
-    incident_id: The incident ID
-    requester_id: User ID of the requester
-    message: Message to include with the request
-    responder_request_targets: Array of user or escalation policy IDs
+    incident_id: 事件 ID
+    requester_id: 请求者的用户 ID
+    message: 随请求包含的消息
+    responder_request_targets: 用户或升级策略 ID 数组
 - name: list_services
-  description: Lists all services with optional filtering
+  description: 列出所有服务，支持可选过滤
   params:
-    query: Filter by service name
-    teams_ids: Filter by team IDs
-    limit: Maximum results (up to 100)
+    query: 按服务名称过滤
+    teams_ids: 按团队 ID 过滤
+    limit: 最大结果数（最多 100）
 - name: get_service
-  description: Retrieves details for a specific service
+  description: 检索特定服务的详细信息
   params:
-    service_id: The service ID
+    service_id: 服务 ID
 - name: create_service
-  description: Creates a new service
+  description: 创建新服务
   params:
-    name: Service name
-    description: Service description
-    escalation_policy: Escalation policy reference with ID
-    teams: Array of team references
+    name: 服务名称
+    description: 服务描述
+    escalation_policy: 具有 ID 的升级策略引用
+    teams: 团队引用数组
 - name: update_service
-  description: Updates an existing service
+  description: 更新现有服务
   params:
-    service_id: The service ID
-    name: Updated service name
-    description: Updated description
-    escalation_policy: Updated escalation policy reference
+    service_id: 服务 ID
+    name: 更新的服务名称
+    description: 更新的描述
+    escalation_policy: 更新的升级策略引用
 - name: list_teams
-  description: Lists teams with optional filtering
+  description: 列出团队，支持可选过滤
   params:
-    query: Filter by team name
-    scope: Scope of query (all or my teams)
-    limit: Maximum results (up to 100)
+    query: 按团队名称过滤
+    scope: 查询范围（all 或 my teams）
+    limit: 最大结果数（最多 100）
 - name: get_team
-  description: Retrieves details for a specific team
+  description: 检索特定团队的详细信息
   params:
-    team_id: The team ID or name
+    team_id: 团队 ID 或名称
 - name: list_team_members
-  description: Lists members of a team
+  description: 列出团队成员
   params:
-    team_id: The team ID
+    team_id: 团队 ID
 - name: create_team
-  description: Creates a new team
+  description: 创建新团队
   params:
-    name: Team name
-    description: Team description
-    default_role: Default role for new members (manager or none)
+    name: 团队名称
+    description: 团队描述
+    default_role: 新成员的默认角色（manager 或 none）
 - name: update_team
-  description: Updates an existing team
+  description: 更新现有团队
   params:
-    team_id: The team ID
-    name: Updated team name
-    description: Updated description
+    team_id: 团队 ID
+    name: 更新的团队名称
+    description: 更新的描述
 - name: delete_team
-  description: Deletes a team
+  description: 删除团队
   params:
-    team_id: The team ID to delete
+    team_id: 要删除的团队 ID
 - name: add_team_member
-  description: Adds a user to a team with a specific role
+  description: 将用户添加到具有特定角色的团队
   params:
-    team_id: The team ID
-    user_id: The user ID to add
-    role: Member role (observer, responder, or manager)
+    team_id: 团队 ID
+    user_id: 要添加的用户 ID
+    role: 成员角色（observer、responder 或 manager）
 - name: remove_team_member
-  description: Removes a user from a team
+  description: 从团队中移除用户
   params:
-    team_id: The team ID
-    user_id: The user ID to remove
+    team_id: 团队 ID
+    user_id: 要移除的用户 ID
 - name: get_user_data
-  description: Gets the current authenticated user's information
+  description: 获取当前认证用户的信息
   params: {}
 - name: list_users
-  description: Lists users with optional filtering
+  description: 列出用户，支持可选过滤
   params:
-    query: Filter by user name
-    teams_ids: Filter by team IDs
-    limit: Maximum results (up to 100)
+    query: 按用户名过滤
+    teams_ids: 按团队 ID 过滤
+    limit: 最大结果数（最多 100）
 - name: list_oncalls
-  description: Lists on-call schedules with filtering by schedule, user, or date range
+  description: 列出值班计划，支持按计划、用户或日期范围过滤
   params:
-    schedule_ids: Filter by schedule IDs
-    user_ids: Filter by user IDs
-    since: Start of time range
-    until: End of time range
+    schedule_ids: 按计划 ID 过滤
+    user_ids: 按用户 ID 过滤
+    since: 时间范围的开始
+    until: 时间范围的结束
 - name: list_schedules
-  description: Lists schedules with optional filtering
+  description: 列出计划，支持可选过滤
   params:
-    query: Filter by schedule name or description
-    team_ids: Filter by team IDs
-    user_ids: Filter by user IDs
+    query: 按计划名称或描述过滤
+    team_ids: 按团队 ID 过滤
+    user_ids: 按用户 ID 过滤
 - name: get_schedule
-  description: Retrieves details for a specific schedule
+  description: 检索特定计划的详细信息
   params:
-    schedule_id: The schedule ID
+    schedule_id: 计划 ID
 - name: list_schedule_users
-  description: Lists users assigned to a schedule
+  description: 列出分配给计划的用户
   params:
-    schedule_id: The schedule ID
+    schedule_id: 计划 ID
 - name: create_schedule_override
-  description: Creates an override for a schedule
+  description: 为计划创建覆盖
   params:
-    schedule_id: The schedule ID
-    start: Override start time
-    end: Override end time
-    user: User reference for the override
+    schedule_id: 计划 ID
+    start: 覆盖开始时间
+    end: 覆盖结束时间
+    user: 覆盖的用户引用
 - name: list_escalation_policies
-  description: Lists escalation policies with filtering
+  description: 列出升级策略，支持过滤
   params:
-    query: Filter by name or description
-    team_ids: Filter by team IDs
-    user_ids: Filter by user IDs
+    query: 按名称或描述过滤
+    team_ids: 按团队 ID 过滤
+    user_ids: 按用户 ID 过滤
 - name: get_escalation_policy
-  description: Retrieves details for a specific escalation policy
+  description: 检索特定升级策略的详细信息
   params:
-    policy_id: The escalation policy ID
+    policy_id: 升级策略 ID
 - name: list_event_orchestrations
-  description: Lists event orchestrations with optional filtering
+  description: 列出事件编排，支持可选过滤
   params:
-    limit: Maximum results (up to 100)
-    sort_by: Sort field and direction
+    limit: 最大结果数（最多 100）
+    sort_by: 排序字段和方向
 - name: get_event_orchestration
-  description: Retrieves details for a specific event orchestration
+  description: 检索特定事件编排的详细信息
   params:
-    orchestration_id: The orchestration ID
+    orchestration_id: 编排 ID
 - name: get_event_orchestration_router
-  description: Gets the router configuration for an event orchestration
+  description: 获取事件编排的路由器配置
   params:
-    orchestration_id: The orchestration ID
+    orchestration_id: 编排 ID
 - name: update_event_orchestration_router
-  description: Updates the router configuration for an event orchestration
+  description: 更新事件编排的路由器配置
   params:
-    orchestration_id: The orchestration ID
-    router_update: Updated router configuration with rules and catch-all actions
+    orchestration_id: 编排 ID
+    router_update: 包含规则和默认操作的更新路由器配置
 - name: append_event_orchestration_router_rule
-  description: Appends a new routing rule to an event orchestration router
+  description: 向事件编排路由器追加新的路由规则
   params:
-    orchestration_id: The orchestration ID
-    new_rule: New rule configuration with conditions and actions
+    orchestration_id: 编排 ID
+    new_rule: 包含条件和操作的新规则配置
 - name: list_alert_grouping_settings
-  description: Lists alert grouping settings with optional filtering
+  description: 列出告警分组设置，支持可选过滤
   params:
-    service_ids: Filter by service IDs
-    limit: Maximum results (up to 100)
+    service_ids: 按服务 ID 过滤
+    limit: 最大结果数（最多 100）
 - name: get_alert_grouping_setting
-  description: Retrieves details for a specific alert grouping setting
+  description: 检索特定告警分组设置的详细信息
   params:
-    setting_id: The alert grouping setting ID
+    setting_id: 告警分组设置 ID
 - name: create_alert_grouping_setting
-  description: Creates a new alert grouping setting
+  description: 创建新的告警分组设置
   params:
-    type: Grouping type (content_based, intelligent, time)
-    config: Configuration based on the type
-    services: Array of service references
+    type: 分组类型（content_based、intelligent、time）
+    config: 基于类型的配置
+    services: 服务引用数组
 - name: update_alert_grouping_setting
-  description: Updates an existing alert grouping setting
+  description: 更新现有的告警分组设置
   params:
-    setting_id: The setting ID
-    type: Updated grouping type
-    config: Updated configuration
+    setting_id: 设置 ID
+    type: 更新的分组类型
+    config: 更新的配置
 - name: delete_alert_grouping_setting
-  description: Deletes an alert grouping setting
+  description: 删除告警分组设置
   params:
-    setting_id: The alert grouping setting ID to delete
+    setting_id: 要删除的告警分组设置 ID
 
 metadata:
-  categories: Monitoring & Observability
+  categories: 监控与可观测性
 icon: https://avatars.githubusercontent.com/u/766800?s=48&v=4
 repoURL: https://github.com/PagerDuty/pagerduty-mcp-server
 env:
@@ -230,12 +230,12 @@ env:
   name: PagerDuty API Key
   required: true
   sensitive: true
-  description: User API token from your PagerDuty account. Generate this in PagerDuty under User Settings > API Access Keys.
+  description: 来自您 PagerDuty 账户的用户 API 令牌。在 PagerDuty 的 User Settings > API Access Keys 中生成。
 - key: PAGERDUTY_API_HOST
   name: PagerDuty API Host
   required: false
   sensitive: false
-  description: API host URL. Use https://api.eu.pagerduty.com for EU accounts, or leave blank for default US (https://api.pagerduty.com).
+  description: API 主机 URL。EU 账户使用 https://api.eu.pagerduty.com，或留空使用默认的美国区域（https://api.pagerduty.com）。
 
 runtime: containerized
 containerizedConfig:

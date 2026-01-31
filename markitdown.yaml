@@ -1,27 +1,27 @@
 name: MarkItDown
-shortDescription: Convert documents, images, audio, and web content to LLM-optimized Markdown
-description: 'A Model Context Protocol (MCP) server that provides powerful file-to-Markdown conversion capabilities. Convert various document formats and web content to clean, structured Markdown optimized for LLM consumption.
+shortDescription: 将文档、图片、音频和网页内容转换为针对 LLM 优化的 Markdown
+description: '一个 Model Context Protocol (MCP) 服务器，提供强大的文件到 Markdown 转换功能。将各种文档格式和网页内容转换为针对 LLM 消费优化的干净、结构化 Markdown。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Multi-Format Support**: Convert PDF, PowerPoint, Word, Excel, Images (with OCR), Audio (with transcription), HTML, CSV, JSON, XML, ZIP files, EPubs, and YouTube URLs
+  - **多格式支持**：转换 PDF、PowerPoint、Word、Excel、图片（带 OCR）、音频（带转录）、HTML、CSV、JSON、XML、ZIP 文件、EPub 和 YouTube URL
 
-  - **Structure Preservation**: Maintains important document structure including headings, lists, tables, and links in Markdown format
+  - **结构保留**：在 Markdown 格式中保留重要的文档结构，包括标题、列表、表格和链接
 
-  - **LLM-Optimized Output**: Markdown output is designed specifically for large language model processing and text analysis pipelines
+  - **LLM 优化输出**：Markdown 输出专为大型语言模型处理和文本分析管道设计
 
-  - **Metadata Extraction**: Extracts EXIF metadata from images and audio files
+  - **元数据提取**：从图片和音频文件中提取 EXIF 元数据
 
-  - **Web Content**: Fetch and convert web pages and online documents via HTTP/HTTPS URLs
+  - **网页内容**：通过 HTTP/HTTPS URL 获取和转换网页和在线文档
 
-  - **Token Efficient**: Markdown conventions are highly token-efficient for LLM applications
-
-
-  ## What you''ll need to connect
+  - **Token 高效**：Markdown 约定对 LLM 应用高度 Token 高效
 
 
-  **No Setup Required**: MarkItDown works out-of-the-box with no API keys or configuration needed. Simply provide a URI (http://, https://, file://, or data:) to convert content to Markdown.
+  ## 连接所需
+
+
+  **无需设置**：MarkItDown 开箱即用，无需 API 密钥或配置。只需提供 URI（http://、https://、file:// 或 data:）即可将内容转换为 Markdown。
 
   '
 metadata:
@@ -30,9 +30,9 @@ icon: https://avatars.githubusercontent.com/u/6154722?s=48&v=4
 repoURL: https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp
 toolPreview:
 - name: convert_to_markdown
-  description: Convert files and web content to Markdown format. Supports PDF, Office documents, images, audio, HTML, and more.
+  description: 将文件和网页内容转换为 Markdown 格式。支持 PDF、Office 文档、图片、音频、HTML 等。
   params:
-    uri: The URI of the content to convert (supports http://, https://, file://, data:)
+    uri: 要转换内容的 URI（支持 http://、https://、file://、data:）
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/markitdown-mcp:0.0.1a4

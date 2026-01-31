@@ -1,29 +1,29 @@
 name: Google Drive
-shortDescription: Manage Google Drive files, folders, permissions, and sharing with OAuth2
+shortDescription: 通过 OAuth2 管理 Google Drive 文件、文件夹、权限和共享
 description: |
   ![Google Drive MCP Server](https://img.shields.io/badge/Google%20Drive-MCP%20Server-blue?style=for-the-badge&logo=google-drive)
   ![Python](https://img.shields.io/badge/Python-3.13+-green?style=for-the-badge&logo=python)
   ![FastMCP](https://img.shields.io/badge/FastMCP-2.11.1+-orange?style=for-the-badge)
   ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-  A Model Context Protocol (MCP) server for Google Drive integration, providing comprehensive file and folder management capabilities through a modern API interface.
+  一个用于 Google Drive 集成的 Model Context Protocol (MCP) 服务器，通过现代 API 接口提供全面的文件和文件夹管理功能。
 
-  ## Features
-  - **OAuth2 Authentication**: Secure Google OAuth integration with automatic token refresh
-  - **File Operations**: List, get, copy, update, and delete files with advanced filtering and search
-  - **Folder Management**: Create and organize folder hierarchies in personal and shared drives
-  - **Permission Control**: Comprehensive permission management with role-based access and sharing
-  - **Ownership Management**: Transfer file ownership to users within the same domain
-  - **Advanced Search**: Filter files by MIME type, name, modification time, and folder location
-  - **Shared Drive Support**: Full management of shared drives including creation, deletion, and renaming
-  - **Granular Permissions**: Create, update, and delete permissions for users, groups, domains, and public access
+  ## 功能特性
+  - **OAuth2 认证**：安全的 Google OAuth 集成，支持自动 token 刷新
+  - **文件操作**：列出、获取、复制、更新和删除文件，支持高级筛选和搜索
+  - **文件夹管理**：在个人和共享云端硬盘中创建和组织文件夹层级结构
+  - **权限控制**：全面的权限管理，支持基于角色的访问和共享
+  - **所有权管理**：将文件所有权转移给同一域内的用户
+  - **高级搜索**：按 MIME 类型、名称、修改时间和文件夹位置筛选文件
+  - **共享云端硬盘支持**：完全管理共享云端硬盘，包括创建、删除和重命名
+  - **细粒度权限**：为用户、群组、域和公共访问创建、更新和删除权限
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow
+  **无需设置**：通过 OAuth2 流程自动处理认证
 
 metadata:
-  categories: Business
+  categories: 商务办公
   allow-multiple: "true"
 icon: https://img.icons8.com/?size=100&id=VLr4hUR8iMGF&format=png&color=000000
 repoURL: https://google-drive-mcp.obot.ai/mcp/
@@ -32,84 +32,84 @@ remoteConfig:
   fixedURL: https://google-drive-mcp.obot.ai/mcp/
 toolPreview:
   - name: list_files
-    description: List or search for files in the user's Google Drive. Returns up to 50 files by default, sorted by last modified date.
+    description: 列出或搜索用户 Google Drive 中的文件。默认返回最多 50 个文件，按最后修改日期排序。
     params:
-      drive_id: ID of the Google Drive to list files from. If unset, default to the user's personal drive.
-      parent_id: ID of the parent folder to list files from. If unset, default to the root folder of user's personal drive.
-      mime_type: "Filter files by MIME type (e.g., 'application/pdf' for PDFs, 'image/jpeg' for JPEG images, 'application/vnd.google-apps.folder' for folders)"
-      file_name_contains: Case-insensitive search string to filter files by name
-      modified_time_after: "Return only files modified after this timestamp (RFC 3339 format: YYYY-MM-DDTHH:MM:SSZ)"
-      max_results: "Maximum number of files to return (1-1000, default: 50)"
+      drive_id: 要列出文件的 Google Drive ID。如果未设置，默认为用户的个人云端硬盘。
+      parent_id: 要列出文件的父文件夹 ID。如果未设置，默认为用户个人云端硬盘的根文件夹。
+      mime_type: "按 MIME 类型筛选文件（例如，'application/pdf' 表示 PDF，'image/jpeg' 表示 JPEG 图像，'application/vnd.google-apps.folder' 表示文件夹）"
+      file_name_contains: 用于按名称筛选文件的区分大小写的搜索字符串
+      modified_time_after: "仅返回在此时间戳之后修改的文件（RFC 3339 格式：YYYY-MM-DDTHH:MM:SSZ）"
+      max_results: "返回的最大文件数（1-1000，默认：50）"
   - name: get_file
-    description: Get a Google Drive file from user's Google Drive
+    description: 从用户的 Google Drive 获取文件
     params:
-      file_id: ID of the file to get
+      file_id: 要获取的文件 ID
   - name: copy_file
-    description: Create a copy of a Google Drive file.
+    description: 创建 Google Drive 文件的副本。
     params:
-      file_id: ID of the file to copy
-      new_name: "New name for the copied file. If not provided, the copied file will be named \"Copy of [original name]\""
-      new_parent_id: New parent folder ID for the copied file. Provide this if you want to have the copied file in a different folder.
+      file_id: 要复制的文件 ID
+      new_name: "副本的新名称。如果未提供，副本将命名为 \"Copy of [original name]\""
+      new_parent_id: 副本的新父文件夹 ID。如果您想将副本放在不同的文件夹中，请提供此参数。
   - name: update_file
-    description: Update an existing file or folder in user's Google Drive. Can rename and/or move to a different location.
+    description: 更新用户 Google Drive 中的现有文件或文件夹。可以重命名和/或移动到不同位置。
     params:
-      file_id: ID of the file or folder to update
-      new_name: New name for the file or folder
-      new_parent_id: "New parent folder ID. Provide this if you want to move the item to a different folder, use `root` to move to the root folder."
+      file_id: 要更新的文件或文件夹的 ID
+      new_name: 文件或文件夹的新名称
+      new_parent_id: "新父文件夹 ID。如果您想将项目移动到不同的文件夹，请提供此参数，使用 `root` 移动到根文件夹。"
   - name: create_folder
-    description: Create a new folder in user's Google Drive.
+    description: 在用户的 Google Drive 中创建新文件夹。
     params:
-      folder_name: Name of the new folder
-      parent_id: ID of the parent folder for the new folder. If not provided, the folder will be created in the root folder.
+      folder_name: 新文件夹的名称
+      parent_id: 新文件夹的父文件夹 ID。如果未提供，文件夹将在根文件夹中创建。
   - name: delete_file
-    description: Delete an existing file or folder from user's Google Drive
+    description: 从用户的 Google Drive 删除现有文件或文件夹
     params:
-      file_id: ID of the file or folder to delete
+      file_id: 要删除的文件或文件夹的 ID
   - name: transfer_ownership
-    description: Transfer ownership of a Google Drive file to another user. Can only transfer ownership to a user in the same domain.
+    description: 将 Google Drive 文件的所有权转移给另一个用户。只能将所有权转移给同一域内的用户。
     params:
-      file_id: ID of the file to transfer ownership of
-      new_owner_email: Email address of the new owner
+      file_id: 要转移所有权的文件 ID
+      new_owner_email: 新所有者的电子邮件地址
   - name: list_permissions
-    description: List all permissions for a Google Drive file, folder, or shared drive.
+    description: 列出 Google Drive 文件、文件夹或共享云端硬盘的所有权限。
     params:
-      file_id: ID of the file, folder, or shared drive to list permissions for
+      file_id: 要列出权限的文件、文件夹或共享云端硬盘的 ID
   - name: get_permission
-    description: Get a specific permission for a Google Drive file, folder, or shared drive.
+    description: 获取 Google Drive 文件、文件夹或共享云端硬盘的特定权限。
     params:
-      file_id: ID of the file, folder, or shared drive to get permission for
-      permission_id: ID of the permission to get
+      file_id: 要获取权限的文件、文件夹或共享云端硬盘的 ID
+      permission_id: 要获取的权限的 ID
   - name: create_permission
-    description: Create a new permission for a Google Drive file, folder, or shared drive.
+    description: 为 Google Drive 文件、文件夹或共享云端硬盘创建新权限。
     params:
-      file_id: ID of the file, folder, or shared drive to create permission for
-      role: "Role for the new permission (owner, organizer, fileOrganizer, writer, commenter, reader)"
-      type: "Type of the new permission (user, group, domain, anyone)"
-      email_address: Email address for user/group permission, required if type is user or group
-      domain: Domain for domain permission, required if type is domain
+      file_id: 要为其创建权限的文件、文件夹或共享云端硬盘的 ID
+      role: "新权限的角色（owner、organizer、fileOrganizer、writer、commenter、reader）"
+      type: "新权限的类型（user、group、domain、anyone）"
+      email_address: 用户/群组权限的电子邮件地址，如果类型为 user 或 group 则必需
+      domain: 域权限的域，如果类型为 domain 则必需
   - name: update_permission
-    description: Update an existing permission for a Google Drive file, folder, or shared drive.
+    description: 更新 Google Drive 文件、文件夹或共享云端硬盘的现有权限。
     params:
-      file_id: ID of the file, folder, or shared drive to update permission for
-      permission_id: ID of the permission to update
-      role: "New role for the permission (owner, organizer, fileOrganizer, writer, commenter, reader)"
+      file_id: 要更新权限的文件、文件夹或共享云端硬盘的 ID
+      permission_id: 要更新的权限的 ID
+      role: "权限的新角色（owner、organizer、fileOrganizer、writer、commenter、reader）"
   - name: delete_permission
-    description: Delete an existing permission for a Google Drive file, folder, or shared drive.
+    description: 删除 Google Drive 文件、文件夹或共享云端硬盘的现有权限。
     params:
-      file_id: ID of the file, folder, or shared drive to delete permission from
-      permission_id: ID of the permission to delete
+      file_id: 要从中删除权限的文件、文件夹或共享云端硬盘的 ID
+      permission_id: 要删除的权限的 ID
   - name: list_shared_drives
-    description: List all shared Google Drives for the user.
+    description: 列出用户的所有共享 Google Drive。
   - name: create_shared_drive
-    description: Create a new shared Google Drive for the user
+    description: 为用户创建新的共享 Google Drive
     params:
-      drive_name: Name of the new shared drive
+      drive_name: 新共享云端硬盘的名称
   - name: delete_shared_drive
-    description: Delete an existing shared Google Drive.
+    description: 删除现有的共享 Google Drive。
     params:
-      drive_id: ID of the shared drive to delete
+      drive_id: 要删除的共享云端硬盘的 ID
   - name: rename_shared_drive
-    description: Rename an existing shared Google Drive
+    description: 重命名现有的共享 Google Drive
     params:
-      drive_id: ID of the shared drive to rename
-      drive_name: New name for the shared drive  
+      drive_id: 要重命名的共享云端硬盘的 ID
+      drive_name: 共享云端硬盘的新名称

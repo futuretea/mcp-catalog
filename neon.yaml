@@ -1,5 +1,5 @@
 name: Neon Database
-shortDescription: Manage Neon Postgres databases with natural language, branching, and migrations
+shortDescription: 使用自然语言、分支和迁移功能管理 Neon Postgres 数据库
 description: |
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://neon.com/brand/neon-logo-dark-color.svg">
@@ -11,22 +11,22 @@ description: |
   [![npm downloads](https://img.shields.io/npm/dt/@neondatabase/mcp-server-neon)](https://www.npmjs.com/package/@neondatabase/mcp-server-neon)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-  A Model Context Protocol (MCP) server that lets you interact with your Neon Postgres databases using natural language. Built on the Model Context Protocol, it acts as a bridge between natural language requests and the Neon API, enabling seamless database management without complex SQL or direct API calls.
+  一个 Model Context Protocol (MCP) 服务器，让您可以使用自然语言与 Neon Postgres 数据库进行交互。它基于 Model Context Protocol 构建，充当自然语言请求与 Neon API 之间的桥梁，无需复杂的 SQL 或直接 API 调用即可实现无缝的数据库管理。
 
-  ## Features
-  - **Natural Language Interaction**: Manage Neon databases using intuitive, conversational commands
-  - **Project & Branch Management**: Create, delete, and manage Neon projects and branches with branching capabilities
-  - **SQL Query Execution**: Run single queries or transactions with performance analysis and optimization
-  - **Database Migrations**: Safe schema changes with temporary branch testing and rollback capabilities
-  - **Performance Optimization**: Query tuning, execution plans, and slow query identification
-  - **Accessibility**: Empowers users with varying technical backgrounds to interact with databases
+  ## 功能特性
+  - **自然语言交互**：使用直观、对话式的命令管理 Neon 数据库
+  - **项目与分支管理**：创建、删除和管理 Neon 项目及具有分支功能的分支
+  - **SQL 查询执行**：运行单个查询或事务，并提供性能分析和优化
+  - **数据库迁移**：通过临时分支测试和回滚功能实现安全的模式变更
+  - **性能优化**：查询调优、执行计划和慢查询识别
+  - **可访问性**：让具有不同技术背景的用户都能与数据库交互
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  **Required:**
-  - **Neon Account**: Active Neon account (sign up at [console.neon.tech](https://console.neon.tech/signup))
+  **必需：**
+  - **Neon 账户**：活跃的 Neon 账户（在 [console.neon.tech](https://console.neon.tech/signup) 注册）
 
-  ## Example Usage
+  ## 使用示例
 
   - "Let's create a new Postgres database, and call it 'my-database'. Let's then create a table called users with columns: id, name, email, and password."
   - "I want to run a migration on my project 'my-project' that alters the users table to add a 'created_at' column."
@@ -42,133 +42,133 @@ remoteConfig:
 
 toolPreview:
   - name: list_projects
-    description: Lists the first 10 Neon projects in your account. If you can't find the project, increase the limit by passing a higher value to the limit parameter.
+    description: 列出您账户中的前 10 个 Neon 项目。如果找不到项目，请通过向 limit 参数传递更高的值来增加限制。
     params:
-      cursor: Optional cursor for pagination
-      limit: Maximum number of projects to return (default 10)
-      org_id: Optional organization ID to filter projects
-      search: Optional search string to filter projects
+      cursor: 可选的分页游标
+      limit: 返回的最大项目数（默认 10）
+      org_id: 用于筛选项目的可选组织 ID
+      search: 用于筛选项目的可选搜索字符串
   - name: create_project
-    description: Create a new Neon project. If someone is trying to create a database, use this tool.
+    description: 创建一个新的 Neon 项目。如果有人尝试创建数据库，请使用此工具。
     params:
-      name: Name for the new project
-      org_id: Optional organization ID
+      name: 新项目的名称
+      org_id: 可选的组织 ID
   - name: delete_project
-    description: Delete a Neon project
+    description: 删除一个 Neon 项目
     params:
-      projectId: ID of the project to delete
+      projectId: 要删除的项目 ID
   - name: describe_project
-    description: Describes a Neon project
+    description: 描述一个 Neon 项目
     params:
-      projectId: ID of the project to describe
+      projectId: 要描述的项目 ID
   - name: run_sql
-    description: Execute a single SQL statement against a Neon database. If you have a temporary branch from a prior step, you MUST pass the branch ID to this tool unless explicitly told otherwise.
+    description: 对 Neon 数据库执行单个 SQL 语句。如果您有之前步骤中的临时分支，除非明确告知，否则必须将分支 ID 传递给此工具。
     params:
-      branchId: Branch ID to execute SQL on
-      databaseName: Name of the database
-      projectId: Project ID
-      sql: SQL statement to execute
+      branchId: 要执行 SQL 的分支 ID
+      databaseName: 数据库名称
+      projectId: 项目 ID
+      sql: 要执行的 SQL 语句
   - name: run_sql_transaction
-    description: Execute a SQL transaction against a Neon database, should be used for multiple SQL statements. If you have a temporary branch from a prior step, you MUST pass the branch ID to this tool.
+    description: 对 Neon 数据库执行 SQL 事务，应用于多个 SQL 语句。如果您有之前步骤中的临时分支，必须将分支 ID 传递给此工具。
     params:
-      branchId: Branch ID to execute transaction on
-      databaseName: Name of the database
-      projectId: Project ID
-      sqlStatements: Array of SQL statements to execute in transaction
+      branchId: 要执行事务的分支 ID
+      databaseName: 数据库名称
+      projectId: 项目 ID
+      sqlStatements: 要在事务中执行的 SQL 语句数组
   - name: describe_table_schema
-    description: Describe the schema of a table in a Neon database
+    description: 描述 Neon 数据库中表的结构
     params:
-      branchId: Branch ID
-      databaseName: Name of the database
-      projectId: Project ID
-      tableName: Name of the table to describe
+      branchId: 分支 ID
+      databaseName: 数据库名称
+      projectId: 项目 ID
+      tableName: 要描述的表名称
   - name: get_database_tables
-    description: Get all tables in a Neon database
+    description: 获取 Neon 数据库中的所有表
     params:
-      branchId: Branch ID
-      databaseName: Name of the database
-      projectId: Project ID
+      branchId: 分支 ID
+      databaseName: 数据库名称
+      projectId: 项目 ID
   - name: create_branch
-    description: Create a branch in a Neon project
+    description: 在 Neon 项目中创建一个分支
     params:
-      branchName: Name for the new branch
-      projectId: Project ID
+      branchName: 新分支的名称
+      projectId: 项目 ID
   - name: prepare_database_migration
-    description: Performs database schema migrations by automatically generating and executing DDL statements. Creates a temporary branch, applies migration SQL, and returns migration details for verification.
+    description: 通过自动生成和执行 DDL 语句执行数据库模式迁移。创建临时分支，应用迁移 SQL，并返回迁移详情以供验证。
     params:
-      databaseName: Name of the database
-      migrationSql: Migration SQL to execute
-      projectId: Project ID
+      databaseName: 数据库名称
+      migrationSql: 要执行的迁移 SQL
+      projectId: 项目 ID
   - name: complete_database_migration
-    description: Complete a database migration when the user confirms the migration is ready to be applied to the main branch. Also deletes the temporary branch created by prepare_database_migration.
+    description: 当用户确认迁移已准备好应用到主分支时完成数据库迁移。同时删除由 prepare_database_migration 创建的临时分支。
     params:
-      migrationId: Migration ID from prepare_database_migration
+      migrationId: 来自 prepare_database_migration 的迁移 ID
   - name: describe_branch
-    description: Get a tree view of all objects in a branch, including databases, schemas, tables, views, and functions
+    description: 获取分支中所有对象的树状视图，包括数据库、模式、表、视图和函数
     params:
-      branchId: Branch ID to describe
-      databaseName: Name of the database
-      projectId: Project ID
+      branchId: 要描述的分支 ID
+      databaseName: 数据库名称
+      projectId: 项目 ID
   - name: delete_branch
-    description: Delete a branch from a Neon project
+    description: 从 Neon 项目中删除一个分支
     params:
-      branchId: Branch ID to delete
-      projectId: Project ID
+      branchId: 要删除的分支 ID
+      projectId: 项目 ID
   - name: get_connection_string
-    description: Get a PostgreSQL connection string for a Neon database with all parameters being optional
+    description: 获取 Neon 数据库的 PostgreSQL 连接字符串，所有参数均为可选
     params:
-      branchId: Optional branch ID
-      computeId: Optional compute ID
-      databaseName: Optional database name
-      projectId: Optional project ID
-      roleName: Optional role name
+      branchId: 可选的分支 ID
+      computeId: 可选的计算资源 ID
+      databaseName: 可选的数据库名称
+      projectId: 可选的项目 ID
+      roleName: 可选的角色名称
   - name: provision_neon_auth
-    description: Provisions authentication for a Neon project by creating an integration with Stack Auth. Sets up authentication infrastructure including user tables and credentials.
+    description: 通过与 Stack Auth 集成创建身份验证，为 Neon 项目配置身份验证。设置包括用户表和凭证在内的身份验证基础设施。
     params:
-      database: Optional database name (default neondb or first available)
-      projectId: Project ID to provision authentication for
+      database: 可选的数据库名称（默认 neondb 或第一个可用的）
+      projectId: 要配置身份验证的项目 ID
   - name: explain_sql_statement
-    description: Describe the PostgreSQL query execution plan for a SQL statement by running EXPLAIN (ANALYZE...) in the database
+    description: 通过在数据库中运行 EXPLAIN (ANALYZE...) 来描述 SQL 语句的 PostgreSQL 查询执行计划
     params:
-      analyze: Whether to include ANALYZE in the explain
-      branchId: Branch ID
-      databaseName: Name of the database
-      projectId: Project ID
-      sql: SQL statement to explain
+      analyze: 是否在 explain 中包含 ANALYZE
+      branchId: 分支 ID
+      databaseName: 数据库名称
+      projectId: 项目 ID
+      sql: 要解释的 SQL 语句
   - name: prepare_query_tuning
-    description: Helps improve PostgreSQL query performance by analyzing execution plans and suggesting optimizations. Creates a temporary branch for testing and provides tuning recommendations.
+    description: 通过分析执行计划并提供优化建议来帮助提高 PostgreSQL 查询性能。创建临时分支进行测试并提供调优建议。
     params:
-      databaseName: Name of the database
-      projectId: Project ID
-      roleName: Role name for connection
-      sql: SQL query to optimize
+      databaseName: 数据库名称
+      projectId: 项目 ID
+      roleName: 连接的角色名称
+      sql: 要优化的 SQL 查询
   - name: complete_query_tuning
-    description: Complete a query tuning session by either applying the changes to the main branch or discarding them. Must be called after prepare_query_tuning for proper cleanup.
+    description: 通过将更改应用到主分支或丢弃它们来完成查询调优会话。必须在 prepare_query_tuning 之后调用以进行适当的清理。
     params:
-      applyChanges: Whether to apply the suggested changes
-      branchId: Main branch ID to apply changes to
-      databaseName: Name of the database
-      projectId: Project ID
-      roleName: Role name for connection
-      shouldDeleteTemporaryBranch: Whether to delete the temporary branch
-      suggestedSqlStatements: Array of suggested SQL statements
-      temporaryBranchId: Temporary branch ID from prepare_query_tuning
-      tuningId: Tuning ID from prepare_query_tuning
+      applyChanges: 是否应用建议的更改
+      branchId: 要应用更改的主分支 ID
+      databaseName: 数据库名称
+      projectId: 项目 ID
+      roleName: 连接的角色名称
+      shouldDeleteTemporaryBranch: 是否删除临时分支
+      suggestedSqlStatements: 建议的 SQL 语句数组
+      temporaryBranchId: 来自 prepare_query_tuning 的临时分支 ID
+      tuningId: 来自 prepare_query_tuning 的调优 ID
   - name: list_slow_queries
-    description: List slow queries from your Neon database using the pg_stat_statements extension. Returns queries sorted by execution time with slowest queries first.
+    description: 使用 pg_stat_statements 扩展从 Neon 数据库中列出慢查询。返回按执行时间排序的查询，最慢的查询排在最前面。
     params:
-      branchId: Branch ID
-      computeId: Compute ID
-      databaseName: Name of the database
-      limit: Maximum number of queries to return
-      minExecutionTime: Minimum execution time threshold
-      projectId: Project ID
+      branchId: 分支 ID
+      computeId: 计算资源 ID
+      databaseName: 数据库名称
+      limit: 返回的最大查询数
+      minExecutionTime: 最小执行时间阈值
+      projectId: 项目 ID
   - name: list_branch_computes
-    description: Lists compute endpoints for a project or specific branch
+    description: 列出项目或特定分支的计算端点
     params:
-      branchId: Branch ID
-      projectId: Project ID
+      branchId: 分支 ID
+      projectId: 项目 ID
   - name: list_organizations
-    description: Lists all organizations that the current user has access to. Optionally filter by organization name or ID using the search parameter.
+    description: 列出当前用户有权访问的所有组织。可以使用 search 参数按组织名称或 ID 进行筛选。
     params:
-      search: Optional search string to filter organizations
+      search: 用于筛选组织的可选搜索字符串

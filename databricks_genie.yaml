@@ -1,26 +1,26 @@
 name: Databricks Genie Spaces
-shortDescription: Ask natural language questions about your data with AI-powered analytics
+shortDescription: 使用 AI 驱动的分析功能用自然语言询问数据问题
 description: |
-  A Model Context Protocol (MCP) server that provides easy connection to Databricks Genie Spaces using managed MCP servers. Ask natural language questions about your data and get insights through AI-powered analytics with built-in Unity Catalog security.
+  提供与 Databricks Genie Spaces 轻松连接的 Model Context Protocol (MCP) 服务器，使用托管 MCP 服务器。用自然语言询问数据问题，并通过内置 Unity Catalog 安全性的 AI 驱动分析获取洞察。
 
-  ## Features
-  - **Natural Language Analytics**: Ask questions about your data in plain English
-  - **Data Insights**: Get automated insights and trend analysis from your Genie spaces
-  - **Conversational BI**: Interactive business intelligence through natural language
-  - **Serverless SQL**: Leverage serverless SQL compute for query execution
+  ## 功能特性
+  - **自然语言分析**: 用 plain English 询问数据问题
+  - **数据洞察**: 从您的 Genie spaces 获取自动洞察和趋势分析
+  - **对话式 BI**: 通过自然语言进行交互式商业智能
+  - **无服务器 SQL**: 利用无服务器 SQL 计算进行查询执行
 
-  ## What you'll need to connect
+  ## 连接所需信息
 
-  ### Prerequisites
-  - **For admins**: Ensure the workspace has the **Managed MCP Servers** preview enabled. See [Databricks documentation](https://docs.databricks.com/en/admin/workspace-settings/manage-previews.html) for your cloud provider.
-  - **For users**: Ensure your account has access to Genie spaces in your workspace.
-  
-  ### Setup Steps
-  1. Navigate to your Databricks workspace
-  2. Go to **Genie** → Create or select an existing Genie space
-  3. Note the Genie space ID from the URL or space settings
-  4. Create a Personal Access Token in **Settings** → **Developer** → **Access tokens**
-  5. Configure the environment variables with your specific values
+  ### 先决条件
+  - **对于管理员**: 确保工作区已启用 **Managed MCP Servers** 预览。请参阅适用于您的云提供商的 [Databricks 文档](https://docs.databricks.com/en/admin/workspace-settings/manage-previews.html)。
+  - **对于用户**: 确保您的账户可以访问工作区中的 Genie spaces。
+
+  ### 设置步骤
+  1. 导航到您的 Databricks 工作区
+  2. 转到 **Genie** → 创建或选择现有的 Genie space
+  3. 从 URL 或 space 设置中记下 Genie space ID
+  4. 在 **设置** → **开发者** → **访问令牌** 中创建 Personal Access Token
+  5. 使用您的特定值配置环境变量
 
 
 metadata:
@@ -31,12 +31,12 @@ repoURL: https://docs.databricks.com/aws/en/generative-ai/mcp/
 env:
   - name: Databricks workspace hostname
     key: DATABRICKS_WORKSPACE_URL
-    description: Databricks workspace hostname, (e.g., https://your-workspace.cloud.databricks.com)
+    description: Databricks 工作区主机名，（例如，https://your-workspace.cloud.databricks.com）
     required: true
     sensitive: false
   - name: Genie space ID
     key: DATABRICKS_GENIE_SPACE_ID
-    description: Your Databricks Genie space ID
+    description: 您的 Databricks Genie space ID
     required: true
     sensitive: false
 

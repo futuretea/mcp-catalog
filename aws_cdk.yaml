@@ -1,38 +1,38 @@
 name: AWS CDK
-shortDescription: AWS CDK best practices, architecture patterns, and CDK Nag security compliance
-description: 'A Model Context Protocol (MCP) server for AWS Cloud Development Kit (CDK) best practices, infrastructure as code patterns, and security compliance with CDK Nag. Provides prescriptive guidance, vetted architecture patterns, and automated security validation for building AWS applications.
+shortDescription: AWS CDK 最佳实践、架构模式和 CDK Nag 安全合规
+description: '一个用于 AWS Cloud Development Kit (CDK) 最佳实践、基础设施即代码模式以及 CDK Nag 安全合规的 Model Context Protocol (MCP) 服务器。提供规范性指导、经过验证的架构模式和自动化的安全验证，用于构建 AWS 应用程序。
 
 
-  ## Features
+  ## 功能特性
 
-  - **CDK Best Practices**: Prescriptive patterns with AWS Solutions Constructs and security automation
+  - **CDK 最佳实践**: 使用 AWS Solutions Constructs 和安全性自动化的规范性模式
 
-  - **CDK Nag Integration**: Security compliance rules, explanations, and suppression validation
+  - **CDK Nag 集成**: 安全合规规则、解释和抑制验证
 
-  - **Architecture Patterns**: Search and discover vetted AWS Solutions Constructs for common use cases
+  - **架构模式**: 搜索和发现针对常见用例经过验证的 AWS Solutions Constructs
 
-  - **GenAI Constructs**: Specialized CDK constructs for AI/ML workloads and generative AI applications
+  - **GenAI Constructs**: 专门针对 AI/ML 工作负载和生成式 AI 应用程序的 CDK 构造
 
-  - **Lambda Layer Documentation**: Comprehensive guides and code examples for Lambda layer implementation
+  - **Lambda Layer 文档**: Lambda Layer 实现的全面指南和代码示例
 
-  - **Bedrock Agent Schemas**: Generate OpenAPI schemas for Bedrock Agent Action Groups from Lambda functions
-
-
-  ## What you''ll need to connect
+  - **Bedrock Agent Schemas**: 从 Lambda 函数为 Bedrock Agent Action Groups 生成 OpenAPI 模式
 
 
-  **Required AWS Credentials:**
-
-  - **AWS Access Key ID**: Your AWS credential access key
-
-  - **AWS Secret Access Key**: Your AWS credential access secret
+  ## 连接所需条件
 
 
-  **Optional Configuration:**
+  **必需的 AWS 凭证:**
 
-  - **AWS Region**: AWS region to use (default: `us-east-1`)
+  - **AWS Access Key ID**: 您的 AWS 凭证访问密钥
 
-  - **AWS Session Token**: Required only for temporary credentials like SSO or STS AssumeRole
+  - **AWS Secret Access Key**: 您的 AWS 凭证访问密钥密文
+
+
+  **可选配置:**
+
+  - **AWS Region**: 要使用的 AWS 区域 (默认: `us-east-1`)
+
+  - **AWS Session Token**: 仅在使用临时凭证（如 SSO 或 STS AssumeRole）时需要
 
   '
 metadata:
@@ -44,7 +44,7 @@ env:
   name: AWS Access Key ID
   required: true
   sensitive: true
-  description: Your AWS Access Key ID
+  description: 您的 AWS Access Key ID
 - key: AWS_SECRET_ACCESS_KEY
   name: AWS Secret Access Key
   required: true
@@ -54,12 +54,12 @@ env:
   name: AWS Session Token
   required: false
   sensitive: true
-  description: AWS Session Token, only required if using temporary credentials such as temporary AWS credentials, such as those obtained through aws sso login or other temporary access methods (for example, STS AssumeRole)
+  description: AWS Session Token，仅在使用临时凭证时需要，例如通过 aws sso login 或其他临时访问方法获得的临时 AWS 凭证（例如 STS AssumeRole）
 - key: AWS_REGION
   name: AWS Region
   required: false
   sensitive: false
-  description: AWS Region, default to us-east-1
+  description: AWS 区域，默认为 us-east-1
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/aws-cdk:1.0.8
@@ -69,33 +69,34 @@ containerizedConfig:
   - awslabs.cdk-mcp-server
 toolPreview:
 - name: CDKGeneralGuidance
-  description: Use this tool to get prescriptive CDK advice for building applications on AWS.
+  description: 使用此工具获取在 AWS 上构建应用程序的规范性 CDK 建议。
   params: {}
 - name: ExplainCDKNagRule
-  description: Explain a specific CDK Nag rule with AWS Well-Architected guidance. CDK Nag is a crucial tool for ensuring your CDK applications follow AWS security best practices.
+  description: 解释特定的 CDK Nag 规则及 AWS Well-Architected 指导。CDK Nag 是确保您的 CDK 应用程序遵循 AWS 安全最佳实践的重要工具。
   params:
-    rule_id: The CDK Nag rule ID (e.g., 'AwsSolutions-IAM4')
+    rule_id: CDK Nag 规则 ID（例如 'AwsSolutions-IAM4'）
 - name: CheckCDKNagSuppressions
-  description: Check if CDK code contains Nag suppressions that require human review. Scans TypeScript/JavaScript code for NagSuppressions usage to ensure security suppressions receive proper human oversight and justification.
+  description: 检查 CDK 代码是否包含需要人工审查的 Nag 抑制。扫描 TypeScript/JavaScript 代码中的 NagSuppressions 使用情况，以确保安全抑制得到适当的人工监督和论证。
   params:
-    code: CDK code to analyze (TypeScript/JavaScript) (optional)
-    file_path: Path to a file containing CDK code to analyze (optional)
+    code: 要分析的 CDK 代码（TypeScript/JavaScript）（可选）
+    file_path: 包含要分析的 CDK 代码的文件路径（可选）
 - name: GenerateBedrockAgentSchema
-  description: Generate OpenAPI schema for Bedrock Agent Action Groups from a file. This tool converts a Lambda file with BedrockAgentResolver into a Bedrock-compatible OpenAPI schema.
+  description: 从文件为 Bedrock Agent Action Groups 生成 OpenAPI 模式。此工具将包含 BedrockAgentResolver 的 Lambda 文件转换为 Bedrock 兼容的 OpenAPI 模式。
   params:
-    lambda_code_path: Path to Python file containing BedrockAgentResolver app
-    output_path: Where to save the generated schema
+    lambda_code_path: 包含 BedrockAgentResolver 应用程序的 Python 文件路径
+    output_path: 保存生成模式的位置
 - name: GetAwsSolutionsConstructPattern
-  description: Search and discover AWS Solutions Constructs patterns. AWS Solutions Constructs are vetted architecture patterns that combine multiple AWS services to solve common use cases following AWS Well-Architected best practices.
+  description: 搜索和发现 AWS Solutions Constructs 模式。AWS Solutions Constructs 是经过验证的架构模式，结合了多个 AWS 服务来解决常见用例，遵循 AWS Well-Architected 最佳实践。
   params:
-    pattern_name: Optional name of the specific pattern (e.g., 'aws-lambda-dynamodb') (optional)
-    services: Optional list of AWS services to search for patterns that use them (e.g., ['lambda', 'dynamodb']) (optional)
+    pattern_name: 特定模式的可选名称（例如 'aws-lambda-dynamodb'）（可选）
+    services: 用于搜索使用它们的服务的可选 AWS 服务列表（例如 ['lambda', 'dynamodb']）（可选）
 - name: SearchGenAICDKConstructs
-  description: Search for GenAI CDK constructs by name or type. The search is flexible and will match any of your search terms (OR logic). It handles common variations like singular/plural forms and terms with/without spaces.
+  description: 按名称或类型搜索 GenAI CDK 构造。搜索是灵活的，将匹配您的任何搜索词（OR 逻辑）。它处理常见的变体，如单数/复数形式以及带/不带空格的术语。
   params:
-    construct_type: Optional filter by construct type ('bedrock', 'opensearchserverless', etc.) (optional)
-    query: Search term(s) to find constructs by name or description (optional)
+    construct_type: 按构造类型过滤的可选参数（'bedrock'、'opensearchserverless' 等）（可选）
+    query: 按名称或描述查找构造的搜索词（可选）
 - name: LambdaLayerDocumentationProvider
-  description: Provide documentation sources for Lambda layers. This tool returns information about where to find documentation for Lambda layers and instructs the MCP Client to fetch and process this documentation.
+  description: 提供 Lambda Layer 的文档来源。此工具返回有关在哪里查找 Lambda Layer 文档的信息，并指示 MCP Client 获取和处理此文档。
   params:
-    layer_type: Type of layer ("generic" or "python")
+    layer_type: Layer 类型（"generic" 或 "python"）
+

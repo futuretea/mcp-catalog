@@ -1,47 +1,47 @@
 name: AWS Knowledge
-shortDescription: Check AWS service regional availability and search AWS documentation
-description: 'A Model Context Protocol (MCP) server that provides comprehensive AWS knowledge access including documentation search, regional availability checking, and content recommendations. Built and hosted by AWS Labs.
+shortDescription: 检查 AWS 服务区域可用性并搜索 AWS 文档
+description: '一个 Model Context Protocol (MCP) 服务器，提供全面的 AWS 知识访问，包括文档搜索、区域可用性检查和内容推荐。由 AWS Labs 构建和托管。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Regional Availability**: Check AWS service and resource availability across regions for both API operations and CloudFormation resources
+  - **区域可用性**: 检查 AWS 服务和资源在 API 操作和 CloudFormation 资源方面的区域可用性
 
-  - **Region Information**: List all AWS regions with their identifiers and friendly names
+  - **区域信息**: 列出所有 AWS 区域及其标识符和友好名称
 
-  - **Documentation Search**: Search across all AWS documentation using the official AWS Documentation Search API
+  - **文档搜索**: 使用官方 AWS 文档搜索 API 搜索所有 AWS 文档
 
-  - **Documentation Reader**: Fetch and convert AWS documentation pages to markdown format with pagination support
+  - **文档阅读器**: 获取 AWS 文档页面并转换为 markdown 格式，支持分页
 
-  - **Content Recommendations**: Get related documentation recommendations including highly rated, new, similar, and commonly viewed next pages
-
-
-  ## What you''ll need to connect
+  - **内容推荐**: 获取相关文档推荐，包括高评分、新发布、相似内容和常见浏览的下一页
 
 
-  **No Setup Required**: AWS Knowledge MCP server is hosted by AWS and works out-of-the-box with no API keys or configuration needed.
+  ## 连接所需条件
 
 
-  ## Basic Usage
+  **无需设置**: AWS Knowledge MCP 服务器由 AWS 托管，开箱即用，无需 API 密钥或配置。
 
 
-  Examples:
+  ## 基本用法
 
-  - "Is AWS Lambda available in eu-west-1?"
 
-  - "Check if AWS::EC2::Instance CloudFormation resource is available in ap-southeast-2"
+  示例:
 
-  - "List all AWS regions"
+  - "AWS Lambda 在 eu-west-1 是否可用?"
 
-  - "Search for S3 bucket versioning documentation"
+  - "检查 AWS::EC2::Instance CloudFormation 资源在 ap-southeast-2 是否可用"
 
-  - "Read documentation from https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+  - "列出所有 AWS 区域"
 
-  - "Recommend related content for the Lambda invocation documentation page"
+  - "搜索 S3 存储桶版本控制文档"
+
+  - "阅读 https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html 的文档"
+
+  - "为 Lambda 调用文档页面推荐相关内容"
 
   '
 metadata:
-  categories: Documentation & Learning, Developer Tools
+  categories: 文档与学习, 开发者工具
 icon: https://avatars.githubusercontent.com/u/3299148?s=48&v=4
 repoURL: https://github.com/awslabs/mcp/tree/main/src/aws-knowledge-mcp-server
 runtime: remote
@@ -49,28 +49,28 @@ remoteConfig:
   fixedURL: https://knowledge-mcp.global.api.aws
 toolPreview:
 - name: get_regional_availability
-  description: Retrieve AWS regional availability information for SDK service APIs and CloudFormation resources. Check real-time availability across AWS regions with support for batch queries and filtering.
+  description: 检索 AWS SDK 服务 API 和 CloudFormation 资源的区域可用性信息。支持批量查询和过滤，检查 AWS 各区域的实时可用性。
   params:
-    region: Target AWS region code (e.g., us-east-1, eu-west-1, ap-southeast-2)
-    resource_type: Type of AWS resource to check - 'api' for API operations or 'cfn' for CloudFormation resources
-    filters: Optional list of specific resources to check. For APIs use format 'SdkServiceId+APIOperation' (e.g., ['IAM+GetSSHPublicKey']). For CloudFormation use resource type (e.g., ['AWS::EC2::Instance'])
-    next_token: Pagination token for retrieving additional results (only when no filters specified)
+    region: 目标 AWS 区域代码 (例如 us-east-1, eu-west-1, ap-southeast-2)
+    resource_type: 要检查的 AWS 资源类型 - ''api'' 表示 API 操作，''cfn'' 表示 CloudFormation 资源
+    filters: 可选的要检查的特定资源列表。对于 API 使用格式 ''SdkServiceId+APIOperation'' (例如 [''IAM+GetSSHPublicKey''])。对于 CloudFormation 使用资源类型 (例如 [''AWS::EC2::Instance''])
+    next_token: 用于检索额外结果的分页令牌 (仅在不指定过滤器时)
 - name: list_regions
-  description: Retrieve a list of all AWS regions including their region codes and human-friendly names. Useful for infrastructure planning and region validation.
+  description: 检索所有 AWS 区域的列表，包括区域代码和人性化名称。适用于基础设施规划和区域验证。
   params: {}
 - name: read_documentation
-  description: Fetch and convert an AWS documentation page to markdown format. Supports pagination for long documents through start_index parameter. Works with docs.aws.amazon.com and aws.amazon.com domains.
+  description: 获取 AWS 文档页面并转换为 markdown 格式。通过 start_index 参数支持长文档的分页。适用于 docs.aws.amazon.com 和 aws.amazon.com 域名。
   params:
-    url: URL of the AWS documentation page to read
-    max_length: Maximum number of characters to return (optional)
-    start_index: Starting character index for pagination of long documents (optional)
+    url: 要阅读的 AWS 文档页面 URL
+    max_length: 返回的最大字符数 (可选)
+    start_index: 长文档分页的起始字符索引 (可选)
 - name: search_documentation
-  description: Search AWS documentation using the official AWS Documentation Search API. Searches across AWS docs, blogs, solutions library, getting started guides, architecture center, and prescriptive guidance.
+  description: 使用官方 AWS 文档搜索 API 搜索 AWS 文档。搜索范围包括 AWS 文档、博客、解决方案库、入门指南、架构中心和规范性指导。
   params:
-    search_phrase: Search phrase to use (use specific technical terms and include service names for better results)
-    limit: Maximum number of results to return (optional)
+    search_phrase: 搜索短语 (使用具体的技术术语并包含服务名称以获得更好的结果)
+    limit: 返回的最大结果数 (可选)
 - name: recommend
-  description: Get content recommendations for an AWS documentation page. Returns four categories - highly rated (popular pages), new (recently added), similar (related topics), and journey (commonly viewed next).
+  description: 获取 AWS 文档页面的内容推荐。返回四类推荐 - 高评分 (热门页面)、新发布 (最近添加)、相似内容 (相关主题) 和浏览路径 (常见浏览的下一页)。
   params:
-    url: URL of the AWS documentation page to get recommendations for (must be from docs.aws.amazon.com domain)
+    url: 要获取推荐的 AWS 文档页面 URL (必须来自 docs.aws.amazon.com 域名)
 

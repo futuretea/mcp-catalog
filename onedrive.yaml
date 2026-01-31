@@ -1,26 +1,26 @@
 name: OneDrive
-shortDescription: Manage OneDrive files, folders, sharing, and cross-drive operations
+shortDescription: 管理 OneDrive 文件、文件夹、共享和跨云端硬盘操作
 description: |
   ![OneDrive MCP Server](https://img.shields.io/badge/OneDrive-MCP%20Server-blue?style=for-the-badge&logo=microsoft-onedrive)
   ![Go](https://img.shields.io/badge/Go-1.23+-green?style=for-the-badge&logo=go)
   ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-  A Model Context Protocol (MCP) server for Microsoft OneDrive integration, providing comprehensive cloud file management capabilities through Microsoft Graph API.
+  一个用于 Microsoft OneDrive 集成的 Model Context Protocol (MCP) 服务器，通过 Microsoft Graph API 提供全面的云文件管理功能。
 
-  ## Features
-  - **Drive Management**: Access personal and shared organization drives with detailed information
-  - **File & Folder Operations**: Create, delete, copy, move, and rename files and folders across drives
-  - **Sharing & Permissions**: Grant and manage file permissions with role-based access control
-  - **Cross-Drive Operations**: Copy and move files between different drives seamlessly
+  ## 功能特性
+  - **云端硬盘管理**：访问个人和共享组织云端硬盘，获取详细信息
+  - **文件和文件夹操作**：跨云端硬盘创建、删除、复制、移动和重命名文件和文件夹
+  - **共享与权限**：授予和管理基于角色的访问控制的文件权限
+  - **跨云端硬盘操作**：在不同云端硬盘之间无缝复制和移动文件
 
-  ## What you'll need to connect
+  ## 连接所需
 
-  **No Setup Required**: Authentication is handled automatically through OAuth2 workflow with Microsoft Graph API
+  **无需设置**：通过 Microsoft Graph API 的 OAuth2 流程自动处理认证
 
-  **Microsoft Account**: Requires valid Microsoft/OneDrive account for authentication
+  **Microsoft 账户**：需要有效的 Microsoft/OneDrive 账户进行认证
 
 metadata:
-  categories: Business
+  categories: 商务办公
   allow-multiple: "true"
 icon: https://img.icons8.com/?size=100&id=13638&format=png&color=000000
 repoURL: https://github.com/obot-platform/tools/tree/main/microsoft365/onedrive-mcp-go
@@ -29,69 +29,69 @@ remoteConfig:
   fixedURL: https://m365-onedrive-mcp.obot.ai/mcp
 toolPreview:
   - name: list_all_drives
-    description: Lists all available OneDrive drives for a user, including personal and shared organization drives.
+    description: 列出用户所有可用的 OneDrive 云端硬盘，包括个人和共享组织云端硬盘。
     params: {}
   - name: get_drive
-    description: Gets details about a specific OneDrive drive.
+    description: 获取特定 OneDrive 云端硬盘的详细信息。
     params:
-      drive_id: The ID of the drive to get details about (optional, defaults to personal drive)
+      drive_id: 要获取详细信息的云端硬盘 ID（可选，默认为个人云端硬盘）
   - name: list_drive_items
-    description: Lists items under a specific folder or path in a user's OneDrive.
+    description: 列出用户 OneDrive 中特定文件夹或路径下的项目。
     params:
-      drive_id: The ID of the drive to list files in
-      folder_id: The ID of the folder to list files in (optional, defaults to root folder)
+      drive_id: 要列出文件的云端硬盘 ID
+      folder_id: 要列出文件的文件夹 ID（可选，默认为根文件夹）
   - name: list_shared_with_me_items
-    description: Lists all files and folders that have been shared with the user by others.
+    description: 列出其他用户共享给您的所有文件和文件夹。
     params: {}
   - name: get_drive_item
-    description: Gets details about a specific file in a user's OneDrive.
+    description: 获取用户 OneDrive 中特定文件的详细信息。
     params:
-      drive_id: The ID of the drive to get the file from
-      item_id: The ID of the item to get details about
+      drive_id: 要从中获取文件的云端硬盘 ID
+      item_id: 要获取详细信息的项目 ID
   - name: create_folder
-    description: Creates a new folder under a specific folder or path in a user's OneDrive.
+    description: 在用户 OneDrive 的特定文件夹或路径下创建新文件夹。
     params:
-      folder_name: The name of the folder to create
-      drive_id: The ID of the drive to create the folder in
-      folder_id: The ID of the folder to create the folder in (use 'root' for root folder)
+      folder_name: 要创建的文件夹名称
+      drive_id: 要创建文件夹的云端硬盘 ID
+      folder_id: 要创建文件夹的文件夹 ID（使用 'root' 表示根文件夹）
   - name: delete_drive_item
-    description: Deletes a file from a user's OneDrive.
+    description: 从用户的 OneDrive 删除文件。
     params:
-      drive_id: The ID of the drive to delete the file from
-      item_id: The ID of the item to delete
+      drive_id: 要从中删除文件的云端硬盘 ID
+      item_id: 要删除的项目 ID
   - name: copy_drive_item
-    description: Copies a file from one location to another in a user's OneDrive.
+    description: 将文件从用户 OneDrive 中的一个位置复制到另一个位置。
     params:
-      source_drive_id: The ID of the drive to copy the file from
-      source_item_id: The ID of the item to copy
-      target_drive_id: The ID of the drive to copy the file to
-      target_folder_id: The ID of the folder to copy the file to
-      new_name: The new name of the file (optional)
+      source_drive_id: 要从中复制文件的云端硬盘 ID
+      source_item_id: 要复制的项目 ID
+      target_drive_id: 要复制文件到的云端硬盘 ID
+      target_folder_id: 要复制文件到的文件夹 ID
+      new_name: 文件的新名称（可选）
   - name: move_and_rename_item
-    description: Moves and renames a file in a user's OneDrive.
+    description: 在用户的 OneDrive 中移动和重命名文件。
     params:
-      drive_id: The ID of the drive to update the file in
-      item_id: The ID of the item to update
-      new_folder_id: The ID of the folder to move the file to (optional)
-      new_name: The new name of the file (optional)
+      drive_id: 要更新文件的云端硬盘 ID
+      item_id: 要更新的项目 ID
+      new_folder_id: 要将文件移动到的文件夹 ID（可选）
+      new_name: 文件的新名称（可选）
   - name: add_permission
-    description: Grants permission to users via email for a specific file in OneDrive.
+    description: 通过电子邮件为 OneDrive 中的特定文件授予权限。
     params:
-      drive_id: The ID of the drive to add the permission to
-      item_id: The ID of the item to add the permission to
-      emails: Comma-separated list of email addresses to grant permission to
-      role: The role to grant to the users (read or write)
-      message: The message to send to the users (optional)
-      password: The password to use for the permission (optional)
-      expiration_date_time: The expiration date and time of the permission in YYYY-MM-DDTHH:MM:SSZ format (optional)
+      drive_id: 要添加权限的云端硬盘 ID
+      item_id: 要添加权限的项目 ID
+      emails: 要授予权限的电子邮件地址列表，以逗号分隔
+      role: 要授予用户的角色（read 或 write）
+      message: 要发送给用户的消息（可选）
+      password: 用于权限的密码（可选）
+      expiration_date_time: 权限的到期日期和时间，格式为 YYYY-MM-DDTHH:MM:SSZ（可选）
   - name: delete_permission
-    description: Removes a specific permission from a file in OneDrive.
+    description: 从 OneDrive 中的文件删除特定权限。
     params:
-      drive_id: The ID of the drive to delete the permission from
-      item_id: The ID of the item to delete the permission from
-      permission_id: The ID of the permission to delete
+      drive_id: 要从中删除权限的云端硬盘 ID
+      item_id: 要从中删除权限的项目 ID
+      permission_id: 要删除的权限 ID
   - name: list_permissions
-    description: Lists all permissions for a specific file in OneDrive.
+    description: 列出 OneDrive 中特定文件的所有权限。
     params:
-      drive_id: The ID of the drive to list the permissions from
-      item_id: The ID of the item to list the permissions from
+      drive_id: 要从中列出权限的云端硬盘 ID
+      item_id: 要从中列出权限的项目 ID

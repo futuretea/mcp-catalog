@@ -1,48 +1,48 @@
 name: MySQL
-shortDescription: Execute SQL queries and explore MySQL databases with structured access control
+shortDescription: 通过结构化访问控制执行 SQL 查询和浏览 MySQL 数据库
 description: '![Tests](https://github.com/designcomputer/mysql_mcp_server/actions/workflows/test.yml/badge.svg)
 
   ![PyPI - Downloads](https://img.shields.io/pypi/dm/mysql-mcp-server)
 
 
-  A Model Context Protocol (MCP) server that enables secure interaction with MySQL databases. This server facilitates communication between AI applications and MySQL databases, making database exploration and analysis safer and more structured through a controlled interface.
+  一个支持安全访问 MySQL 数据库的模型上下文协议（MCP）服务器。该服务器促进 AI 应用程序与 MySQL 数据库之间的通信，通过受控接口使数据库浏览和分析更加安全和结构化。
 
 
-  ## Features
+  ## 功能特性
 
-  - **Database Exploration**: List available MySQL tables as resources and read table contents
+  - **数据库浏览**：将可用的 MySQL 表列为资源并读取表内容
 
-  - **Query Execution**: Execute SQL queries with proper error handling and comprehensive logging
+  - **查询执行**：执行 SQL 查询，具有适当的错误处理和全面的日志记录
 
-  - **Resource Management**: Structured interface for safer database operations
-
-
-  ## What you''ll need to connect
+  - **资源管理**：用于更安全数据库操作的结构化接口
 
 
-  **Required:**
-
-  - **MySQL Host**: Database host (e.g. localhost)
-
-  - **MySQL User**: Database username
-
-  - **MySQL Password**: Database password
-
-  - **MySQL Database**: Database name
+  ## 连接所需条件
 
 
-  **Optional:**
+  **必需：**
 
-  - **MySQL Port**: Database port (default: 3306)
+  - **MySQL 主机**：数据库主机（例如 localhost）
+
+  - **MySQL 用户**：数据库用户名
+
+  - **MySQL 密码**：数据库密码
+
+  - **MySQL 数据库**：数据库名称
 
 
-  **Security Tips:**
+  **可选：**
 
-  - Create a dedicated MySQL user with minimal required permissions
+  - **MySQL 端口**：数据库端口（默认：3306）
 
-  - Never use root credentials or administrative accounts
 
-  - Follow the principle of least privilege when configuring database access
+  **安全提示：**
+
+  - 创建具有最小所需权限的专用 MySQL 用户
+
+  - 永远不要使用 root 凭证或管理账户
+
+  - 配置数据库访问时遵循最小权限原则
 
   '
 metadata:
@@ -51,30 +51,30 @@ icon: https://avatars.githubusercontent.com/u/25017723?v=4
 repoURL: https://github.com/designcomputer/mysql_mcp_server
 env:
 - key: MYSQL_HOST
-  name: MySQL Host
+  name: MySQL 主机
   required: true
   sensitive: false
-  description: The hostname or IP address of your MySQL database
+  description: MySQL 数据库的主机名或 IP 地址
 - key: MYSQL_PORT
-  name: MySQL Port
+  name: MySQL 端口
   required: false
   sensitive: false
-  description: The port number of your MySQL database. Defaults to 3306.
+  description: MySQL 数据库的端口号。默认为 3306。
 - key: MYSQL_USER
-  name: MySQL User
+  name: MySQL 用户
   required: true
   sensitive: false
-  description: The username for your MySQL database.
+  description: MySQL 数据库的用户名
 - key: MYSQL_PASSWORD
-  name: MySQL Password
+  name: MySQL 密码
   required: true
   sensitive: true
-  description: The password for your MySQL database.
+  description: MySQL 数据库的密码
 - key: MYSQL_DATABASE
-  name: MySQL Database
+  name: MySQL 数据库
   required: true
   sensitive: false
-  description: The name of your MySQL database.
+  description: MySQL 数据库的名称
 runtime: containerized
 containerizedConfig:
   image: ghcr.io/obot-platform/mcp-images/mysql-mcp-server:0.2.2
